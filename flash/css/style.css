@@ -390,7 +390,7 @@ button:focus {
   background: #000;
   margin-bottom: 120px; }
   .banner_area .box_1620 {
-    background: url(../img/banner/banner.jpg) no-repeat scroll center center;
+    background: url(../img/chatCouverture.jpeg) no-repeat scroll center center;
     background-size: cover;
     min-height: 360px;
     border-radius: 12px;
@@ -2474,8 +2474,7 @@ h6 {
 /* Galley Area css
 ============================================================================================ */
 .home_blog_inner {
-  margin-bottom: -50px; 
-  color: gray;}
+  margin-bottom: -50px;}
 
 .h_blog_item {
   margin-bottom: 50px; }
@@ -2787,3 +2786,21 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+
+
+/* ==================================== Mes règles css ======================================*/
+
+.iconChat {
+max-height : 100px;
+max-width : 100px;
+}
+
+.pad_top_dons {
+  padding-top: 50px; }
+
+.pad_bt_dons {
+  padding-bottom: 50px; }
