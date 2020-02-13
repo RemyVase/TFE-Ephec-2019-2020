@@ -2795,8 +2795,8 @@ h6 {
 /* ==================================== Mes règles css ======================================*/
 
 .iconChat {
-max-height : 100px;
-max-width : 100px;
+max-height : 150px;
+max-width : 150px;
 }
 
 .pad_top_dons {
@@ -3075,3 +3075,20 @@ max-width : 100px;
             display: none; }
         .banner_area_demandeOffre .banner_inner .banner_content .page_link a:hover {
           color: #fa333f; }
+
+.ecartGauche {
+  padding-left: 10%;
+}
+
+.ecartDroite {
+  padding-right: 10%;
+}
+
+.imgSize {
+  width: 100%;
+  height: 100%;
+}
+
+.tailleContainer{
+  max-height : 200px;
+}
