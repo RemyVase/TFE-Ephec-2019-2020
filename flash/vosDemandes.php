@@ -5,7 +5,7 @@
 
 <body>
 
-<?php include 'header.php' ?>
+    <?php include 'header.php' ?>
 
     <!--================Home Banner Area =================-->
     <section class="banner_area">
@@ -31,7 +31,9 @@
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
-                    <img class="w-100 " src="img/chatArbre.jpg" alt="">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-3 text-center">
                     <h4>Nom de l'annonce</h4></br>
@@ -43,8 +45,7 @@
                 </div>
                 <div class="col-sm-3 text-center">
                     <h4>Modifier</h4></br>
-                    <a href="modifDemande.html"><button type="button" class="btn btn-dark align-items-center"><i
-                                class="fa fa-pencil" style="color:white"></i></button></a>
+                    <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
@@ -53,7 +54,9 @@
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
-                    <img class="w-100 " src="img/chatArbre.jpg" alt="">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-3 text-center">
                     <h4>Nom de l'annonce</h4></br>
@@ -65,8 +68,7 @@
                 </div>
                 <div class="col-sm-3 text-center">
                     <h4>Modifier</h4></br>
-                    <a href="modifDemande.html"><button type="button" class="btn btn-dark align-items-center"><i
-                                class="fa fa-pencil" style="color:white"></i></button></a>
+                    <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
@@ -74,7 +76,9 @@
             <div class="col-md-12">
                 <div class="row pad_top_dons pad_bt_dons border border-white">
                     <div class="col-sm-3">
-                        <img class="w-100 " src="img/chatArbre.jpg" alt="">
+                        <div class="text-center">
+                            <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+                        </div>
                     </div>
                     <div class="col-sm-3 text-center">
                         <h4>Nom de l'annonce</h4></br>
@@ -86,8 +90,7 @@
                     </div>
                     <div class="col-sm-3 text-center">
                         <h4>Modifier</h4></br>
-                        <a href="modifDemande.html"><button type="button" class="btn btn-dark align-items-center"><i
-                                    class="fa fa-pencil" style="color:white"></i></button></a>
+                        <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
                     </div>
                 </div>
             </div>
@@ -95,7 +98,9 @@
                 <div class="col-md-12">
                     <div class="row pad_top_dons pad_bt_dons border border-white">
                         <div class="col-sm-3">
-                            <img class="w-100 " src="img/chatArbre.jpg" alt="">
+                            <div class="text-center">
+                                <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+                            </div>
                         </div>
                         <div class="col-sm-3 text-center">
                             <h4>Nom de l'annonce</h4></br>
@@ -107,8 +112,7 @@
                         </div>
                         <div class="col-sm-3 text-center">
                             <h4>Modifier</h4></br>
-                            <a href="modifDemande.html"><button type="button" class="btn btn-dark align-items-center"><i
-                                        class="fa fa-pencil" style="color:white"></i></button></a>
+                            <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
                         </div>
                     </div>
                 </div>
@@ -116,7 +120,9 @@
                     <div class="col-md-12">
                         <div class="row pad_top_dons pad_bt_dons border border-white">
                             <div class="col-sm-3">
-                                <img class="w-100 " src="img/chatArbre.jpg" alt="">
+                                <div class="text-center">
+                                    <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+                                </div>
                             </div>
                             <div class="col-sm-3 text-center">
                                 <h4>Nom de l'annonce</h4></br>
@@ -128,9 +134,7 @@
                             </div>
                             <div class="col-sm-3 text-center">
                                 <h4>Modifier</h4></br>
-                                <a href="modifDemande.html"><button type="button"
-                                        class="btn btn-dark align-items-center"><i class="fa fa-pencil"
-                                            style="color:white"></i></button></a>
+                                <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
                             </div>
                         </div>
                     </div>

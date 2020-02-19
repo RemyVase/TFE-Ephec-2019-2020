@@ -30,7 +30,9 @@
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
-					<img class="w-100 " src="img/chatArbre.jpg" alt="">
+					<div class="text-center">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Nom de l'annonce</h4></br>
@@ -46,7 +48,7 @@
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 				<div class="col-sm-1 text-center">
 					<h4>Plus de détails</h4></br>
@@ -59,7 +61,9 @@
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
-					<img class="w-100 " src="img/chatArbre.jpg" alt="">
+					<div class="text-center">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Nom de l'annonce</h4></br>
@@ -75,7 +79,7 @@
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 				<div class="col-sm-1 text-center">
 					<h4>Plus de détails</h4></br>
@@ -88,7 +92,9 @@
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
-					<img class="w-100 " src="img/chatArbre.jpg" alt="">
+					<div class="text-center">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Nom de l'annonce</h4></br>
@@ -104,7 +110,7 @@
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 				<div class="col-sm-1 text-center">
 					<h4>Plus de détails</h4></br>
@@ -117,7 +123,9 @@
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
-					<img class="w-100 " src="img/chatArbre.jpg" alt="">
+					<div class="text-center">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Nom de l'annonce</h4></br>
@@ -133,7 +141,7 @@
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 				<div class="col-sm-1 text-center">
 					<h4>Plus de détails</h4></br>
@@ -146,7 +154,9 @@
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
-					<img class="w-100 " src="img/chatArbre.jpg" alt="">
+					<div class="text-center">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Nom de l'annonce</h4></br>
@@ -162,7 +172,7 @@
 				</div>
 				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 				<div class="col-sm-1 text-center">
 					<h4>Plus de détails</h4></br>

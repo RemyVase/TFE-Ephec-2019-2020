@@ -38,7 +38,8 @@
                         <ul class="list">
                             <li><span>Age</span>:  5 ans</li>
                             <li><span>Ville où le trouver</span>:  Charleroi</li>
-                            <li><span>Association</span>:  INNI</li>
+                            <li><span>Association</span>:  INNI</li></br></br></br>
+                            <li><span>Contact</span>:  <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
                         </ul>
                     </div>
                 </div>

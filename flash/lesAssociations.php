@@ -5,7 +5,7 @@
 
 <body>
 
-<?php include 'header.php' ?>
+    <?php include 'header.php' ?>
 
     <!--================Home Banner Area =================-->
     <section class="banner_area">
@@ -30,7 +30,9 @@
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
-                    <img class="imgSize tailleContainer img-thumbnail" src="img/chatAdopte.jpeg" alt="">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Nom de l'association</h4></br>
@@ -38,21 +40,21 @@
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Nombre de places disponibles</h4>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
+                    <p>3 Quarantaines</p>
+                    <p>2 En ordre</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Localisation</h4></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
+                    <p>Pont-à-Celles</p>
+                    <p>90 rue de l'Eglise</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Contacts</h4></br></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h4></br>
-                        <a href="detailsAssociation.html"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
@@ -60,8 +62,10 @@
     <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <img class="imgSize tailleContainer img-thumbnail" src="img/chienListe.jpeg" alt="">
+                <div class="col-sm-3 ">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chienListe.jpeg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Nom de l'association</h4></br>
@@ -79,104 +83,110 @@
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Contacts</h4></br></br>
-                    <button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h2></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
+                        <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container ">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
-                    <img class="w-100 img-thumbnail" src="img/chatAdopte.jpeg" alt="">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Nom de l'association</h4></br>
                     <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h3>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
+                    <h4>Nombre de places disponibles</h4>
+                    <p>3 Quarantaines</p>
+                    <p>2 En ordre</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Localisation</h2></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h2></br></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h2></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <img class="w-100 img-thumbnail" src="img/chatAdopte.jpeg" alt="">
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h3>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h2></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
+                    <h4>Localisation</h4></br>
+                    <p>Pont-à-Celles</p>
+                    <p>90 rue de l'Eglise</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Contacts</h4></br></br>
-                    <button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
                 </div>
                 <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h2></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
+                    <h4>Plus de détails</h4></br>
+                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container ">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
-                    <img class="w-100 img-thumbnail" src="img/chatAdopte.jpeg" alt="">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                    </div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Nom de l'association</h4></br>
                     <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h3>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
+                    <h4>Nombre de places disponibles</h4>
+                    <p>3 Quarantaines</p>
+                    <p>2 En ordre</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Localisation</h2></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
+                    <h4>Localisation</h4></br>
+                    <p>Pont-à-Celles</p>
+                    <p>90 rue de l'Eglise</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Contacts</h4></br></br>
-                    <button type="button" class="btn btn-dark align-items-center fa fa-envelope"></button>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
                 </div>
                 <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h2></br>
-                        <button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
+                    <h4>Plus de détails</h4></br>
+                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="col-md-12">
+            <div class="row pad_top_dons pad_bt_dons border border-white">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Nom de l'association</h4></br>
+                    <p>INNI</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Nombre de places disponibles</h4>
+                    <p>3 Quarantaines</p>
+                    <p>2 En ordre</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Localisation</h4></br>
+                    <p>Pont-à-Celles</p>
+                    <p>90 rue de l'Eglise</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Contacts</h4></br></br>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <h4>Plus de détails</h4></br>
+                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
@@ -211,7 +221,7 @@
     <!--================End Home Blog Area =================-->
 
     <?php include 'footer.php' ?>
-<?php include 'jquery.php' ?>
+    <?php include 'jquery.php' ?>
 </body>
 
 </html>

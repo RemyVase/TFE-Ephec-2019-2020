@@ -18,6 +18,7 @@
                             <li class="nav-item"><a class="nav-link" href="accueil.php">Page d'accueil</a></li>
                             <li class="nav-item"><a class="nav-link" href="comment.php">Comment sauver un animal ?</a>
                             </li>
+                            <li class="nav-item"><a class="nav-link" href="messagerie.php">Messagerie</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true" aria-expanded="false">Adoption</a>

@@ -3084,11 +3084,13 @@ max-width : 150px;
   padding-right: 10%;
 }
 
-.imgSize {
-  width: 100%;
-  height: 100%;
-}
+.imgCoupe{
+  background-size: cover;
+  height: 200px;
+  }
 
-.tailleContainer{
-  max-height : 200px;
+.center-block{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -41,7 +41,9 @@
                             <li><span>Email</span>:  google@hotmail.com</li>
                             <li><span>Site</span>:  <a href="www.google.com">www.google.com</a></li>
                             <li><span>Places animaux en règles</span>: <strong>5</strong> </li>
-                            <li><span>Places animaux en quarantaine</span>:  <strong>2</strong></li>
+                            <li><span>Places animaux en quarantaine</span>:  <strong>2</strong></li></br><br><br>
+                            <li><span>Contact</span>:  <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+
 
                         </ul>
                         <ul class="list social_details">
