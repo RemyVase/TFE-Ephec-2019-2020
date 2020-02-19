@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 19, 2020 at 09:38 PM
+-- Generation Time: Feb 19, 2020 at 10:10 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -125,31 +125,37 @@ CREATE TABLE `users_associations` (
 -- Indexes for table `adoption`
 --
 ALTER TABLE `adoption`
-  ADD PRIMARY KEY (`id_animal`);
+  ADD PRIMARY KEY (`id_animal`),
+  ADD KEY `adoption_ibfk_1` (`id_assoc`);
 
 --
 -- Indexes for table `associations`
 --
 ALTER TABLE `associations`
-  ADD PRIMARY KEY (`id_assoc`);
+  ADD PRIMARY KEY (`id_assoc`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  ADD PRIMARY KEY (`id_demande`);
+  ADD PRIMARY KEY (`id_demande`),
+  ADD KEY `id_assoc` (`id_assoc`);
 
 --
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id_message`);
+  ADD PRIMARY KEY (`id_message`),
+  ADD KEY `id_envoyeur` (`id_envoyeur`),
+  ADD KEY `id_receveur` (`id_receveur`);
 
 --
 -- Indexes for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  ADD PRIMARY KEY (`id_offre`);
+  ADD PRIMARY KEY (`id_offre`),
+  ADD KEY `offresdons_ibfk_1` (`id_user`);
 
 --
 -- Indexes for table `users`
@@ -161,7 +167,8 @@ ALTER TABLE `users`
 -- Indexes for table `users_associations`
 --
 ALTER TABLE `users_associations`
-  ADD PRIMARY KEY (`id_user`,`id_assoc`);
+  ADD PRIMARY KEY (`id_user`,`id_assoc`),
+  ADD KEY `id_assoc` (`id_assoc`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -202,3 +209,45 @@ ALTER TABLE `offresDons`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `adoption`
+--
+ALTER TABLE `adoption`
+  ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `associations`
+--
+ALTER TABLE `associations`
+  ADD CONSTRAINT `associations_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Constraints for table `demandesDons`
+--
+ALTER TABLE `demandesDons`
+  ADD CONSTRAINT `demandesdons_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_receveur`) REFERENCES `users` (`id_user`);
+
+--
+-- Constraints for table `offresDons`
+--
+ALTER TABLE `offresDons`
+  ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users_associations`
+--
+ALTER TABLE `users_associations`
+  ADD CONSTRAINT `users_associations_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`),
+  ADD CONSTRAINT `users_associations_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
