@@ -30,7 +30,7 @@
 				<div class="row h_blog_item">
 					<div class="col-lg-6">
 						<div class="h_blog_img">
-							<img class="img-fluid" src="img/chatTriste.jpeg" alt="">
+							<img class="img-fluid" src="../img/chatTriste.jpeg" alt="">
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -59,14 +59,14 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="h_blog_img">
-							<img class="img-fluid" src="img/chienSauve.jpeg" alt="">
+							<img class="img-fluid" src="../img/chienSauve.jpeg" alt="">
 						</div>
 					</div>
 				</div>
 				<div class="row h_blog_item">
 					<div class="col-lg-6">
 						<div class="h_blog_img">
-							<img class="img-fluid" src="img/chatAdopte3.jpeg" alt="">
+							<img class="img-fluid" src="../img/chatAdopte3.jpeg" alt="">
 						</div>
 					</div>
 					<div class="col-lg-6">

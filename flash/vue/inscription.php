@@ -5,7 +5,7 @@
 
 <body>
 
-<?php include 'header.php' ?>
+  <?php include 'header.php' ?>
 
   <!--================Home Banner Area =================-->
   <section class="banner_area_inscription">
@@ -30,35 +30,42 @@
     <div class="col-lg-12 md-center">
 
       <div class="align-center">
-        <form>
+        <form id="inscription_form" name="inscription_form" method="post" action="controller.php" novalidate>
           <div class="row justify-content-center">
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="exampleInputEmail1">Pseudonyme : </label>
-                <input type="pseudo" class="form-control align-center" id="pseudoUser"
-                  placeholder="Entrez votre pseudonyme.">
+                <input type="pseudo" class="form-control align-center" id="pseudoUser" placeholder="Entrez votre pseudonyme." required>
+                <span class="form_error" style="color:red"></span>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email :</label>
-                <input type="email" class="form-control align-center" id="mailUser" placeholder="Entrez votre email.">
-                <small class="form-text text-muted">Nous ne partagerons jamais votre email.</small>
+                <input type="email" class="form-control align-center" id="mailUser" placeholder="Entrez votre email." required>
+                <!-- <small class="form-text text-muted">Nous ne partagerons jamais votre email.</small> -->
+                <span class="form_error" style="color:red"></span>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Mot de passe :</label>
-                <input type="password" class="form-control align-center" id="passwordUser"
-                  placeholder="Entrez votre mot de passe.">
+                <input type="password" class="form-control align-center" id="passwordUser" placeholder="Entrez votre mot de passe." required>
+                <span class="form_error" style="color:red"></span>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Confirmation de mot de passe :</label>
-                <input type="password" class="form-control align-center" id="confirmPasswordUser"
-                  placeholder="Entrez à nouveau votre mot de passe.">
+                <input type="password" class="form-control align-center" id="confirmPasswordUser" placeholder="Entrez à nouveau votre mot de passe." required>
+                <span class="form_error" style="color:red"></span>
               </div>
               <div class="form-check text-center" style="padding-top : 15px; padding-bottom : 15px">
-                <input type="checkbox" class="form-check-input center-block" id="exampleCheck1">
-                <label class="form-check-label " for="exampleCheck1">Check</label>
+                <input type="checkbox" class="form-check-input center-block" id="check1" required>
+                <label class="form-check-label " for="check1">Check</label>
               </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-dark">S'inscrire</button>
+              </div>
+              <div>
+                <img id="loader" src="../img/ajax-loader.gif" style="display : none" alt="icône patienter" title="Veuillez patientez" />
+                <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
+                <p id="caseNonCheck" style="display : none; color : red">Veillez a bien cocher les cases obligatoires en dessous du formulaire.</p>
+                <p id="success" style="display : none; color : green">L'inscription a été validée !</p>
               </div>
             </div>
           </div>
@@ -70,7 +77,7 @@
   <!--================Contact Area =================-->
 
   <?php include 'footer.php' ?>
-<?php include 'jquery.php' ?>
+  <?php include 'jquery.php' ?>
 </body>
 
 </html>

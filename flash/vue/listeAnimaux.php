@@ -13,9 +13,9 @@
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
                     <div class="banner_content text-center">
-                        <h2>Les associations</h2>
+                        <h2>Les animaux disponibles à l'adoption</h2>
                         <div class="page_link">
-                            <p style=" color: white;">Liste des différentes associations</p>
+                            <p style=" color: white;">Découvrez les animaux qui recherchent une famille</p>
                         </div>
                     </div>
                 </div>
@@ -26,22 +26,21 @@
 
     <!--================Home Blog Area =================-->
 
-    <div class="container ">
+    <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
                     <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
+                    <h4>Nom de l'animal</h4></br>
+                    <p>Charly</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
+                    <h4>Association gardant l'animal</h4>
+                    <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Localisation</h4></br>
@@ -54,7 +53,7 @@
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                    <a href="animauxDetails.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
@@ -62,52 +61,18 @@
     <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3 ">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chienListe.jpeg" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h3>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h2></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h2></br>
-                        <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container ">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
                     <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
+                    <h4>Nom de l'animal</h4></br>
+                    <p>Charly</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
+                    <h4>Association gardant l'animal</h4>
+                    <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Localisation</h4></br>
@@ -120,27 +85,26 @@
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                    <a href="animauxDetails.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container ">
+    <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
                     <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
+                    <h4>Nom de l'animal</h4></br>
+                    <p>Charly</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
+                    <h4>Association gardant l'animal</h4>
+                    <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Localisation</h4></br>
@@ -153,27 +117,26 @@
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                    <a href="animauxDetails.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container ">
+    <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
                 <div class="col-sm-3">
                     <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="img/chatAdopte.jpeg" alt="">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
+                    <h4>Nom de l'animal</h4></br>
+                    <p>Charly</p>
                 </div>
                 <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
+                    <h4>Association gardant l'animal</h4>
+                    <p>INNI</p>
                 </div>
                 <div class="col-sm-2 text-center">
                     <h4>Localisation</h4></br>
@@ -186,7 +149,39 @@
                 </div>
                 <div class="col-sm-1 text-center">
                     <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                    <a href="animauxDetails.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row pad_top_dons pad_bt_dons border border-white">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Nom de l'animal</h4></br>
+                    <p>Charly</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Association gardant l'animal</h4>
+                    <p>INNI</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Localisation</h4></br>
+                    <p>Pont-à-Celles</p>
+                    <p>90 rue de l'Eglise</p>
+                </div>
+                <div class="col-sm-2 text-center">
+                    <h4>Contacts</h4></br></br>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
+                </div>
+                <div class="col-sm-1 text-center">
+                    <h4>Plus de détails</h4></br>
+                    <a href="animauxDetails.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-sm-2 text-center">
@@ -62,7 +62,7 @@
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-sm-2 text-center">
@@ -93,7 +93,7 @@
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-sm-2 text-center">
@@ -124,7 +124,7 @@
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-sm-2 text-center">
@@ -155,7 +155,7 @@
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-sm-2 text-center">

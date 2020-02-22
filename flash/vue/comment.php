@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<div class="about_img"><img class="img-fluid" src="img/contrat.jpeg" alt=""></div>
+				<div class="about_img"><img class="img-fluid" src="../img/contrat.jpeg" alt=""></div>
 			</div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<div class="about_img"><img class="img-fluid" src="img/multipleChats.jpeg" alt=""></div>
+				<div class="about_img"><img class="img-fluid" src="../img/multipleChats.jpeg" alt=""></div>
 			</div>
 		</div>
 	</div>
