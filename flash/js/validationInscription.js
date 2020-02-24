@@ -5,8 +5,8 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        dataForm = getAllElementsForm("#inscription_form");
-        objectForm = transformThisInObject(dataForm, "#inscription_form");
+        var dataForm = getAllElementsForm("#inscription_form");
+        var objectForm = transformThisInObject(dataForm, "#inscription_form");
 
         var res = check_form("pseudoUser");
         res = check_form("mailUser") && res;
@@ -20,23 +20,50 @@ $(document).ready(function () {
         //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $("#loader").show();
         $.ajax({
-            url: window.location.href,
+            url: "../controller/inscriptionController.php",
             type: "POST",
             data: objectForm,
-            datatype: "json"
+            datatype: "json",
+            success : function(response) {
+                console.log(response);
+                if(response === '"mailPseudoPasOk"'){
+                    $("#mailPasOk").show();
+                    $("#pseudoPasOk").show();
+                    $("#echecMailOuPseudo").show();
+                    $("#success").hide();
+                }
+                else if(response ==='"mailPasOk"'){
+                    $("#mailPasOk").show();
+                    $("#echecMailOuPseudo").show();
+                    $("#success").hide();
+                    $("#pseudoPasOk").hide();
+                }
+                else if(response === '"pseudoPasOk"'){
+                    $("#pseudoPasOk").show();
+                    $("#echecMailOuPseudo").show();
+                    $("#success").hide();
+                    $("#mailPasOk").hide();
+                }
+                else{
+                    $("#mailPasOk").hide();
+                    $("#pseudoPasOk").hide();
+                    $("#echecMailOuPseudo").hide();
+                    $("#success").show();
+                }
+            }
         })
             //Si la requête fonctionne on affiche un petit message en bas de la page
             .done(function () {
                 $("#loader").hide();
                 $("#nonComplete").hide();
-                $("#success").show();
 
             })
 
             .fail(function () {
                 alert("L'envoi à échoué !");
             });
-    })
+
+    });
 });
 
 /**
@@ -78,6 +105,12 @@ function check_form(id_input) {
             return false;
         }
     }
+    if ($("#passwordUser").val() !== $("#confirmPasswordUser").val()) {
+        $("#motDePasseSame").show();
+        return false;
+    }
+
+    $("#motDePasseSame").hide();
     return true;
 }
 

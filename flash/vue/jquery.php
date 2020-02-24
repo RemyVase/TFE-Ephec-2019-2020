@@ -15,4 +15,4 @@
 	<script src="../vendors/counter-up/jquery.counterup.js"></script>
 	<script src="../js/mail-script.js"></script>
 	<script src="../js/theme.js"></script>
-	<script src="../js/validationDeForm.js"></script>
+	<script src="../js/validationInscription.js"></script>
