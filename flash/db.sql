@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 19, 2020 at 10:10 PM
+-- Generation Time: Feb 24, 2020 at 08:33 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -13,6 +13,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `tfe`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutUser` (IN `pseudo` VARCHAR(255), IN `email` VARCHAR(255), IN `password` VARCHAR(255))  BEGIN
+INSERT INTO users(pseudo_user, mail_user, mdp_user) values (pseudo, email, password);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkMail` (IN `email` VARCHAR(255))  BEGIN
+select id_user from users
+where email = mail_user; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkPseudo` (IN `pseudo` VARCHAR(255))  BEGIN
+select id_user from users
+where pseudo = pseudo_user; 
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -105,6 +125,8 @@ CREATE TABLE `users` (
   `mdp_user` varchar(255) NOT NULL,
   `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 -- --------------------------------------------------------
 
@@ -208,7 +230,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
