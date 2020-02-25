@@ -16,3 +16,4 @@
 	<script src="../js/mail-script.js"></script>
 	<script src="../js/theme.js"></script>
 	<script src="../js/validationInscription.js"></script>
+	<script src="../js/validationConnexion.js"></script>

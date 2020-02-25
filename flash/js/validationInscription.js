@@ -25,7 +25,6 @@ $(document).ready(function () {
             data: objectForm,
             datatype: "json",
             success : function(response) {
-                console.log(response);
                 if(response === '"mailPseudoPasOk"'){
                     $("#mailPasOk").show();
                     $("#pseudoPasOk").show();
