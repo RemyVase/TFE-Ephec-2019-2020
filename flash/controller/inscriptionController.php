@@ -5,7 +5,7 @@ include 'dbAccess.php';
 $db = new dbAccess();
 $pseudo = $_POST["pseudoUser"];
 $email = $_POST["mailUser"];
-$password = $_POST["passwordUser"];
+$password = crypt($_POST["passwordUser"]);
 
 $checkEmail = $db->callProcedure("checkMail", [$email]);
 $checkPseudo = $db->callProcedure("checkPseudo", [$pseudo]);

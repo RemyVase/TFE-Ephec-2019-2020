@@ -1,4 +1,9 @@
+<?php
+session_start();
+$currentPage = "inscription";
+?>
 <!doctype html>
+
 <html lang="en">
 
 <?php include 'head.php' ?>

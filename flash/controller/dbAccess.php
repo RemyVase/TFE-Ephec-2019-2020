@@ -34,7 +34,7 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'pseudoPassword':
+            case 'connexionUser':
                 array_push($params, '?','?');
 
                 try {

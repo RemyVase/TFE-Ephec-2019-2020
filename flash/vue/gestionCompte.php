@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "gestionCompte";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -31,9 +35,9 @@
             <div class="align-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <p class="text-center"><b>Pseudonyme :</b> RemyVase</p>
-                        <p class="text-center"><b>Email :</b> remy.vase3@hotmail.fr</p>
-                        <p class="text-center"><b>Inscris le :</b> 01/01/2020</p></br></br>
+                        <p class="text-center"><b>Pseudonyme :</b> <?= $_SESSION['pseudo']; ?></p>
+                        <p class="text-center"><b>Email :</b> <?= $_SESSION['mail']; ?></p>
+                        <p class="text-center"><b>Inscris le :</b> <?= $_SESSION['date']; ?></p></br></br>
                         <form>
                             <h4>Besoin de changer de mot de passe ?</h4></br>
                             <div class="form-group">

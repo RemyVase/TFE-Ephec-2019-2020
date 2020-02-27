@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "modifAnnonce";
+?>
 <!doctype html>
 <html lang="en">
 

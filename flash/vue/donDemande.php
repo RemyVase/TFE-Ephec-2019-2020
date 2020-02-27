@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "donDemande";
+?>
 <!doctype html>
 <html lang="en">
 

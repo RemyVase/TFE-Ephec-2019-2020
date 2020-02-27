@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "accueil";
+?>
 <!doctype html>
 <html lang="en">
 

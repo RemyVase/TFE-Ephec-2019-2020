@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "vosAnnonces";
+?>
 <!doctype html>
 <html lang="en">
 

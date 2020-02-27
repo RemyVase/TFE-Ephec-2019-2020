@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 24, 2020 at 08:33 PM
+-- Generation Time: Feb 27, 2020 at 07:34 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -30,6 +30,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkPseudo` (IN `pseudo` VARCHAR(255))  BEGIN
 select id_user from users
 where pseudo = pseudo_user; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `connexionUser` (IN `pseudo` VARCHAR(255), IN `passwd` VARCHAR(255))  BEGIN
+SELECT id_user, pseudo_user, mail_user, date_user  FROM users 
+WHERE passwd = mdp_user AND (pseudo = pseudo_user OR pseudo = mail_user); 
 END$$
 
 DELIMITER ;
@@ -125,8 +130,6 @@ CREATE TABLE `users` (
   `mdp_user` varchar(255) NOT NULL,
   `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 
 -- --------------------------------------------------------
 
@@ -230,7 +233,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

@@ -21,7 +21,6 @@ $(document).ready(function () {
             data: objectForm,
             datatype: "json",
             success: function (response) {
-                console.log(response);
                 //if(response === '"mailOuPseudoPasOk"'){
                 //$("#echecMailOuPseudo").show();
                 //}
@@ -29,7 +28,7 @@ $(document).ready(function () {
                     $("#motDePasseIncorrect").show();
                 }
                 else {
-                    $("#motDePasseIncorrect").hide();
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/accueil.php');
                 }
             }
         })

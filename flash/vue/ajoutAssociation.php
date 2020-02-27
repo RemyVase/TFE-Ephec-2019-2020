@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "ajoutAssociation";
+?>
 <!doctype html>
 <html lang="en">
 

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "animauxDetails";
+?>
 <!doctype html>
 <html lang="en">
 

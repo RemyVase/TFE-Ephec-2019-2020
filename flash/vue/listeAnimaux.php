@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "listeAnimaux";
+?>
 <!doctype html>
 <html lang="en">
 

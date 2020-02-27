@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "connexion";
+?>
 <!doctype html>
 <html lang="en">
 

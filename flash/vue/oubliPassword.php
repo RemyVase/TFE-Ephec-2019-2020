@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "oubliPassword";
+?>
 <!doctype html>
 <html lang="en">
 

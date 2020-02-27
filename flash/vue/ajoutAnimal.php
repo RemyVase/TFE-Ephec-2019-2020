@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "ajoutAnimal";
+?>
 <!doctype html>
 <html lang="en">
 

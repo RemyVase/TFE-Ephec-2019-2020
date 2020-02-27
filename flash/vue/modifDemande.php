@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "modifDemande";
+?>
 <!doctype html>
 <html lang="en">
 

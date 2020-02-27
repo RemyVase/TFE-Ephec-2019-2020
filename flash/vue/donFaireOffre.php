@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "donFaireOffre";
+?>
 <!doctype html>
 <html lang="en">
 

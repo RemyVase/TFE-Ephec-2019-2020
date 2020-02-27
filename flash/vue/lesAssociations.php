@@ -1,3 +1,7 @@
+<?php
+session_start();
+$currentPage = "lesAssociations";
+?>
 <!doctype html>
 <html lang="en">
 
