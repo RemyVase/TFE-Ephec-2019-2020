@@ -9,7 +9,7 @@ $currentPage = "oubliPassword";
 
 <body>
 
-<?php include 'header.php' ?>
+    <?php include 'header.php' ?>
     <!--================Home Banner Area =================-->
     <section class="banner_area_oubli">
         <div class="box_1620">
@@ -35,28 +35,20 @@ $currentPage = "oubliPassword";
             <div class="align-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <form>
+                        <form id="oubli_form" name="oubli_form" method="post" action="#" novalidate>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Votre email :</label>
-                                <input type="email" class="form-control align-center" id="emailUserOubli"
-                                    placeholder="Entrez votre email.">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Mot de passe :</label>
-                                <input type="password" class="form-control align-center" id="passwordUserOubli"
-                                    placeholder="Entrez votre mot de passe.">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Confirmation de mot de passe :</label>
-                                <input type="password" class="form-control align-center" id="confirmPasswordUserOubli"
-                                    placeholder="Entrez à nouveau votre mot de passe.">
-                            </div>
-                            <div class="form-check text-center" style="padding-top : 15px; padding-bottom : 15px">
-                                <input type="checkbox" class="form-check-input center-block" id="exampleCheck1">
-                                <label class="form-check-label " for="exampleCheck1">Check</label>
+                                <input type="email" class="form-control align-center" id="emailUserOubli" placeholder="Entrez votre email.">
+                                <span class="form_error" style="display : none; color : red">Ce n'est pas un mail !</span>
+                                <small class="form-text text-muted">Un email vous sera envoyé avec un nouveau mot de passe vous permettant de vous connecter. N'oubliez pas de changer ce mot de passe dans gestion de compte lors de votre première connexion.</small>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Changer de mot de passe</button>
+                            </div>
+                            <div>
+                                <p id="success" style="display : none; color : green">Le mot de passe à bien été changé.</p>
+                                <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
+                                <p id="mailPasOk" style="display : none; color : red">Ce mail n'existe pas, veuillez vérifier si celui-ci est correct.</p>
                             </div>
                         </form>
                     </div>
@@ -69,7 +61,7 @@ $currentPage = "oubliPassword";
 
 
     <?php include 'footer.php' ?>
-<?php include 'jquery.php' ?>
+    <?php include 'jquery.php' ?>
 </body>
 
 </html>

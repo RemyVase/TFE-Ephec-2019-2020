@@ -58,10 +58,6 @@ $(document).ready(function () {
 
             })
 
-            .fail(function () {
-                alert("L'envoi à échoué !");
-            });
-
     });
 });
 

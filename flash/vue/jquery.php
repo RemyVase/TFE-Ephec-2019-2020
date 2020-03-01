@@ -17,3 +17,5 @@
 	<script src="../js/theme.js"></script>
 	<script src="../js/validationInscription.js"></script>
 	<script src="../js/validationConnexion.js"></script>
+	<script src="../js/validationGestioncompte.js"></script>
+	<script src="../js/validationOubliPassword.js"></script>

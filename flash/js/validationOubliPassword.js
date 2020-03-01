@@ -1,38 +1,35 @@
 $(document).ready(function () {
 
-    $("#connexion_form").submit(function (event) {
+    $("#oubli_form").submit(function (event) {
         //Empêche l'html de se refresh
 
         event.preventDefault();
 
-        var dataForm = getAllElementsForm("#connexion_form");
-        var objectForm = transformThisInObject(dataForm, "#connexion_form");
+        var dataForm = getAllElementsForm("#oubli_form");
+        var objectForm = transformThisInObject(dataForm, "#oubli_form");
 
-        var res = check_form("connPseudoUser");
-        res = check_form("connPasswordUser") && res;
+        var res = check_form("emailUserOubli");
         if (!res) return;
 
 
         //appel AJAX 
         //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $.ajax({
-            url: "../controller/connexionController.php",
+            url: "../controller/oubliController.php",
             type: "POST",
             data: objectForm,
             datatype: "json",
             success: function (response) {
-                //if(response === '"mailOuPseudoPasOk"'){
-                //$("#echecMailOuPseudo").show();
-                //}
-                if (response === '"mdpPasOk"') {
-                    $("#motDePasseIncorrect").show();
+                console.log(response);
+                if (response === '"mailPasOk"') {
+                    $("#mailPasOk").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/accueil.php');
+                    $("#mailPasOk").hide();
+                    $("#success").show();
                 }
             }
         })
-
 
     });
 });
@@ -45,10 +42,19 @@ function check_form(id_input) {
     //On prend la valeur des check si false = non check si true = check
     //Tenter de transformer pour que ca soit générique. Comme pour les input en dessous au final.
 
-    if ($("#" + id_input).length === 0) {
-        $("#nonComplete").show();
+    if ($("#" + id_input).length === 0)
         return false;
+
+    if ($("#" + id_input).attr("type") === "checkbox" && $("#" + id_input).attr("required") === "required") {
+        if ($("#" + id_input).is(":checked") === false) {
+            $("#caseNonCheck").show();
+            return false;
+        }
+        else {
+            $("#caseNonCheck").hide();
+        }
     }
+
     //Vérifie si le champs n'est pas vide
     if ($("#" + id_input).val() === "") {
         $("#" + id_input).next(".form_error").fadeIn().text("Veuillez remplir ce champ");
@@ -58,9 +64,18 @@ function check_form(id_input) {
     else {
         $("#" + id_input).next(".form_error").fadeIn().text("");
     }
+
+    //Vérifie si le champs est de type mail
+    if ($("#" + id_input).attr("type") === "email") {
+        //Vérifie que la valeur entrée est bien un mail
+        if (validateEmail($("#" + id_input).val()) === false) {
+            $("#" + id_input).next(".form_error").fadeIn().text("Veuillez entrer un email valide");
+            return false;
+        }
+    }
+
     return true;
 }
-
 
 //Récupération de tous les champs du formulaire + value
 function getAllElementsForm(form) {

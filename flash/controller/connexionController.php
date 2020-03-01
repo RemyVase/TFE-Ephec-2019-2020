@@ -13,8 +13,7 @@ $password = hash("sha256",$_POST["connPasswordUser"]);
 
 $checkPseudoPassword = $db->callProcedure("connexionUser", [$pseudo, $password]);
 if (empty($checkPseudoPassword)) {
-    //echo json_encode("mdpPasOk");
-    echo json_encode($password);
+    echo json_encode("mdpPasOk");
 } else {
     $_SESSION['id'] = $checkPseudoPassword[0]{'id_user'};
     $_SESSION['pseudo'] = $checkPseudoPassword[0]{'pseudo_user'};

@@ -20,6 +20,7 @@ class dbAccess
         switch ($nomProcedure) {
             case 'checkMail':
             case 'checkPseudo':
+            case 'checkPassword':
                 array_push($params, '?');
 
                 try {
@@ -35,7 +36,8 @@ class dbAccess
         }
         switch ($nomProcedure) {
             case 'connexionUser':
-                array_push($params, '?','?');
+            case 'gestionDeCompte':
+                array_push($params, '?', '?');
 
                 try {
                     $this->connexionDB();

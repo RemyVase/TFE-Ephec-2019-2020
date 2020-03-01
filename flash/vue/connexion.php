@@ -36,14 +36,14 @@ $currentPage = "connexion";
                     <div class="form-group">
                         <label for="exampleInputEmail1">Pseudonyme/Email: </label>
                         <input type="pseudo" class="form-control" id="connPseudoUser" placeholder="Entrez votre pseudonyme.">
-                        <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Ce champs n'est pas complèté.</span>
+                        <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mot de passe :</label>
                         <input type="password" class="form-control" id="connPasswordUser" placeholder="Entrez votre mot de passe.">
-                        <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Ce champs n'est pas complèté.</span>
+                        <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
                     </div>
-                    <a href="oubliPassword.html">Mot de passe oublié ? </a>
+                    <a href="oubliPassword.php">Mot de passe oublié ? </a>
                     <div class="text-center">
                         <button type="submit" class="btn btn-dark">Se connecter</button>
                     </div>
