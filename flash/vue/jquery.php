@@ -19,3 +19,4 @@
 	<script src="../js/validationConnexion.js"></script>
 	<script src="../js/validationGestioncompte.js"></script>
 	<script src="../js/validationOubliPassword.js"></script>
+	<script src="../js/validationAjoutAnimal.js"></script>
