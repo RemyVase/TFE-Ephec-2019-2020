@@ -23,6 +23,7 @@ $cheminImgBdd = "../img/img_adoption/" . $file_name;
 if (in_array($file_extension, $extension_autorisees)) {
     if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
         echo json_encode("imgOk");
+        //$ajoutAnimal = $db->callProcedure('ajoutAnimal', [1,$nom, $age, $ville, $desc, $cheminImgBdd]);
     } else {
         echo json_encode('imgPasOk');
     }
@@ -30,6 +31,3 @@ if (in_array($file_extension, $extension_autorisees)) {
 else{
     echo json_encode('extPasOk');
 }
-
-//$ajoutAnimal = $db->callProcedure('ajoutAnimal', [$nom, $age, $ville, $desc, $cheminImgBdd]);
-echo json_encode("C push");

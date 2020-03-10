@@ -21,6 +21,7 @@ class dbAccess
             case 'checkMail':
             case 'checkPseudo':
             case 'checkPassword':
+            case 'checkUserIntoAssoc':
                 array_push($params, '?');
 
                 try {
@@ -68,6 +69,21 @@ class dbAccess
         switch ($nomProcedure) {
             case 'ajoutAnimal':
                 array_push($params, '?', '?', '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
+            case 'ajoutAssoc':
+                array_push($params, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?');
 
                 try {
                     $this->connexionDB();

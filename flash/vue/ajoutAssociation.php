@@ -35,7 +35,7 @@ $currentPage = "ajoutAssociation";
         <div class="col-lg-12 md-center">
 
             <div class="align-center">
-                <form>
+                <form id="ajoutAssoc_form" name="ajoutAssoc_form" method="post" action="#" novalidate>
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -65,7 +65,7 @@ $currentPage = "ajoutAssociation";
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description de l'association :</label>
-                                <textarea class="form-control" id="descAnnonce" rows="3"
+                                <textarea class="form-control" id="descAssoc" rows="3"
                                     placeholder="Entrez une description de votre association."></textarea>
                             </div>
                             <div class="form-group">
@@ -93,7 +93,7 @@ $currentPage = "ajoutAssociation";
 
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Logo de l'association :</label>
-                                <input type="file" class="form-control-file" id="imageAnnonce">
+                                <input type="file" class="form-control-file" id="imageAssoc">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter mon association sur le site</button>
