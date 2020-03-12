@@ -18,10 +18,32 @@ class dbAccess
     {
         $params = array();
         switch ($nomProcedure) {
+            case 'recupAllAnimaux':
+            case 'recupAllDemandes':
+            case 'recupAllOffres':
+            case 'recupAllAssoc':
+                array_push($params);
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
             case 'checkMail':
             case 'checkPseudo':
             case 'checkPassword':
             case 'checkUserIntoAssoc':
+            case 'deleteAnimal':
+            case 'deleteDemande':
+            case 'deleteOffre':
+            case 'deleteAssoc':
                 array_push($params, '?');
 
                 try {
@@ -38,6 +60,7 @@ class dbAccess
         switch ($nomProcedure) {
             case 'connexionUser':
             case 'gestionDeCompte':
+            case 'modifDemande':
                 array_push($params, '?', '?');
 
                 try {
@@ -53,6 +76,7 @@ class dbAccess
         }
         switch ($nomProcedure) {
             case 'ajoutUser':
+            case 'ajoutDemande':
                 array_push($params, '?', '?', '?');
 
                 try {
@@ -67,7 +91,24 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
+            case 'ajoutOffre':
+            case 'modifOffre':
+                array_push($params, '?', '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
             case 'ajoutAnimal':
+            case 'modifAnimal':
                 array_push($params, '?', '?', '?', '?', '?', '?');
 
                 try {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 04, 2020 at 09:55 PM
+-- Generation Time: Mar 12, 2020 at 06:58 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -18,8 +18,13 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `statut` VARCHAR(255))  BEGIN
-INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,statut_animal) VALUES(id,nom,age,ville,descr,statut);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN
+INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal) VALUES(id,nom,age,ville,descr,img);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `id` INT, IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255))  BEGIN
+
+INSERT INTO associations(id_user, nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img) values (id, nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT)  BEGIN 
@@ -49,6 +54,11 @@ select id_user from users
 where pseudo = pseudo_user; 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkUserIntoAssoc` (IN `id` INT)  BEGIN
+SELECT id_assoc FROM associations
+WHERE id_user = id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `connexionUser` (IN `pseudo` VARCHAR(255), IN `passwd` VARCHAR(255))  BEGIN
 SELECT id_user, pseudo_user, mail_user, date_user  FROM users 
 WHERE passwd = mdp_user AND (pseudo = pseudo_user OR pseudo = mail_user); 
@@ -57,6 +67,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAnimal` (IN `id` INT)  BEGIN
 DELETE FROM adoption
 WHERE id_animal = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAssoc` (IN `id` INT)  BEGIN
+DELETE FROM associations
+WHERE id_assoc = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteDemande` (IN `id` INT)  BEGIN
@@ -81,7 +96,7 @@ SET nom_animal = nom, age_animal = age, ville_animal = ville, desc_animal = desc
 WHERE id__animal = id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modifDemande` ()  BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifDemande` (IN `titre` VARCHAR(255), IN `descr` VARCHAR(255))  BEGIN 
 UPDATE demandesDons
 SET titre_demande = titre, desc_demande = descr
 WHERE id_demande = id;
@@ -95,6 +110,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAnimaux` ()  BEGIN
 SELECT * FROM adoption;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` ()  BEGIN
+SELECT * FROM associations;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` ()  BEGIN
@@ -120,8 +139,9 @@ CREATE TABLE `adoption` (
   `age_animal` varchar(255) NOT NULL,
   `ville_animal` varchar(255) NOT NULL,
   `desc_animal` text NOT NULL,
-  `statut_animal` varchar(255) NOT NULL,
-  `date_animal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `statut_animal` varchar(255) NOT NULL DEFAULT 'dispo',
+  `date_animal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `img_animal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -142,8 +162,17 @@ CREATE TABLE `associations` (
   `face_assoc` varchar(255) NOT NULL,
   `insta_assoc` varchar(255) NOT NULL,
   `nbPlaceQuarant_assoc` int(11) NOT NULL,
-  `nbPlaceRegle_assoc` int(11) NOT NULL
+  `nbPlaceRegle_assoc` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `associations`
+--
+
+INSERT INTO `associations` (`id_assoc`, `id_user`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
+(1, 14, 'test', 'test', 'test@hotmail.com', '0477080641', 'zegz', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, ''),
+(2, 14, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png');
 
 -- --------------------------------------------------------
 
@@ -216,7 +245,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`) VALUES
 (14, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-02-29 14:32:58'),
-(15, 'remy', 'remy.vase3@hotmail.fr', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-02-29 17:23:29');
+(15, 'remy', 'remy.vase3@hotmail.fr', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-02-29 17:23:29'),
+(16, 'ergerg', 'ereerg@erbgzeg.com', 'cb07764c395219c9967b1106b50de58e279ca6cd4d279b8cf8a8b7ae39d96313', '2020-03-07 18:17:00');
 
 -- --------------------------------------------------------
 
@@ -296,7 +326,7 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -320,7 +350,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

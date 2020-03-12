@@ -28,8 +28,9 @@ $currentPage = "listeAnimaux";
     </section>
     <!--================End Home Banner Area =================-->
 
-    <!--================Home Blog Area =================-->
-
+    <!--================Home Blog Area =================--> 
+    
+    <?php foreach() ?>
     <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">
