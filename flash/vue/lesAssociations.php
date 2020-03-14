@@ -1,6 +1,7 @@
 <?php
 session_start();
 $currentPage = "lesAssociations";
+include "../controller/listeAssociationsController.php"
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,173 +30,40 @@ $currentPage = "lesAssociations";
     <!--================End Home Banner Area =================-->
 
     <!--================Home Blog Area =================-->
-
-    <div class="container ">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="../img/chatAdopte.jpeg" alt="">
+    <?php foreach ($recupAllAssoc as $assoc) : ?>
+        <div class="container ">
+            <div class="col-md-12">
+                <div class="row pad_top_dons pad_bt_dons border border-white">
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <img class="img-thumbnail imgCoupe" src="<?= $assoc['img']; ?>" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h4></br>
-                    <p>Pont-à-Celles</p>
-                    <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3 ">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chienListe.jpeg" alt="">
+                    <div class="col-sm-2 text-center">
+                        <h4>Nom de l'association</h4></br>
+                        <p><?= $assoc['nom_assoc']; ?></p>
                     </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h3>
-                        <p>3 Quarantaines</p>
-                        <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h2></br>
-                        <p>Pont-à-Celles</p>
-                        <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h2></br>
+                    <div class="col-sm-2 text-center">
+                        <h4>Nombre de places disponibles</h4>
+                        <p><?= $assoc['nbPlaceRegle_assoc']; ?> en règles</p>
+                        <p><?= $assoc['nbPlaceQuarant_assoc']; ?> en quarantaines</p>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <h4>Localisation</h4></br>
+                        <p><?= $assoc['adresse_assoc']; ?></p>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <h4>Contacts</h4></br></br>
+                        <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
+                    </div>
+                    <div class="col-sm-1 text-center">
+                        <h4>Plus de détails</h4></br>
                         <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container ">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="../img/chatAdopte.jpeg" alt="">
                     </div>
                 </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h4></br>
-                    <p>Pont-à-Celles</p>
-                    <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="container ">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="../img/chatAdopte.jpeg" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h4></br>
-                    <p>Pont-à-Celles</p>
-                    <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container ">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe" src="../img/chatAdopte.jpeg" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nom de l'association</h4></br>
-                    <p>INNI</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Nombre de places disponibles</h4>
-                    <p>3 Quarantaines</p>
-                    <p>2 En ordre</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Localisation</h4></br>
-                    <p>Pont-à-Celles</p>
-                    <p>90 rue de l'Eglise</p>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <h4>Plus de détails</h4></br>
-                    <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <?php endforeach; ?>
     <div>
         <nav class="blog-pagination justify-content-center d-flex">
             <ul class="pagination">
@@ -206,11 +74,9 @@ $currentPage = "lesAssociations";
                         </span>
                     </a>
                 </li>
-                <li class="page-item"><a href="#" class="page-link">01</a></li>
-                <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                <li class="page-item"><a href="#" class="page-link">03</a></li>
-                <li class="page-item"><a href="#" class="page-link">04</a></li>
-                <li class="page-item"><a href="#" class="page-link">09</a></li>
+                <?php for($i=1; $i<= $nbPages; $i++){ ?>
+                    <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/lesAssociations.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+                <?php } ?>
                 <li class="page-item">
                     <a href="#" class="page-link" aria-label="Next">
                         <span aria-hidden="true">

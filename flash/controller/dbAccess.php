@@ -21,7 +21,7 @@ class dbAccess
             case 'recupAllAnimaux':
             case 'recupAllDemandes':
             case 'recupAllOffres':
-            case 'recupAllAssoc':
+            case 'checkNbAssoc':
                 array_push($params);
 
                 try {
@@ -61,6 +61,7 @@ class dbAccess
             case 'connexionUser':
             case 'gestionDeCompte':
             case 'modifDemande':
+            case 'recupAllAssoc':
                 array_push($params, '?', '?');
 
                 try {

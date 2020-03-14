@@ -2,21 +2,21 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Mar 12, 2020 at 06:58 PM
--- Server version: 5.7.26
--- PHP Version: 7.3.8
+-- Hôte : localhost:8889
+-- Généré le :  sam. 14 mars 2020 à 19:38
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `tfe`
+-- Base de données :  `tfe`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Procédures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN
 INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal) VALUES(id,nom,age,ville,descr,img);
@@ -42,6 +42,10 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkMail` (IN `email` VARCHAR(255))  BEGIN
 select id_user from users
 where email = mail_user; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssoc` ()  BEGIN
+SELECT COUNT(id_assoc) FROM associations;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkPassword` (IN `id` INT)  BEGIN
@@ -112,8 +116,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAnimaux` ()  BEGIN
 SELECT * FROM adoption;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` ()  BEGIN
-SELECT * FROM associations;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` (IN `nbAssoc` INT, IN `nbPage` INT)  BEGIN
+SELECT * FROM associations LIMIT nbPage,nbAssoc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` ()  BEGIN
@@ -129,7 +133,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adoption`
+-- Structure de la table `adoption`
 --
 
 CREATE TABLE `adoption` (
@@ -147,7 +151,7 @@ CREATE TABLE `adoption` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `associations`
+-- Structure de la table `associations`
 --
 
 CREATE TABLE `associations` (
@@ -167,17 +171,21 @@ CREATE TABLE `associations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `associations`
+-- Déchargement des données de la table `associations`
 --
 
 INSERT INTO `associations` (`id_assoc`, `id_user`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
 (1, 14, 'test', 'test', 'test@hotmail.com', '0477080641', 'zegz', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, ''),
-(2, 14, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png');
+(2, 14, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
+(3, 14, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
+(4, 15, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
+(5, 14, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, ''),
+(6, 15, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `demandesDons`
+-- Structure de la table `demandesDons`
 --
 
 CREATE TABLE `demandesDons` (
@@ -191,7 +199,7 @@ CREATE TABLE `demandesDons` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Structure de la table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -205,7 +213,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `offresDons`
+-- Structure de la table `offresDons`
 --
 
 CREATE TABLE `offresDons` (
@@ -219,7 +227,7 @@ CREATE TABLE `offresDons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `offresDons`
+-- Déchargement des données de la table `offresDons`
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`) VALUES
@@ -228,7 +236,7 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -240,7 +248,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`) VALUES
@@ -251,7 +259,7 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_associations`
+-- Structure de la table `users_associations`
 --
 
 CREATE TABLE `users_associations` (
@@ -260,32 +268,32 @@ CREATE TABLE `users_associations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `adoption`
+-- Index pour la table `adoption`
 --
 ALTER TABLE `adoption`
   ADD PRIMARY KEY (`id_animal`),
   ADD KEY `adoption_ibfk_1` (`id_assoc`);
 
 --
--- Indexes for table `associations`
+-- Index pour la table `associations`
 --
 ALTER TABLE `associations`
   ADD PRIMARY KEY (`id_assoc`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `demandesDons`
+-- Index pour la table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD PRIMARY KEY (`id_demande`),
   ADD KEY `id_assoc` (`id_assoc`);
 
 --
--- Indexes for table `messages`
+-- Index pour la table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
@@ -293,102 +301,102 @@ ALTER TABLE `messages`
   ADD KEY `id_receveur` (`id_receveur`);
 
 --
--- Indexes for table `offresDons`
+-- Index pour la table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD PRIMARY KEY (`id_offre`),
   ADD KEY `offresdons_ibfk_1` (`id_user`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `users_associations`
+-- Index pour la table `users_associations`
 --
 ALTER TABLE `users_associations`
   ADD PRIMARY KEY (`id_user`,`id_assoc`),
   ADD KEY `id_assoc` (`id_assoc`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `adoption`
+-- AUTO_INCREMENT pour la table `adoption`
 --
 ALTER TABLE `adoption`
   MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `associations`
+-- AUTO_INCREMENT pour la table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `demandesDons`
+-- AUTO_INCREMENT pour la table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT pour la table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `offresDons`
+-- AUTO_INCREMENT pour la table `offresDons`
 --
 ALTER TABLE `offresDons`
   MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `adoption`
+-- Contraintes pour la table `adoption`
 --
 ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `associations`
+-- Contraintes pour la table `associations`
 --
 ALTER TABLE `associations`
   ADD CONSTRAINT `associations_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
--- Constraints for table `demandesDons`
+-- Contraintes pour la table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD CONSTRAINT `demandesdons_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `messages`
+-- Contraintes pour la table `messages`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_receveur`) REFERENCES `users` (`id_user`);
 
 --
--- Constraints for table `offresDons`
+-- Contraintes pour la table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `users_associations`
+-- Contraintes pour la table `users_associations`
 --
 ALTER TABLE `users_associations`
   ADD CONSTRAINT `users_associations_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`),

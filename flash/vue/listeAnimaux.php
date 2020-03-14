@@ -30,7 +30,6 @@ $currentPage = "listeAnimaux";
 
     <!--================Home Blog Area =================--> 
     
-    <?php foreach() ?>
     <div class="container">
         <div class="col-md-12">
             <div class="row pad_top_dons pad_bt_dons border border-white">

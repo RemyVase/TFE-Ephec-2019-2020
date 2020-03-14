@@ -39,7 +39,7 @@
                             <li class="nav-item <?php if ($currentPage === "lesAssociations" || $currentPage === "ajoutAssociation") echo $active ?> submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Les associations</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item <?php if ($currentPage === "lesAssociations") echo $active ?>"><a class="nav-link" href="lesAssociations.php">Les associations</a></li>
+                                    <li class="nav-item <?php if ($currentPage === "lesAssociations") echo $active ?>"><a class="nav-link" href="lesAssociations.php?p=1">Les associations</a></li>
                                     <li class="nav-item <?php if ($currentPage === "ajoutAssociation") echo $active ?>"><a class="nav-link" href="ajoutAssociation.php">Ajouter association</a></li>
                                 </ul>
                             </li>
