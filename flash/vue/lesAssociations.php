@@ -58,7 +58,7 @@ include "../controller/listeAssociationsController.php"
                     </div>
                     <div class="col-sm-1 text-center">
                         <h4>Plus de détails</h4></br>
-                        <a href="detailsAssociation.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                        <a href="detailsAssociation.php?assoc=<?= $assoc['id_assoc']; ?>"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                     </div>
                 </div>
             </div>

@@ -20,8 +20,3 @@ $param = ($numPage - 1) * $nbAssocPerPage;
 
 $recupAllAssoc = $db->callProcedure("recupAllAssoc", [$nbAssocPerPage, $param]);
 
-if (empty($recupAllAssoc)) {
-    echo "mdpPasOk";
-} else {
-    //var_dump($checkNbAssoc);
-}

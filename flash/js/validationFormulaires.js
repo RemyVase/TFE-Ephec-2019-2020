@@ -147,8 +147,9 @@ $(document).ready(function () {
 
         event.preventDefault();
 
+        var test = getAllElementsForm("#ajoutAssoc_form");
         var dataForm = getAllElementsFormImg("#ajoutAnimal_form");
-        var objectForm = transformThisInObject(dataForm, "#ajoutAnimal_form");
+        var objectForm = transformThisInObject(test, "#ajoutAnimal_form");
 
         dataForm.append('fileAnimal', $('#imageAnimal')[0].files[0]);
         if (checkAllForm(objectForm) === false) {
@@ -170,7 +171,7 @@ $(document).ready(function () {
                 else {
                 }
             }
-        })
+        });
 
     });
 
@@ -180,8 +181,9 @@ $(document).ready(function () {
 
         event.preventDefault();
 
+        var test = getAllElementsForm("#ajoutAssoc_form");
         var dataForm = getAllElementsFormImg("#ajoutAssoc_form");
-        var objectForm = transformThisInObject(dataForm, "#ajoutAssoc_form");
+        var objectForm = transformThisInObject(test, "#ajoutAssoc_form");
 
         dataForm.append('fileAssoc', $('#imageAssoc')[0].files[0]);
 
@@ -270,7 +272,7 @@ function getAllElementsForm(form) {
     //On parcour chaque champs input du form
     $(form + " :input").each(function () {
         //On balance toutes les infos relative à l'input dans un array
-        data.push($(this))
+        data.push($(this));
     })
     return data;
 }

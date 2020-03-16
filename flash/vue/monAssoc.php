@@ -1,7 +1,7 @@
 <?php
 session_start();
 $currentPage = "detailsAssociations";
-include '../controller/detailsAssocController.php';
+include '../controller/detailsMonAssocController.php';
 ?>
 <!doctype html>
 <html lang="en">

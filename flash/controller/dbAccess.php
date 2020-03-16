@@ -44,6 +44,7 @@ class dbAccess
             case 'deleteDemande':
             case 'deleteOffre':
             case 'deleteAssoc':
+            case 'recupOneAssoc':
                 array_push($params, '?');
 
                 try {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  sam. 14 mars 2020 à 19:38
+-- Généré le :  lun. 16 mars 2020 à 14:08
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.8
 
@@ -128,6 +128,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` ()  BEGIN
 SELECT * FROM offresDons;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupOneAssoc` (IN `id` INT)  BEGIN
+SELECT * FROM associations
+WHERE id_assoc = id;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -180,7 +185,8 @@ INSERT INTO `associations` (`id_assoc`, `id_user`, `nom_assoc`, `adresse_assoc`,
 (3, 14, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
 (4, 15, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
 (5, 14, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, ''),
-(6, 15, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, '');
+(6, 15, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, ''),
+(7, 33, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg');
 
 -- --------------------------------------------------------
 
@@ -244,17 +250,26 @@ CREATE TABLE `users` (
   `pseudo_user` varchar(255) NOT NULL,
   `mail_user` varchar(255) NOT NULL,
   `mdp_user` varchar(255) NOT NULL,
-  `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_assoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`) VALUES
-(14, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-02-29 14:32:58'),
-(15, 'remy', 'remy.vase3@hotmail.fr', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-02-29 17:23:29'),
-(16, 'ergerg', 'ereerg@erbgzeg.com', 'cb07764c395219c9967b1106b50de58e279ca6cd4d279b8cf8a8b7ae39d96313', '2020-03-07 18:17:00');
+INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
+(14, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-02-29 14:32:58', NULL),
+(15, 'remy', 'remy.vase3@hotmail.fr', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-02-29 17:23:29', NULL),
+(16, 'ergerg', 'ereerg@erbgzeg.com', 'cb07764c395219c9967b1106b50de58e279ca6cd4d279b8cf8a8b7ae39d96313', '2020-03-07 18:17:00', NULL),
+(17, 'tonton', 'tonton@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-16 09:45:46', NULL),
+(30, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-16 10:19:29', NULL),
+(33, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-16 10:29:53', NULL),
+(47, 'dada', 'dada@hotmail.be', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-16 10:53:37', NULL),
+(48, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-16 10:56:33', NULL),
+(49, 'roro', 'roro@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:01:18', NULL),
+(50, 'roro1', 'roro4@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:03:18', NULL),
+(51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', NULL);
 
 -- --------------------------------------------------------
 
@@ -334,7 +349,7 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT pour la table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `demandesDons`
@@ -358,7 +373,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Contraintes pour les tables déchargées
