@@ -10,7 +10,6 @@ $password = hash("sha256",$_POST["passwordUser"]);
 $checkEmail = $db->callProcedure("checkMail", [$email]);
 $checkPseudo = $db->callProcedure("checkPseudo", [$pseudo]);
 
-echo $pseudo;
 if (!empty($checkEmail)) {
     if (!empty($checkPseudo)) {
         echo json_encode("mailPseudoPasOk");

@@ -15,7 +15,6 @@ if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPages) {
 } else {
     $numPage = 1;
 }
-echo $numPage;
 
 $param = ($numPage - 1) * $nbAssocPerPage;
 
