@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  lun. 16 mars 2020 à 14:08
+-- Généré le :  lun. 16 mars 2020 à 14:20
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.8
 
@@ -161,7 +161,6 @@ CREATE TABLE `adoption` (
 
 CREATE TABLE `associations` (
   `id_assoc` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
   `nom_assoc` varchar(255) NOT NULL,
   `adresse_assoc` varchar(255) NOT NULL,
   `email_assoc` varchar(255) NOT NULL,
@@ -179,14 +178,14 @@ CREATE TABLE `associations` (
 -- Déchargement des données de la table `associations`
 --
 
-INSERT INTO `associations` (`id_assoc`, `id_user`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
-(1, 14, 'test', 'test', 'test@hotmail.com', '0477080641', 'zegz', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, ''),
-(2, 14, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
-(3, 14, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
-(4, 15, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
-(5, 14, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, ''),
-(6, 15, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, ''),
-(7, 33, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg');
+INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
+(1, 'test', 'test', 'test@hotmail.com', '0477080641', 'zegz', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, ''),
+(2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
+(3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
+(4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
+(5, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, ''),
+(6, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, ''),
+(7, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg');
 
 -- --------------------------------------------------------
 
@@ -271,17 +270,6 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (50, 'roro1', 'roro4@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:03:18', NULL),
 (51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', NULL);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `users_associations`
---
-
-CREATE TABLE `users_associations` (
-  `id_user` int(11) NOT NULL,
-  `id_assoc` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Index pour les tables déchargées
 --
@@ -297,8 +285,7 @@ ALTER TABLE `adoption`
 -- Index pour la table `associations`
 --
 ALTER TABLE `associations`
-  ADD PRIMARY KEY (`id_assoc`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id_assoc`);
 
 --
 -- Index pour la table `demandesDons`
@@ -327,13 +314,6 @@ ALTER TABLE `offresDons`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
-
---
--- Index pour la table `users_associations`
---
-ALTER TABLE `users_associations`
-  ADD PRIMARY KEY (`id_user`,`id_assoc`),
-  ADD KEY `id_assoc` (`id_assoc`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -386,12 +366,6 @@ ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `associations`
---
-ALTER TABLE `associations`
-  ADD CONSTRAINT `associations_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
-
---
 -- Contraintes pour la table `demandesDons`
 --
 ALTER TABLE `demandesDons`
@@ -409,10 +383,3 @@ ALTER TABLE `messages`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `users_associations`
---
-ALTER TABLE `users_associations`
-  ADD CONSTRAINT `users_associations_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`),
-  ADD CONSTRAINT `users_associations_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);

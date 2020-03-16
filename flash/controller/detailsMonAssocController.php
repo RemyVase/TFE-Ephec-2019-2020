@@ -4,7 +4,7 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$id = $_GET['assoc'];
+$id = $_SESSION['id'];
 
 if (isset($id) && $id > 0) {
     $detailsAssoc = $db->callProcedure("recupMonAssoc",[$id]);

@@ -40,7 +40,11 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Les associations</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item <?php if ($currentPage === "lesAssociations") echo $active ?>"><a class="nav-link" href="lesAssociations.php?p=1">Les associations</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "ajoutAssociation") echo $active ?>"><a class="nav-link" href="ajoutAssociation.php">Ajouter association</a></li>
+                                    <?php if ($_SESSION['idAssoc'] != NULL) { ?>
+                                        <li class="nav-item <?php if ($currentPage === "detailsMonAssociation") echo $active ?>"><a class="nav-link" href="detailsMonAssoc.php">Mon association</a></li>
+                                    <?php } else { ?>
+                                        <li class="nav-item <?php if ($currentPage === "ajoutAssociation") echo $active ?>"><a class="nav-link" href="ajoutAssociation.php">Ajouter association</a></li>
+                                    <?php } ?>
                                 </ul>
                             </li>
                             <li class="nav-item <?php if ($currentPage === "gestionCompte") echo $active ?>"><a class="nav-link" href="gestionCompte.php">Gestion de compte</a></li>

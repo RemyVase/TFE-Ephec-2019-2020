@@ -19,4 +19,5 @@ if (empty($checkPseudoPassword)) {
     $_SESSION['pseudo'] = $checkPseudoPassword[0]{'pseudo_user'};
     $_SESSION['mail'] = $checkPseudoPassword[0]{'mail_user'};
     $_SESSION['date'] = $checkPseudoPassword[0]{'date_user'};
+    $_SESSION['idAssoc'] = $checkPseudoPassword[0]{'id_assoc'};
 }
