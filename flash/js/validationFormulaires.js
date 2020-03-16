@@ -206,8 +206,63 @@ $(document).ready(function () {
                 else {
                 }
             }
-        })
+        });
+    });
 
+    $("#modifAssoc_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifAssoc_form");
+        var dataForm = getAllElementsFormImg("#modifAssoc_form");
+        var objectForm = transformThisInObject(test, "#modifAssoc_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifAssocController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    $("#modifImgAssoc_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifAssoc_form");
+        var dataForm = getAllElementsFormImg("#modifAssoc_form");
+        var objectForm = transformThisInObject(test, "#modifAssoc_form");
+
+        dataForm.append('fileAssoc', $('#imageAssocModif')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifImgAssocController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
     });
 
 

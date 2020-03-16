@@ -64,6 +64,7 @@ class dbAccess
             case 'gestionDeCompte':
             case 'modifDemande':
             case 'recupAllAssoc':
+            case 'modifImgAssoc':
                 array_push($params, '?', '?');
 
                 try {
@@ -127,7 +128,8 @@ class dbAccess
         }
         switch ($nomProcedure) {
             case 'ajoutAssoc':
-                array_push($params, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?');
+            case 'modifAssoc':
+                array_push($params, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?');
 
                 try {
                     $this->connexionDB();

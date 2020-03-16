@@ -4,16 +4,7 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$nom = $_POST["nomAssoc"];
-$adresse = $_POST["adresseAssoc"];
-$email = $_POST["emailAssoc"];
-$tel = $_POST["telAssoc"];
-$site = $_POST["siteAssoc"];
-$desc = $_POST["descAssoc"];
-$face = $_POST["facebookAssoc"];
-$insta = $_POST["instagramAssoc"];
-$placeQuar = $_POST["placesQuarantaineAssoc"];
-$placeReg = $_POST["placesReglesAssoc"];
+$idAssoc = $_SESSION['idAssoc'];
 
 $file_name = $_FILES['fileAssoc']['name'];
 $file_extension = strrchr($file_name, ".");
@@ -26,7 +17,7 @@ $cheminImgBdd = "../img/img_assoc/" . $file_name;
 if (in_array($file_extension, $extension_autorisees)) {
     if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
         echo json_encode("imgOk");
-        $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd]);
+        $ajoutAssoc = $db->callProcedure('modifImgAssoc', [$idAssoc, $cheminImgBdd]);
     } else {
         echo json_encode('imgPasOk');
     }
