@@ -1,9 +1,10 @@
 <?php
-
+session_start();
 include 'dbAccess.php';
 
 $db = new dbAccess();
 
+$idAssoc = $_SESSION['idAssoc'];
 $nom = $_POST["nomAnimal"];
 $age = $_POST["ageAnimal"];
 $ville = $_POST["villeAnimal"];
@@ -20,14 +21,21 @@ $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 $cheminImgBdd = "../img/img_adoption/" . $file_name;
 
-if (in_array($file_extension, $extension_autorisees)) {
-    if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-        echo json_encode("imgOk");
-        //$ajoutAnimal = $db->callProcedure('ajoutAnimal', [1,$nom, $age, $ville, $desc, $cheminImgBdd]);
+$checkAnimal = $db->callProcedure('checkAnimal', [$nom, $age, $ville]);
+
+if (empty($checkAnimal)) {
+    if (in_array($file_extension, $extension_autorisees)) {
+        if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+            echo json_encode("imgOk");
+            $ajoutAnimal = $db->callProcedure('ajoutAnimal', [$idAssoc, $nom, $age, $ville, $desc, $cheminImgBdd]);
+        } else {
+            echo json_encode('imgPasOk');
+        }
     } else {
-        echo json_encode('imgPasOk');
+    echo json_encode('extPasOk');
     }
 }
 else{
-    echo json_encode('extPasOk');
+    echo json_encode("Animal déjà présent.");
 }
+

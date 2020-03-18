@@ -21,7 +21,7 @@
                             <li class="nav-item <?php if ($currentPage === "listeAnimaux" || $currentPage === "ajoutAnimal") echo $active ?> submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adoption</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item <?php if ($currentPage === "listeAnimaux") echo $active ?>"><a class="nav-link" href="listeAnimaux.php">Les animaux</a></li>
+                                    <li class="nav-item <?php if ($currentPage === "listeAnimaux") echo $active ?>"><a class="nav-link" href="listeAnimaux.php?p=1">Les animaux</a></li>
                                     <li class="nav-item <?php if ($currentPage === "ajoutAnimal") echo $active ?>"><a class="nav-link" href="ajoutAnimal.php">Ajouter un animal</a></li>
                                 </ul>
                             </li>

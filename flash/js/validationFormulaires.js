@@ -166,10 +166,6 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 console.log(response);
-                if (response === '"mdpPasOk"') {
-                }
-                else {
-                }
             }
         });
 
@@ -200,11 +196,6 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
-                if (response === '"mdpPasOk"') {
-                }
-                else {
-                }
             }
         });
     });
@@ -231,9 +222,9 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
             }
         });
+        location.reload(true);
     });
 
     $("#modifImgAssoc_form").submit(function (event) {
@@ -260,9 +251,9 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
             }
         });
+        location.reload(true);
     });
 
 

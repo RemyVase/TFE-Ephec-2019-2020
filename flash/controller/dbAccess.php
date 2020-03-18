@@ -22,6 +22,7 @@ class dbAccess
             case 'recupAllDemandes':
             case 'recupAllOffres':
             case 'checkNbAssoc':
+            case 'checkNbAnimaux':
                 array_push($params);
 
                 try {
@@ -46,6 +47,7 @@ class dbAccess
             case 'deleteAssoc':
             case 'recupOneAssoc':
             case 'recupMonAssoc':
+            case 'checkAssoc':
                 array_push($params, '?');
 
                 try {
@@ -81,6 +83,7 @@ class dbAccess
         switch ($nomProcedure) {
             case 'ajoutUser':
             case 'ajoutDemande':
+            case 'checkAnimal':
                 array_push($params, '?', '?', '?');
 
                 try {

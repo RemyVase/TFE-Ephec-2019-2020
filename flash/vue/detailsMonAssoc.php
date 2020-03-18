@@ -78,7 +78,8 @@ include '../controller/detailsMonAssocController.php';
     <section>
         <div class="container pad_bt md-center">
             <div class="col-lg-12 md-center">
-
+                <h2 align="center">Modification des informations de l'association</h2>
+                <br>
                 <div class="align-center">
                     <form id="modifAssoc_form" name="ajoutAssoc_form" method="post" action="#" novalidate>
                         <div class="row justify-content-center">
@@ -141,7 +142,11 @@ include '../controller/detailsMonAssocController.php';
                             </div>
                         </div>
                     </form>
-
+                    <br>
+                    <br>
+                    <br>
+                    <h2 align="center">Modification de l'image de l'association</h2>
+                    <br>
                     <form id="modifImgAssoc_form" name="ajoutAssoc_form" method="post" action="#" novalidate>
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
