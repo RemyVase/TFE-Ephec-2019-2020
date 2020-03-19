@@ -22,7 +22,10 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adoption</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item <?php if ($currentPage === "listeAnimaux") echo $active ?>"><a class="nav-link" href="listeAnimaux.php?p=1">Les animaux</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "ajoutAnimal") echo $active ?>"><a class="nav-link" href="ajoutAnimal.php">Ajouter un animal</a></li>
+                                    <?php if ($_SESSION['idAssoc'] != NULL) : ?>
+                                        <li class="nav-item <?php if ($currentPage === "ajoutAnimal") echo $active ?>"><a class="nav-link" href="ajoutAnimal.php">Ajouter un animal</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "nosAnimaux") echo $active ?>"><a class="nav-link" href="nosAnimaux.php">Nos animaux</a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </li>
                             <li class="nav-item <?php if ($currentPage === "donOffre" || $currentPage === "donFaireOffre" || $currentPage === "donDemande" || $currentPage === "donFaireDemande" || $currentPage === "vosAnnonces" || $currentPage === "vosDemandes") echo $active ?>submenu dropdown">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  jeu. 19 mars 2020 à 10:40
+-- Généré le :  jeu. 19 mars 2020 à 13:44
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.8
 
@@ -151,6 +151,14 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` ()  BEGIN
 SELECT * FROM demandesDons;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllNosAnimaux` (IN `nbAnimaux` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
+SELECT * FROM adoption
+JOIN associations
+ON associations.id_assoc = adoption.id_assoc
+WHERE adoption.id_assoc = id
+LIMIT nbPage,nbAnimaux;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` ()  BEGIN

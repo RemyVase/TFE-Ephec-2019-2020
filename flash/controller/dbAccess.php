@@ -85,6 +85,7 @@ class dbAccess
             case 'ajoutUser':
             case 'ajoutDemande':
             case 'checkAnimal':
+            case 'recupAllNosAnimaux':
                 array_push($params, '?', '?', '?');
 
                 try {
