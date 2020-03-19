@@ -18,7 +18,6 @@ class dbAccess
     {
         $params = array();
         switch ($nomProcedure) {
-            case 'recupAllAnimaux':
             case 'recupAllDemandes':
             case 'recupAllOffres':
             case 'checkNbAssoc':
@@ -67,6 +66,7 @@ class dbAccess
             case 'modifDemande':
             case 'recupAllAssoc':
             case 'modifImgAssoc':
+            case 'recupAllAnimaux':
                 array_push($params, '?', '?');
 
                 try {
