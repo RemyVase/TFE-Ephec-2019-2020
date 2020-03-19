@@ -47,6 +47,7 @@ class dbAccess
             case 'recupOneAssoc':
             case 'recupMonAssoc':
             case 'checkAssoc':
+            case 'recupOneAnimal':
                 array_push($params, '?');
 
                 try {

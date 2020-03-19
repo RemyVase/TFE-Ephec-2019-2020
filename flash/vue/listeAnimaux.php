@@ -49,7 +49,7 @@ include "../controller/listeAnimauxController.php"
                     </div>
                     <div class="col-sm-2 text-center">
                         <h4>Ville</h4></br>
-                        <p><?= $animal['nom_animal']; ?></p>
+                        <p><?= $animal['ville_animal']; ?></p>
                     </div>
                     <div class="col-sm-2 text-center">
                         <h4>Contacts</h4></br></br>
