@@ -44,6 +44,7 @@ include '../controller/detailsAnimalController.php';
                             <li><span>Age</span>:  <?= $detailsAnimal[0]{'age_animal'}; ?></li>
                             <li><span>Ville où le trouver</span>:  <?= $detailsAnimal[0]{'ville_animal'}; ?></li>
                             <li><span>Association</span>:  <?= $detailsAnimal[0]{'nom_assoc'}; ?></li></br></br></br>
+                            <li><span>Etat (réservé ou pas)</span>:  <?= $detailsAnimal[0]{'statut_animal'}; ?></li></br></br></br>
                             <li><span>Contact</span>:  <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
                         </ul>
                     </div>

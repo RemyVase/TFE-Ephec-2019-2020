@@ -256,7 +256,61 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    $("#modifAnimal_form").submit(function (event) {
+        //Empêche l'html de se refresh
 
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifAnimal_form");
+        var dataForm = getAllElementsFormImg("#modifAnimal_form");
+        var objectForm = transformThisInObject(test, "#modifAnimal_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifAnimalController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+            }
+        });
+        location.reload(true);
+    });
+
+    $("#modifImgAnimal_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifImgAnimal_form");
+        var dataForm = getAllElementsFormImg("#modifImgAnimal_form");
+        var objectForm = transformThisInObject(test, "#modifImgAnimal_form");
+
+        dataForm.append('fileAnimal', $('#imageAnimalModif')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifImgAnimalController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+            }
+        });
+        location.reload(true);
+    });
 });
 
 

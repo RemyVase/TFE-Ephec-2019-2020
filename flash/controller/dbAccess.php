@@ -68,6 +68,7 @@ class dbAccess
             case 'recupAllAssoc':
             case 'modifImgAssoc':
             case 'recupAllAnimaux':
+            case 'modifImgAnimal':
                 array_push($params, '?', '?');
 
                 try {

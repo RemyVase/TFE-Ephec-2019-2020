@@ -63,8 +63,7 @@ include '../controller/detailsMonAssocController.php';
                             <ul class="list social_details">
                                 <li><a href="<?= $detailsAssoc{
                                                     0}["face_assoc"]; ?>"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="<?= $detailsAssoc{
-                                                    0}["insta_assoc"]; ?>"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="<?= $detailsAssoc{0}["insta_assoc"]; ?>"><i class="fa fa-twitter"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -147,7 +146,7 @@ include '../controller/detailsMonAssocController.php';
                     <br>
                     <h2 align="center">Modification de l'image de l'association</h2>
                     <br>
-                    <form id="modifImgAssoc_form" name="ajoutAssoc_form" method="post" action="#" novalidate>
+                    <form id="modifImgAssoc_form" name="modifImgAssoc_form" method="post" action="#" novalidate>
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="form-group">

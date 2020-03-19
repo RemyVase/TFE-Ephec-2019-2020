@@ -56,8 +56,8 @@ include "../controller/nosAnimauxController.php"
                         <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
                     </div>
                     <div class="col-sm-1 text-center">
-                        <h4>Plus de détails</h4></br>
-                        <a href="animauxDetails.php?animal=<?= $animal['id_animal']; ?>"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                        <h4>Modifier</h4></br>
+                        <a href="nosAnimauxDetails.php?animal=<?= $animal['id_animal']; ?>"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
                     </div>
                 </div>
             </div>
