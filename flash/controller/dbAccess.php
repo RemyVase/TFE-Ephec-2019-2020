@@ -48,6 +48,9 @@ class dbAccess
             case 'recupMonAssoc':
             case 'checkAssoc':
             case 'recupOneAnimal':
+            case 'checkNbNosAnimaux':
+            case 'checkNbMesOffres':
+            case 'checkNbNosDemandes':
                 array_push($params, '?');
 
                 try {
@@ -89,6 +92,8 @@ class dbAccess
             case 'checkAnimal':
             case 'recupAllNosAnimaux':
             case 'checkOffre':
+            case 'recupAllMesOffres':
+            case 'recupAllNosDemandes':
                 array_push($params, '?', '?', '?');
 
                 try {

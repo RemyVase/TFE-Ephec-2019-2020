@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 23, 2020 at 04:00 PM
+-- Generation Time: Mar 23, 2020 at 04:38 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -64,6 +64,21 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbDemande` ()  BEGIN
 SELECT COUNT(id_demande) FROM demandesDons;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbMesOffres` (IN `id` INT)  BEGIN
+SELECT COUNT(*) FROM offresDons
+WHERE id_user = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbNosAnimaux` (IN `id` INT)  BEGIN
+SELECT COUNT(*) FROM adoption
+WHERE id_assoc = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbNosDemandes` (IN `id` INT)  BEGIN
+SELECT COUNT(id_demande) FROM demandesDons
+WHERE id_assoc = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffre` ()  BEGIN
@@ -172,12 +187,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` (IN `nbDemande` I
 SELECT * FROM demandesDons LIMIT nbPage,nbDemande;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllMesOffres` (IN `nbOffre` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
+SELECT * FROM offresDons
+WHERE id_user = id
+LIMIT nbPage, nbOffre;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllNosAnimaux` (IN `nbAnimaux` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
 SELECT * FROM adoption
 JOIN associations
 ON associations.id_assoc = adoption.id_assoc
 WHERE adoption.id_assoc = id
 LIMIT nbPage,nbAnimaux;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllNosDemandes` (IN `nbDemande` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
+SELECT * FROM demandesDons
+WHERE id_assoc = id
+LIMIT nbPage,nbDemande;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` (IN `nbOffre` INT, IN `nbPage` INT)  BEGIN

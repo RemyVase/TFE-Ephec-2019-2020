@@ -5,7 +5,7 @@ $db = new dbAccess();
 
 $id = $_SESSION['idAssoc'];
 $nbAnimauxPerPage = 3;
-$checkNbAnimaux = $db->callProcedure("checkNbAnimaux");
+$checkNbAnimaux = $db->callProcedure("checkNbNosAnimaux",[$id]);
 $intNbAnimaux = intval($checkNbAnimaux{0}[0]);
 $nbPages = ceil($intNbAnimaux / $nbAnimauxPerPage);
 
