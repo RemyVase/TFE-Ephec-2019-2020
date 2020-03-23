@@ -2,21 +2,21 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le :  jeu. 19 mars 2020 à 13:44
--- Version du serveur :  5.7.26
--- Version de PHP :  7.3.8
+-- Host: localhost:8889
+-- Generation Time: Mar 23, 2020 at 03:17 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de données :  `tfe`
+-- Database: `tfe`
 --
 
 DELIMITER $$
 --
--- Procédures
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN
 INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal) VALUES(id,nom,age,ville,descr,img);
@@ -27,12 +27,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `id` INT, IN `nom` 
 INSERT INTO associations(id_user, nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img) values (id, nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT)  BEGIN 
-INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande) VALUES(id,titre,descr);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN 
+INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img) VALUES(id,titre,descr,img);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255))  BEGIN
-INSERT INTO offresDons(id_user, titre_offre, desc_offre, ville_offre, etat_offre) VALUES (id,titre,descr,ville,etat);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255), IN `img` VARCHAR(255))  BEGIN
+INSERT INTO offresDons(id_user, titre_offre, desc_offre, ville_offre, etat_offre,img) VALUES (id,titre,descr,ville,etat,img);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutUser` (IN `pseudo` VARCHAR(255), IN `email` VARCHAR(255), IN `password` VARCHAR(255))  BEGIN
@@ -60,6 +60,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssoc` ()  BEGIN
 SELECT COUNT(id_assoc) FROM associations;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT)  BEGIN
+SELECT * FROM offresDons
+WHERE id_offre = id and titre_offre = titre and desc_offre = descr;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkPassword` (IN `id` INT)  BEGIN
@@ -111,7 +116,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `statut` VARCHAR(255))  BEGIN
 UPDATE adoption
 SET nom_animal = nom, age_animal = age, ville_animal = ville, desc_animal = descr, statut_animal = statut
-WHERE id__animal = id;
+WHERE id_animal = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifAssoc` (IN `id` VARCHAR(255), IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT)  BEGIN
@@ -124,6 +129,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `modifDemande` (IN `titre` VARCHAR(2
 UPDATE demandesDons
 SET titre_demande = titre, desc_demande = descr
 WHERE id_demande = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifImgAnimal` (IN `id` INT, IN `img` VARCHAR(255))  BEGIN
+UPDATE adoption
+SET img_animal = img
+WHERE id_animal = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifImgAssoc` (IN `id` INT, IN `img` VARCHAR(255))  BEGIN
@@ -188,7 +199,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `adoption`
+-- Table structure for table `adoption`
 --
 
 CREATE TABLE `adoption` (
@@ -204,19 +215,20 @@ CREATE TABLE `adoption` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `adoption`
+-- Dumping data for table `adoption`
 --
 
 INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`) VALUES
-(1, 1, 'Charly', '2 ans et demi', 'Pont-à-Celles', 'Gentil, énergique et adore jouer toute la journée avec un ballon.', 'dispo', '2020-03-17 15:36:56', '../img/img_adoption/chatTriste.jpeg'),
-(2, 1, 'Jean', '4ans ', 'Pont-à-Celles', 'Tout mignooooooon', 'dispo', '2020-03-17 15:40:51', '../img/img_adoption/chienListe.jpeg'),
+(1, 1, 'Jean-Charles', '15 ans ', 'PAC', 'Cooooool', 'Disponible', '2020-03-17 15:36:56', '../img/img_adoption/chienListe.jpeg'),
+(2, 1, 'Alfred', '30 ans', 'Luttre', 'Pas coooool', 'Disponible', '2020-03-17 15:40:51', '../img/img_adoption/chiensGestion.jpeg'),
 (3, 1, 'Adebayor', '8ans ', 'Pont-à-Celles', 'Câlin à souhait cherche une famille pour profiter de sa retraite.', 'dispo', '2020-03-17 15:41:42', '../img/img_adoption/chienDors.jpeg'),
-(5, 6, 'Charles', '2ans', 'Luttre', 'Gentil', 'dispo', '2020-03-17 16:12:32', '../img/img_adoption/chatCoussin.jpeg');
+(5, 6, 'Charles', '2ans', 'Luttre', 'Gentil', 'dispo', '2020-03-17 16:12:32', '../img/img_adoption/chatCoussin.jpeg'),
+(6, 1, 'Pedro', '6 ans ', 'Bruxelles', 'Gentils, pas méchant, lol ', 'dispo', '2020-03-19 22:21:01', '../img/img_adoption/chienSolo.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `associations`
+-- Table structure for table `associations`
 --
 
 CREATE TABLE `associations` (
@@ -235,11 +247,11 @@ CREATE TABLE `associations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `associations`
+-- Dumping data for table `associations`
 --
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
-(1, 'testLOL', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg'),
+(1, 'testLOLILOL', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg'),
 (2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
 (3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
 (4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
@@ -250,7 +262,7 @@ INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_ass
 -- --------------------------------------------------------
 
 --
--- Structure de la table `demandesDons`
+-- Table structure for table `demandesDons`
 --
 
 CREATE TABLE `demandesDons` (
@@ -258,13 +270,22 @@ CREATE TABLE `demandesDons` (
   `id_assoc` int(11) NOT NULL,
   `titre_demande` varchar(255) NOT NULL,
   `desc_demande` text NOT NULL,
-  `dateCrea_demande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dateCrea_demande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `demandesDons`
+--
+
+INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`) VALUES
+(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chatCouverture.jpeg'),
+(5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -278,7 +299,7 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offresDons`
+-- Table structure for table `offresDons`
 --
 
 CREATE TABLE `offresDons` (
@@ -288,20 +309,21 @@ CREATE TABLE `offresDons` (
   `desc_offre` text NOT NULL,
   `ville_offre` varchar(255) NOT NULL,
   `etat_offre` varchar(255) NOT NULL,
-  `dateCrea_offre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dateCrea_offre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `offresDons`
+-- Dumping data for table `offresDons`
 --
 
-INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`) VALUES
-(2, 14, 'Arbre', 'super arbre à chat avec deux hamac, trois coquillages et cinq étages', 'Pont-à-Celles', 'Neuf', '2020-03-04 21:02:38');
+INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`) VALUES
+(3, 14, 'test', 'test', 'test', 'test', '2020-03-23 15:54:40', '../img/img_offre/chatArbre.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -314,7 +336,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
@@ -331,31 +353,31 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', NULL);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `adoption`
+-- Indexes for table `adoption`
 --
 ALTER TABLE `adoption`
   ADD PRIMARY KEY (`id_animal`),
   ADD KEY `adoption_ibfk_1` (`id_assoc`);
 
 --
--- Index pour la table `associations`
+-- Indexes for table `associations`
 --
 ALTER TABLE `associations`
   ADD PRIMARY KEY (`id_assoc`);
 
 --
--- Index pour la table `demandesDons`
+-- Indexes for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD PRIMARY KEY (`id_demande`),
   ADD KEY `id_assoc` (`id_assoc`);
 
 --
--- Index pour la table `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
@@ -363,83 +385,83 @@ ALTER TABLE `messages`
   ADD KEY `id_receveur` (`id_receveur`);
 
 --
--- Index pour la table `offresDons`
+-- Indexes for table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD PRIMARY KEY (`id_offre`),
   ADD KEY `offresdons_ibfk_1` (`id_user`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `adoption`
+-- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT pour la table `associations`
+-- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
   MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `demandesDons`
+-- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `offresDons`
+-- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `adoption`
+-- Constraints for table `adoption`
 --
 ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `demandesDons`
+-- Constraints for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD CONSTRAINT `demandesdons_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `messages`
+-- Constraints for table `messages`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_receveur`) REFERENCES `users` (`id_user`);
 
 --
--- Contraintes pour la table `offresDons`
+-- Constraints for table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;

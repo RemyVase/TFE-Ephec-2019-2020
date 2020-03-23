@@ -311,6 +311,67 @@ $(document).ready(function () {
         });
         location.reload(true);
     });
+
+    
+
+    $("#ajoutOffre_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#ajoutOffre_form");
+        var dataForm = getAllElementsFormImg("#ajoutOffre_form");
+        var objectForm = transformThisInObject(test, "#ajoutOffre_form");
+
+        dataForm.append('fileOffre', $('#imageAnnonceOffre')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/ajoutOffreController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+            }
+        });
+    });
+
+    $("#ajoutDemande_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#ajoutDemande_form");
+        var dataForm = getAllElementsFormImg("#ajoutDemande_form");
+        var objectForm = transformThisInObject(test, "#ajoutDemande_form");
+
+        dataForm.append('fileDemande', $('#imageAnnonceDemande')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/ajoutDemandeController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+
 });
 
 

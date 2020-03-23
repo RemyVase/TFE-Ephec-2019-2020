@@ -84,9 +84,9 @@ class dbAccess
         }
         switch ($nomProcedure) {
             case 'ajoutUser':
-            case 'ajoutDemande':
             case 'checkAnimal':
             case 'recupAllNosAnimaux':
+            case 'checkOffre':
                 array_push($params, '?', '?', '?');
 
                 try {
@@ -101,7 +101,21 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'ajoutOffre':
+            case 'ajoutDemande':
+                array_push($params, '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
             case 'modifOffre':
                 array_push($params, '?', '?', '?', '?', '?');
 
@@ -119,6 +133,7 @@ class dbAccess
         switch ($nomProcedure) {
             case 'ajoutAnimal':
             case 'modifAnimal':
+            case 'ajoutOffre':
                 array_push($params, '?', '?', '?', '?', '?', '?');
 
                 try {

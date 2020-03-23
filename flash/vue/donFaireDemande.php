@@ -35,7 +35,7 @@ $currentPage = "donFaireDemande";
 		<div class="col-lg-12 md-center">
 
 			<div class="align-center">
-				<form>
+				<form id="ajoutDemande_form" name="ajoutDemande_form" method="post" action="#" novalidate>
 					<div class="row justify-content-center">
 						<div class="col-lg-6">
 							<div class="form-group">
