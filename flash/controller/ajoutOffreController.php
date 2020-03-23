@@ -10,7 +10,6 @@ $desc = $_POST["descAnnonceOffre"];
 $ville = $_POST["villeAnnonceOffre"];
 $etat = $_POST["etatAnnonceOffre"];
 
-//var_dump($_FILES);
 $file_name = $_FILES['fileOffre']['name'];
 $file_extension = strrchr($file_name, ".");
 
@@ -21,21 +20,21 @@ $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 $cheminImgBdd = "../img/img_offre/" . $file_name;
 
-//$checkAnimal = $db->callProcedure('checkAnimal', [$nom, $age, $ville]);
+$checkOffre = $db->callProcedure('checkOffre', [$idUser, $titre, $desc]);
 
-//if (empty($checkAnimal)) {
+if (empty($checkOffre)) {
     if (in_array($file_extension, $extension_autorisees)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
-            $ajoutAnimal = $db->callProcedure('ajoutOffre', [$idUser, $titre, $desc, $ville, $etat, $cheminImgBdd]);
+            $ajoutOffre = $db->callProcedure('ajoutOffre', [$idUser, $titre, $desc, $ville, $etat, $cheminImgBdd]);
         } else {
             echo json_encode('imgPasOk');
         }
     } else {
     echo json_encode('extPasOk');
     }
-/*}
+}
 else{
-    echo json_encode("Animal déjà présent.");
-}*/
+    echo json_encode("Annonce déjà présent.");
+}
 

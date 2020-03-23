@@ -18,10 +18,10 @@ class dbAccess
     {
         $params = array();
         switch ($nomProcedure) {
-            case 'recupAllDemandes':
-            case 'recupAllOffres':
             case 'checkNbAssoc':
             case 'checkNbAnimaux':
+            case 'checkNbOffre':
+            case 'checkNbDemande':
                 array_push($params);
 
                 try {
@@ -69,6 +69,8 @@ class dbAccess
             case 'modifImgAssoc':
             case 'recupAllAnimaux':
             case 'modifImgAnimal':
+            case 'recupAllOffres':
+            case 'recupAllDemandes':
                 array_push($params, '?', '?');
 
                 try {
@@ -101,22 +103,8 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'ajoutDemande':
-                array_push($params, '?', '?', '?', '?');
-
-                try {
-                    $this->connexionDB();
-                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
-                    $requete = $this->pdo->prepare($procedureCall);
-                    $requete->execute($procParams);
-                    return $requete->fetchAll();
-                } catch (Exception $e) {
-                    die("Erreur :" . $e->getMessage());
-                }
-                break;
-        }
-        switch ($nomProcedure) {
             case 'modifOffre':
+            case 'ajoutDemande':
                 array_push($params, '?', '?', '?', '?', '?');
 
                 try {

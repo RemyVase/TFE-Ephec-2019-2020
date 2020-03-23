@@ -1,6 +1,7 @@
 <?php
 session_start();
 $currentPage = "donDemande";
+include '../controller/listeDemandesController.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,141 +32,31 @@ $currentPage = "donDemande";
 	<!--================End Home Banner Area =================-->
 
 	<!--================Portfolio Details Area =================-->
+	<?php foreach ($recupAllDemande as $demande) : ?>
 	<div class="container">
 		<div class="col-md-12">
 			<div class="row pad_top_dons pad_bt_dons border border-white">
 				<div class="col-sm-3">
 					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
+						<img class="img-thumbnail imgCoupe mx-auto text-center " src="<?= $demande['img']; ?>" alt="">
 					</div>
 				</div>
-				<div class="col-sm-2 text-center">
+				<div class="col-sm-3 text-center">
 					<h4>Nom de l'annonce</h4></br>
-					<p>Arbre à chat</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Ville</h4></br>
-					<p>Pont-à-Celles</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
+					<p><?= $demande['titre_demande']; ?></p>
 				</div>
 				<div class="col-sm-3 text-center">
-					<h4>Plus de détails</h4></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
+					<h4>Ville</h4></br>
+					<p><?= $demande['ville_demande']; ?></p>
+				</div>
+				<div class="col-sm-3 text-center">
+					<h4>Contacts</h4></br></br>
+                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div class="col-md-12">
-			<div class="row pad_top_dons pad_bt_dons border border-white">
-				<div class="col-sm-3">
-					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Nom de l'annonce</h4></br>
-					<p>Arbre à chat</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Ville</h4></br>
-					<p>Pont-à-Celles</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-				</div>
-				<div class="col-sm-3 text-center">
-					<h4>Plus de détails</h4></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="col-md-12">
-			<div class="row pad_top_dons pad_bt_dons border border-white">
-				<div class="col-sm-3">
-					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Nom de l'annonce</h4></br>
-					<p>Arbre à chat</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Ville</h4></br>
-					<p>Pont-à-Celles</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-				</div>
-				<div class="col-sm-3 text-center">
-					<h4>Plus de détails</h4></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="col-md-12">
-			<div class="row pad_top_dons pad_bt_dons border border-white">
-				<div class="col-sm-3">
-					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Nom de l'annonce</h4></br>
-					<p>Arbre à chat</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Ville</h4></br>
-					<p>Pont-à-Celles</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-				</div>
-				<div class="col-sm-3 text-center">
-					<h4>Plus de détails</h4></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="col-md-12">
-			<div class="row pad_top_dons pad_bt_dons border border-white">
-				<div class="col-sm-3">
-					<div class="text-center">
-						<img class="img-thumbnail imgCoupe mx-auto text-center " src="../img/chatArbre.jpg" alt="">
-					</div>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Nom de l'annonce</h4></br>
-					<p>Arbre à chat</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Ville</h4></br>
-					<p>Pont-à-Celles</p>
-				</div>
-				<div class="col-sm-2 text-center">
-					<h4>Contacts</h4></br></br>
-                    <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
-				</div>
-				<div class="col-sm-3 text-center">
-					<h4>Plus de détails</h4></br>
-					<button type="button" class="btn btn-dark align-items-center fa fa-plus"></button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php endforeach; ?>
 
 	<div>
 		<nav class="blog-pagination justify-content-center d-flex">
@@ -177,11 +68,9 @@ $currentPage = "donDemande";
 						</span>
 					</a>
 				</li>
-				<li class="page-item"><a href="#" class="page-link">01</a></li>
-				<li class="page-item active"><a href="#" class="page-link">02</a></li>
-				<li class="page-item"><a href="#" class="page-link">03</a></li>
-				<li class="page-item"><a href="#" class="page-link">04</a></li>
-				<li class="page-item"><a href="#" class="page-link">09</a></li>
+				<?php for ($i = 1; $i <= $nbPages; $i++) { ?>
+					<li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/donDemande.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+				<?php } ?>
 				<li class="page-item">
 					<a href="#" class="page-link" aria-label="Next">
 						<span aria-hidden="true">

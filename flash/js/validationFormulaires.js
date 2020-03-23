@@ -338,6 +338,12 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                /*if(response === '"imgPasOk"'){
+                    console.log("Veuillez insérer une image au format png,jpeg ou jpg.");
+                }
+                else if(response === '"Annonce déjà présent."'){
+                    console.log("Annonce déjà présent.");
+                }*/
             }
         });
     });

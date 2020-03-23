@@ -44,6 +44,11 @@ $currentPage = "donFaireDemande";
 									placeholder="Entrez le titre de votre annonce.">
 							</div>
 							<div class="form-group">
+								<label for="titreObjectDemande">Ville ou se trouve l'association : </label>
+								<input type="pseudo" class="form-control align-center" id="villeAnnonceDemande"
+									placeholder="Entrez la ville où se trouve l'association.">
+							</div>
+							<div class="form-group">
 								<label for="descriptionObjectDemande">Description de(s) Objet(s) :</label>
 								<textarea class="form-control" id="descAnnonceDemande" rows="3"
 									placeholder="Entrez une description pour votre annonce."></textarea>

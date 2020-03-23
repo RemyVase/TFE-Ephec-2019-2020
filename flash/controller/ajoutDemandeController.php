@@ -7,6 +7,7 @@ $db = new dbAccess();
 $idAssoc = $_SESSION['idAssoc'];
 $titre = $_POST["titreAnnonceDemande"];
 $desc = $_POST["descAnnonceDemande"];
+$ville = $_POST["villeAnnonceDemande"];
 
 //var_dump($_FILES);
 $file_name = $_FILES['fileDemande']['name'];
@@ -25,7 +26,7 @@ $cheminImgBdd = "../img/img_demande/" . $file_name;
     if (in_array($file_extension, $extension_autorisees)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
-            $ajoutAnimal = $db->callProcedure('ajoutDemande', [$idAssoc, $titre, $desc, $cheminImgBdd]);
+            $ajoutDemande = $db->callProcedure('ajoutDemande', [$idAssoc, $titre, $desc, $cheminImgBdd, $ville]);
         } else {
             echo json_encode('imgPasOk');
         }
