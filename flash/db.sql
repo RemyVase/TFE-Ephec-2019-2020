@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 23, 2020 at 03:17 PM
+-- Generation Time: Mar 23, 2020 at 04:00 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -27,8 +27,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `id` INT, IN `nom` 
 INSERT INTO associations(id_user, nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img) values (id, nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN 
-INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img) VALUES(id,titre,descr,img);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255), IN `ville` VARCHAR(255))  BEGIN 
+INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img, ville_demande) VALUES(id,titre,descr,img,ville);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255), IN `img` VARCHAR(255))  BEGIN
@@ -62,9 +62,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssoc` ()  BEGIN
 SELECT COUNT(id_assoc) FROM associations;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbDemande` ()  BEGIN
+SELECT COUNT(id_demande) FROM demandesDons;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffre` ()  BEGIN
+SELECT COUNT(id_offre) FROM offresDons;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT)  BEGIN
 SELECT * FROM offresDons
-WHERE id_offre = id and titre_offre = titre and desc_offre = descr;
+WHERE id_user = id and titre_offre = titre and desc_offre = descr;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkPassword` (IN `id` INT)  BEGIN
@@ -160,8 +168,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` (IN `nbAssoc` INT, I
 SELECT * FROM associations LIMIT nbPage,nbAssoc;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` ()  BEGIN
-SELECT * FROM demandesDons;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` (IN `nbDemande` INT, IN `nbPage` INT)  BEGIN
+SELECT * FROM demandesDons LIMIT nbPage,nbDemande;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllNosAnimaux` (IN `nbAnimaux` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
@@ -172,8 +180,8 @@ WHERE adoption.id_assoc = id
 LIMIT nbPage,nbAnimaux;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` ()  BEGIN
-SELECT * FROM offresDons;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` (IN `nbOffre` INT, IN `nbPage` INT)  BEGIN
+SELECT * FROM offresDons LIMIT nbPage,nbOffre;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupMonAssoc` (IN `id` INT)  BEGIN 
@@ -271,16 +279,18 @@ CREATE TABLE `demandesDons` (
   `titre_demande` varchar(255) NOT NULL,
   `desc_demande` text NOT NULL,
   `dateCrea_demande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `img` varchar(255) NOT NULL
+  `img` varchar(255) NOT NULL,
+  `ville_demande` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `demandesDons`
 --
 
-INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`) VALUES
-(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chatCouverture.jpeg'),
-(5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg');
+INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`) VALUES
+(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chatCouverture.jpeg', ''),
+(5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg', ''),
+(6, 1, 'collier', 'collier pour grands chiens de type husky', '2020-03-23 16:58:10', '../img/img_demande/chienSauve.jpeg', 'pac');
 
 -- --------------------------------------------------------
 
@@ -318,7 +328,10 @@ CREATE TABLE `offresDons` (
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`) VALUES
-(3, 14, 'test', 'test', 'test', 'test', '2020-03-23 15:54:40', '../img/img_offre/chatArbre.jpg');
+(3, 14, 'test', 'test', 'test', 'test', '2020-03-23 15:54:40', '../img/img_offre/chatArbre.jpg'),
+(4, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:19:03', '../img/img_offre/chatAdopte3.jpeg'),
+(5, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:20:09', '../img/img_offre/chatAdopte3.jpeg'),
+(6, 14, 'test2', 'test', 'test', 'test', '2020-03-23 16:24:44', '../img/img_offre/chatCouverture.jpeg');
 
 -- --------------------------------------------------------
 
@@ -417,7 +430,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -429,7 +442,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
