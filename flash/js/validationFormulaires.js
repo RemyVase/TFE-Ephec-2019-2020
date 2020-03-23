@@ -377,6 +377,15 @@ $(document).ready(function () {
         });
     });
 
+    /*
+    $("#buttonOffre").click(function(){
+        var val = $(this).val();
+        $.ajax({
+            url: "../controller/uneAnnonceController.php",
+            type: "POST",
+            data: {'index' : val}
+        });
+    });*/
 
 });
 
@@ -491,4 +500,20 @@ function getAllElementsFormImg(form) {
         data.append($(this).attr("id"), $(this).val());
     })
     return data;
+}
+
+
+function add_to_session(id){
+    e.preventDefault();
+    var test = id;
+    $.ajax({
+        url: "../controller/uneAnnonceController.php",
+        type: "POST",
+        data: {index : test},
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response);
+        }
+    });
 }

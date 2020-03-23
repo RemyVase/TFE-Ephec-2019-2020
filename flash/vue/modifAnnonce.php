@@ -1,6 +1,7 @@
 <?php
 session_start();
 $currentPage = "modifAnnonce";
+include '../controller/uneAnnonceController.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,7 +31,7 @@ $currentPage = "modifAnnonce";
 
 	<div class="container pad_top pad_bt md-center">
 		<div class="col-lg-12 md-center">
-
+		
 			<div class="align-center">
 				<form>
 					<div class="row justify-content-center">

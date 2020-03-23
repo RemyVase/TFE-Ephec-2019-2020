@@ -2,6 +2,7 @@
 session_start();
 $currentPage = "vosAnnonces";
 include '../controller/listeMesOffresController.php'
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,36 +48,40 @@ include '../controller/listeMesOffresController.php'
                     </div>
                     <div class="col-sm-4 text-center">
                         <h4>Modifier</h4></br>
-                        <a href="modifAnnonce.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
+                        <!-- IL FALLAIT UN FORM ACTION POUR REDIRIGER CORRECTEMENT L'ID SANS QU'IL PUISSE ETRE MODIFIER -->
+                        <a href="modifAnnonce.php">
+                            <form method="post" action="modifAnnonce.php"><button name="buttonOffre" value="<?= $offre['id_offre']; ?>" type="submit" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></form>
+                        </a>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
 
-        <div>
-            <nav class="blog-pagination justify-content-center d-flex">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">
-                                <span class="lnr lnr-chevron-left"></span>
-                            </span>
-                        </a>
-                    </li>
-                    <?php for ($i = 1; $i <= $nbPages; $i++) { ?>
-                        <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
-                    <?php } ?>
-                    <li class="page-item">
-                        <a href="#" class="page-link" aria-label="Next">
-                            <span aria-hidden="true">
-                                <span class="lnr lnr-chevron-right"></span>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        </div>
+    <div>
+        <nav class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">
+                            <span class="lnr lnr-chevron-left"></span>
+                        </span>
+                    </a>
+                </li>
+                <?php for ($i = 1; $i <= $nbPages; $i++) { ?>
+                    <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+                <?php } ?>
+                <li class="page-item">
+                    <a href="#" class="page-link" aria-label="Next">
+                        <span aria-hidden="true">
+                            <span class="lnr lnr-chevron-right"></span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 </body>
 <!--================End Portfolio Details Area =================-->
 

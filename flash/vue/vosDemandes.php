@@ -33,27 +33,27 @@ include '../controller/listeNosDemandesController.php'
 
     <!--================Portfolio Details Area =================-->
     <?php foreach ($recupAllNosDemandes as $demande) : ?>
-    <div class="container">
-        <div class="col-md-12">
-            <div class="row pad_top_dons pad_bt_dons border border-white">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img class="img-thumbnail imgCoupe mx-auto text-center " src="<?= $demande['img']; ?>" alt="">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row pad_top_dons pad_bt_dons border border-white">
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <img class="img-thumbnail imgCoupe mx-auto text-center " src="<?= $demande['img']; ?>" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-5 text-center">
-                    <h4>Nom de l'annonce</h4></br>
-                    <p><?= $demande['titre_demande']; ?></p>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <h4>Modifier</h4></br>
-                    <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
+                    <div class="col-sm-5 text-center">
+                        <h4>Nom de l'annonce</h4></br>
+                        <p><?= $demande['titre_demande']; ?></p>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <h4>Modifier</h4></br>
+                        <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
-    
+
     <div>
         <nav class="blog-pagination justify-content-center d-flex">
             <ul class="pagination">
@@ -65,8 +65,8 @@ include '../controller/listeNosDemandesController.php'
                     </a>
                 </li>
                 <?php for ($i = 1; $i <= $nbPages; $i++) { ?>
-                        <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
-                    <?php } ?>
+                    <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+                <?php } ?>
                 <li class="page-item">
                     <a href="#" class="page-link" aria-label="Next">
                         <span aria-hidden="true">
