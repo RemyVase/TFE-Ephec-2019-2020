@@ -48,7 +48,8 @@ include '../controller/listeMesOffresController.php'
                     </div>
                     <div class="col-sm-4 text-center">
                         <h4>Modifier</h4></br>
-                        <!-- IL FALLAIT UN FORM ACTION POUR REDIRIGER CORRECTEMENT L'ID SANS QU'IL PUISSE ETRE MODIFIER -->
+                        <!-- IL FALLAIT UN FORM ACTION POUR REDIRIGER CORRECTEMENT L'ID SANS QU'IL PUISSE ETRE MODIFIER !!!! UPDATE TOUJOURS MODIFIABLE DANS LE CODE !!!!! 
+                                UPDATE ENCORE FAILLE CORRIGEE IL SUFFISAIT DE FAIRE UNE AUTRE REQUETE AFIN DE VERIFIER SI L'id de l'offre correspondait bien à l'id de l'offrant-->
                         <a href="modifAnnonce.php">
                             <form method="post" action="modifAnnonce.php"><button name="buttonOffre" value="<?= $offre['id_offre']; ?>" type="submit" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></form>
                         </a>

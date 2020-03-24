@@ -377,15 +377,64 @@ $(document).ready(function () {
         });
     });
 
-    /*
-    $("#buttonOffre").click(function(){
-        var val = $(this).val();
+    $("#modifImgOffre_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifImgOffre_form");
+        var dataForm = getAllElementsFormImg("#modifImgOffre_form");
+        var objectForm = transformThisInObject(test, "#modifImgOffre_form");
+
+        dataForm.append('fileOffreModif', $('#imageAnnonceOffreModif')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $.ajax({
-            url: "../controller/uneAnnonceController.php",
+            url: "../controller/modifImgOffreController.php",
             type: "POST",
-            data: {'index' : val}
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
         });
-    });*/
+        location.reload(true);
+    });
+
+
+    $("#modifOffre_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifOffre_form");
+        var dataForm = getAllElementsFormImg("#modifOffre_form");
+        var objectForm = transformThisInObject(test, "#modifOffre_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifOffreController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        location.reload(true);
+    });
 
 });
 

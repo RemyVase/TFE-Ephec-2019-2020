@@ -51,6 +51,7 @@ class dbAccess
             case 'checkNbNosAnimaux':
             case 'checkNbMesOffres':
             case 'checkNbNosDemandes':
+            case 'recupOneAnnonce':
                 array_push($params, '?');
 
                 try {
@@ -74,6 +75,8 @@ class dbAccess
             case 'modifImgAnimal':
             case 'recupAllOffres':
             case 'recupAllDemandes':
+            case 'checkUserAnnonce':
+            case 'modifImgOffre':
                 array_push($params, '?', '?');
 
                 try {

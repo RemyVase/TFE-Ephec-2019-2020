@@ -10,7 +10,7 @@ include '../controller/uneAnnonceController.php';
 
 <body>
 
-<?php include 'header.php' ?>
+	<?php include 'header.php' ?>
 
 	<!--================Home Banner Area =================-->
 	<section class="banner_area_faireOffre">
@@ -28,61 +28,91 @@ include '../controller/uneAnnonceController.php';
 	<!--================End Home Banner Area =================-->
 
 	<!--================Contact Area =================-->
-
-	<div class="container pad_top pad_bt md-center">
-		<div class="col-lg-12 md-center">
-		
-			<div class="align-center">
-				<form>
-					<div class="row justify-content-center">
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="exampleInputEmail1">Titre de l'annonce : </label>
-								<input type="pseudo" class="form-control align-center" id="titreAnnonceModif"
-									placeholder="Entrez le titre de votre annonce.">
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Description du/des objet(s) :</label>
-								<textarea class="form-control" id="descAnnonceModif" rows="3"
-									placeholder="Entrez une description pour votre annonce."></textarea>
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Ville :</label>
-								<input type="pseudo" class="form-control align-center" id="villeAnnonceModif"
-									placeholder="Entrez la ville dans laquelle se trouve le(s) objet(s) de l'annonce.">
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Etat du/des objet(s):</label>
-								<div class="radio">
-									<label><input type="radio" name="optradio" value="neufModif" checked>Presque neuf</label>
-								</div>
-								<div class="radio">
-									<label><input type="radio" name="optradio" value="useModif">Usé</label>
-								</div>
-								<div class="radio">
-									<label><input type="radio" name="optradio" value="fullUseModif">Très usé</label>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="exampleFormControlFile1">Image de l'annonce :</label>
-								<input type="file" class="form-control-file" id="imageAnnonceModif">
-							</div>
-							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
-							</div>
+	<section class="portfolio_details_area p_120">
+		<div class="container">
+			<div class="portfolio_details_inner">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="left_img">
+							<img class="img-fluid" src="<?= $recupOneAnnonce[0]{'img'}; ?>" alt="">
 						</div>
 					</div>
-				</form>
+					<div class="col-md-7">
+						<div class="portfolio_right_text">
+							<h4><?= $recupOneAnnonce[0]{'titre_offre'}; ?></h4>
+							<ul class="list">
+								<li><span>Donateur</span>: <?= $recupOneAnnonce[0]{'pseudo_user'}; ?></li>
+								<li><span>Ville</span>: <?= $recupOneAnnonce[0]{'ville_offre'}; ?></li>
+								<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li></br></br></br>
+								<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<h4>Description de l'offre :</h4>
+				<p><?= $recupOneAnnonce[0]{'desc_offre'}; ?></p>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<!--================Contact Area =================-->
+	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center">
+				<h2 align="center">Modification des informations de l'offre</h2>
+				<br>
+				<div class="align-center">
+					<form id="modifOffre_form" name="modifOffre_form" method="post" action="#" novalidate>
+						<div class="row justify-content-center">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Titre de l'annonce : </label>
+									<input type="pseudo" class="form-control align-center" id="titreAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'titre_offre'}; ?>">
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Description du/des objet(s) :</label>
+									<textarea class="form-control" id="descAnnonceOffreModif" rows="3"><?= $recupOneAnnonce[0]{'desc_offre'}; ?></textarea>
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Ville :</label>
+									<input type="pseudo" class="form-control align-center" id="villeAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'ville_offre'}; ?>">
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Etat(neuf/usé/...) :</label>
+									<input type="pseudo" class="form-control align-center" id="etatAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'etat_offre'}; ?>">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					<br>
+					<br>
+					<br>
+					<h2 align="center">Modification de l'offre de l'animal</h2>
+					<br>
+					<form id="modifImgOffre_form" method="post" action="#" novalidate>
+						<div class="row justify-content-center">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="exampleFormControlFile1">Image de l'annonce :</label>
+									<input type="file" class="form-control-file" id="imageAnnonceOffreModif">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-dark">Modifier l'image de l'offre sur le site</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--================Contact Area =================-->
 
 
-	<?php include 'footer.php' ?>
-<?php include 'jquery.php' ?>
+		<?php include 'footer.php' ?>
+		<?php include 'jquery.php' ?>
 </body>
 
 </html>
