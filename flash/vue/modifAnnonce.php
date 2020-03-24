@@ -89,7 +89,7 @@ include '../controller/uneAnnonceController.php';
 					<br>
 					<br>
 					<br>
-					<h2 align="center">Modification de l'offre de l'animal</h2>
+					<h2 align="center">Modification de l'image de l'offre</h2>
 					<br>
 					<form id="modifImgOffre_form" method="post" action="#" novalidate>
 						<div class="row justify-content-center">
@@ -107,6 +107,7 @@ include '../controller/uneAnnonceController.php';
 				</div>
 			</div>
 		</div>
+	</section>
 
 		<!--================Contact Area =================-->
 

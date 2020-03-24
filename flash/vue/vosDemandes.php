@@ -47,7 +47,9 @@ include '../controller/listeNosDemandesController.php'
                     </div>
                     <div class="col-sm-4 text-center">
                         <h4>Modifier</h4></br>
-                        <a href="modifDemande.php"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></a>
+                        <a href="modifDemande.php">
+                            <form method="post" action="modifDemande.php"><button name="buttonDemande" type="submit" value ="<?= $demande['id_demande']; ?>" class="btn btn-dark align-items-center"><i class="fa fa-pencil" style="color:white"></i></button></form>
+                        </a>
                     </div>
                 </div>
             </div>

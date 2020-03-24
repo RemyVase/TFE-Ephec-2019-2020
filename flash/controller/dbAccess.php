@@ -52,6 +52,7 @@ class dbAccess
             case 'checkNbMesOffres':
             case 'checkNbNosDemandes':
             case 'recupOneAnnonce':
+            case 'recupOneDemande':
                 array_push($params, '?');
 
                 try {
@@ -77,6 +78,7 @@ class dbAccess
             case 'recupAllDemandes':
             case 'checkUserAnnonce':
             case 'modifImgOffre':
+            case 'checkAssocDemande':
                 array_push($params, '?', '?');
 
                 try {

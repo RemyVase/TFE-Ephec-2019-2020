@@ -436,6 +436,65 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    $("#modifImgDemande_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifImgDemande_form");
+        var dataForm = getAllElementsFormImg("#modifImgDemande_form");
+        var objectForm = transformThisInObject(test, "#modifImgDemande_form");
+
+        dataForm.append('fileDemandeModif', $('#imageAnnonceDemandeModif')[0].files[0]);
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifImgDemandeController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        location.reload(true);
+    });
+
+
+    $("#modifDemande_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifDemande_form");
+        var dataForm = getAllElementsFormImg("#modifDemande_form");
+        var objectForm = transformThisInObject(test, "#modifDemande_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifDemandeController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        location.reload(true);
+    });
+
 });
 
 
