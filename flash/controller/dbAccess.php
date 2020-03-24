@@ -69,7 +69,6 @@ class dbAccess
         switch ($nomProcedure) {
             case 'connexionUser':
             case 'gestionDeCompte':
-            case 'modifDemande':
             case 'recupAllAssoc':
             case 'modifImgAssoc':
             case 'recupAllAnimaux':
@@ -79,6 +78,7 @@ class dbAccess
             case 'checkUserAnnonce':
             case 'modifImgOffre':
             case 'checkAssocDemande':
+            case 'modifImgDemande':
                 array_push($params, '?', '?');
 
                 try {
@@ -112,6 +112,22 @@ class dbAccess
                 }
                 break;
         }
+        switch ($nomProcedure) {
+            case 'modifDemande':
+                array_push($params, '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        
         switch ($nomProcedure) {
             case 'modifOffre':
             case 'ajoutDemande':

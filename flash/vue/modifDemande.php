@@ -90,7 +90,7 @@ include '../controller/uneDemandeController.php';
 				<h2 align="center">Modification des informations de la demande</h2>
 				<br>
 				<div class="align-center">
-				<form>
+				<form id="modifDemande_form" method="post" action="#" novalidate>
 					<div class="row justify-content-center">
 						<div class="col-lg-6">
 							<div class="form-group">

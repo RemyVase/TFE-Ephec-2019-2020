@@ -6,7 +6,6 @@ $db = new dbAccess();
 
 $idAssoc = $_SESSION['idAssoc'];
 $_SESSION['idDemande'] = $_POST['buttonDemande'];
-echo $_SESSION['idDemande'];
 
 
 $checkAssocDemande = $db->callProcedure('checkAssocDemande', [$idAssoc, $_SESSION['idDemande']]);

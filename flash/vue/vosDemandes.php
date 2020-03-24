@@ -79,10 +79,7 @@ include '../controller/listeNosDemandesController.php'
             </ul>
         </nav>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
 </body>
 <!--================End Portfolio Details Area =================-->
 
