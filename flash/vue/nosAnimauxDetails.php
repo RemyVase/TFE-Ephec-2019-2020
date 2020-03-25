@@ -2,7 +2,7 @@
 session_start();
 $currentPage = "animauxDetails";
 include '../controller/detailsAnimalController.php';
-$_SESSION['animal'] = $_GET['animal'];
+$_SESSION['animal'] = $_POST['boutonAnimal'];
 ?>
 <!doctype html>
 <html lang="en">

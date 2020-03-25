@@ -17,7 +17,7 @@ $currentPage = "accueil";
 			<div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h3>Nom <br />Du site</h3>
+						<h3>HelPet's</h3>
 						<p>Aidez à construire un avenir meilleur pour les animaux errants.</p>
 						<a class="main_btn" href="#">Que faisons-nous ?</a>
 					</div>
