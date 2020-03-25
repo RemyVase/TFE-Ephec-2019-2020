@@ -79,6 +79,7 @@ class dbAccess
             case 'modifImgOffre':
             case 'checkAssocDemande':
             case 'modifImgDemande':
+            case 'checkAssocAnimal':
                 array_push($params, '?', '?');
 
                 try {
@@ -127,7 +128,7 @@ class dbAccess
                 }
                 break;
         }
-        
+
         switch ($nomProcedure) {
             case 'modifOffre':
             case 'ajoutDemande':

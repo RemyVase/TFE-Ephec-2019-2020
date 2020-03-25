@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 24, 2020 at 01:59 PM
+-- Generation Time: Mar 25, 2020 at 04:51 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -47,6 +47,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkAssoc` (IN `nom` VARCHAR(255))  BEGIN 
 SELECT id_assoc FROM associations
 WHERE nom_assoc = nom;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkAssocAnimal` (IN `idAssoc` INT, IN `idAnimal` INT)  BEGIN
+SELECT * FROM adoption
+WHERE id_assoc = idAssoc and id_animal = idAnimal;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkAssocDemande` (IN `idAssoc` INT, IN `idDemande` INT)  BEGIN
@@ -320,7 +325,7 @@ CREATE TABLE `associations` (
 --
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
-(1, 'testLOLILOL', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg'),
+(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg'),
 (2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
 (3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
 (4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
