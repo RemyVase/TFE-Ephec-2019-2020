@@ -28,115 +28,120 @@ include '../controller/uneDemandeController.php';
 	<!--================End Home Banner Area =================-->
 
 	<!--================Contact Area =================-->
-
-	<!--
-	<div class="container pad_top pad_bt md-center">
-		<div class="col-lg-12 md-center">
-		
-			<div class="align-center">
-				<form>
-					<div class="row justify-content-center">
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="titreObjectDemande">Titre de l'annonce : </label>
-								<input type="pseudo" class="form-control align-center" id="titreAnnonceDemandeModif"
-									placeholder="Entrez le titre de votre annonce.">
+	<?php if(!empty($checkAssocDemande)) : ?>
+		<section class="portfolio_details_area p_120">
+			<div class="container">
+				<div class="portfolio_details_inner">
+					<div class="row">
+						<div class="col-md-5">
+							<div class="left_img">
+								<img class="img-fluid" src="<?= $recupOneDemande[0]{'img'}; ?>" alt="">
 							</div>
-							<div class="form-group">
-								<label for="imageObjectDemandeModif">Image de l'annonce :</label>
-								<input type="file" class="form-control-file" id="imageAnnonceDemandeModif">
-							</div>
-							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Modifier la demande</button>
+						</div>
+						<div class="col-md-7">
+							<div class="portfolio_right_text">
+								<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
+								<ul class="list">
+									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
+									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
+									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
-				</form>
-			</div>
-		</div>
-	</div>-->
-
-
-
-	<section class="portfolio_details_area p_120">
-		<div class="container">
-			<div class="portfolio_details_inner">
-				<div class="row">
-					<div class="col-md-5">
-						<div class="left_img">
-							<img class="img-fluid" src="<?= $recupOneDemande[0]{'img'}; ?>" alt="">
-						</div>
-					</div>
-					<div class="col-md-7">
-						<div class="portfolio_right_text">
-							<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
-							<ul class="list">
-								<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
-								<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
-								<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
-							</ul>
-						</div>
-					</div>
+					<h4>Description de la demande :</h4>
+					<p><?= $recupOneDemande[0]{'desc_demande'}; ?></p>
 				</div>
-				<h4>Description de la demande :</h4>
-				<p><?= $recupOneDemande[0]{'desc_demande'}; ?></p>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section>
-		<div class="container pad_bt md-center">
-			<div class="col-lg-12 md-center">
-				<h2 align="center">Modification des informations de la demande</h2>
-				<br>
-				<div class="align-center">
-				<form id="modifDemande_form" method="post" action="#" novalidate>
-					<div class="row justify-content-center">
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label for="titreObjectDemande">Titre de la demande: </label>
-								<input type="pseudo" class="form-control align-center" id="titreAnnonceDemandeModif"
-									value="<?= $recupOneDemande[0]{'titre_demande'}; ?>">
-							</div>
-							<div class="form-group">
-								<label for="titreObjectDemande">Ville où se trouve l'association : </label>
-								<input type="pseudo" class="form-control align-center" id="villeAnnonceDemandeModif"
-									value="<?= $recupOneDemande[0]{'ville_demande'}; ?>">
-							</div>
-							<div class="form-group">
-								<label for="descriptionObjectDemande">Description de(s) Objet(s) :</label>
-								<textarea class="form-control" id="descAnnonceDemandeModif" rows="3"><?= $recupOneDemande[0]{'desc_demande'}; ?></textarea>
-							</div>
-							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Modifier la demande</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-					</form>
+		<section>
+			<div class="container pad_bt md-center">
+				<div class="col-lg-12 md-center">
+					<h2 align="center">Modification des informations de la demande</h2>
 					<br>
-					<br>
-					<br>
-					<h2 align="center">Modification de l'image de la demande</h2>
-					<br>
-					<form id="modifImgDemande_form" method="post" action="#" novalidate>
+					<div class="align-center">
+					<form id="modifDemande_form" method="post" action="#" novalidate>
 						<div class="row justify-content-center">
 							<div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="imageObjectDemandeModif">Image de la demande :</label>
-                                    <input type="file" class="form-control-file" id="imageAnnonceDemandeModif">
-                                </div>
+								<div class="form-group">
+									<label for="titreObjectDemande">Titre de la demande: </label>
+									<input type="pseudo" class="form-control align-center" id="titreAnnonceDemandeModif"
+										value="<?= $recupOneDemande[0]{'titre_demande'}; ?>">
+								</div>
+								<div class="form-group">
+									<label for="titreObjectDemande">Ville où se trouve l'association : </label>
+									<input type="pseudo" class="form-control align-center" id="villeAnnonceDemandeModif"
+										value="<?= $recupOneDemande[0]{'ville_demande'}; ?>">
+								</div>
+								<div class="form-group">
+									<label for="descriptionObjectDemande">Description de(s) Objet(s) :</label>
+									<textarea class="form-control" id="descAnnonceDemandeModif" rows="3"><?= $recupOneDemande[0]{'desc_demande'}; ?></textarea>
+								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-dark">Modifier l'image de la demande sur le site</button>
+									<button type="submit" class="btn btn-dark">Modifier la demande</button>
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
+						</form>
+						<br>
+						<br>
+						<br>
+						<h2 align="center">Modification de l'image de la demande</h2>
+						<br>
+						<form id="modifImgDemande_form" method="post" action="#" novalidate>
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="imageObjectDemandeModif">Image de la demande :</label>
+										<input type="file" class="form-control-file" id="imageAnnonceDemandeModif">
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-dark">Modifier l'image de la demande sur le site</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-        </div>
-    </section>
+		</section>
+	<?php else: ?>
+		<section class="portfolio_details_area p_120">
+			<div class="container">
+				<div class="portfolio_details_inner">
+					<div class="row">
+						<div class="col-md-5">
+							<div class="left_img">
+								<img class="img-fluid" src="<?= $recupOneDemande[0]{'img'}; ?>" alt="">
+							</div>
+						</div>
+						<div class="col-md-7">
+							<div class="portfolio_right_text">
+								<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
+								<ul class="list">
+									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
+									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
+									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<h4>Description de la demande :</h4>
+					<p><?= $recupOneDemande[0]{'desc_demande'}; ?></p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="container pad_bt md-center">
+				<div class="col-lg-12 md-center">
+				<h2 align="center" style="color:red !important">BHA ET ALORS ON ESSAIE DE MODIFIER UNE DEMANDE QUI N'EST PAS LA SIENNE ? VILAIN</h2>
+				</div>
+			</div>
+		</section>
+	<?php endif ?>
 	<!--================Contact Area =================-->
 
 	<?php include 'footer.php' ?>

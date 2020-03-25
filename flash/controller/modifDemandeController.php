@@ -9,4 +9,6 @@ $titre = $_POST["titreAnnonceDemandeModif"];
 $ville = $_POST["villeAnnonceDemandeModif"];
 $desc = $_POST["descAnnonceDemandeModif"];
 
+$checkAssocDemande = $db->callProcedure('checkAssocDemande',[$_SESSION['idAssoc'], $idDemande]);
+
 $modifDemande = $db->callProcedure('modifDemande', [$idDemande,$titre,$ville,$desc]);

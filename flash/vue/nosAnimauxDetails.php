@@ -146,7 +146,7 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
         <section>
             <div class="container pad_bt md-center">
                 <div class="col-lg-12 md-center">
-                    <h2 align="center">BHA ET ALORS ON ESSAIE DE MODIFIER UN ANIMAL QUI N'EST PAS LE SIEN ? VILAIN</h2>
+                    <h2 align="center style="color:red !important"">BHA ET ALORS ON ESSAIE DE MODIFIER UN ANIMAL QUI N'EST PAS LE SIEN ? VILAIN</h2>
                 </div>
             </div>
         </section>
