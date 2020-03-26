@@ -45,7 +45,8 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
                                 <ul class="list">
                                     <li><span>Age</span>: <?= $detailsAnimal[0]{'age_animal'}; ?></li>
                                     <li><span>Ville où le trouver</span>: <?= $detailsAnimal[0]{'ville_animal'}; ?></li>
-                                    <li><span>Association</span>: <?= $detailsAnimal[0]{'nom_assoc'}; ?></li></br></br></br>
+                                    <li><span>Association</span>: <?= $detailsAnimal[0]{'nom_assoc'}; ?></li>
+                                    <li><span>Type d'animal</span>:  <?= $detailsAnimal[0]{'type_animal'}; ?></br></br></br>
                                     <li><span>Etat (réservé ou pas)</span>: <?= $detailsAnimal[0]{'statut_animal'}; ?></li></br></br></br>
                                     <li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
                                 </ul>
@@ -95,6 +96,25 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
                         <br>
                         <br>
                         <br>
+				<h2 align="center">Modification des champs sélectionnables de l'animal (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
+						<br>
+						<form id="modifAnimalSelect_form" method="post" action="#" novalidate>
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
+										<select class="form-control align-center" id="typeAnimalModif">
+											<option value="Chat">Chat</option>
+											<option value="Chien">Chien</option>
+										</select>
+									</div><br><br>
+									<div class="text-center">
+										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
+									</div>
+								</div>
+							</div>
+						</form><br><br>
+						<br>
                         <h2 align="center">Modification de l'image de l'animal</h2>
                         <br>
                         <form id="modifImgAnimal_form" method="post" action="#" novalidate>
@@ -131,7 +151,8 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
                                 <ul class="list">
                                     <li><span>Age</span>: <?= $detailsAnimal[0]{'age_animal'}; ?></li>
                                     <li><span>Ville où le trouver</span>: <?= $detailsAnimal[0]{'ville_animal'}; ?></li>
-                                    <li><span>Association</span>: <?= $detailsAnimal[0]{'nom_assoc'}; ?></li></br></br></br>
+                                    <li><span>Association</span>: <?= $detailsAnimal[0]{'nom_assoc'}; ?></li>
+                                    <li><span>Type d'animal</span>:  <?= $detailsAnimal[0]{'type_animal'}; ?></br></br></br>
                                     <li><span>Etat (réservé ou pas)</span>: <?= $detailsAnimal[0]{'statut_animal'}; ?></li></br></br></br>
                                     <li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
                                 </ul>

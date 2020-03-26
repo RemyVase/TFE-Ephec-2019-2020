@@ -547,13 +547,39 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
             }
         });
         location.reload(true);
     });
 
+    
 
+    $("#modifAnimalSelect_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifAnimalSelect_form");
+        var dataForm = getAllElementsFormImg("#modifAnimalSelect_form");
+        var objectForm = transformThisInObject(test, "#modifAnimalSelect_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifAnimalSelectController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+            }
+        });
+        location.reload(true);
+    });
 
 });
 
