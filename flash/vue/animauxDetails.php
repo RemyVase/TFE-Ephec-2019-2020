@@ -52,7 +52,6 @@ include '../controller/detailsAnimalController.php';
             </div>
                 <h4>Description de l'animal :</h4>
                <p><?= $detailsAnimal[0]{'desc_animal'}; ?></p>
-               
         </div>
     </div>
 </section>

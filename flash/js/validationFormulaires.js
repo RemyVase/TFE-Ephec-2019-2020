@@ -438,6 +438,34 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    $("#modifOffreSelect_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifOffreSelect_form");
+        var dataForm = getAllElementsFormImg("#modifOffreSelect_form");
+        var objectForm = transformThisInObject(test, "#modifOffreSelect_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifSelectOffreController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        //location.reload(true);
+    });
+
     $("#modifImgDemande_form").submit(function (event) {
         //Empêche l'html de se refresh
 
@@ -496,6 +524,8 @@ $(document).ready(function () {
         });
         location.reload(true);
     });
+
+
 
 });
 

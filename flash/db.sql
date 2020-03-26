@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 26, 2020 at 02:21 PM
+-- Generation Time: Mar 26, 2020 at 03:42 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -198,9 +198,15 @@ SET img = img
 WHERE id_offre = id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modifOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255))  BEGIN
 UPDATE offresDons
-SET titre_offre = titre, desc_offre = descr, ville_offre = ville, etat_offre = etat
+SET titre_offre = titre, desc_offre = descr, ville_offre = ville
+WHERE id_offre = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectOffre` (IN `id` INT, IN `etat` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
+UPDATE offresDons
+SET etat_offre = etat, typeAnimal_offre = typeAnimal, typeObjet_offre = typeObjet
 WHERE id_offre = id;
 END$$
 
@@ -262,7 +268,7 @@ WHERE adoption.id_animal = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupOneAnnonce` (IN `id` INT)  BEGIN
-SELECT offresDons.titre_offre, offresDons.desc_offre, offresDons.ville_offre, offresDons.etat_offre, offresDons.img, users.pseudo_user FROM offresDons
+SELECT offresDons.titre_offre, offresDons.desc_offre, offresDons.ville_offre, offresDons.etat_offre, offresDons.img, users.pseudo_user, offresDons.typeObjet_offre, offresDons.typeAnimal_offre FROM offresDons
 JOIN users ON users.id_user = offresDons.id_user
 WHERE id_offre = id;
 END$$
@@ -420,7 +426,7 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 (5, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:20:09', '../img/img_offre/chatAdopte3.jpeg', '', ''),
 (6, 14, 'test2', 'test', 'test', 'test', '2020-03-23 16:24:44', '../img/img_offre/chatCouverture.jpeg', '', ''),
 (7, 51, 'Arbre à chat2', 'Arbre à chat à 5 étages ', 'Luttre', 'Presque neuf', '2020-03-24 11:11:43', '../img/img_offre/chatTriste.jpeg', '', ''),
-(8, 14, 'TestSelect', 'TestSelect', 'TestSelect', 'Usé', '2020-03-26 14:17:54', '../img/img_offre/chatOrigami.png', 'Bien-être', 'Chien');
+(8, 14, 'TestSelect', 'TestSelect', 'TestSelect', 'Neuf', '2020-03-26 14:17:54', '../img/img_offre/chatOrigami.png', 'Jouet', 'Chat');
 
 -- --------------------------------------------------------
 

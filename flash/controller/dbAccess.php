@@ -117,23 +117,9 @@ class dbAccess
         }
         switch ($nomProcedure) {
             case 'modifDemande':
-                array_push($params, '?', '?', '?', '?');
-
-                try {
-                    $this->connexionDB();
-                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
-                    $requete = $this->pdo->prepare($procedureCall);
-                    $requete->execute($procParams);
-                    return $requete->fetchAll();
-                } catch (Exception $e) {
-                    die("Erreur :" . $e->getMessage());
-                }
-                break;
-        }
-
-        switch ($nomProcedure) {
             case 'modifOffre':
-                array_push($params, '?', '?', '?', '?', '?');
+            case 'modifSelectOffre':
+                array_push($params, '?', '?', '?', '?');
 
                 try {
                     $this->connexionDB();

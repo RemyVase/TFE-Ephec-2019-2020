@@ -28,7 +28,7 @@ include '../controller/uneAnnonceController.php';
 	<!--================End Home Banner Area =================-->
 
 	<!--================Contact Area =================-->
-	<?php if(!empty($checkUserAnnonce)) : ?>
+	<?php if (!empty($checkUserAnnonce)) : ?>
 		<section class="portfolio_details_area p_120">
 			<div class="container">
 				<div class="portfolio_details_inner">
@@ -44,7 +44,9 @@ include '../controller/uneAnnonceController.php';
 								<ul class="list">
 									<li><span>Donateur</span>: <?= $recupOneAnnonce[0]{'pseudo_user'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneAnnonce[0]{'ville_offre'}; ?></li>
-									<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li></br></br></br>
+									<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li>
+									<li><span>Pour quel type d'animal</span>: <?= $recupOneAnnonce[0]{'typeAnimal_offre'}; ?></li>
+									<li><span>Type d'objet</span>: <?= $recupOneAnnonce[0]{'typeObjet_offre'}; ?></li></br></br></br>
 									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 								</ul>
 							</div>
@@ -77,10 +79,6 @@ include '../controller/uneAnnonceController.php';
 										<label for="exampleFormControlTextarea1">Ville :</label>
 										<input type="pseudo" class="form-control align-center" id="villeAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'ville_offre'}; ?>">
 									</div>
-									<div class="form-group">
-										<label for="exampleFormControlTextarea1">Etat(neuf/usé/...) :</label>
-										<input type="pseudo" class="form-control align-center" id="etatAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'etat_offre'}; ?>">
-									</div>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
 									</div>
@@ -90,6 +88,43 @@ include '../controller/uneAnnonceController.php';
 						<br>
 						<br>
 						<br>
+
+						<h2 align="center">Modification des champs sélectionnables de l'offre (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
+						<br>
+						<form id="modifOffreSelect_form" method="post" action="#" novalidate>
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Etat :</label><br>
+										<select class="form-control align-center" id="etatAnnonceOffreModif">
+											<option value="Neuf">Neuf</option>
+											<option value="Presque neuf">Presque neuf</option>
+											<option value="Usé">Usé</option>
+											<option value="Très usé">Très usé</option>
+										</select>
+									</div><br><br>
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
+										<select class="form-control align-center" id="typeAnimalAnnonceOffreModif">
+											<option value="Chat">Chat</option>
+											<option value="Chien">Chien</option>
+										</select>
+									</div><br><br>
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
+										<select class="form-control align-center" id="typeObjetAnnonceOffreModif">
+											<option value="Jouet">Jouet</option>
+											<option value="Bien-être">Bien-être</option>
+											<option value="Nourriture">Nourriture</option>
+										</select>
+									</div><br><br>
+									<div class="text-center">
+										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'offre sur le site</button>
+									</div>
+								</div>
+							</div>
+						</form><br><br>
+
 						<h2 align="center">Modification de l'image de l'offre</h2>
 						<br>
 						<form id="modifImgOffre_form" method="post" action="#" novalidate>
@@ -109,7 +144,7 @@ include '../controller/uneAnnonceController.php';
 				</div>
 			</div>
 		</section>
-	<?php else: ?>
+	<?php else : ?>
 		<section class="portfolio_details_area p_120">
 			<div class="container">
 				<div class="portfolio_details_inner">
@@ -144,11 +179,11 @@ include '../controller/uneAnnonceController.php';
 			</div>
 		</section>
 	<?php endif ?>
-		<!--================Contact Area =================-->
+	<!--================Contact Area =================-->
 
 
-		<?php include 'footer.php' ?>
-		<?php include 'jquery.php' ?>
+	<?php include 'footer.php' ?>
+	<?php include 'jquery.php' ?>
 </body>
 
 </html>
