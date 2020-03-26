@@ -85,7 +85,7 @@ include '../controller/uneDemandeController.php';
 						</div>
 					</form>
 				</div>
-						</form>
+						
 						<br>
 						<br>
 						<br>
@@ -137,7 +137,7 @@ include '../controller/uneDemandeController.php';
 		<section>
 			<div class="container pad_bt md-center">
 				<div class="col-lg-12 md-center">
-				<h2 align="center" style="color:red !important">BHA ET ALORS ON ESSAIE DE MODIFIER UNE DEMANDE QUI N'EST PAS LA SIENNE ? VILAIN</h2>
+					<h2 align="center" style="color:red !important">BHA ET ALORS ON ESSAIE DE MODIFIER UNE DEMANDE QUI N'EST PAS LA SIENNE ? VILAIN</h2>
 				</div>
 			</div>
 		</section>

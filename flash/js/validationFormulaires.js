@@ -344,6 +344,7 @@ $(document).ready(function () {
                 else if(response === '"Annonce déjà présent."'){
                     console.log("Annonce déjà présent.");
                 }*/
+                //console.log(response);
             }
         });
     });

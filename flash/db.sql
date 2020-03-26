@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 25, 2020 at 04:51 PM
+-- Generation Time: Mar 26, 2020 at 01:20 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -31,8 +31,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `tit
 INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img, ville_demande) VALUES(id,titre,descr,img,ville);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255), IN `img` VARCHAR(255))  BEGIN
-INSERT INTO offresDons(id_user, titre_offre, desc_offre, ville_offre, etat_offre,img) VALUES (id,titre,descr,ville,etat,img);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255), IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
+INSERT INTO offresDons(id_user, titre_offre, desc_offre, ville_offre, etat_offre,img,typeAnimal_offre, typeObjet_offre) VALUES (id,titre,descr,ville,etat,img,typeAnimal, typeObjet);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutUser` (IN `pseudo` VARCHAR(255), IN `email` VARCHAR(255), IN `password` VARCHAR(255))  BEGIN
@@ -386,19 +386,22 @@ CREATE TABLE `offresDons` (
   `ville_offre` varchar(255) NOT NULL,
   `etat_offre` varchar(255) NOT NULL,
   `dateCrea_offre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `img` varchar(255) NOT NULL
+  `img` varchar(255) NOT NULL,
+  `typeObjet_offre` varchar(255) NOT NULL,
+  `typeAnimal_offre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `offresDons`
 --
 
-INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`) VALUES
-(3, 14, 'test53400', 'test', 'test', 'test', '2020-03-23 15:54:40', '../img/img_offre/chatArbre.jpg'),
-(4, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:19:03', '../img/img_offre/chatAdopte3.jpeg'),
-(5, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:20:09', '../img/img_offre/chatAdopte3.jpeg'),
-(6, 14, 'test2', 'test', 'test', 'test', '2020-03-23 16:24:44', '../img/img_offre/chatCouverture.jpeg'),
-(7, 51, 'Arbre à chat2', 'Arbre à chat à 5 étages ', 'Luttre', 'Presque neuf', '2020-03-24 11:11:43', '../img/img_offre/chatTriste.jpeg');
+INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
+(3, 14, 'test53400', 'test', 'test', 'test', '2020-03-23 15:54:40', '../img/img_offre/chatArbre.jpg', '', ''),
+(4, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:19:03', '../img/img_offre/chatAdopte3.jpeg', '', ''),
+(5, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:20:09', '../img/img_offre/chatAdopte3.jpeg', '', ''),
+(6, 14, 'test2', 'test', 'test', 'test', '2020-03-23 16:24:44', '../img/img_offre/chatCouverture.jpeg', '', ''),
+(7, 51, 'Arbre à chat2', 'Arbre à chat à 5 étages ', 'Luttre', 'Presque neuf', '2020-03-24 11:11:43', '../img/img_offre/chatTriste.jpeg', '', ''),
+(8, 14, 'TestSelect', 'TestSelect', 'TestSelect', 'Usé', '2020-03-26 14:17:54', '../img/img_offre/chatOrigami.png', 'Bien-être', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -509,7 +512,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

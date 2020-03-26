@@ -51,10 +51,29 @@ $currentPage = "donFaireOffre";
 									placeholder="Entrez la ville dans laquelle se trouve le(s) objet(s) de l'annonce.">
 							</div>
 							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Etat(neuf/usé/...) :</label>
-								<input type="pseudo" class="form-control align-center" id="etatAnnonceOffre"
-									placeholder="Entrez l'état de l'objet. (S'il est usé, très usé, neuf ou presque neuf)">
-							</div>
+								<label for="exampleFormControlTextarea1">Etat :</label><br>
+								<select class="form-control align-center" id="etatAnnonceOffre">
+									<option value="Neuf">Neuf</option>
+									<option value="Presque neuf">Presque neuf</option>
+									<option value="Usé">Usé</option>
+									<option value="Très usé">Très usé</option>
+								</select>
+							</div></br></br>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
+								<select class="form-control align-center" id="typeAnimalAnnonceOffre">
+									<option value="Chat">Chat</option>
+									<option value="Chien">Chien</option>
+								</select>
+							</div></br></br>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
+								<select class="form-control align-center" id="typeObjetAnnonceOffre">
+									<option value="Jouet">Jouet</option>
+									<option value="Bien-être">Bien-être</option>
+									<option value="Nourriture">Nourriture</option>
+								</select>
+							</div></br></br>
 							<div class="form-group">
 								<label for="exampleFormControlFile1">Image de l'annonce :</label>
 								<input type="file" class="form-control-file" id="imageAnnonceOffre">
