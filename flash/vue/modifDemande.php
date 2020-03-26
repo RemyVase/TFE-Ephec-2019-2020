@@ -44,6 +44,8 @@ include '../controller/uneDemandeController.php';
 								<ul class="list">
 									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
+									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
+									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>
 									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 								</ul>
 							</div>
@@ -85,9 +87,35 @@ include '../controller/uneDemandeController.php';
 						</div>
 					</form>
 				</div>
-						
+				<br>
 						<br>
 						<br>
+				<h2 align="center">Modification des champs sélectionnables de la demande (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
+						<br>
+						<form id="modifDemandeSelect_form" method="post" action="#" novalidate>
+							<div class="row justify-content-center">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
+										<select class="form-control align-center" id="typeAnimalAnnonceDemandeModif">
+											<option value="Chat">Chat</option>
+											<option value="Chien">Chien</option>
+										</select>
+									</div><br><br>
+									<div class="form-group">
+										<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
+										<select class="form-control align-center" id="typeObjetAnnonceDemandeModif">
+											<option value="Jouet">Jouet</option>
+											<option value="Bien-être">Bien-être</option>
+											<option value="Nourriture">Nourriture</option>
+										</select>
+									</div><br><br>
+									<div class="text-center">
+										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de la demande sur le site</button>
+									</div>
+								</div>
+							</div>
+						</form><br><br>
 						<br>
 						<h2 align="center">Modification de l'image de la demande</h2>
 						<br>
@@ -124,6 +152,8 @@ include '../controller/uneDemandeController.php';
 								<ul class="list">
 									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
+									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
+									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>
 									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 								</ul>
 							</div>

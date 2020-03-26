@@ -160,7 +160,9 @@ include '../controller/uneAnnonceController.php';
 								<ul class="list">
 									<li><span>Donateur</span>: <?= $recupOneAnnonce[0]{'pseudo_user'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneAnnonce[0]{'ville_offre'}; ?></li>
-									<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li></br></br></br>
+									<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li>
+									<li><span>Pour quel type d'animal</span>: <?= $recupOneAnnonce[0]{'typeAnimal_offre'}; ?></li>
+									<li><span>Type d'objet</span>: <?= $recupOneAnnonce[0]{'typeObjet_offre'}; ?></li></br></br></br>
 									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 								</ul>
 							</div>

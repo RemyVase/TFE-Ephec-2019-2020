@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 26, 2020 at 03:42 PM
+-- Generation Time: Mar 26, 2020 at 04:14 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -204,6 +204,12 @@ SET titre_offre = titre, desc_offre = descr, ville_offre = ville
 WHERE id_offre = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectDemande` (IN `id` INT, IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
+UPDATE demandesDons
+SET typeAnimal_demande = typeAnimal, typeObjet_demande = typeObjet
+WHERE id_demande = id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectOffre` (IN `id` INT, IN `etat` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
 UPDATE offresDons
 SET etat_offre = etat, typeAnimal_offre = typeAnimal, typeObjet_offre = typeObjet
@@ -279,7 +285,7 @@ WHERE id_assoc = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupOneDemande` (IN `id` INT)  BEGIN
-SELECT associations.nom_assoc, demandesDons.titre_demande, demandesDons.desc_demande, demandesDons.ville_demande, demandesDons.img FROM demandesDons
+SELECT associations.nom_assoc, demandesDons.titre_demande, demandesDons.desc_demande, demandesDons.ville_demande, demandesDons.img, demandesDons.typeAnimal_demande, demandesDons.typeObjet_demande FROM demandesDons
 JOIN associations ON associations.id_assoc = demandesDons.id_assoc
 WHERE demandesDons.id_demande = id;
 END$$
@@ -378,7 +384,7 @@ CREATE TABLE `demandesDons` (
 --
 
 INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
-(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chienOubli.jpeg', 'Luttre', '', ''),
+(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chienOubli.jpeg', 'Luttre', 'Chat', 'Bien-être'),
 (5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg', '', '', ''),
 (6, 1, 'collier', 'collier pour grands chiens de type husky', '2020-03-23 16:58:10', '../img/img_demande/chienSauve.jpeg', 'pac', '', ''),
 (7, 1, 'testSelect', 'testSelect', '2020-03-26 14:30:15', '../img/img_demande/chatTriste.jpeg', 'testSelect', 'Chat', 'Bien-être');
