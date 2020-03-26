@@ -147,7 +147,6 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'ajoutAnimal':
             case 'modifAnimal':
                 array_push($params, '?', '?', '?', '?', '?', '?');
 
@@ -163,6 +162,7 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
+            case 'ajoutAnimal':
             case 'ajoutDemande':
                 array_push($params, '?', '?', '?', '?', '?', '?', '?');
 

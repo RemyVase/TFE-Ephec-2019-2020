@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 26, 2020 at 02:15 PM
+-- Generation Time: Mar 26, 2020 at 02:21 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -24,8 +24,8 @@ SET id_assoc = idAssoc
 WHERE id_user = idUser;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN
-INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal) VALUES(id,nom,age,ville,descr,img);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255))  BEGIN
+INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal,type_animal) VALUES(id,nom,age,ville,descr,img,typeAnimal);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255))  BEGIN
@@ -295,19 +295,21 @@ CREATE TABLE `adoption` (
   `desc_animal` text NOT NULL,
   `statut_animal` varchar(255) NOT NULL DEFAULT 'dispo',
   `date_animal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `img_animal` varchar(255) NOT NULL
+  `img_animal` varchar(255) NOT NULL,
+  `type_animal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `adoption`
 --
 
-INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`) VALUES
-(1, 1, 'Jean-Charles', '15 ans ', 'PAC', 'Cooooool', 'Disponible', '2020-03-17 15:36:56', '../img/img_adoption/chienListe.jpeg'),
-(2, 1, 'Alfred', '30 ans', 'Luttre', 'Pas coooool', 'Disponible', '2020-03-17 15:40:51', '../img/img_adoption/chiensGestion.jpeg'),
-(3, 1, 'Adebayor', '8ans ', 'Pont-à-Celles', 'Câlin à souhait cherche une famille pour profiter de sa retraite.', 'dispo', '2020-03-17 15:41:42', '../img/img_adoption/chienDors.jpeg'),
-(5, 6, 'Charles', '2ans', 'Luttre', 'Gentil', 'dispo', '2020-03-17 16:12:32', '../img/img_adoption/chatCoussin.jpeg'),
-(6, 1, 'Pedro', '6 ans ', 'Bruxelles', 'Gentils, pas méchant, lol ', 'dispo', '2020-03-19 22:21:01', '../img/img_adoption/chienSolo.jpeg');
+INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
+(1, 1, 'Jean-Charles', '15 ans ', 'PAC', 'Cooooool', 'Disponible', '2020-03-17 15:36:56', '../img/img_adoption/chienListe.jpeg', ''),
+(2, 1, 'Alfred', '30 ans', 'Luttre', 'Pas coooool', 'Disponible', '2020-03-17 15:40:51', '../img/img_adoption/chiensGestion.jpeg', ''),
+(3, 1, 'Adebayor', '8ans ', 'Pont-à-Celles', 'Câlin à souhait cherche une famille pour profiter de sa retraite.', 'dispo', '2020-03-17 15:41:42', '../img/img_adoption/chienDors.jpeg', ''),
+(5, 6, 'Charles', '2ans', 'Luttre', 'Gentil', 'dispo', '2020-03-17 16:12:32', '../img/img_adoption/chatCoussin.jpeg', ''),
+(6, 1, 'Pedro', '6 ans ', 'Bruxelles', 'Gentils, pas méchant, lol ', 'dispo', '2020-03-19 22:21:01', '../img/img_adoption/chienSolo.jpeg', ''),
+(7, 1, 'Peter', '12ans', 'PAC', 'Gentil', 'dispo', '2020-03-26 15:20:25', '../img/img_adoption/chienListe.jpeg', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -505,7 +507,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `associations`

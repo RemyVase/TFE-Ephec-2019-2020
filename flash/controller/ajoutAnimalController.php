@@ -9,6 +9,7 @@ $nom = $_POST["nomAnimal"];
 $age = $_POST["ageAnimal"];
 $ville = $_POST["villeAnimal"];
 $desc = $_POST["descAnimal"];
+$typeAnimal = $_POST["typeAnimal"];
 
 //var_dump($_FILES);
 $file_name = $_FILES['fileAnimal']['name'];
@@ -27,7 +28,7 @@ if (empty($checkAnimal)) {
     if (in_array($file_extension, $extension_autorisees)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
-            $ajoutAnimal = $db->callProcedure('ajoutAnimal', [$idAssoc, $nom, $age, $ville, $desc, $cheminImgBdd]);
+            $ajoutAnimal = $db->callProcedure('ajoutAnimal', [$idAssoc, $nom, $age, $ville, $desc, $cheminImgBdd,$typeAnimal]);
         } else {
             echo json_encode('imgPasOk');
         }

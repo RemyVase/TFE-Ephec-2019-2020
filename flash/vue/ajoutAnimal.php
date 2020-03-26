@@ -54,6 +54,13 @@ $currentPage = "ajoutAnimal";
                                 <textarea class="form-control" id="descAnimal" rows="3" placeholder="Entrez une description de l'animal."></textarea>
                             </div>
                             <div class="form-group">
+								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
+								<select class="form-control align-center" id="typeAnimal">
+									<option value="Chat">Chat</option>
+									<option value="Chien">Chien</option>
+								</select>
+							</div></br></br>
+                            <div class="form-group">
                                 <label for="exampleFormControlFile1">Photo de l'animal :</label>
                                 <input type="file" class="form-control-file" id="imageAnimal">
                             </div>
