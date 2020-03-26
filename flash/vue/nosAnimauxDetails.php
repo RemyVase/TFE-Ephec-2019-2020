@@ -58,7 +58,22 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
                 </div>
             </div>
         </section>
+
+
         <section>
+			<div class="container pad_bt md-center">
+				<div class="col-lg-12 md-center" align="center">
+					<div class="align-center">
+						<div class="text-center">
+							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'animal</button>
+							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="modifAnnonce" style='display:none'>
             <div class="container pad_bt md-center">
                 <div class="col-lg-12 md-center">
                     <h2 align="center">Modification des informations de l'animal</h2>

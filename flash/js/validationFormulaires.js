@@ -313,7 +313,7 @@ $(document).ready(function () {
         location.reload(true);
     });
 
-    
+
 
     $("#ajoutOffre_form").submit(function (event) {
         //Empêche l'html de se refresh
@@ -552,7 +552,7 @@ $(document).ready(function () {
         location.reload(true);
     });
 
-    
+
 
     $("#modifAnimalSelect_form").submit(function (event) {
         //Empêche l'html de se refresh
@@ -581,7 +581,6 @@ $(document).ready(function () {
         location.reload(true);
     });
 
-    
     $("#modifAssocSelect_form").submit(function (event) {
         //Empêche l'html de se refresh
 
@@ -609,6 +608,22 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    $("#afficherModifAnnonce").click(function () {
+        if ($('#afficherModifAnnonce').attr('name') === 'cacherModifAnnonce') {
+            $('#modifAnnonce').hide();
+            $('#afficherModifAnnonce').attr('name', 'afficherModifAnnonce');
+        }
+        else {
+            $('#modifAnnonce').show();
+            $('#afficherModifAnnonce').attr('name', 'cacherModifAnnonce');
+        }
+    });
+    /*
+        $("#cacherModifAnnonce").click(function(){
+            $('#modifAnnonce').hide();
+            $('#cacherModifAnnonce').attr('id','afficherModifAnnonce');
+        });
+        */
 });
 
 
@@ -725,13 +740,13 @@ function getAllElementsFormImg(form) {
 }
 
 
-function add_to_session(id){
+function add_to_session(id) {
     e.preventDefault();
     var test = id;
     $.ajax({
         url: "../controller/uneAnnonceController.php",
         type: "POST",
-        data: {index : test},
+        data: { index: test },
         processData: false,
         contentType: false,
         success: function (response) {
