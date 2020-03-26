@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 26, 2020 at 04:14 PM
+-- Generation Time: Mar 26, 2020 at 04:38 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -204,6 +204,18 @@ SET titre_offre = titre, desc_offre = descr, ville_offre = ville
 WHERE id_offre = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectAnimal` (IN `id` INT, IN `typeAnimal` VARCHAR(255))  BEGIN
+UPDATE adoption
+SET type_animal = typeAnimal
+WHERE id_animal = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectAssoc` (IN `id` INT, IN `typeAnimal` VARCHAR(255))  BEGIN
+UPDATE associations
+SET typeAnimal_assoc = typeAnimal
+WHERE id_assoc = id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifSelectDemande` (IN `id` INT, IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
 UPDATE demandesDons
 SET typeAnimal_demande = typeAnimal, typeObjet_demande = typeObjet
@@ -316,7 +328,7 @@ CREATE TABLE `adoption` (
 --
 
 INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
-(1, 1, 'Jean-Charles', '15 ans ', 'PAC', 'Cooooool', 'Disponible', '2020-03-17 15:36:56', '../img/img_adoption/chienListe.jpeg', ''),
+(1, 1, 'Jean-Charles', '15 ans ', 'PAC', 'Cooooool', 'Disponible', '2020-03-17 15:36:56', '../img/img_adoption/chienListe.jpeg', 'Chien'),
 (2, 1, 'Alfred', '30 ans', 'Luttre', 'Pas coooool', 'Disponible', '2020-03-17 15:40:51', '../img/img_adoption/chiensGestion.jpeg', ''),
 (3, 1, 'Adebayor', '8ans ', 'Pont-à-Celles', 'Câlin à souhait cherche une famille pour profiter de sa retraite.', 'dispo', '2020-03-17 15:41:42', '../img/img_adoption/chienDors.jpeg', ''),
 (5, 6, 'Charles', '2ans', 'Luttre', 'Gentil', 'dispo', '2020-03-17 16:12:32', '../img/img_adoption/chatCoussin.jpeg', ''),
@@ -350,7 +362,7 @@ CREATE TABLE `associations` (
 --
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
-(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg', ''),
+(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg', 'Chien'),
 (2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png', ''),
 (3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, '', ''),
 (4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, '', ''),

@@ -581,6 +581,34 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    
+    $("#modifAssocSelect_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#modifAssocSelect_form");
+        var dataForm = getAllElementsFormImg("#modifAssocSelect_form");
+        var objectForm = transformThisInObject(test, "#modifAssocSelect_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/modifAssocSelectController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+            }
+        });
+        location.reload(true);
+    });
+
 });
 
 

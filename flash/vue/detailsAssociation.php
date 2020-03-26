@@ -45,6 +45,7 @@ include '../controller/detailsAssocController.php';
                             <li><span>Numéro de téléphone</span>:  <?= $detailsAssoc{0}["tel_assoc"]; ?></li>
                             <li><span>Email</span>:  <?= $detailsAssoc{0}["email_assoc"]; ?></li>
                             <li><span>Site</span>:  <a href="<?= $detailsAssoc{0}["site_assoc"]; ?>"><?= $detailsAssoc{0}["site_assoc"]; ?></a></li>
+                            <li><span>Type d'animaux reccueillis</span>:  <?= $detailsAssoc[0]{'typeAnimal_assoc'}; ?>
                             <li><span>Places animaux en règles</span>: <strong><?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?></strong> </li>
                             <li><span>Places animaux en quarantaine</span>:  <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li></br><br><br>
                             <li><span>Contact</span>:  <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>

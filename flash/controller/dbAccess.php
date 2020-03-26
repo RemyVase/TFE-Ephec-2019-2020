@@ -83,6 +83,7 @@ class dbAccess
             case 'checkAssocAnimal':
             case 'addIdAssocIntoUser':
             case 'modifSelectAnimal':
+            case 'modifSelectAssoc':
                 array_push($params, '?', '?');
 
                 try {
