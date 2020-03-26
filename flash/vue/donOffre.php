@@ -49,8 +49,10 @@ include '../controller/listeOffresController.php';
 						<p><?= $offre['ville_offre']; ?></p>
 					</div>
 					<div class="col-sm-2 text-center">
-						<h4>Etat</h4></br>
-						<p><?= $offre['etat_offre']; ?></p>
+						<h4>Détails</h4></br></br>
+						<a href="detailsAnnonce.php">
+						<form method="post" action="detailsAnnonce.php"><button value="<?= $offre['id_offre']; ?>" type="submit" name="buttonOffre" class="btn btn-dark align-items-center "><i class="fa fa-plus" style="color:white"></i></button></form>
+					</a>
 					</div>
 					<div class="col-sm-2 text-center">
 						<h4>Contacts</h4></br></br>

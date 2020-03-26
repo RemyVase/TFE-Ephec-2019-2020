@@ -45,11 +45,17 @@ include '../controller/listeDemandesController.php';
 					<h4>Nom de l'annonce</h4></br>
 					<p><?= $demande['titre_demande']; ?></p>
 				</div>
-				<div class="col-sm-3 text-center">
+				<div class="col-sm-2 text-center">
 					<h4>Ville</h4></br>
 					<p><?= $demande['ville_demande']; ?></p>
 				</div>
-				<div class="col-sm-3 text-center">
+				<div class="col-sm-2 text-center">
+					<h4>Détails</h4></br></br>
+                    <a href="detailsDemande.php">
+						<form method="post" action="detailsDemande.php"><button value="<?= $demande['id_demande']; ?>" type="submit" name="buttonDemande" class="btn btn-dark align-items-center "><i class="fa fa-plus" style="color:white"></i></button></form>
+					</a>
+				</div>
+				<div class="col-sm-2 text-center">
 					<h4>Contacts</h4></br></br>
                     <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
 				</div>
