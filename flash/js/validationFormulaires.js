@@ -147,7 +147,7 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        var test = getAllElementsForm("#ajoutAssoc_form");
+        var test = getAllElementsForm("#ajoutAnimal_form");
         var dataForm = getAllElementsFormImg("#ajoutAnimal_form");
         var objectForm = transformThisInObject(test, "#ajoutAnimal_form");
 
@@ -196,6 +196,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                console.log(response);
             }
         });
     });

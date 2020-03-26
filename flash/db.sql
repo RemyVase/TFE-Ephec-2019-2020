@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 26, 2020 at 01:20 PM
+-- Generation Time: Mar 26, 2020 at 02:15 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -18,17 +18,22 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddIdAssocIntoUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
+UPDATE users
+SET id_assoc = idAssoc
+WHERE id_user = idUser;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255))  BEGIN
 INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal) VALUES(id,nom,age,ville,descr,img);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `id` INT, IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255))  BEGIN
-
-INSERT INTO associations(id_user, nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img) values (id, nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255))  BEGIN
+INSERT INTO associations(nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img, typeAnimal_assoc) values (nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img, typeAnimal);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255), IN `ville` VARCHAR(255))  BEGIN 
-INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img, ville_demande) VALUES(id,titre,descr,img,ville);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255), IN `ville` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN 
+INSERT INTO demandesDons(id_assoc, titre_demande, desc_demande,img, ville_demande,typeAnimal_demande, typeObjet_demande) VALUES(id,titre,descr,img,ville,typeAnimal,typeObjet);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT, IN `ville` VARCHAR(255), IN `etat` VARCHAR(255), IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `typeObjet` VARCHAR(255))  BEGIN
@@ -238,6 +243,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` (IN `nbOffre` INT, 
 SELECT * FROM offresDons LIMIT nbPage,nbOffre;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupIdAssoc` (IN `nom` VARCHAR(255))  BEGIN 
+SELECT id_assoc from associations
+WHERE nom_assoc = nom;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupMonAssoc` (IN `id` INT)  BEGIN 
 SELECT * FROM associations
 JOIN users on users.id_assoc = associations.id_assoc
@@ -317,21 +327,25 @@ CREATE TABLE `associations` (
   `insta_assoc` varchar(255) NOT NULL,
   `nbPlaceQuarant_assoc` int(11) NOT NULL,
   `nbPlaceRegle_assoc` int(11) NOT NULL,
-  `img` varchar(255) NOT NULL
+  `img` varchar(255) NOT NULL,
+  `typeAnimal_assoc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `associations`
 --
 
-INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`) VALUES
-(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg'),
-(2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png'),
-(3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, ''),
-(4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, ''),
-(5, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, ''),
-(6, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, ''),
-(7, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg');
+INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
+(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg', ''),
+(2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png', ''),
+(3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, '', ''),
+(4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, '', ''),
+(5, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, '', ''),
+(6, 'zer', 'zer', 'zer', 'zer', 'try', 'rty', 'rty', 'rty', 5, 4, '', ''),
+(7, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg', ''),
+(8, 'TestSelect', 'TestSelect', 'TestSelect@hotmail.com', '0477080641', 'TestSelect', 'TestSelect', 'TestSelect', 'TestSelect', 4, 5, '../img/img_assoc/chienDors.jpeg', 'Chien'),
+(9, 'TestComplet', 'TestComplet', 'TestComplet@fzgzrgzrg.com', '234214324', 'TestComplet', 'TestComplet', 'TestComplet', 'TestComplet', 4, 10, '../img/img_assoc/chatOrigami.png', 'Chat'),
+(10, 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST@hotmail.com', '214213525', 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST', 5, 10, '../img/img_assoc/chatTriste.jpeg', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -346,17 +360,20 @@ CREATE TABLE `demandesDons` (
   `desc_demande` text NOT NULL,
   `dateCrea_demande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `img` varchar(255) NOT NULL,
-  `ville_demande` varchar(255) NOT NULL
+  `ville_demande` varchar(255) NOT NULL,
+  `typeAnimal_demande` varchar(255) NOT NULL,
+  `typeObjet_demande` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `demandesDons`
 --
 
-INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`) VALUES
-(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chienOubli.jpeg', 'Luttre'),
-(5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg', ''),
-(6, 1, 'collier', 'collier pour grands chiens de type husky', '2020-03-23 16:58:10', '../img/img_demande/chienSauve.jpeg', 'pac');
+INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
+(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chienOubli.jpeg', 'Luttre', '', ''),
+(5, 1, 'test', 'test', '2020-03-23 16:11:19', '../img/img_demande/chatAdopte2.jpeg', '', '', ''),
+(6, 1, 'collier', 'collier pour grands chiens de type husky', '2020-03-23 16:58:10', '../img/img_demande/chienSauve.jpeg', 'pac', '', ''),
+(7, 1, 'testSelect', 'testSelect', '2020-03-26 14:30:15', '../img/img_demande/chatTriste.jpeg', 'testSelect', 'Chat', 'Bien-être');
 
 -- --------------------------------------------------------
 
@@ -430,10 +447,10 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (30, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-16 10:19:29', 5),
 (33, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-16 10:29:53', 6),
 (47, 'dada', 'dada@hotmail.be', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-16 10:53:37', 7),
-(48, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-16 10:56:33', NULL),
-(49, 'roro', 'roro@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:01:18', NULL),
-(50, 'roro1', 'roro4@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:03:18', NULL),
-(51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', NULL);
+(48, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-16 10:56:33', 1),
+(49, 'roro', 'roro@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:01:18', 1),
+(50, 'roro1', 'roro4@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:03:18', 10),
+(51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', 0);
 
 --
 -- Indexes for dumped tables
@@ -494,13 +511,13 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `messages`

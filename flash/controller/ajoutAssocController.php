@@ -14,6 +14,7 @@ $face = $_POST["facebookAssoc"];
 $insta = $_POST["instagramAssoc"];
 $placeQuar = $_POST["placesQuarantaineAssoc"];
 $placeReg = $_POST["placesReglesAssoc"];
+$typeAnimal = $_POST["typeAnimalAssoc"];
 
 $file_name = $_FILES['fileAssoc']['name'];
 $file_extension = strrchr($file_name, ".");
@@ -29,7 +30,8 @@ if (empty($checkAssoc)) {
     if (in_array($file_extension, $extension_autorisees)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
-            $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd]);
+            $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal]);
+            echo json_encode($ajoutAssoc);
         } else {
             echo json_encode('imgPasOk');
         }
@@ -39,3 +41,7 @@ if (empty($checkAssoc)) {
 } else {
     echo json_encode('Association déjà présente');
 }
+
+$recupIdAssoc = $db->callProcedure('recupIdAssoc',[$nom]);
+
+$addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser',[$recupIdAssoc[0]{'id_assoc'},$_SESSION['id']]);

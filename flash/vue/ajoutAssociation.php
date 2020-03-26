@@ -90,7 +90,13 @@ $currentPage = "ajoutAssociation";
                                 <input type="pseudo" class="form-control align-center" id="placesReglesAssoc" placeholder="Entrez le nombre de place disponible en règle." required>
                                 <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
                             </div>
-
+                            <div class="form-group">
+								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
+								<select class="form-control align-center" id="typeAnimalAssoc">
+									<option value="Chat">Chat</option>
+									<option value="Chien">Chien</option>
+								</select>
+							</div></br></br>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Logo de l'association :</label>
                                 <input type="file" class="form-control-file" id="imageAssoc" required>

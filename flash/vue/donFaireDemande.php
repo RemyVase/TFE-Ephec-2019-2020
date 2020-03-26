@@ -54,6 +54,21 @@ $currentPage = "donFaireDemande";
 									placeholder="Entrez une description pour votre annonce."></textarea>
 							</div>
 							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
+								<select class="form-control align-center" id="typeAnimalAnnonceDemande">
+									<option value="Chat">Chat</option>
+									<option value="Chien">Chien</option>
+								</select>
+							</div></br></br>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
+								<select class="form-control align-center" id="typeObjetAnnonceDemande">
+									<option value="Jouet">Jouet</option>
+									<option value="Bien-être">Bien-être</option>
+									<option value="Nourriture">Nourriture</option>
+								</select>
+							</div></br></br>
+							<div class="form-group">
 								<label for="imageObjectDemande">Image de l'annonce :</label>
 								<input type="file" class="form-control-file" id="imageAnnonceDemande">
 							</div>

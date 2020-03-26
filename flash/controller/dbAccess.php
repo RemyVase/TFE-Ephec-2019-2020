@@ -53,6 +53,7 @@ class dbAccess
             case 'checkNbNosDemandes':
             case 'recupOneAnnonce':
             case 'recupOneDemande':
+            case 'recupIdAssoc':
                 array_push($params, '?');
 
                 try {
@@ -80,6 +81,7 @@ class dbAccess
             case 'checkAssocDemande':
             case 'modifImgDemande':
             case 'checkAssocAnimal':
+            case 'addIdAssocIntoUser':
                 array_push($params, '?', '?');
 
                 try {
@@ -131,7 +133,6 @@ class dbAccess
 
         switch ($nomProcedure) {
             case 'modifOffre':
-            case 'ajoutDemande':
                 array_push($params, '?', '?', '?', '?', '?');
 
                 try {
@@ -162,6 +163,21 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
+            case 'ajoutDemande':
+                array_push($params, '?', '?', '?', '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
             case 'ajoutOffre':
                 array_push($params, '?', '?', '?', '?', '?', '?', '?', '?');
 
@@ -177,9 +193,23 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'ajoutAssoc':
             case 'modifAssoc':
                 array_push($params, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?');
+
+                try {
+                    $this->connexionDB();
+                    $procedureCall = 'call ' . $nomProcedure . '(' . join(',', $params) . ')';
+                    $requete = $this->pdo->prepare($procedureCall);
+                    $requete->execute($procParams);
+                    return $requete->fetchAll();
+                } catch (Exception $e) {
+                    die("Erreur :" . $e->getMessage());
+                }
+                break;
+        }
+        switch ($nomProcedure) {
+            case 'ajoutAssoc':
+                array_push($params, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?');
 
                 try {
                     $this->connexionDB();
