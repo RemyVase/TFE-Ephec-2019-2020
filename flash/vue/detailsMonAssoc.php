@@ -71,7 +71,7 @@ include '../controller/detailsMonAssocController.php';
 					<div class="align-center">
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
-							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button>
+							<a href="../controller/deleteAssocController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
 						</div>
 					</div>
 				</div>

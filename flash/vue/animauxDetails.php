@@ -1,6 +1,7 @@
 <?php
 session_start();
 $currentPage = "animauxDetails";
+$_SESSION['animal'] = $_POST['boutonAnimal'];
 include '../controller/detailsAnimalController.php';
 ?>
 <!doctype html>

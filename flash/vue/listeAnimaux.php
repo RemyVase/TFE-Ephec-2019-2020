@@ -57,7 +57,9 @@ include "../controller/listeAnimauxController.php"
                     </div>
                     <div class="col-sm-1 text-center">
                         <h4>Plus de détails</h4></br>
-                        <a href="animauxDetails.php?animal=<?= $animal['id_animal']; ?>"><button type="button" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></a>
+                        <a href="animauxDetails.php">
+                            <form method="post" action="animauxDetails.php"><button name="boutonAnimal" type="submit" value="<?= $animal['id_animal']; ?>" class="btn btn-dark align-items-center"><i class="fa fa-plus" style="color:white"></i></button></form>
+                        </a>
                     </div>
                 </div>
             </div>

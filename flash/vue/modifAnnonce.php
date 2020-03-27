@@ -64,7 +64,7 @@ include '../controller/uneAnnonceController.php';
 					<div class="align-center">
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'annonce</button>
-							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'annonce</button>
+							<a href="../controller/deleteAnnonceController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'annonce</button></a>
 						</div>
 					</div>
 				</div>

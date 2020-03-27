@@ -1,8 +1,9 @@
 <?php
 session_start();
 $currentPage = "animauxDetails";
-include '../controller/detailsAnimalController.php';
 $_SESSION['animal'] = $_POST['boutonAnimal'];
+include '../controller/detailsAnimalController.php';
+var_dump($_SESSION['animal']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -66,7 +67,7 @@ $_SESSION['animal'] = $_POST['boutonAnimal'];
 					<div class="align-center">
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'animal</button>
-							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button>
+							<a href="../controller/deleteAnimalController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button></a>
 						</div>
 					</div>
 				</div>

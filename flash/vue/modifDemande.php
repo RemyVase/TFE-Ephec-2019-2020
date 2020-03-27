@@ -63,7 +63,7 @@ include '../controller/uneDemandeController.php';
 					<div class="align-center">
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier la demande</button>
-							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer la demande</button>
+							<a href="../controller/deleteDemandeController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer la demande</button></a>
 						</div>
 					</div>
 				</div>
