@@ -11,3 +11,5 @@ if (isset($id) && $id > 0) {
 } 
 
 $recupAllMembre = $db->callProcedure('recupAllMembre');
+
+$recupAllMembreAssoc = $db->callProcedure('recupAllMembreAssoc',[$_SESSION['idAssoc']]);

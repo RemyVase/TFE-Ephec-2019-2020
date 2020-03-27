@@ -81,11 +81,15 @@ include '../controller/detailsMonAssocController.php';
     <section id="modifAnnonce" style='display:none'>
         <div class="container pad_bt md-center">
             <div class="col-lg-12 md-center">
-                <h2 align="center">Ajoutez des membre à votre association afin qu'ils puissent la gérer avec vous !</h2>
+                <h2 align="center">Gestion des membres de l'association</h2><br>
+                <h3 align="center">Liste des membres :</h3>
+                <?php foreach($recupAllMembreAssoc as $membreAssoc) : ?>
+                    <p align="center"><?= $membreAssoc['pseudo_user']; ?><p>
+                <?php endforeach ?>
                 <br>
                 <form id="ajoutMembre_form" method="post" action="#" novalidate>
                     <div class="row justify-content-center">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
                                 <input list="pseudoList" type="text" id="pseudoAjout">
@@ -93,11 +97,25 @@ include '../controller/detailsMonAssocController.php';
                                     <?php foreach($recupAllMembre as $membre) : ?>
                                         <option value="<?= $membre['pseudo_user']; ?>">
                                     <?php endforeach ?>
-                                </datalist><br>
+                                    </datalist>
+                                <button type="submit" class="btn btn-dark">Ajouter cette personne en tant que membre de l'association</button><br>
                                 <span id="userDejaDansAssoc" style="display : none; color : red">Cet utilisateur est déjà dans une association.</span>
-                            </div><br><br>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
+                            </div>    
+                        </div>
+                    </div>
+                </form><br><br>
+                <form id="suppressionMembre_form" method="post" action="#" novalidate>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
+                                <input list="pseudoListAssoc" type="text" id="pseudoAjout">
+                                <datalist id="pseudoListAssoc">
+                                    <?php foreach($recupAllMembreAssoc as $membreAssoc) : ?>
+                                        <option value="<?= $membreAssoc['pseudo_user']; ?>">
+                                    <?php endforeach ?>
+                                </datalist>
+                                <button type="submit" class="btn btn-dark">Retirer cette personne de l'association</button>
                             </div>
                         </div>
                     </div>

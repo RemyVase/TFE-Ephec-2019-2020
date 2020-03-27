@@ -56,6 +56,7 @@ class dbAccess
             case 'recupOneDemande':
             case 'recupIdAssoc':
             case 'checkSiDejaDansAssoc':
+            case 'recupAllMembreAssoc':
                 array_push($params, '?');
 
                 try {

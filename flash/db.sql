@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 27, 2020 at 11:46 AM
+-- Generation Time: Mar 27, 2020 at 12:09 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -256,6 +256,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllMembre` ()  BEGIN
 SELECT pseudo_user FROM users;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllMembreAssoc` (IN `id` INT)  BEGIN
+SELECT pseudo_user FROM users
+WHERE id_assoc = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllMesOffres` (IN `nbOffre` INT, IN `nbPage` INT, IN `id` INT)  BEGIN
