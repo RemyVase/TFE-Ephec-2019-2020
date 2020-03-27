@@ -618,12 +618,39 @@ $(document).ready(function () {
             $('#afficherModifAnnonce').attr('name', 'cacherModifAnnonce');
         }
     });
-    /*
-        $("#cacherModifAnnonce").click(function(){
-            $('#modifAnnonce').hide();
-            $('#cacherModifAnnonce').attr('id','afficherModifAnnonce');
-        });
-        */
+
+    $("#ajoutMembre_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#ajoutMembre_form");
+        var dataForm = getAllElementsFormImg("#ajoutMembre_form");
+        var objectForm = transformThisInObject(test, "#ajoutMembre_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/ajoutMembreAssocController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response ==='"UserDejaDansUneAssoc"'){
+                    $("#userDejaDansAssoc").show();
+                }
+                else{
+                    $("#userDejaDansAssoc").hide();
+                    location.reload(true);
+                }
+            }
+        }); 
+    });
 });
 
 

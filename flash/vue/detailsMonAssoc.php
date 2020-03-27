@@ -45,7 +45,7 @@ include '../controller/detailsMonAssocController.php';
                                 <li><span>Numéro de téléphone</span>: <?= $detailsAssoc{0}["tel_assoc"]; ?></li>
                                 <li><span>Email</span>: <?= $detailsAssoc{0}["email_assoc"]; ?></li>
                                 <li><span>Site</span>: <a href="<?= $detailsAssoc{0}["site_assoc"]; ?>"><?= $detailsAssoc{0}["site_assoc"]; ?></a></li>
-                                <li><span>Type d'animaux reccueillis</span>:  <?= $detailsAssoc[0]{'typeAnimal_assoc'}; ?>
+                                <li><span>Type d'animaux reccueillis</span>: <?= $detailsAssoc[0]{'typeAnimal_assoc'}; ?>
                                 <li><span>Places animaux en règles</span>: <strong><?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?></strong> </li>
                                 <li><span>Places animaux en quarantaine</span>: <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li></br><br><br>
                                 <li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
@@ -66,21 +66,43 @@ include '../controller/detailsMonAssocController.php';
     </section>
 
     <section>
-			<div class="container pad_bt md-center">
-				<div class="col-lg-12 md-center" align="center">
-					<div class="align-center">
-						<div class="text-center">
-							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
-							<a href="../controller/deleteAssocController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+        <div class="container pad_bt md-center">
+            <div class="col-lg-12 md-center" align="center">
+                <div class="align-center">
+                    <div class="text-center">
+                        <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
+                        <a href="../controller/deleteAssocController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<section id="modifAnnonce" style='display:none'>
+    <section id="modifAnnonce" style='display:none'>
         <div class="container pad_bt md-center">
             <div class="col-lg-12 md-center">
+                <h2 align="center">Ajoutez des membre à votre association afin qu'ils puissent la gérer avec vous !</h2>
+                <br>
+                <form id="ajoutMembre_form" method="post" action="#" novalidate>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
+                                <input list="pseudoList" type="text" id="pseudoAjout">
+                                <datalist id="pseudoList">
+                                    <?php foreach($recupAllMembre as $membre) : ?>
+                                        <option value="<?= $membre['pseudo_user']; ?>">
+                                    <?php endforeach ?>
+                                </datalist><br>
+                                <span id="userDejaDansAssoc" style="display : none; color : red">Cet utilisateur est déjà dans une association.</span>
+                            </div><br><br>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
+                            </div>
+                        </div>
+                    </div>
+                </form><br><br>
+                <br>
                 <h2 align="center">Modification des informations de l'association</h2>
                 <br>
                 <div class="align-center">
@@ -150,24 +172,24 @@ include '../controller/detailsMonAssocController.php';
                     <br>
 
                     <h2 align="center">Modification des champs sélectionnables de l'animal (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
-						<br>
-						<form id="modifAssocSelect_form" method="post" action="#" novalidate>
-							<div class="row justify-content-center">
-								<div class="col-lg-6">
-									<div class="form-group">
-										<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
-										<select class="form-control align-center" id="typeAnimalAssocModif">
-											<option value="Chat">Chat</option>
-											<option value="Chien">Chien</option>
-										</select>
-									</div><br><br>
-									<div class="text-center">
-										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
-									</div>
-								</div>
-							</div>
-						</form><br><br>
-						<br>
+                    <br>
+                    <form id="modifAssocSelect_form" method="post" action="#" novalidate>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
+                                    <select class="form-control align-center" id="typeAnimalAssocModif">
+                                        <option value="Chat">Chat</option>
+                                        <option value="Chien">Chien</option>
+                                    </select>
+                                </div><br><br>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form><br><br>
+                    <br>
                     <h2 align="center">Modification de l'image de l'association</h2>
                     <br>
                     <form id="modifImgAssoc_form" name="modifImgAssoc_form" method="post" action="#" novalidate>

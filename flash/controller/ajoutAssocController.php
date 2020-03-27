@@ -45,3 +45,5 @@ if (empty($checkAssoc)) {
 $recupIdAssoc = $db->callProcedure('recupIdAssoc',[$nom]);
 
 $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser',[$recupIdAssoc[0]{'id_assoc'},$_SESSION['id']]);
+
+$_SESSION['idAssoc'] = $recupIdAssoc[0]{'id_assoc'};
