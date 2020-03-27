@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 27, 2020 at 10:26 AM
+-- Generation Time: Mar 27, 2020 at 10:30 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -323,16 +323,6 @@ CREATE TABLE `adoption` (
   `type_animal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `adoption`
---
-
-INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
-(2, 1, 'Alfred', '30 ans', 'Luttre', 'Pas coooool', 'Disponible', '2020-03-17 15:40:51', '../img/img_adoption/chiensGestion.jpeg', ''),
-(3, 1, 'Adebayor', '8ans ', 'Pont-à-Celles', 'Câlin à souhait cherche une famille pour profiter de sa retraite.', 'dispo', '2020-03-17 15:41:42', '../img/img_adoption/chienDors.jpeg', ''),
-(6, 1, 'Pedro', '6 ans ', 'Bruxelles', 'Gentils, pas méchant, lol ', 'dispo', '2020-03-19 22:21:01', '../img/img_adoption/chienSolo.jpeg', ''),
-(7, 1, 'Peter', '12ans', 'PAC', 'Gentil', 'dispo', '2020-03-26 15:20:25', '../img/img_adoption/chienListe.jpeg', 'Chien');
-
 -- --------------------------------------------------------
 
 --
@@ -355,21 +345,6 @@ CREATE TABLE `associations` (
   `typeAnimal_assoc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `associations`
---
-
-INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
-(1, 'test', 'testLOL', 'test@hotmail.com', '0477080641', 'zegzLOLOLOLOL', 'egzgzeg', 'ezgzeg', 'zegzeg', 2, 2, '../img/img_assoc/chienOubli.jpeg', 'Chien'),
-(2, 'ezr', 'ezr', 'ezr', 'ezr', 'zer', 'zer', 'zer', 'zer', 2, 1, '../img/img_assoc/chatOrigami.png', ''),
-(3, 'zaer', 'zera', 'zeraze', 'zerzerezrezrzer', 'zerzer', 'ezrezr', 'zerezr', 'ezrzer', 2, 3, '', ''),
-(4, 'azer', 'zaer', 'zera', 'azer', 'azer', 'zaer', 'azer', 'azer', 5, 6, '', ''),
-(5, 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 'zer', 1, 8, '', ''),
-(7, 'tata', 'tata', 'tata@hotmail.com', '0477080641', 'tata', 'tata', 'tata', 'tata', 3, 10, '../img/img_assoc/chatCoussin.jpeg', ''),
-(8, 'TestSelect', 'TestSelect', 'TestSelect@hotmail.com', '0477080641', 'TestSelect', 'TestSelect', 'TestSelect', 'TestSelect', 4, 5, '../img/img_assoc/chienDors.jpeg', 'Chien'),
-(9, 'TestComplet', 'TestComplet', 'TestComplet@fzgzrgzrg.com', '234214324', 'TestComplet', 'TestComplet', 'TestComplet', 'TestComplet', 4, 10, '../img/img_assoc/chatOrigami.png', 'Chat'),
-(10, 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST@hotmail.com', '214213525', 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST', 'DERNIERTEST', 5, 10, '../img/img_assoc/chatTriste.jpeg', 'Chien');
-
 -- --------------------------------------------------------
 
 --
@@ -387,15 +362,6 @@ CREATE TABLE `demandesDons` (
   `typeAnimal_demande` varchar(255) NOT NULL,
   `typeObjet_demande` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `demandesDons`
---
-
-INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
-(4, 1, 'test', 'testestestestestestest', '2020-03-23 16:08:51', '../img/img_demande/chienOubli.jpeg', 'Luttre', 'Chat', 'Bien-être'),
-(6, 1, 'collier', 'collier pour grands chiens de type husky', '2020-03-23 16:58:10', '../img/img_demande/chienSauve.jpeg', 'pac', '', ''),
-(7, 1, 'testSelect', 'testSelect', '2020-03-26 14:30:15', '../img/img_demande/chatTriste.jpeg', 'testSelect', 'Chat', 'Bien-être');
 
 -- --------------------------------------------------------
 
@@ -430,17 +396,6 @@ CREATE TABLE `offresDons` (
   `typeAnimal_offre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `offresDons`
---
-
-INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
-(4, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:19:03', '../img/img_offre/chatAdopte3.jpeg', '', ''),
-(5, 14, 'test', 'test', 'test', 'test', '2020-03-23 16:20:09', '../img/img_offre/chatAdopte3.jpeg', '', ''),
-(6, 14, 'test2', 'test', 'test', 'test', '2020-03-23 16:24:44', '../img/img_offre/chatCouverture.jpeg', '', ''),
-(7, 51, 'Arbre à chat2', 'Arbre à chat à 5 étages ', 'Luttre', 'Presque neuf', '2020-03-24 11:11:43', '../img/img_offre/chatTriste.jpeg', '', ''),
-(8, 14, 'TestSelect', 'TestSelect', 'TestSelect', 'Neuf', '2020-03-26 14:17:54', '../img/img_offre/chatOrigami.png', 'Jouet', 'Chat');
-
 -- --------------------------------------------------------
 
 --
@@ -455,23 +410,6 @@ CREATE TABLE `users` (
   `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_assoc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
-(14, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-02-29 14:32:58', 1),
-(15, 'remy', 'remy.vase3@hotmail.fr', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-02-29 17:23:29', 2),
-(16, 'ergerg', 'ereerg@erbgzeg.com', 'cb07764c395219c9967b1106b50de58e279ca6cd4d279b8cf8a8b7ae39d96313', '2020-03-07 18:17:00', 3),
-(17, 'tonton', 'tonton@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-16 09:45:46', 4),
-(30, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-16 10:19:29', 5),
-(33, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-16 10:29:53', 6),
-(47, 'dada', 'dada@hotmail.be', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-16 10:53:37', 7),
-(48, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-16 10:56:33', 1),
-(49, 'roro', 'roro@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:01:18', 1),
-(50, 'roro1', 'roro4@hotmail.be', '530fe0e0d55493c93d3140b0f8fc929323ec34a82ddeb60bbf5090e5e3b49b5e', '2020-03-16 11:03:18', 10),
-(51, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-16 11:06:12', 0);
 
 --
 -- Indexes for dumped tables
@@ -516,7 +454,8 @@ ALTER TABLE `offresDons`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `FK_idAssoc` (`id_assoc`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -526,19 +465,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -550,13 +489,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Constraints for dumped tables
@@ -586,3 +525,9 @@ ALTER TABLE `messages`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `FK_idAssoc` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
