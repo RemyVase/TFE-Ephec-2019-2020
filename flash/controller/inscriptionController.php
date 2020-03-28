@@ -20,4 +20,5 @@ if (!empty($checkEmail)) {
     echo json_encode("pseudoPasOk");
 } else {
     $inscription = $db->callProcedure('ajoutUser', [$pseudo, $email, $password]);
+    echo json_encode("ok");
 }

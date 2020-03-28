@@ -30,7 +30,6 @@ if (empty($checkOffre)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
             $ajoutOffre = $db->callProcedure('ajoutOffre', [$idUser, $titre, $desc, $ville, $etat, $cheminImgBdd,$typeAnimal,$typeObjet]);
-            echo json_encode($ajoutOffre);
         } else {
             echo json_encode('imgPasOk');
         }

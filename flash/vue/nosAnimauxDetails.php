@@ -3,7 +3,6 @@ session_start();
 $currentPage = "animauxDetails";
 $_SESSION['animal'] = $_POST['boutonAnimal'];
 include '../controller/detailsAnimalController.php';
-var_dump($_SESSION['animal']);
 ?>
 <!doctype html>
 <html lang="en">

@@ -31,7 +31,6 @@ if (empty($checkAssoc)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
             echo json_encode("imgOk");
             $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal]);
-            echo json_encode($ajoutAssoc);
         } else {
             echo json_encode('imgPasOk');
         }

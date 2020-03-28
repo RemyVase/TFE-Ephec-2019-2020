@@ -48,11 +48,8 @@ $(document).ready(function () {
                     $("#success").hide();
                     $("#mailPasOk").hide();
                 }
-                else {
-                    $("#mailPasOk").hide();
-                    $("#pseudoPasOk").hide();
-                    $("#echecMailOuPseudo").hide();
-                    $("#success").show();
+                else if (response === '"ok"'){
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
                 }
             }
         })
@@ -196,7 +193,9 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
+                if(response === '"imgOk"'){
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
+                }
             }
         });
     });
@@ -339,13 +338,9 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                /*if(response === '"imgPasOk"'){
-                    console.log("Veuillez insérer une image au format png,jpeg ou jpg.");
+                if(response === '"imgOk"'){
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php');
                 }
-                else if(response === '"Annonce déjà présent."'){
-                    console.log("Annonce déjà présent.");
-                }*/
-                //console.log(response);
             }
         });
     });
@@ -374,7 +369,9 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
+                if(response === '"imgOk"'){
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
+                }
             }
         });
     });

@@ -14,8 +14,6 @@ $typeObjet = $_POST["typeObjetAnnonceDemande"];
 $file_name = $_FILES['fileDemande']['name'];
 $file_extension = strrchr($file_name, ".");
 
-echo $file_name;
-
 $file_tmp_name = $_FILES['fileDemande']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
