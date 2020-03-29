@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 29, 2020 at 03:31 PM
+-- Generation Time: Mar 29, 2020 at 03:53 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -119,6 +119,21 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffre` ()  BEGIN
 SELECT COUNT(id_offre) FROM offresDons;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffreEtat` (IN `etat` VARCHAR(255))  BEGIN
+SELECT COUNT(id_offre) FROM offresDons
+WHERE etat_offre = etat;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffreTypeAnimal` (IN `type` VARCHAR(255))  BEGIN
+SELECT COUNT(id_offre) FROM offresDons
+WHERE typeAnimal_offre = type;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbOffreTypeObjet` (IN `type` VARCHAR(255))  BEGIN
+SELECT COUNT(id_offre) FROM offresDons
+WHERE typeObjet_offre = type;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkOffre` (IN `id` INT, IN `titre` VARCHAR(255), IN `descr` TEXT)  BEGIN
@@ -316,6 +331,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffres` (IN `nbOffre` INT, 
 SELECT * FROM offresDons LIMIT nbPage,nbOffre;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffresEtat` (IN `nbOffre` INT, IN `nbPage` INT, IN `etat` VARCHAR(255))  BEGIN
+SELECT * FROM offresDons 
+WHERE etat_offre = etat 
+LIMIT nbPage,nbOffre;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffresTypeAnimal` (IN `nbOffre` INT, IN `nbPage` INT, IN `type` VARCHAR(255))  BEGIN
+SELECT * FROM offresDons 
+WHERE typeAnimal_offre = type
+LIMIT nbPage,nbOffre;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllOffresTypeObjet` (IN `nbOffre` INT, IN `nbPage` INT, IN `type` VARCHAR(255))  BEGIN
+SELECT * FROM offresDons 
+WHERE typeObjet_offre = type
+LIMIT nbPage,nbOffre;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupIdAssoc` (IN `nom` VARCHAR(255))  BEGIN 
 SELECT id_assoc from associations
 WHERE nom_assoc = nom;
@@ -479,7 +512,8 @@ CREATE TABLE `offresDons` (
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
 (2, 1, 'ballon', 'test123', 'erhsrh', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
-(3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat');
+(3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
+(7, 20, 'ergerg', 'ergerg', 'ergerg', 'Usé', '2020-03-29 17:53:10', '../img/img_offre/chatCoussin.jpeg', 'Bien-être', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -588,7 +622,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`

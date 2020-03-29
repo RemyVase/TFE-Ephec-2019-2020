@@ -31,6 +31,47 @@ include '../controller/listeOffresController.php';
 	<!--================End Home Banner Area =================-->
 
 	<!--================Home Blog Area =================-->
+	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Type d'animal :</label>
+						<a href="donOffre.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:2em">Chats</button></a>
+						<a href="donOffre.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-left:2em">Chiens</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Type d'objet :</label>
+						<a href="donOffre.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:2em">Jouet</button></a>
+						<a href="donOffre.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-left:2em">Bien-être</button></a>
+						<a href="donOffre.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-left:2em">Nourriture</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Etat de l'objet :</label>
+						<a href="donOffre.php?p=1&etat=Neuf"><button class="btn btn-dark" style="margin-right:2em">Neuf</button></a>
+						<a href="donOffre.php?p=1&etat=Presque neuf"><button class="btn btn-dark" style="margin-left:2em">Presque neuf</button></a>
+						<a href="donOffre.php?p=1&etat=Usé"><button class="btn btn-dark" style="margin-right:2em">Usé</button></a>
+						<a href="donOffre.php?p=1&etat=Très usé"><button class="btn btn-dark" style="margin-left:2em">Très usé</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<?php foreach ($recupAllOffre as $offre) : ?>
 		<div class="container">
 			<div class="col-md-12">
