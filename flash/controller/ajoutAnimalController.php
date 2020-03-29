@@ -11,14 +11,13 @@ $ville = htmlspecialchars($_POST["villeAnimal"]);
 $desc = htmlspecialchars($_POST["descAnimal"]);
 $typeAnimal = htmlspecialchars($_POST["typeAnimal"]);
 
-//var_dump($_FILES);
 $file_name = htmlspecialchars($_FILES['fileAnimal']['name']);
 $file_extension = strrchr($file_name, ".");
 
 $file_tmp_name = $_FILES['fileAnimal']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_adoption/" . $file_name;
+$cheminImgBdd = "../img/img_adoption/" . $file_name . rand(1,99999999);
 
 $checkAnimal = $db->callProcedure('checkAnimal', [$nom, $age, $ville]);
 

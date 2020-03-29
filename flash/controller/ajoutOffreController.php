@@ -20,7 +20,7 @@ $file_extension = strrchr($file_name, ".");
 $file_tmp_name = $_FILES['fileOffre']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_offre/" . $file_name;
+$cheminImgBdd = "../img/img_offre/" . $file_name . rand(1,99999999);
 
 $checkOffre = $db->callProcedure('checkOffre', [$idUser, $titre, $desc]);
 

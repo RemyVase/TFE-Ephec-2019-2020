@@ -12,7 +12,7 @@ $file_extension = strrchr($file_name, ".");
 $file_tmp_name = $_FILES['fileAnimal']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_adoption/" . $file_name;
+$cheminImgBdd = "../img/img_adoption/" . $file_name . rand(1,99999999);
 
 if (in_array($file_extension, $extension_autorisees)) {
     if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {

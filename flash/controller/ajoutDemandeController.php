@@ -17,7 +17,7 @@ $file_extension = strrchr($file_name, ".");
 $file_tmp_name = $_FILES['fileDemande']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_demande/" . $file_name;
+$cheminImgBdd = "../img/img_demande/" . $file_name . rand(1,99999999);
 
 $checkDemande = $db->callProcedure('checkDemande', [$idAssoc,$titre,$ville]);
 
