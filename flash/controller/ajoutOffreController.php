@@ -12,15 +12,18 @@ $etat = htmlspecialchars($_POST["etatAnnonceOffre"]);
 $typeAnimal = htmlspecialchars($_POST["typeAnimalAnnonceOffre"]);
 $typeObjet = htmlspecialchars($_POST["typeObjetAnnonceOffre"]);
 
-
 $file_name = htmlspecialchars($_FILES['fileOffre']['name']);
 $file_extension = strrchr($file_name, ".");
-
 
 $file_tmp_name = $_FILES['fileOffre']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_offre/" . $file_name . rand(1,99999999);
+//Va juste retenir l'extension (par exemple .png)
+$extension = "." . strtolower(substr(strrchr($file_name,'.'),1));
+//Va juste retenir le nom de l'image par exemple (test.png) va devenir (test)
+$nomImage = strstr($file_name,'.',true);
+
+$cheminImgBdd = "../img/img_offre/" . $nomImage . rand(1,99999999) . $extension;
 
 $checkOffre = $db->callProcedure('checkOffre', [$idUser, $titre, $desc]);
 

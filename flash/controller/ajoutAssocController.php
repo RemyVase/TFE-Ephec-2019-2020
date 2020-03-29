@@ -22,7 +22,12 @@ $file_extension = strrchr($file_name, ".");
 $file_tmp_name = $_FILES['fileAssoc']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
-$cheminImgBdd = "../img/img_assoc/" . $file_name . rand(1,99999999);
+//Va juste retenir l'extension (par exemple .png)
+$extension = "." . strtolower(substr(strrchr($file_name,'.'),1));
+//Va juste retenir le nom de l'image par exemple (test.png) va devenir (test)
+$nomImage = strstr($file_name,'.',true);
+
+$cheminImgBdd = "../img/img_assoc/" . $nomImage . rand(1,99999999) . $extension;
 
 $checkAssoc = $db->callProcedure('checkAssoc', [$nom]);
 
