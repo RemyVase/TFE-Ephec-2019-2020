@@ -36,37 +36,18 @@ include '../controller/listeOffresController.php';
 			<div class="col-lg-12 md-center" align="center">
 				<div class="align-center">
 					<div class="text-center">
-                        <label>Type d'animal :</label>
-						<a href="donOffre.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:2em">Chats</button></a>
-						<a href="donOffre.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-left:2em">Chiens</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section>
-		<div class="container pad_bt md-center">
-			<div class="col-lg-12 md-center" align="center">
-				<div class="align-center">
-					<div class="text-center">
-                        <label>Type d'objet :</label>
-						<a href="donOffre.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:2em">Jouet</button></a>
-						<a href="donOffre.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-left:2em">Bien-être</button></a>
-						<a href="donOffre.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-left:2em">Nourriture</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>	<section>
-		<div class="container pad_bt md-center">
-			<div class="col-lg-12 md-center" align="center">
-				<div class="align-center">
-					<div class="text-center">
-                        <label>Etat de l'objet :</label>
-						<a href="donOffre.php?p=1&etat=Neuf"><button class="btn btn-dark" style="margin-right:2em">Neuf</button></a>
-						<a href="donOffre.php?p=1&etat=Presque neuf"><button class="btn btn-dark" style="margin-left:2em">Presque neuf</button></a>
-						<a href="donOffre.php?p=1&etat=Usé"><button class="btn btn-dark" style="margin-right:2em">Usé</button></a>
-						<a href="donOffre.php?p=1&etat=Très usé"><button class="btn btn-dark" style="margin-left:2em">Très usé</button></a>
+						<label>Type d'animal :</label>
+						<a href="donOffre.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chats</button></a>
+						<a href="donOffre.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chiens</button></a>
+						<label>Type d'objet :</label>
+						<a href="donOffre.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Jouet</button></a>
+						<a href="donOffre.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Bien-être</button></a>
+						<a href="donOffre.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Nourriture</button></a>
+						<label>Etat de l'objet :</label>
+						<a href="donOffre.php?p=1&etat=Neuf"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Neuf</button></a>
+						<a href="donOffre.php?p=1&etat=Presque neuf"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Presque neuf</button></a>
+						<a href="donOffre.php?p=1&etat=Usé"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Usé</button></a>
+						<a href="donOffre.php?p=1&etat=Très usé"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Très usé</button></a>
 					</div>
 				</div>
 			</div>
@@ -92,8 +73,8 @@ include '../controller/listeOffresController.php';
 					<div class="col-sm-2 text-center">
 						<h4>Détails</h4></br></br>
 						<a href="detailsAnnonce.php">
-						<form method="post" action="detailsAnnonce.php"><button value="<?= $offre['id_offre']; ?>" type="submit" name="buttonOffre" class="btn btn-dark align-items-center "><i class="fa fa-plus" style="color:white"></i></button></form>
-					</a>
+							<form method="post" action="detailsAnnonce.php"><button value="<?= $offre['id_offre']; ?>" type="submit" name="buttonOffre" class="btn btn-dark align-items-center "><i class="fa fa-plus" style="color:white"></i></button></form>
+						</a>
 					</div>
 					<div class="col-sm-2 text-center">
 						<h4>Contacts</h4></br></br>

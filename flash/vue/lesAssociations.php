@@ -36,8 +36,8 @@ include "../controller/listeAssociationsController.php"
 				<div class="align-center">
 					<div class="text-center">
                         <label>Type d'animal :</label>
-						<a href="lesAssociations.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:2em">Chats</button></a>
-						<a href="lesAssociations.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-left:2em">Chiens</button></a>
+						<a href="lesAssociations.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chats</button></a>
+						<a href="lesAssociations.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chiens</button></a>
 					</div>
 				</div>
 			</div>
