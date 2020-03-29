@@ -42,7 +42,7 @@ include '../controller/uneDemandeController.php';
 							<div class="portfolio_right_text">
 								<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
 								<ul class="list">
-									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
+									<li><span>Demandeur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
 									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
 									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>
@@ -83,15 +83,18 @@ include '../controller/uneDemandeController.php';
 									<label for="titreObjectDemande">Titre de la demande: </label>
 									<input type="pseudo" class="form-control align-center" id="titreAnnonceDemandeModif"
 										value="<?= $recupOneDemande[0]{'titre_demande'}; ?>">
+										<span class="form_error" style="color:red"></span>
 								</div>
 								<div class="form-group">
 									<label for="titreObjectDemande">Ville où se trouve l'association : </label>
 									<input type="pseudo" class="form-control align-center" id="villeAnnonceDemandeModif"
 										value="<?= $recupOneDemande[0]{'ville_demande'}; ?>">
+										<span class="form_error" style="color:red"></span>
 								</div>
 								<div class="form-group">
 									<label for="descriptionObjectDemande">Description de(s) Objet(s) :</label>
 									<textarea class="form-control" id="descAnnonceDemandeModif" rows="3"><?= $recupOneDemande[0]{'desc_demande'}; ?></textarea>
+									<span class="form_error" style="color:red"></span>
 								</div>
 								<div class="text-center">
 									<button type="submit" class="btn btn-dark">Modifier la demande</button>
@@ -114,6 +117,7 @@ include '../controller/uneDemandeController.php';
 											<option value="Chat">Chat</option>
 											<option value="Chien">Chien</option>
 										</select>
+										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="form-group">
 										<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
@@ -122,6 +126,7 @@ include '../controller/uneDemandeController.php';
 											<option value="Bien-être">Bien-être</option>
 											<option value="Nourriture">Nourriture</option>
 										</select>
+										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de la demande sur le site</button>
@@ -138,6 +143,7 @@ include '../controller/uneDemandeController.php';
 									<div class="form-group">
 										<label for="imageObjectDemandeModif">Image de la demande :</label>
 										<input type="file" class="form-control-file" id="imageAnnonceDemandeModif">
+										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de la demande sur le site</button>
@@ -163,7 +169,7 @@ include '../controller/uneDemandeController.php';
 							<div class="portfolio_right_text">
 								<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
 								<ul class="list">
-									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
+									<li><span>Demandeur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
 									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
 									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>

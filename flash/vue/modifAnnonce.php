@@ -83,14 +83,17 @@ include '../controller/uneAnnonceController.php';
 									<div class="form-group">
 										<label for="exampleInputEmail1">Titre de l'annonce : </label>
 										<input type="pseudo" class="form-control align-center" id="titreAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'titre_offre'}; ?>">
+										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="form-group">
 										<label for="exampleFormControlTextarea1">Description du/des objet(s) :</label>
 										<textarea class="form-control" id="descAnnonceOffreModif" rows="3"><?= $recupOneAnnonce[0]{'desc_offre'}; ?></textarea>
+										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="form-group">
 										<label for="exampleFormControlTextarea1">Ville :</label>
 										<input type="pseudo" class="form-control align-center" id="villeAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'ville_offre'}; ?>">
+										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
@@ -115,6 +118,7 @@ include '../controller/uneAnnonceController.php';
 											<option value="Usé">Usé</option>
 											<option value="Très usé">Très usé</option>
 										</select>
+										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="form-group">
 										<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label><br>
@@ -122,6 +126,7 @@ include '../controller/uneAnnonceController.php';
 											<option value="Chat">Chat</option>
 											<option value="Chien">Chien</option>
 										</select>
+										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="form-group">
 										<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
@@ -130,6 +135,7 @@ include '../controller/uneAnnonceController.php';
 											<option value="Bien-être">Bien-être</option>
 											<option value="Nourriture">Nourriture</option>
 										</select>
+										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'offre sur le site</button>
@@ -146,6 +152,7 @@ include '../controller/uneAnnonceController.php';
 									<div class="form-group">
 										<label for="exampleFormControlFile1">Image de l'annonce :</label>
 										<input type="file" class="form-control-file" id="imageAnnonceOffreModif">
+										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de l'offre sur le site</button>

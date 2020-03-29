@@ -85,22 +85,27 @@ include '../controller/detailsAnimalController.php';
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nom de l'animal : </label>
                                         <input type="pseudo" class="form-control align-center" id="nomAnimalModif" value="<?= $detailsAnimal[0]{'nom_animal'}; ?> ">
+                                        <span class="form_error" style="color:red"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Age de l'animal : </label>
                                         <input type="pseudo" class="form-control align-center" id="ageAnimalModif" value="<?= $detailsAnimal[0]{'age_animal'}; ?>">
+                                        <span class="form_error" style="color:red"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Ville ou le trouver :</label>
                                         <input type="pseudo" class="form-control align-center" id="villeAnimalModif" value="<?= $detailsAnimal[0]{'ville_animal'}; ?>">
+                                        <span class="form_error" style="color:red"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Description de l'animal:</label>
                                         <textarea class="form-control" id="descAnimalModif" rows="3"><?= $detailsAnimal[0]{'desc_animal'}; ?></textarea>
+                                        <span class="form_error" style="color:red"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Statut de l'animal(réservé ou disponible) :</label>
                                         <input type="pseudo" class="form-control align-center" id="statutAnimalModif" value="<?= $detailsAnimal[0]{'statut_animal'}; ?>">
+                                        <span class="form_error" style="color:red"></span>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier la présentation de l'animal sur le site</button>
@@ -122,6 +127,7 @@ include '../controller/detailsAnimalController.php';
 											<option value="Chat">Chat</option>
 											<option value="Chien">Chien</option>
 										</select>
+                                        <span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
@@ -140,6 +146,7 @@ include '../controller/detailsAnimalController.php';
                                         <input type="file" class="form-control-file" id="imageAnimalModif" value="<?= $detailsAnimal{0}["img"]; ?>">
                                         <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
                                     </div>
+                                    <span class="form_error" style="color:red"></span>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier l'image de l'animal sur le site</button>
                                     </div>

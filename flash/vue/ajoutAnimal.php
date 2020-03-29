@@ -40,18 +40,22 @@ $currentPage = "ajoutAnimal";
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nom de l'animal : </label>
                                 <input type="pseudo" class="form-control align-center" id="nomAnimal" placeholder="Entrez le nom de l'animal.">
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Age de l'animal : </label>
                                 <input type="pseudo" class="form-control align-center" id="ageAnimal" placeholder="Entrez l'âge de l'animal.">
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Ville ou le trouver :</label>
                                 <input type="pseudo" class="form-control align-center" id="villeAnimal" placeholder="Entrez la ville ou trouver l'animal.">
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description de l'animal:</label>
                                 <textarea class="form-control" id="descAnimal" rows="3" placeholder="Entrez une description de l'animal."></textarea>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
@@ -59,10 +63,12 @@ $currentPage = "ajoutAnimal";
 									<option value="Chat">Chat</option>
 									<option value="Chien">Chien</option>
 								</select>
+                                <span class="form_error" style="color:red"></span>
 							</div></br></br>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Photo de l'animal :</label>
                                 <input type="file" class="form-control-file" id="imageAnimal">
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter l'animal sur le site</button>

@@ -39,16 +39,19 @@ $currentPage = "donFaireOffre";
 								<label for="exampleInputEmail1">Titre de l'annonce : </label>
 								<input type="pseudo" class="form-control align-center" id="titreAnnonceOffre"
 									placeholder="Entrez le titre de votre annonce.">
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Description du/des objet(s) :</label>
 								<textarea class="form-control" id="descAnnonceOffre" rows="3"
 									placeholder="Entrez une description pour votre annonce."></textarea>
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Ville :</label>
 								<input type="pseudo" class="form-control align-center" id="villeAnnonceOffre"
 									placeholder="Entrez la ville dans laquelle se trouve le(s) objet(s) de l'annonce.">
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Etat :</label><br>
@@ -58,6 +61,7 @@ $currentPage = "donFaireOffre";
 									<option value="Usé">Usé</option>
 									<option value="Très usé">Très usé</option>
 								</select>
+								<span class="form_error" style="color:red"></span>
 							</div></br></br>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
@@ -65,6 +69,7 @@ $currentPage = "donFaireOffre";
 									<option value="Chat">Chat</option>
 									<option value="Chien">Chien</option>
 								</select>
+								<span class="form_error" style="color:red"></span>
 							</div></br></br>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
@@ -73,11 +78,13 @@ $currentPage = "donFaireOffre";
 									<option value="Bien-être">Bien-être</option>
 									<option value="Nourriture">Nourriture</option>
 								</select>
+								<span class="form_error" style="color:red"></span>
 							</div></br></br>
 							<div class="form-group">
 								<label for="exampleFormControlFile1">Image de l'annonce :</label>
 								<input type="file" class="form-control-file" id="imageAnnonceOffre">
 							</div>
+							<span class="form_error" style="color:red"></span>
 							<div class="text-center">
 								<button type="submit" class="btn btn-dark">Ajouter l'annonce</button>
 							</div>

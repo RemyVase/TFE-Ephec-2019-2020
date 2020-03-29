@@ -41,54 +41,54 @@ $currentPage = "ajoutAssociation";
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nom de l'association : </label>
                                 <input type="pseudo" class="form-control align-center" id="nomAssoc" placeholder="Entrez le nom de votre association." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Adresse de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="adresseAssoc" placeholder="Entrez l'adresse de votre association." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Email de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="emailAssoc" placeholder="Entrez l'email de votre association." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Numéro de téléphone de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="telAssoc" placeholder="Entrez le numéro de téléphone de l'association." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Site web de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="siteAssoc" placeholder="Entrez le site web de l'association." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Description de l'association :</label>
                                 <textarea class="form-control" id="descAssoc" rows="3" placeholder="Entrez une description de votre association."></textarea>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Facebook de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="facebookAssoc" placeholder="Entrez l'adresse de votre association.">
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Instagram de l'association :</label>
                                 <input type="pseudo" class="form-control align-center" id="instagramAssoc" placeholder="Entrez l'adresse de votre association.">
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Nombre de places disponibles pour les animaux
                                     en quarantaine:</label>
                                 <input type="pseudo" class="form-control align-center" id="placesQuarantaineAssoc" placeholder="Entrez le nombre de place disponible en quarantaine." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Nombre de places disponibles pour les animaux
                                     en règles:</label>
                                 <input type="pseudo" class="form-control align-center" id="placesReglesAssoc" placeholder="Entrez le nombre de place disponible en règle." required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
@@ -96,11 +96,12 @@ $currentPage = "ajoutAssociation";
 									<option value="Chat">Chat</option>
 									<option value="Chien">Chien</option>
 								</select>
+                                <span class="form_error" style="color:red"></span>
 							</div></br></br>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Logo de l'association :</label>
                                 <input type="file" class="form-control-file" id="imageAssoc" required>
-                                <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter mon association sur le site</button>

@@ -7,10 +7,6 @@ $(document).ready(function () {
         var dataForm = getAllElementsForm("#inscription_form");
         var objectForm = transformThisInObject(dataForm, "#inscription_form");
 
-        if (checkAllForm(objectForm) === false) {
-            return false;
-        }
-
         if ($("#passwordUser").val() != $("#confirmPasswordUser").val()) {
             $("#motDePasseSame").show();
             return false;
@@ -19,44 +15,51 @@ $(document).ready(function () {
             $("#motDePasseSame").hide();
         }
 
-        //appel AJAX 
-        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+        else {
 
-        $("#loader").show();
-        $.ajax({
-            url: "../controller/inscriptionController.php",
-            type: "POST",
-            data: objectForm,
-            datatype: "json",
-            success: function (response) {
-                console.log(response);
-                if (response === '"mailPseudoPasOk"') {
-                    $("#mailPasOk").show();
-                    $("#pseudoPasOk").show();
-                    $("#echecMailOuPseudo").show();
-                    $("#success").hide();
+            //appel AJAX 
+            //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+
+            $("#loader").show();
+            $.ajax({
+                url: "../controller/inscriptionController.php",
+                type: "POST",
+                data: objectForm,
+                datatype: "json",
+                success: function (response) {
+                    console.log(response);
+                    if (response === '"mailPseudoPasOk"') {
+                        $("#mailPasOk").show();
+                        $("#pseudoPasOk").show();
+                        $("#echecMailOuPseudo").show();
+                        $("#success").hide();
+                    }
+                    else if (response === '"mailPasOk"') {
+                        $("#mailPasOk").show();
+                        $("#echecMailOuPseudo").show();
+                        $("#success").hide();
+                        $("#pseudoPasOk").hide();
+                    }
+                    else if (response === '"pseudoPasOk"') {
+                        $("#pseudoPasOk").show();
+                        $("#echecMailOuPseudo").show();
+                        $("#success").hide();
+                        $("#mailPasOk").hide();
+                    }
+                    /*else if (response === '"ok"'){
+                        window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
+                    }*/
                 }
-                else if (response === '"mailPasOk"') {
-                    $("#mailPasOk").show();
-                    $("#echecMailOuPseudo").show();
-                    $("#success").hide();
-                    $("#pseudoPasOk").hide();
-                }
-                else if (response === '"pseudoPasOk"') {
-                    $("#pseudoPasOk").show();
-                    $("#echecMailOuPseudo").show();
-                    $("#success").hide();
-                    $("#mailPasOk").hide();
-                }
-                else if (response === '"ok"'){
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
-                }
-            }
-        })
-            .done(function () {
-                $("#loader").hide();
-                $("#nonComplete").hide();
-            });
+            })
+                .done(function () {
+                    $("#loader").hide();
+                    $("#nonComplete").hide();
+                });
+
+        }
     });
 
 
@@ -70,7 +73,7 @@ $(document).ready(function () {
         var objectForm = transformThisInObject(dataForm, "#connexion_form");
 
         if (checkAllForm(objectForm) === false) {
-            return false;
+            //return false;
         }
 
         //appel AJAX 
@@ -81,9 +84,6 @@ $(document).ready(function () {
             data: objectForm,
             datatype: "json",
             success: function (response) {
-                //if(response === '"mailOuPseudoPasOk"'){
-                //$("#echecMailOuPseudo").show();
-                //}
                 if (response === '"mdpPasOk"') {
                     $("#motDePasseIncorrect").show();
                 }
@@ -193,7 +193,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response === '"imgOk"'){
+                if (response === '"imgOk"') {
                     window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
                 }
             }
@@ -338,7 +338,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response === '"imgOk"'){
+                if (response === '"imgOk"') {
                     window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php');
                 }
             }
@@ -369,7 +369,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response === '"imgOk"'){
+                if (response === '"imgOk"') {
                     window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
                 }
             }
@@ -638,15 +638,15 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if(response ==='"UserDejaDansUneAssoc"'){
+                if (response === '"UserDejaDansUneAssoc"') {
                     $("#userDejaDansAssoc").show();
                 }
-                else{
+                else {
                     $("#userDejaDansAssoc").hide();
                     location.reload(true);
                 }
             }
-        }); 
+        });
     });
 });
 
@@ -742,8 +742,8 @@ function transformThisInObject(test, form) {
 
 //Boucle pour valider tous les input
 function checkAllForm(form) {
-    var res = true;
     for (let i = 0; i < Object.keys(form).length - 1; i++) {
+        console.log(check_form(Object.keys(form)[i]));
         if (check_form(Object.keys(form)[i]) === false) {
             return false;
         }
@@ -763,7 +763,7 @@ function getAllElementsFormImg(form) {
     return data;
 }
 
-
+/*
 function add_to_session(id) {
     e.preventDefault();
     var test = id;
@@ -778,3 +778,4 @@ function add_to_session(id) {
         }
     });
 }
+*/

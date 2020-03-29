@@ -59,10 +59,6 @@ $currentPage = "inscription";
                 <input type="password" class="form-control align-center" id="confirmPasswordUser" placeholder="Entrez à nouveau votre mot de passe." required>
                 <span class="form_error" style="color:red"></span>
               </div>
-              <div class="form-check text-center" style="padding-top : 15px; padding-bottom : 15px">
-                <input type="checkbox" class="form-check-input center-block" id="check1" required>
-                <label class="form-check-label " for="check1">Check</label>
-              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-dark">S'inscrire</button>
               </div>

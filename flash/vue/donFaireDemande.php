@@ -42,16 +42,19 @@ $currentPage = "donFaireDemande";
 								<label for="titreObjectDemande">Titre de l'annonce : </label>
 								<input type="pseudo" class="form-control align-center" id="titreAnnonceDemande"
 									placeholder="Entrez le titre de votre annonce.">
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="titreObjectDemande">Ville ou se trouve l'association : </label>
 								<input type="pseudo" class="form-control align-center" id="villeAnnonceDemande"
 									placeholder="Entrez la ville où se trouve l'association.">
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="descriptionObjectDemande">Description de(s) Objet(s) :</label>
 								<textarea class="form-control" id="descAnnonceDemande" rows="3"
 									placeholder="Entrez une description pour votre annonce."></textarea>
+									<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
@@ -59,6 +62,7 @@ $currentPage = "donFaireDemande";
 									<option value="Chat">Chat</option>
 									<option value="Chien">Chien</option>
 								</select>
+								<span class="form_error" style="color:red"></span>
 							</div></br></br>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Type d'objet : </label></br>
@@ -67,10 +71,12 @@ $currentPage = "donFaireDemande";
 									<option value="Bien-être">Bien-être</option>
 									<option value="Nourriture">Nourriture</option>
 								</select>
+								<span class="form_error" style="color:red"></span>
 							</div></br></br>
 							<div class="form-group">
 								<label for="imageObjectDemande">Image de l'annonce :</label>
 								<input type="file" class="form-control-file" id="imageAnnonceDemande">
+								<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-dark">Ajouter la demande</button>

@@ -41,7 +41,7 @@ include '../controller/uneDemandeController.php';
 							<div class="portfolio_right_text">
 								<h4><?= $recupOneDemande[0]{'titre_demande'}; ?></h4>
 								<ul class="list">
-									<li><span>Donateur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
+									<li><span>Demandeur</span>: <?= $recupOneDemande[0]{'nom_assoc'}; ?></li>
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
 									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
 									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>

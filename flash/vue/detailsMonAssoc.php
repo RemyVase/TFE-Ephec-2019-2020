@@ -130,54 +130,54 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nom de l'association : </label>
                                     <input type="pseudo" class="form-control align-center" id="nomAssocModif" value="<?= $detailsAssoc{0}["nom_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Adresse de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="adresseAssocModif" value="<?= $detailsAssoc{0}["adresse_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Email de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="emailAssocModif" value="<?= $detailsAssoc{0}["email_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Numéro de téléphone de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="telAssocModif" value="<?= $detailsAssoc{0}["tel_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Site web de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="siteAssocModif" value="<?= $detailsAssoc{0}["site_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Description de l'association :</label>
                                     <textarea class="form-control" id="descAssocModif" rows="3"><?= $detailsAssoc{0}["desc_assoc"]; ?></textarea>
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Facebook de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="facebookAssocModif" value="<?= $detailsAssoc{0}["face_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Instagram de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="instagramAssocModif" value="<?= $detailsAssoc{0}["insta_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Nombre de places disponibles pour les animaux
                                         en quarantaine:</label>
                                     <input type="pseudo" class="form-control align-center" id="placesQuarantaineAssocModif" value="<?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Nombre de places disponibles pour les animaux
                                         en règles:</label>
                                     <input type="pseudo" class="form-control align-center" id="placesReglesAssocModif" value="<?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier mon association sur le site</button>
@@ -200,6 +200,7 @@ include '../controller/detailsMonAssocController.php';
                                         <option value="Chat">Chat</option>
                                         <option value="Chien">Chien</option>
                                     </select>
+                                    <span class="form_error" style="color:red"></span>
                                 </div><br><br>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
@@ -216,7 +217,7 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Logo de l'association :</label>
                                     <input type="file" class="form-control-file" id="imageAssocModif" value="<?= $detailsAssoc{0}["img"]; ?>">
-                                    <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
+                                    <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier l'image de mon association sur le site</button>
