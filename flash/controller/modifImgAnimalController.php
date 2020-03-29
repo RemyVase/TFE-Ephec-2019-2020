@@ -6,7 +6,7 @@ $db = new dbAccess();
 
 $idAnimal = $_SESSION["animal"];
 
-$file_name = $_FILES['fileAnimal']['name'];
+$file_name = htmlspecialchars($_FILES['fileAnimal']['name']);
 $file_extension = strrchr($file_name, ".");
 
 $file_tmp_name = $_FILES['fileAnimal']['tmp_name'];

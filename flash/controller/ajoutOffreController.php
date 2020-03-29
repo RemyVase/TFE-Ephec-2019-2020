@@ -5,15 +5,15 @@ include 'dbAccess.php';
 $db = new dbAccess();
 
 $idUser = $_SESSION['id'];
-$titre = $_POST["titreAnnonceOffre"];
-$desc = $_POST["descAnnonceOffre"];
-$ville = $_POST["villeAnnonceOffre"];
-$etat = $_POST["etatAnnonceOffre"];
-$typeAnimal = $_POST["typeAnimalAnnonceOffre"];
-$typeObjet = $_POST["typeObjetAnnonceOffre"];
+$titre = htmlspecialchars($_POST["titreAnnonceOffre"]);
+$desc = htmlspecialchars($_POST["descAnnonceOffre"]);
+$ville = htmlspecialchars($_POST["villeAnnonceOffre"]);
+$etat = htmlspecialchars($_POST["etatAnnonceOffre"]);
+$typeAnimal = htmlspecialchars($_POST["typeAnimalAnnonceOffre"]);
+$typeObjet = htmlspecialchars($_POST["typeObjetAnnonceOffre"]);
 
 
-$file_name = $_FILES['fileOffre']['name'];
+$file_name = htmlspecialchars($_FILES['fileOffre']['name']);
 $file_extension = strrchr($file_name, ".");
 
 

@@ -6,7 +6,7 @@ $db = new dbAccess();
 
 $idDemande = $_SESSION['idDemande'];
 
-$file_name = $_FILES['fileDemandeModif']['name'];
+$file_name = htmlspecialchars($_FILES['fileDemandeModif']['name']);
 $file_extension = strrchr($file_name, ".");
 
 $file_tmp_name = $_FILES['fileDemandeModif']['tmp_name'];

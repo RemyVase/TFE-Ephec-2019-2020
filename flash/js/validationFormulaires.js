@@ -85,6 +85,7 @@ $(document).ready(function () {
             datatype: "json",
             success: function (response) {
                 if (response === '"mdpPasOk"') {
+                    console.log(response);
                     $("#motDePasseIncorrect").show();
                 }
                 else {

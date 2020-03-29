@@ -5,11 +5,11 @@ include 'dbAccess.php';
 $db = new dbAccess();
 
 $idAssoc = $_SESSION['idAssoc'];
-$titre = $_POST["titreAnnonceDemande"];
-$desc = $_POST["descAnnonceDemande"];
-$ville = $_POST["villeAnnonceDemande"];
-$typeAnimal = $_POST["typeAnimalAnnonceDemande"];
-$typeObjet = $_POST["typeObjetAnnonceDemande"];
+$titre = htmlspecialchars($_POST["titreAnnonceDemande"]);
+$desc = htmlspecialchars($_POST["descAnnonceDemande"]);
+$ville = htmlspecialchars($_POST["villeAnnonceDemande"]);
+$typeAnimal = htmlspecialchars($_POST["typeAnimalAnnonceDemande"]);
+$typeObjet = htmlspecialchars($_POST["typeObjetAnnonceDemande"]);
 
 $file_name = $_FILES['fileDemande']['name'];
 $file_extension = strrchr($file_name, ".");

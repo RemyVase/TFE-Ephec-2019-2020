@@ -5,8 +5,8 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$pseudo = $_POST["connPseudoUser"];
-$password = hash("sha256",$_POST["connPasswordUser"]);
+$pseudo = htmlspecialchars($_POST["connPseudoUser"]);
+$password = hash("sha256",htmlspecialchars($_POST["connPasswordUser"]));
 
 //$checkEmail = $db->callProcedure("checkMail", [$pseudo]);
 //$checkPseudo = $db->callProcedure("checkPseudo", [$pseudo]);

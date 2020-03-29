@@ -4,17 +4,17 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$nom = $_POST["nomAssoc"];
-$adresse = $_POST["adresseAssoc"];
-$email = $_POST["emailAssoc"];
-$tel = $_POST["telAssoc"];
-$site = $_POST["siteAssoc"];
-$desc = $_POST["descAssoc"];
-$face = $_POST["facebookAssoc"];
-$insta = $_POST["instagramAssoc"];
-$placeQuar = $_POST["placesQuarantaineAssoc"];
-$placeReg = $_POST["placesReglesAssoc"];
-$typeAnimal = $_POST["typeAnimalAssoc"];
+$nom = htmlspecialchars($_POST["nomAssoc"]);
+$adresse = htmlspecialchars($_POST["adresseAssoc"]);
+$email = htmlspecialchars($_POST["emailAssoc"]);
+$tel = htmlspecialchars($_POST["telAssoc"]);
+$site = htmlspecialchars($_POST["siteAssoc"]);
+$desc = htmlspecialchars($_POST["descAssoc"]);
+$face = htmlspecialchars($_POST["facebookAssoc"]);
+$insta = htmlspecialchars($_POST["instagramAssoc"]);
+$placeQuar = htmlspecialchars($_POST["placesQuarantaineAssoc"]);
+$placeReg = htmlspecialchars($_POST["placesReglesAssoc"]);
+$typeAnimal = htmlspecialchars($_POST["typeAnimalAssoc"]);
 
 $file_name = $_FILES['fileAssoc']['name'];
 $file_extension = strrchr($file_name, ".");

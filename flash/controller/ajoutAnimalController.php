@@ -5,14 +5,14 @@ include 'dbAccess.php';
 $db = new dbAccess();
 
 $idAssoc = $_SESSION['idAssoc'];
-$nom = $_POST["nomAnimal"];
-$age = $_POST["ageAnimal"];
-$ville = $_POST["villeAnimal"];
-$desc = $_POST["descAnimal"];
-$typeAnimal = $_POST["typeAnimal"];
+$nom = htmlspecialchars($_POST["nomAnimal"]);
+$age = htmlspecialchars($_POST["ageAnimal"]);
+$ville = htmlspecialchars($_POST["villeAnimal"]);
+$desc = htmlspecialchars($_POST["descAnimal"]);
+$typeAnimal = htmlspecialchars($_POST["typeAnimal"]);
 
 //var_dump($_FILES);
-$file_name = $_FILES['fileAnimal']['name'];
+$file_name = htmlspecialchars($_FILES['fileAnimal']['name']);
 $file_extension = strrchr($file_name, ".");
 
 echo $file_name;

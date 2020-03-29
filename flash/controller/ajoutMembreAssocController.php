@@ -6,7 +6,7 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$pseudo = $_POST['pseudoAjout'];
+$pseudo = htmlspecialchars($_POST['pseudoAjout']);
 
 $checkSiDejaDansAssoc = $db->callProcedure('checkSiDejaDansAssoc', [$pseudo]);
 

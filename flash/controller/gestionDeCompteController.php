@@ -5,8 +5,8 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$password = hash("sha256",$_POST["previousPassword"]);
-$newPassword = hash("sha256",$_POST["passwordUserChange"]);
+$password = hash("sha256",htmlspecialchars($_POST["previousPassword"]));
+$newPassword = hash("sha256",htmlspecialchars($_POST["passwordUserChange"]));
 $id = $_SESSION["id"];
 
 $checkPassword = $db->callProcedure("checkPassword", [$id]);
