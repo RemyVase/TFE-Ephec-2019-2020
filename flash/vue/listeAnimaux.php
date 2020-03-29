@@ -30,6 +30,20 @@ include "../controller/listeAnimauxController.php"
     <!--================End Home Banner Area =================-->
 
     <!--================Home Blog Area =================-->
+    <section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Type d'animal :</label>
+						<a href="listeAnimaux.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:2em">Chats</button></a>
+						<a href="listeAnimaux.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-left:2em">Chiens</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+    
     <?php foreach ($recupAllAnimaux as $animal) : ?>
         <div class="container">
             <div class="col-md-12">

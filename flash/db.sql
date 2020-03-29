@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 29, 2020 at 03:21 PM
+-- Generation Time: Mar 29, 2020 at 03:31 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -82,6 +82,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAnimaux` ()  BEGIN
 SELECT COUNT(id_animal) FROM adoption;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAnimauxTypeAnimal` (IN `type` VARCHAR(255))  BEGIN
+SELECT COUNT(id_animal) FROM adoption
+WHERE type_animal = type;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssoc` ()  BEGIN
@@ -256,6 +261,14 @@ ON associations.id_assoc = adoption.id_assoc
 LIMIT nbPage,nbAnimaux;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAnimauxTypeAnimal` (IN `nbAnimaux` INT, IN `nbPage` INT, IN `type` VARCHAR(255))  BEGIN
+SELECT * FROM adoption
+JOIN associations
+ON associations.id_assoc = adoption.id_assoc
+WHERE adoption.type_animal = type
+LIMIT nbPage,nbAnimaux;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` (IN `nbAssoc` INT, IN `nbPage` INT)  BEGIN
 SELECT * FROM associations LIMIT nbPage,nbAssoc;
 END$$
@@ -365,7 +378,8 @@ CREATE TABLE `adoption` (
 
 INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
 (1, 2, 'Charles', '8', 'PAC', 'tataAssoc', 'dispo', '2020-03-27 11:49:04', '../img/img_adoption/chatTriste.jpeg', 'Chat'),
-(2, 1, 'Felix', '3', 'LUTTRE', 'totoAssoc', 'dispo', '2020-03-27 11:51:06', '../img/img_adoption/chatCoussin.jpeg', 'Chat');
+(2, 1, 'Felix', '3', 'LUTTRE', 'totoAssoc', 'dispo', '2020-03-27 11:51:06', '../img/img_adoption/chatCoussin.jpeg', 'Chat'),
+(6, 7, 'LECHIEN', 'LECHIEN', 'LECHIEN', 'LECHIEN', 'dispo', '2020-03-29 17:31:09', '../img/img_adoption/chiensGestion.jpeg', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -550,7 +564,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `associations`
