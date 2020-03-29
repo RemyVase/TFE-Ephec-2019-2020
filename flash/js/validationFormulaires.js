@@ -361,6 +361,10 @@ $(document).ready(function () {
             return false;
         }
 
+        if( document.getElementById("imageAnnonceDemande").files.length == 0 ){
+            console.log("Pas d'image insérée !");
+        }
+
         //appel AJAX 
         //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $.ajax({
@@ -679,8 +683,7 @@ function check_form(id_input) {
         $("#" + id_input).next(".form_error").fadeIn().text("Veuillez remplir ce champ");
         $("#nonComplete").show();
         return false;
-    }
-    else {
+    } else {
         $("#" + id_input).next(".form_error").fadeIn().text("");
     }
 
@@ -744,7 +747,6 @@ function transformThisInObject(test, form) {
 //Boucle pour valider tous les input
 function checkAllForm(form) {
     for (let i = 0; i < Object.keys(form).length - 1; i++) {
-        console.log(check_form(Object.keys(form)[i]));
         if (check_form(Object.keys(form)[i]) === false) {
             return false;
         }

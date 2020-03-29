@@ -73,6 +73,7 @@ $currentPage = "ajoutAnimal";
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter l'animal sur le site</button>
                             </div>
+                            <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                         </div>
                     </div>
                 </form>

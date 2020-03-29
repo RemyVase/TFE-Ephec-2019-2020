@@ -182,6 +182,7 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier mon association sur le site</button>
                                 </div>
+                                <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                             </div>
                         </div>
                     </form>
@@ -205,6 +206,7 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
                                 </div>
+                                <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                             </div>
                         </div>
                     </form><br><br>
@@ -222,6 +224,7 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier l'image de mon association sur le site</button>
                                 </div>
+                                <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                             </div>
                         </div>
                     </form>

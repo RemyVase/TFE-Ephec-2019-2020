@@ -110,6 +110,7 @@ include '../controller/detailsAnimalController.php';
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier la présentation de l'animal sur le site</button>
                                     </div>
+                                    <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                                 </div>
                             </div>
                         </form>
@@ -131,7 +132,8 @@ include '../controller/detailsAnimalController.php';
 									</div><br><br>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
-									</div>
+                                    </div>
+                                    <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form><br><br>
@@ -150,6 +152,7 @@ include '../controller/detailsAnimalController.php';
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier l'image de l'animal sur le site</button>
                                     </div>
+                                    <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                                 </div>
                             </div>
                         </form>

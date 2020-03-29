@@ -83,11 +83,12 @@ $currentPage = "donFaireOffre";
 							<div class="form-group">
 								<label for="exampleFormControlFile1">Image de l'annonce :</label>
 								<input type="file" class="form-control-file" id="imageAnnonceOffre">
+								<span class="form_error" style="color:red"></span>
 							</div>
-							<span class="form_error" style="color:red"></span>
 							<div class="text-center">
 								<button type="submit" class="btn btn-dark">Ajouter l'annonce</button>
 							</div>
+							<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 						</div>
 					</div>
 				</form>

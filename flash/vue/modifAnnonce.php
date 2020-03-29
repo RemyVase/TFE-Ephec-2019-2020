@@ -98,6 +98,7 @@ include '../controller/uneAnnonceController.php';
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
 									</div>
+									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form>
@@ -140,6 +141,7 @@ include '../controller/uneAnnonceController.php';
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'offre sur le site</button>
 									</div>
+									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form><br><br>
@@ -157,6 +159,7 @@ include '../controller/uneAnnonceController.php';
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de l'offre sur le site</button>
 									</div>
+									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form>

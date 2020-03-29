@@ -81,6 +81,7 @@ $currentPage = "donFaireDemande";
 							<div class="text-center">
 								<button type="submit" class="btn btn-dark">Ajouter la demande</button>
 							</div>
+							<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 						</div>
 					</div>
 				</form>

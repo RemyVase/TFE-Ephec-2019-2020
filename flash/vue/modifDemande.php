@@ -99,6 +99,7 @@ include '../controller/uneDemandeController.php';
 								<div class="text-center">
 									<button type="submit" class="btn btn-dark">Modifier la demande</button>
 								</div>
+								<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 							</div>
 						</div>
 					</form>
@@ -131,6 +132,7 @@ include '../controller/uneDemandeController.php';
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de la demande sur le site</button>
 									</div>
+									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form><br><br>
@@ -148,6 +150,7 @@ include '../controller/uneDemandeController.php';
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de la demande sur le site</button>
 									</div>
+									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
 							</div>
 						</form>
