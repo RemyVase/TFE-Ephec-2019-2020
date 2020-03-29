@@ -49,9 +49,9 @@ $(document).ready(function () {
                         $("#success").hide();
                         $("#mailPasOk").hide();
                     }
-                    /*else if (response === '"ok"'){
+                    else if (response === '"ok"'){
                         window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
-                    }*/
+                    }
                 }
             })
                 .done(function () {
@@ -655,17 +655,6 @@ $(document).ready(function () {
         location.reload(true);
     });
 
-    $("#afficherModifAnnonce").click(function () {
-        if ($('#afficherModifAnnonce').attr('name') === 'cacherModifAnnonce') {
-            $('#modifAnnonce').hide();
-            $('#afficherModifAnnonce').attr('name', 'afficherModifAnnonce');
-        }
-        else {
-            $('#modifAnnonce').show();
-            $('#afficherModifAnnonce').attr('name', 'cacherModifAnnonce');
-        }
-    });
-
     $("#ajoutMembre_form").submit(function (event) {
         //Empêche l'html de se refresh
 
@@ -698,6 +687,26 @@ $(document).ready(function () {
             }
         });
     });
+
+    ////////// NON VALIDATION DE FORMULAIRE /////////////////
+
+    $("#afficherModifAnnonce").click(function () {
+        if ($('#afficherModifAnnonce').attr('name') === 'cacherModifAnnonce') {
+            $('#modifAnnonce').hide();
+            $('#afficherModifAnnonce').attr('name', 'afficherModifAnnonce');
+        }
+        else {
+            $('#modifAnnonce').show();
+            $('#afficherModifAnnonce').attr('name', 'cacherModifAnnonce');
+        }
+    });
+
+    $("#supprimerAnnonce").click(function () {
+        $("#supprimerAnnonce").hide();
+        $("#supprimerAnnonceDef").show();
+    });
+
+
 });
 
 
