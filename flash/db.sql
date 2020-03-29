@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 29, 2020 at 01:24 PM
+-- Generation Time: Mar 29, 2020 at 03:21 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -86,6 +86,11 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssoc` ()  BEGIN
 SELECT COUNT(id_assoc) FROM associations;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbAssocTypeAnimal` (IN `type` VARCHAR(255))  BEGIN
+SELECT COUNT(id_assoc) FROM associations
+WHERE typeAnimal_assoc = type;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkNbDemande` ()  BEGIN
@@ -255,6 +260,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssoc` (IN `nbAssoc` INT, I
 SELECT * FROM associations LIMIT nbPage,nbAssoc;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllAssocTypeAnimal` (IN `nbAssoc` INT, IN `nbPage` INT, IN `typeAnimal` VARCHAR(255))  BEGIN
+SELECT * FROM associations 
+WHERE typeAnimal_assoc = typeAnimal
+LIMIT nbPage,nbAssoc;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupAllDemandes` (IN `nbDemande` INT, IN `nbPage` INT)  BEGIN
 SELECT * FROM demandesDons LIMIT nbPage,nbDemande;
 END$$
@@ -384,7 +395,8 @@ CREATE TABLE `associations` (
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
 (1, 'totoAssoc', 'totoAssoc', 'totoAssoc@hotmail.com', '0477080641', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 10, '../img/img_assoc/chatAdopte3.jpeg', 'Chat'),
-(2, 'tataAssoc', 'tataAssoc', 'tataAssoc@hotmail.com', '0477080641', 'tataAssoc', 'tataAssoc', 'tataAssoc', 'tataAssoc', 10, 7, '../img/img_assoc/chienSauve.jpeg', 'Chien');
+(2, 'tataAssoc', 'tataAssoc', 'tataAssoc@hotmail.com', '0477080641', 'tataAssoc', 'tataAssoc', 'tataAssoc', 'tataAssoc', 10, 7, '../img/img_assoc/chienSauve.jpeg', 'Chien'),
+(7, 'testFiltre', 'testFiltre', 'testFiltre@test.com', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 3, 5, '../img/img_assoc/Ephec.png', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -452,10 +464,8 @@ CREATE TABLE `offresDons` (
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
-(2, 1, 'ballon', 'Les chiens adorent ca ', 'PAC', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/chienListe.jpeg', 'Jouet', 'Chien'),
-(3, 1, 'test', 'test', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
-(5, 5, 'ballon', 'Les chiens adorent ca', 'rzegrzeg', 'Neuf', '2020-03-29 15:19:11', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
-(6, 1, 'ballons', 'Les chiens adorent ca', 'rtjdrj', 'Neuf', '2020-03-29 15:23:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat');
+(2, 1, 'ballon', 'test123', 'erhsrh', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
+(3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -483,7 +493,8 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
 (5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
 (6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
-(17, 'remy', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2020-03-29 10:07:50', NULL);
+(17, 'remy', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2020-03-29 10:07:50', NULL),
+(20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7);
 
 --
 -- Indexes for dumped tables
@@ -545,7 +556,7 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -569,7 +580,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -604,4 +615,4 @@ ALTER TABLE `offresDons`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `FK_idAssoc` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idAssoc` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE SET NULL ON UPDATE SET NULL;

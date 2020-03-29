@@ -57,6 +57,7 @@ class dbAccess
             case 'recupIdAssoc':
             case 'checkSiDejaDansAssoc':
             case 'recupAllMembreAssoc':
+            case 'checkNbAssocTypeAnimal':
                 array_push($params, '?');
 
                 try {
@@ -110,6 +111,7 @@ class dbAccess
             case 'recupAllNosDemandes':
             case 'modifSelectDemande':
             case 'checkDemande':
+            case 'recupAllAssocTypeAnimal':
                 array_push($params, '?', '?', '?');
 
                 try {
