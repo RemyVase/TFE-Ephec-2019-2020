@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 27, 2020 at 12:09 PM
+-- Generation Time: Mar 29, 2020 at 01:24 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -68,6 +68,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkAssocDemande` (IN `idAssoc` INT, IN `idDemande` INT)  BEGIN
 SELECT * FROM demandesDons
 WHERE id_assoc = idAssoc and id_demande = idDemande;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `checkDemande` (IN `id` INT, IN `titre` VARCHAR(255), IN `ville` VARCHAR(255))  BEGIN
+SELECT id_demande FROM demandesDons
+WHERE id_assoc = id and titre_demande = titre and ville_demande = ville;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkMail` (IN `email` VARCHAR(255))  BEGIN
@@ -404,7 +409,10 @@ CREATE TABLE `demandesDons` (
 --
 
 INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
-(1, 1, 'Croquettes', 'Demande de croquettes urgentes pour pouvori accueillir 7 petits chiots retrouvés dans une caisse dans notre localité ', '2020-03-27 11:50:22', '../img/img_demande/chiotsEnsemble.jpeg', 'PAC', 'Chien', 'Nourriture');
+(1, 1, 'Croquettes', 'Demande de croquettes urgentes pour pouvori accueillir 7 petits chiots retrouvés dans une caisse dans notre localité ', '2020-03-27 11:50:22', '../img/img_demande/chiotsEnsemble.jpeg', 'PAC', 'Chien', 'Nourriture'),
+(2, 1, 'Arbre à chat', 'Nous recherchons toutes sortes d\'arbre à chats afin de créer une seconde pièce en vue d\'agrandir notre capacité à accueillir de nouveaux arrivants ', '2020-03-28 15:51:40', '../img/img_demande/chatArbre.jpg', 'PAC', 'Chat', 'Jouet'),
+(3, 1, 'test', 'test', '2020-03-28 15:52:21', '../img/img_demande/chienDors.jpeg', 'test', 'Chat', 'Jouet'),
+(13, 1, 'test', 'test', '2020-03-28 16:11:55', '../img/img_demande/chienOubli.jpeg', 'test', 'Chat', 'Jouet');
 
 -- --------------------------------------------------------
 
@@ -444,8 +452,10 @@ CREATE TABLE `offresDons` (
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
-(1, 1, 'collier', 'VIVE LES COLLIERS', 'PAC', 'Presque neuf', '2020-03-27 11:38:47', '../img/img_offre/chienDors.jpeg', 'Bien-être', 'Chien'),
-(2, 1, 'ballon', 'Les chiens adorent ca ', 'PAC', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/chienListe.jpeg', 'Jouet', 'Chien');
+(2, 1, 'ballon', 'Les chiens adorent ca ', 'PAC', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/chienListe.jpeg', 'Jouet', 'Chien'),
+(3, 1, 'test', 'test', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
+(5, 5, 'ballon', 'Les chiens adorent ca', 'rzegrzeg', 'Neuf', '2020-03-29 15:19:11', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
+(6, 1, 'ballons', 'Les chiens adorent ca', 'rtjdrj', 'Neuf', '2020-03-29 15:23:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -470,7 +480,10 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-03-27 10:36:48', 1),
 (2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-27 10:37:01', 2),
 (3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-27 10:37:10', 1),
-(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1);
+(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
+(5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
+(6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
+(17, 'remy', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2020-03-29 10:07:50', NULL);
 
 --
 -- Indexes for dumped tables
@@ -526,7 +539,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `associations`
@@ -538,7 +551,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -550,13 +563,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

@@ -15,8 +15,6 @@ $typeAnimal = htmlspecialchars($_POST["typeAnimal"]);
 $file_name = htmlspecialchars($_FILES['fileAnimal']['name']);
 $file_extension = strrchr($file_name, ".");
 
-echo $file_name;
-
 $file_tmp_name = $_FILES['fileAnimal']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
@@ -37,6 +35,6 @@ if (empty($checkAnimal)) {
     }
 }
 else{
-    echo json_encode("Animal déjà présent.");
+    echo json_encode("Animal deja present.");
 }
 

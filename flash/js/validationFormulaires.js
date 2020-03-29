@@ -164,6 +164,15 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 console.log(response);
+                if (response === '"Animal deja present."') {
+                    $("#animalDeja").show();
+                }
+                else if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/nosAnimaux.php');
+                }
             }
         });
 
@@ -194,8 +203,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if (response === '"imgOk"') {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
+                if (response === '"assocDejaPresente"') {
+                    $("#assocDejaPresente").show();
+                }
+                else if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/detailsMonAssoc.php');
                 }
             }
         });
@@ -339,7 +354,13 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if (response === '"imgOk"') {
+                if (response === '"annonceDejaLa"') {
+                    $("#annonceDejaLa").show();
+                }
+                else if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
                     window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php');
                 }
             }
@@ -361,7 +382,7 @@ $(document).ready(function () {
             return false;
         }
 
-        if( document.getElementById("imageAnnonceDemande").files.length == 0 ){
+        if (document.getElementById("imageAnnonceDemande").files.length == 0) {
             console.log("Pas d'image insérée !");
         }
 
@@ -374,7 +395,13 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                if (response === '"imgOk"') {
+                if (response === '"demandeDejaLa"') {
+                    $("#demandeDejaLa").show();
+                }
+                else if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
                     window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
                 }
             }

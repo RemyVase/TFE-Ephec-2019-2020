@@ -109,6 +109,7 @@ class dbAccess
             case 'recupAllMesOffres':
             case 'recupAllNosDemandes':
             case 'modifSelectDemande':
+            case 'checkDemande':
                 array_push($params, '?', '?', '?');
 
                 try {

@@ -89,6 +89,8 @@ $currentPage = "donFaireOffre";
 								<button type="submit" class="btn btn-dark">Ajouter l'annonce</button>
 							</div>
 							<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
+                            <p id="annonceDejaLa" style="display : none; color : red">L'offre semble déjà présente dans la base de données.</p>
+                            <p id="extPasOk" style="display : none; color : red">L'image doit-être un png ou un jpg.</p>
 						</div>
 					</div>
 				</form>

@@ -72,8 +72,10 @@ $currentPage = "ajoutAnimal";
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter l'animal sur le site</button>
-                            </div>
-                            <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
+                            </div><p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
+                            <p id="extPasOk" style="display : none; color : red">L'image doit-être un png ou un jpg.</p>
+                            <p id="animalDeja" style="display : none; color : red">L'animal semble déjà présent sur le site ! Vérifiez que vous ne l'ayiez pas déjà encodé.</p>
+                            
                         </div>
                     </div>
                 </form>

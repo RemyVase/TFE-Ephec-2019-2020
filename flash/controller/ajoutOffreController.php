@@ -38,6 +38,6 @@ if (empty($checkOffre)) {
     }
 }
 else{
-    echo json_encode("Annonce déjà présent.");
+    echo json_encode("annonceDejaLa");
 }
 

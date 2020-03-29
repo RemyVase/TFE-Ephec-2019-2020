@@ -38,7 +38,7 @@ if (empty($checkAssoc)) {
         echo json_encode('extPasOk');
     }
 } else {
-    echo json_encode('Association déjà présente');
+    echo json_encode('assocDejaPresente');
 }
 
 $recupIdAssoc = $db->callProcedure('recupIdAssoc',[$nom]);

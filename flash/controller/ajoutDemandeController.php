@@ -19,6 +19,9 @@ $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 $cheminImgBdd = "../img/img_demande/" . $file_name;
 
+$checkDemande = $db->callProcedure('checkDemande', [$idAssoc,$titre,$ville]);
+
+if(empty($checkDemande)){
 if (in_array($file_extension, $extension_autorisees)) {
     if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
         echo json_encode("imgOk");
@@ -28,4 +31,7 @@ if (in_array($file_extension, $extension_autorisees)) {
     }
 } else {
     echo json_encode('extPasOk');
+}
+} else {
+    echo json_encode("demandeDejaLa");
 }
