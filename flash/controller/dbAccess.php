@@ -62,6 +62,8 @@ class dbAccess
             case 'checkNbOffreTypeAnimal':
             case 'checkNbOffreTypeObjet':
             case 'checkNbOffreEtat':
+            case 'checkNbDemandeTypeAnimal':
+            case 'checkNbDemandeTypeObjet':
                 array_push($params, '?');
 
                 try {
@@ -120,6 +122,8 @@ class dbAccess
             case 'recupAllOffresTypeAnimal':
             case 'recupAllOffresTypeObjet':
             case 'recupAllOffresEtat':
+            case 'recupAllDemandesTypeAnimal':
+            case 'recupAllDemandesTypeObjet':
                 array_push($params, '?', '?', '?');
 
                 try {

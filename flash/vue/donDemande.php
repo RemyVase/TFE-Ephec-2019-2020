@@ -32,6 +32,33 @@ include '../controller/listeDemandesController.php';
 	<!--================End Home Banner Area =================-->
 
 	<!--================Portfolio Details Area =================-->
+	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Type d'animal :</label>
+						<a href="donDemande.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:2em">Chats</button></a>
+						<a href="donDemande.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-left:2em">Chiens</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container pad_bt md-center">
+			<div class="col-lg-12 md-center" align="center">
+				<div class="align-center">
+					<div class="text-center">
+                        <label>Type d'objet :</label>
+						<a href="donDemande.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:2em">Jouet</button></a>
+						<a href="donDemande.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-left:2em">Bien-être</button></a>
+						<a href="donDemande.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-left:2em">Nourriture</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<?php foreach ($recupAllDemande as $demande) : ?>
 	<div class="container">
 		<div class="col-md-12">
