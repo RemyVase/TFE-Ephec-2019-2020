@@ -248,9 +248,9 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        var test = getAllElementsForm("#modifAssoc_form");
-        var dataForm = getAllElementsFormImg("#modifAssoc_form");
-        var objectForm = transformThisInObject(test, "#modifAssoc_form");
+        var test = getAllElementsForm("#modifImgAssoc_form");
+        var dataForm = getAllElementsFormImg("#modifImgAssoc_form");
+        var objectForm = transformThisInObject(test, "#modifImgAssoc_form");
 
         dataForm.append('fileAssoc', $('#imageAssocModif')[0].files[0]);
 
@@ -267,9 +267,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    location.reload(true);
+                }
             }
         });
-        location.reload(true);
     });
 
     $("#modifAnimal_form").submit(function (event) {
@@ -323,9 +328,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
+                if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    location.reload(true);
+                }
             }
         });
-        location.reload(true);
     });
 
 
@@ -432,10 +442,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
+                if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    location.reload(true);
+                }
             }
         });
-        location.reload(true);
     });
 
 
@@ -492,7 +506,7 @@ $(document).ready(function () {
                 console.log(response);
             }
         });
-        //location.reload(true);
+        location.reload(true);
     });
 
     $("#modifImgDemande_form").submit(function (event) {
@@ -519,10 +533,14 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
+                if (response === '"extPasOk"') {
+                    $("#extPasOk").show();
+                }
+                else {
+                    location.reload(true);
+                }
             }
         });
-        location.reload(true);
     });
 
 

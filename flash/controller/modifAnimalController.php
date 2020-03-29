@@ -11,4 +11,5 @@ $ville = htmlspecialchars($_POST["villeAnimalModif"]);
 $desc = htmlspecialchars($_POST["descAnimalModif"]);
 $statut = htmlspecialchars($_POST["statutAnimalModif"]);
 
-$modifAnimal = $db->callProcedure('modifAnimal', [$id,$nom,$age,$ville,$desc,$statut]);
+$modifAnimal = $db->callProcedure('modifAnimal', [$id, $nom, $age, $ville, $desc, $statut]);
+

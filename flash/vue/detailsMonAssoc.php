@@ -224,6 +224,7 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier l'image de mon association sur le site</button>
                                 </div>
+                                <p id="extPasOk" style="display : none; color : red">L'image doit-être un png ou un jpg.</p>
                                 <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                             </div>
                         </div>
