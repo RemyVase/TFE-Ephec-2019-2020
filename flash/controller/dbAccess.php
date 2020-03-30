@@ -66,6 +66,7 @@ class dbAccess
             case 'checkNbDemandeTypeAnimal':
             case 'checkNbDemandeTypeObjet':
             case 'messageCreateConvers':
+            case 'messageRecupAllConversations':
                 array_push($params, '?');
 
                 try {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 30, 2020 at 04:49 PM
+-- Generation Time: Mar 30, 2020 at 06:57 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -223,6 +223,15 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnvoyeur` INT, IN `idConvers` INT)  BEGIN
 INSERT INTO userConvers (id_user, id_convers) values(idEnvoyeur,idConvers);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversations` (IN `id` INT)  BEGIN
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN userConvers ON userConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = userConvers.id_user
+WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageTakeLastConvCree` ()  BEGIN
@@ -507,7 +516,9 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(30, 1);
+(30, 1),
+(31, 1),
+(32, 1);
 
 -- --------------------------------------------------------
 
@@ -558,7 +569,10 @@ CREATE TABLE `messages` (
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
 (11, 1, 'Test1', '2020-03-30 16:48:47', 30),
 (12, 1, 'Test2', '2020-03-30 16:48:51', 30),
-(13, 1, 'Test3', '2020-03-30 16:48:55', 30);
+(13, 1, 'Test3', '2020-03-30 16:48:55', 30),
+(14, 5, 'test', '2020-03-30 16:53:11', 31),
+(15, 5, 'test2', '2020-03-30 16:53:28', 31),
+(16, 20, 'test', '2020-03-30 17:26:48', 32);
 
 -- --------------------------------------------------------
 
@@ -606,7 +620,9 @@ CREATE TABLE `userConvers` (
 --
 
 INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
-(1, 30);
+(1, 30),
+(5, 31),
+(20, 32);
 
 -- --------------------------------------------------------
 
@@ -716,7 +732,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -728,7 +744,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
