@@ -688,6 +688,33 @@ $(document).ready(function () {
         });
     });
 
+    $("#envoiMessage_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#envoiMessage_form");
+        var dataForm = getAllElementsFormImg("#envoiMessage_form");
+        var objectForm = transformThisInObject(test, "#envoiMessage_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/envoiMessageController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
     ////////// NON VALIDATION DE FORMULAIRE /////////////////
 
     $("#afficherModifAnnonce").click(function () {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 29, 2020 at 04:12 PM
+-- Generation Time: Mar 30, 2020 at 03:21 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -205,6 +205,27 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `gestionDeCompte` (IN `id` INT, IN `
 UPDATE users
 SET mdp_user = passwd
 WHERE id_user = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idReceveur` INT)  BEGIN
+SELECT id_convers FROM userConvers
+WHERE (id_user = idEnvoyeur and id_user2 = idReceveur) or (id_user2 = idEnvoyeur and id_user = idReceveur) ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCreateConvers` ()  BEGIN
+INSERT INTO conversation values (NULL);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageEnvoiMessage` (IN `idEnvoyeur` INT, IN `idConvers` INT, IN `message` TEXT)  BEGIN
+INSERT INTO messages(messages.id_envoyeur, messages.id_convers,messages.contenu_message) values (idEnvoyeur,idConvers,message);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnvoyeur` INT, IN `idReceveur` INT, IN `idConvers` INT)  BEGIN
+INSERT INTO userConvers (id_user, id_user2, id_convers) values(idEnvoyeur,idReceveur,idConvers);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageTakeLastConvCree` ()  BEGIN
+SELECT * FROM conversation ORDER BY id_convers DESC LIMIT 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modifAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `statut` VARCHAR(255))  BEGIN
@@ -434,7 +455,9 @@ CREATE TABLE `adoption` (
 INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
 (1, 2, 'Charles', '8', 'PAC', 'tataAssoc', 'dispo', '2020-03-27 11:49:04', '../img/img_adoption/chatTriste.jpeg', 'Chat'),
 (2, 1, 'Felix', '3', 'LUTTRE', 'totoAssoc', 'dispo', '2020-03-27 11:51:06', '../img/img_adoption/chatCoussin.jpeg', 'Chat'),
-(6, 7, 'LECHIEN', 'LECHIEN', 'LECHIEN', 'LECHIEN', 'dispo', '2020-03-29 17:31:09', '../img/img_adoption/chiensGestion.jpeg', 'Chien');
+(6, 7, 'LECHIEN', 'LECHIEN', 'LECHIEN', 'LECHIEN', 'dispo', '2020-03-29 17:31:09', '../img/img_adoption/chiensGestion.jpeg', 'Chien'),
+(7, 7, 'testRand', 'testRand', 'testRand', 'testRand', 'dispo', '2020-03-29 18:42:21', '../img/img_adoption/chatAdopte2.jpeg4357998', 'Chat'),
+(8, 7, 'testRand2', 'testRand2', 'testRand2', 'testRand2', 'dispo', '2020-03-29 18:54:45', '../img/img_adoption/chatAdopte44312335.jpeg', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -466,6 +489,24 @@ INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_ass
 (1, 'totoAssoc', 'totoAssoc', 'totoAssoc@hotmail.com', '0477080641', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 10, '../img/img_assoc/chatAdopte3.jpeg', 'Chat'),
 (2, 'tataAssoc', 'tataAssoc', 'tataAssoc@hotmail.com', '0477080641', 'tataAssoc', 'tataAssoc', 'tataAssoc', 'tataAssoc', 10, 7, '../img/img_assoc/chienSauve.jpeg', 'Chien'),
 (7, 'testFiltre', 'testFiltre', 'testFiltre@test.com', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 3, 5, '../img/img_assoc/Ephec.png', 'Chat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `conversation`
+--
+
+CREATE TABLE `conversation` (
+  `id_convers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `conversation`
+--
+
+INSERT INTO `conversation` (`id_convers`) VALUES
+(25),
+(26);
 
 -- --------------------------------------------------------
 
@@ -503,11 +544,20 @@ INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_dem
 
 CREATE TABLE `messages` (
   `id_message` int(11) NOT NULL,
-  `id_receveur` int(11) NOT NULL,
   `id_envoyeur` int(11) NOT NULL,
   `contenu_message` text NOT NULL,
-  `date_message` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_message` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_convers` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
+(4, 5, 'test1', '2020-03-30 15:18:25', 25),
+(5, 1, 'test56000', '2020-03-30 15:19:37', 25),
+(6, 1, 'test', '2020-03-30 15:20:44', 26);
 
 -- --------------------------------------------------------
 
@@ -535,7 +585,29 @@ CREATE TABLE `offresDons` (
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
 (2, 1, 'ballon', 'test123', 'erhsrh', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
 (3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
-(7, 20, 'ergerg', 'ergerg', 'ergerg', 'Usé', '2020-03-29 17:53:10', '../img/img_offre/chatCoussin.jpeg', 'Bien-être', 'Chien');
+(7, 20, 'ergerg', 'ergerg', 'ergerg', 'Usé', '2020-03-29 17:53:10', '../img/img_offre/chatCoussin.jpeg', 'Bien-être', 'Chien'),
+(8, 20, 'testRand', 'testRand', 'testRand', 'Neuf', '2020-03-29 19:00:23', '../img/img_offre/chatArbre66024726.jpg', 'Jouet', 'Chat'),
+(9, 5, 'TestMessage', 'test', 'test', 'Neuf', '2020-03-30 17:19:10', '../img/img_offre/chatCoussin79658376.jpeg', 'Jouet', 'Chat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userConvers`
+--
+
+CREATE TABLE `userConvers` (
+  `id_user` int(11) NOT NULL,
+  `id_convers` int(11) NOT NULL,
+  `id_user2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `userConvers`
+--
+
+INSERT INTO `userConvers` (`id_user`, `id_convers`, `id_user2`) VALUES
+(5, 25, 1),
+(1, 26, 20);
 
 -- --------------------------------------------------------
 
@@ -584,6 +656,12 @@ ALTER TABLE `associations`
   ADD PRIMARY KEY (`id_assoc`);
 
 --
+-- Indexes for table `conversation`
+--
+ALTER TABLE `conversation`
+  ADD PRIMARY KEY (`id_convers`);
+
+--
 -- Indexes for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
@@ -596,7 +674,7 @@ ALTER TABLE `demandesDons`
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
   ADD KEY `id_envoyeur` (`id_envoyeur`),
-  ADD KEY `id_receveur` (`id_receveur`);
+  ADD KEY `id_convers` (`id_convers`);
 
 --
 -- Indexes for table `offresDons`
@@ -604,6 +682,14 @@ ALTER TABLE `messages`
 ALTER TABLE `offresDons`
   ADD PRIMARY KEY (`id_offre`),
   ADD KEY `offresdons_ibfk_1` (`id_user`);
+
+--
+-- Indexes for table `userConvers`
+--
+ALTER TABLE `userConvers`
+  ADD PRIMARY KEY (`id_user`,`id_convers`),
+  ADD KEY `id_convers` (`id_convers`),
+  ADD KEY `id_user2` (`id_user2`);
 
 --
 -- Indexes for table `users`
@@ -620,13 +706,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
   MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `conversation`
+--
+ALTER TABLE `conversation`
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -638,13 +730,13 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -672,14 +764,22 @@ ALTER TABLE `demandesDons`
 -- Constraints for table `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_receveur`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `userConvers`
+--
+ALTER TABLE `userConvers`
+  ADD CONSTRAINT `userconvers_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `userconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `userconvers_ibfk_3` FOREIGN KEY (`id_user2`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
