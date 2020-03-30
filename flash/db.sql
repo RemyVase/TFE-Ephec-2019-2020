@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 30, 2020 at 03:21 PM
+-- Generation Time: Mar 30, 2020 at 04:49 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -207,21 +207,22 @@ SET mdp_user = passwd
 WHERE id_user = id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idReceveur` INT)  BEGIN
-SELECT id_convers FROM userConvers
-WHERE (id_user = idEnvoyeur and id_user2 = idReceveur) or (id_user2 = idEnvoyeur and id_user = idReceveur) ;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idAssoc` INT)  BEGIN
+SELECT userConvers.id_convers FROM userConvers
+JOIN conversation ON conversation.id_convers = userConvers.id_convers
+WHERE userConvers.id_user = idEnvoyeur and conversation.id_assoc = idAssoc; 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCreateConvers` ()  BEGIN
-INSERT INTO conversation values (NULL);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCreateConvers` (IN `idAssoc` INT)  BEGIN
+INSERT INTO conversation(id_assoc) values (idAssoc);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageEnvoiMessage` (IN `idEnvoyeur` INT, IN `idConvers` INT, IN `message` TEXT)  BEGIN
 INSERT INTO messages(messages.id_envoyeur, messages.id_convers,messages.contenu_message) values (idEnvoyeur,idConvers,message);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnvoyeur` INT, IN `idReceveur` INT, IN `idConvers` INT)  BEGIN
-INSERT INTO userConvers (id_user, id_user2, id_convers) values(idEnvoyeur,idReceveur,idConvers);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnvoyeur` INT, IN `idConvers` INT)  BEGIN
+INSERT INTO userConvers (id_user, id_convers) values(idEnvoyeur,idConvers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageTakeLastConvCree` ()  BEGIN
@@ -497,16 +498,16 @@ INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_ass
 --
 
 CREATE TABLE `conversation` (
-  `id_convers` int(11) NOT NULL
+  `id_convers` int(11) NOT NULL,
+  `id_assoc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `conversation`
 --
 
-INSERT INTO `conversation` (`id_convers`) VALUES
-(25),
-(26);
+INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
+(30, 1);
 
 -- --------------------------------------------------------
 
@@ -555,9 +556,9 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
-(4, 5, 'test1', '2020-03-30 15:18:25', 25),
-(5, 1, 'test56000', '2020-03-30 15:19:37', 25),
-(6, 1, 'test', '2020-03-30 15:20:44', 26);
+(11, 1, 'Test1', '2020-03-30 16:48:47', 30),
+(12, 1, 'Test2', '2020-03-30 16:48:51', 30),
+(13, 1, 'Test3', '2020-03-30 16:48:55', 30);
 
 -- --------------------------------------------------------
 
@@ -597,17 +598,15 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 
 CREATE TABLE `userConvers` (
   `id_user` int(11) NOT NULL,
-  `id_convers` int(11) NOT NULL,
-  `id_user2` int(11) NOT NULL
+  `id_convers` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `userConvers`
 --
 
-INSERT INTO `userConvers` (`id_user`, `id_convers`, `id_user2`) VALUES
-(5, 25, 1),
-(1, 26, 20);
+INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
+(1, 30);
 
 -- --------------------------------------------------------
 
@@ -635,7 +634,6 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
 (5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
 (6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
-(17, 'remy', '', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', '2020-03-29 10:07:50', NULL),
 (20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7);
 
 --
@@ -659,7 +657,8 @@ ALTER TABLE `associations`
 -- Indexes for table `conversation`
 --
 ALTER TABLE `conversation`
-  ADD PRIMARY KEY (`id_convers`);
+  ADD PRIMARY KEY (`id_convers`),
+  ADD KEY `id_assoc` (`id_assoc`);
 
 --
 -- Indexes for table `demandesDons`
@@ -688,8 +687,7 @@ ALTER TABLE `offresDons`
 --
 ALTER TABLE `userConvers`
   ADD PRIMARY KEY (`id_user`,`id_convers`),
-  ADD KEY `id_convers` (`id_convers`),
-  ADD KEY `id_user2` (`id_user2`);
+  ADD KEY `id_convers` (`id_convers`);
 
 --
 -- Indexes for table `users`
@@ -718,7 +716,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -730,7 +728,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -753,6 +751,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `conversation`
+--
+ALTER TABLE `conversation`
+  ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `demandesDons`
@@ -778,8 +782,7 @@ ALTER TABLE `offresDons`
 --
 ALTER TABLE `userConvers`
   ADD CONSTRAINT `userconvers_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `userconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `userconvers_ibfk_3` FOREIGN KEY (`id_user2`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `userconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

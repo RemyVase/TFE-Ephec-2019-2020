@@ -74,7 +74,9 @@ include '../controller/listeDemandesController.php';
 					</div>
 					<div class="col-sm-2 text-center">
 						<h4>Contacts</h4></br></br>
-						<a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a>
+						<a href="contact.php">
+							<form method="post" action="contact.php"><button value="<?= $demande['id_assoc']; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form>
+						</a>
 					</div>
 				</div>
 			</div>

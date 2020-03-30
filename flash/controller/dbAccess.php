@@ -23,7 +23,6 @@ class dbAccess
             case 'checkNbOffre':
             case 'checkNbDemande':
             case 'recupAllMembre':
-            case 'messageCreateConvers':
             case 'messageTakeLastConvCree':
                 array_push($params);
 
@@ -66,6 +65,7 @@ class dbAccess
             case 'checkNbOffreEtat':
             case 'checkNbDemandeTypeAnimal':
             case 'checkNbDemandeTypeObjet':
+            case 'messageCreateConvers':
                 array_push($params, '?');
 
                 try {
@@ -98,6 +98,7 @@ class dbAccess
             case 'modifSelectAssoc':
             case 'ajoutMembreAssoc':
             case 'messageCheckUserConv':
+            case 'messageLierConversation':
                 array_push($params, '?', '?');
 
                 try {
@@ -127,7 +128,6 @@ class dbAccess
             case 'recupAllOffresEtat':
             case 'recupAllDemandesTypeAnimal':
             case 'recupAllDemandesTypeObjet':
-            case 'messageLierConversation':
             case 'messageEnvoiMessage':
                 array_push($params, '?', '?', '?');
 

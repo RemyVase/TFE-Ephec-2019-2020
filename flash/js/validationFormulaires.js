@@ -704,7 +704,7 @@ $(document).ready(function () {
         //appel AJAX 
         //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $.ajax({
-            url: "../controller/envoiMessageController.php",
+            url: "../controller/envoiMessageUserToUserController.php",
             type: "POST",
             data: dataForm,
             processData: false,
