@@ -273,76 +273,39 @@ include '../controller/listeConversationsController.php';
                                 </span> </div>
                         </div>
                     </div>
-                    
+
                     <div class="inbox_chat">
-                    <?php foreach($recupAllConversation as $conv) : ?>
-                        <?php 
-                            $annee = date('Y',strtotime($conv{'date_message'}));
-                            $mois = date('m',strtotime($conv{'date_message'}));
-                            $jour = date('d',strtotime($conv{'date_message'}));
-                            $date = $jour.'/'.$mois.'/'.$annee;
-                        ?>
-                        
-                        <div name="conversation" onclick="changementMessage(<?= $conv{'id_convers'} ?>);" style="cursor: pointer;" class="chat_list active_chat">
-                            
-                            <div class="chat_people">
-                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                <div class="chat_ib">
-                                    <h5><?= $conv{'pseudo_user'}?><span class="chat_date"><?= $date?></span></h5>
-                                    <p><?= $conv{'contenu_message'}?></p>
+                        <?php foreach ($recupAllConversation as $conv) : ?>
+                            <?php
+                            $annee = date('Y', strtotime($conv{
+                                'date_message'}));
+                            $mois = date('m', strtotime($conv{
+                                'date_message'}));
+                            $jour = date('d', strtotime($conv{
+                                'date_message'}));
+                            $date = $jour . '/' . $mois . '/' . $annee;
+                            ?>
+
+                            <div name="conversation" onclick="changementMessage(<?= $conv{
+                                                                                    'id_convers'} ?>);" style="cursor: pointer;" class="chat_list active_chat">
+
+                                <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="chat_ib">
+                                        <h5><?= $conv{
+                                                'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                        <p><?= $conv{
+                                                'contenu_message'} ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
+
                         <?php endforeach ?>
                     </div>
                 </div>
                 <div class="mesgs">
                     <div class="msg_history">
-                        
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p></p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM | June 9</span>
-                            </div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test, which is a new approach to have</p>
-                                    <span class="time_date"> 11:01 AM | Yesterday</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Apollo University, Delhi, India Test</p>
-                                <span class="time_date"> 11:01 AM | Today</span>
-                            </div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>We work directly with our designers and suppliers,
-                                        and sell direct to you, which means quality, exclusive
-                                        products, at a price anyone can afford.</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="type_msg">
                         <div class="input_msg_write">
@@ -362,6 +325,42 @@ include '../controller/listeConversationsController.php';
 
     <?php include 'footer.php' ?>
     <?php include 'jquery.php' ?>
+    <script>
+        function changementMessage(id) {
+            $.ajax({
+                url: "../controller/listeMessagesController.php",
+                type: "POST",
+                data: {
+                    "data": id
+                },
+                success: function(response) {
+                    var tab = JSON.parse(response);
+                    var ret = "";
+                    for (i = 0; i < tab.length; i++) {
+                        if (tab[i]['id_envoyeur'] != <?= $_SESSION['id'] ?>) {
+                            ret += '<div class="incoming_msg">';
+                            ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
+                            ret += '<div class="received_msg">';
+                            ret += '<div class="received_withd_msg">';
+                            ret += '<p>' + tab[i]['contenu_message'] + '</p>';
+                            ret += '<span class="time_date"> 11:01 AM | June 9</span>';
+                            ret += '</div>';
+                            ret += '</div>';
+                            ret += '</div>';
+                        } else {
+                            ret += '<div class="outgoing_msg">';
+                            ret += '<div class="sent_msg">';
+                            ret += '<p>' + tab[i]['contenu_message'] + '</p>';
+                            ret += '<span class="time_date"> 11:01 AM | June 9</span>';
+                            ret += '</div>';
+                            ret += '</div>';
+                        }
+                    }
+                    $('.msg_history').append(ret);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
