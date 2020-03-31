@@ -49,7 +49,7 @@ $(document).ready(function () {
                         $("#success").hide();
                         $("#mailPasOk").hide();
                     }
-                    else if (response === '"ok"'){
+                    else if (response === '"ok"') {
                         window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
                     }
                 }
@@ -846,13 +846,16 @@ function getAllElementsFormImg(form) {
     return data;
 }
 
-function changementMessage(id){
+function changementMessage(id) {
     $.ajax({
         url: "../controller/listeMessagesController.php",
         type: "POST",
-        data: {"data" : id},
+        data: { "data": id },
         success: function (response) {
-            console.log(response);
+            var tab = JSON.parse(response);
+            for(i=0; i<tab.length; i++){
+                console.log(tab[i]['contenu_message']);
+            }
         }
     });
 }
