@@ -336,14 +336,32 @@ include '../controller/listeConversationsController.php';
                 success: function(response) {
                     var tab = JSON.parse(response);
                     var ret = "";
+                    $('.msg_history').empty();
                     for (i = 0; i < tab.length; i++) {
+                        var date = "";
+                        var month = new Array();
+                        month[0] = "janvier";
+                        month[1] = "février";
+                        month[2] = "mars";
+                        month[3] = "avril";
+                        month[4] = "mai";
+                        month[5] = "juin";
+                        month[6] = "juillet";
+                        month[7] = "aout";
+                        month[8] = "septembre";
+                        month[9] = "octobre";
+                        month[10] = "novembre";
+                        month[11] = "décembre";
+                        var datefull = new Date(tab[i]['date_message']);
+                        var date = (datefull).getDate() + " " + (month[(datefull).getMonth()]) + " " + (datefull).getFullYear();
+                        var heure = (datefull).getHours() + 'h' + (datefull).getMinutes();
                         if (tab[i]['id_envoyeur'] != <?= $_SESSION['id'] ?>) {
                             ret += '<div class="incoming_msg">';
                             ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
                             ret += '<div class="received_msg">';
                             ret += '<div class="received_withd_msg">';
                             ret += '<p>' + tab[i]['contenu_message'] + '</p>';
-                            ret += '<span class="time_date"> 11:01 AM | June 9</span>';
+                            ret += '<span class="time_date">' + date +" " + heure +'</span>';
                             ret += '</div>';
                             ret += '</div>';
                             ret += '</div>';
@@ -351,7 +369,7 @@ include '../controller/listeConversationsController.php';
                             ret += '<div class="outgoing_msg">';
                             ret += '<div class="sent_msg">';
                             ret += '<p>' + tab[i]['contenu_message'] + '</p>';
-                            ret += '<span class="time_date"> 11:01 AM | June 9</span>';
+                            ret += '<span class="time_date">' + date +" " + heure +'</span>';
                             ret += '</div>';
                             ret += '</div>';
                         }
