@@ -1,7 +1,7 @@
 <?php
 session_start();
 $currentPage = "messagerie";
-include '../controller/listeMessagesController.php'
+include '../controller/listeConversationsController.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -283,7 +283,7 @@ include '../controller/listeMessagesController.php'
                             $date = $jour.'/'.$mois.'/'.$annee;
                         ?>
                         
-                        <div onclick="changementMessage(<?= $conv{'id_convers'} ?>);" style="cursor: pointer;" class="chat_list active_chat">
+                        <div name="conversation" onclick="changementMessage(<?= $conv{'id_convers'} ?>);" style="cursor: pointer;" class="chat_list active_chat">
                             
                             <div class="chat_people">
                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>

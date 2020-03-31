@@ -733,7 +733,6 @@ $(document).ready(function () {
         $("#supprimerAnnonceDef").show();
     });
 
-
 });
 
 
@@ -847,19 +846,13 @@ function getAllElementsFormImg(form) {
     return data;
 }
 
-/*
-function add_to_session(id) {
-    e.preventDefault();
-    var test = id;
+function changementMessage(id){
     $.ajax({
-        url: "../controller/uneAnnonceController.php",
+        url: "../controller/listeMessagesController.php",
         type: "POST",
-        data: { index: test },
-        processData: false,
-        contentType: false,
+        data: {"data" : id},
         success: function (response) {
             console.log(response);
         }
     });
 }
-*/
