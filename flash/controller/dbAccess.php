@@ -67,6 +67,7 @@ class dbAccess
             case 'checkNbDemandeTypeObjet':
             case 'messageCreateConvers':
             case 'messageRecupAllConversations':
+            case 'messageRecupAllMessage':
                 array_push($params, '?');
 
                 try {

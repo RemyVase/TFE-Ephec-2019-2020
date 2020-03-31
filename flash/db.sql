@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 30, 2020 at 06:57 PM
+-- Generation Time: Mar 31, 2020 at 11:01 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -18,7 +18,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddIdAssocIntoUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addIdAssocIntoUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
 UPDATE users
 SET id_assoc = idAssoc
 WHERE id_user = idUser;
@@ -232,6 +232,13 @@ JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
 WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllMessage` (IN `id` INT)  BEGIN
+SELECT messages.contenu_message, messages.id_envoyeur, messages.date_message, users.pseudo_user FROM messages
+JOIN users on users.id_user = messages.id_envoyeur
+WHERE messages.id_convers = id
+ORDER BY messages.id_message ASC;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageTakeLastConvCree` ()  BEGIN
@@ -622,6 +629,7 @@ CREATE TABLE `userConvers` (
 INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
 (1, 30),
 (5, 31),
+(1, 32),
 (20, 32);
 
 -- --------------------------------------------------------
