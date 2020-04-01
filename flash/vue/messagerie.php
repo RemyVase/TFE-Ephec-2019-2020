@@ -296,10 +296,14 @@ include '../controller/listeConversationsController.php';
 
                     </div>
                     <div class="type_msg">
+                        
                         <div class="input_msg_write">
-                            <input id="messageMessagerie" type="text" class="write_msg" placeholder="Type a message" />
-                            <button class="msg_send_btn" type="button" onclick="envoiMessage(<?= $_SESSION['id'] ?>,$('#messageMessagerie').val())"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                            <form id="formMessage">
+                                <input id="messageMessagerie" type="text" class="write_msg" placeholder="Type a message" />
+                                <button class="msg_send_btn" type="button" onclick="envoiMessage(<?= $_SESSION['id'] ?>,$('#messageMessagerie').val())"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                            <form>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -382,8 +386,11 @@ include '../controller/listeConversationsController.php';
                 },
                 success:function(response){
                     changementMessage(idConvers);
-                    document.getElementByClassName('.inbox_chat').scrollIntoView()
-                    $("#messageMessagerie").attr('value','');
+                    $("#formMessage").trigger("reset");
+                    $(".msg_history").scroll();
+                    $(".msg_history").animate({
+                        scrollTop: 10000
+                    }, 2000);
                 }
             });
         }
