@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 31, 2020 at 11:01 AM
+-- Generation Time: Apr 01, 2020 at 08:17 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -207,10 +207,20 @@ SET mdp_user = passwd
 WHERE id_user = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckAssocConv` (IN `id` INT)  BEGIN
+SELECT id_assoc FROM conversation
+WHERE id_assoc = id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idAssoc` INT)  BEGIN
 SELECT userConvers.id_convers FROM userConvers
 JOIN conversation ON conversation.id_convers = userConvers.id_convers
-WHERE userConvers.id_user = idEnvoyeur and conversation.id_assoc = idAssoc; 
+WHERE (userConvers.id_user = idEnvoyeur and conversation.id_assoc = idAssoc) or (userConvers.id_user = idAssoc and conversation.id_assoc = idEnvoyeur);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv2` (IN `id` INT)  BEGIN
+SELECT id_user FROM userConvers
+WHERE id_user = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCreateConvers` (IN `idAssoc` INT)  BEGIN
@@ -225,13 +235,32 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnv
 INSERT INTO userConvers (id_user, id_convers) values(idEnvoyeur,idConvers);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversations` (IN `id` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversAssocUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN userConvers ON userConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = userConvers.id_user
+WHERE (userConvers.id_user = id and conversation.id_assoc = idAssoc) and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsAssoc` (IN `id` INT)  NO SQL
+BEGIN
 SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
 FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
 WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsUser` (IN `id` INT)  BEGIN
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN userConvers ON userConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = userConvers.id_user
+WHERE userConvers.id_user = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllMessage` (IN `id` INT)  BEGIN
@@ -523,9 +552,8 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(30, 1),
-(31, 1),
-(32, 1);
+(36, 1),
+(37, 1);
 
 -- --------------------------------------------------------
 
@@ -553,7 +581,8 @@ INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_dem
 (1, 1, 'Croquettes', 'Demande de croquettes urgentes pour pouvori accueillir 7 petits chiots retrouvés dans une caisse dans notre localité ', '2020-03-27 11:50:22', '../img/img_demande/chiotsEnsemble.jpeg', 'PAC', 'Chien', 'Nourriture'),
 (2, 1, 'Arbre à chat', 'Nous recherchons toutes sortes d\'arbre à chats afin de créer une seconde pièce en vue d\'agrandir notre capacité à accueillir de nouveaux arrivants ', '2020-03-28 15:51:40', '../img/img_demande/chatArbre.jpg', 'PAC', 'Chat', 'Jouet'),
 (3, 1, 'test', 'test', '2020-03-28 15:52:21', '../img/img_demande/chienDors.jpeg', 'test', 'Chat', 'Jouet'),
-(13, 1, 'test', 'test', '2020-03-28 16:11:55', '../img/img_demande/chienOubli.jpeg', 'test', 'Chat', 'Jouet');
+(13, 1, 'test', 'test', '2020-03-28 16:11:55', '../img/img_demande/chienOubli.jpeg', 'test', 'Chat', 'Jouet'),
+(14, 7, 'testMessage', 'testMessage', '2020-03-31 19:44:01', '../img/img_demande/chatCoussin97676106.jpeg', 'testMessage', 'Chat', 'Jouet');
 
 -- --------------------------------------------------------
 
@@ -574,12 +603,8 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
-(11, 1, 'Test1', '2020-03-30 16:48:47', 30),
-(12, 1, 'Test2', '2020-03-30 16:48:51', 30),
-(13, 1, 'Test3', '2020-03-30 16:48:55', 30),
-(14, 5, 'test', '2020-03-30 16:53:11', 31),
-(15, 5, 'test2', '2020-03-30 16:53:28', 31),
-(16, 20, 'test', '2020-03-30 17:26:48', 32);
+(29, 21, 'TESTTTTT', '2020-03-31 17:58:21', 36),
+(30, 20, '123Test', '2020-03-31 18:03:28', 37);
 
 -- --------------------------------------------------------
 
@@ -627,10 +652,8 @@ CREATE TABLE `userConvers` (
 --
 
 INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
-(1, 30),
-(5, 31),
-(1, 32),
-(20, 32);
+(21, 36),
+(20, 37);
 
 -- --------------------------------------------------------
 
@@ -658,7 +681,8 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 (4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
 (5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
 (6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
-(20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7);
+(20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7),
+(21, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-03-31 17:57:28', NULL);
 
 --
 -- Indexes for dumped tables
@@ -740,19 +764,19 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -764,7 +788,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

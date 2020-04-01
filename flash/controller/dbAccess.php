@@ -66,8 +66,11 @@ class dbAccess
             case 'checkNbDemandeTypeAnimal':
             case 'checkNbDemandeTypeObjet':
             case 'messageCreateConvers':
-            case 'messageRecupAllConversations':
+            case 'messageRecupAllConversationsUser':
             case 'messageRecupAllMessage':
+            case 'messageCheckAssocConv':
+            case 'messageCheckUserConv2':
+            case 'messageRecupAllConversationsAssoc':
                 array_push($params, '?');
 
                 try {
@@ -101,6 +104,7 @@ class dbAccess
             case 'ajoutMembreAssoc':
             case 'messageCheckUserConv':
             case 'messageLierConversation':
+            case 'messageRecupAllConversAssocUser':
                 array_push($params, '?', '?');
 
                 try {
