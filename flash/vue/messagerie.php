@@ -76,8 +76,7 @@ include '../controller/listeConversationsController.php';
         .srch_bar {
             display: inline-block;
             text-align: right;
-            width: 60%;
-            padding:
+            width: 60%
         }
 
         .headind_srch {

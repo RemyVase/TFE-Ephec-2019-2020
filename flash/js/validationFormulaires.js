@@ -688,14 +688,14 @@ $(document).ready(function () {
         });
     });
 
-    $("#envoiMessage_form").submit(function (event) {
+    $("#envoiMessageUserToAssoc_form").submit(function (event) {
         //Empêche l'html de se refresh
 
         event.preventDefault();
 
-        var test = getAllElementsForm("#envoiMessage_form");
-        var dataForm = getAllElementsFormImg("#envoiMessage_form");
-        var objectForm = transformThisInObject(test, "#envoiMessage_form");
+        var test = getAllElementsForm("#envoiMessageUserToAssoc_form");
+        var dataForm = getAllElementsFormImg("#envoiMessageUserToAssoc_form");
+        var objectForm = transformThisInObject(test, "#envoiMessageUserToAssoc_form");
 
         if (checkAllForm(objectForm) === false) {
             return false;
@@ -704,7 +704,34 @@ $(document).ready(function () {
         //appel AJAX 
         //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
         $.ajax({
-            url: "../controller/envoiMessageUserToUserController.php",
+            url: "../controller/envoiMessageUserToAssocController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    $("#envoiMessageAssocToUser_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#envoiMessageAssocToUser_form");
+        var dataForm = getAllElementsFormImg("#envoiMessageAssocToUser_form");
+        var objectForm = transformThisInObject(test, "#envoiMessageAssocToUser_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/envoiMessageAssocToUserController.php",
             type: "POST",
             data: dataForm,
             processData: false,

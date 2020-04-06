@@ -79,7 +79,7 @@ include '../controller/listeOffresController.php';
 					<div class="col-sm-2 text-center">
 						<h4>Contacts</h4></br></br>
 						<a href="contact.php">
-							<form method="post" action="contact.php"><button value="<?= $offre['id_user']; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form>
+							<form method="post" action="contactAssocToUser.php"><button value="<?= $offre['id_user']; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form>
 						</a>
 					</div>
 				</div>

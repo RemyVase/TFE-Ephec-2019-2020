@@ -3,7 +3,6 @@ session_start();
 include 'head.php';
 $id = $_SESSION['id'];
 $_SESSION['idReceveur'] = $_POST['idReceveur'];
-var_dump($_SESSION['idReceveur']);
 ?>
 
 <!doctype html>
@@ -32,7 +31,7 @@ var_dump($_SESSION['idReceveur']);
 
     <!--================Contact Area =================-->
     <div class="container pad_top pad_bt">
-        <form id="envoiMessageUserToAssoc_form" method="post">
+        <form id="envoiMessageAssocToUser_form" method="post" action="../controller/envoiMessageController.php">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="form-group">
