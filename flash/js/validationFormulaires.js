@@ -688,6 +688,33 @@ $(document).ready(function () {
         });
     });
 
+    $("#suppressionMembre_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#suppressionMembre_form");
+        var dataForm = getAllElementsFormImg("#suppressionMembre_form");
+        var objectForm = transformThisInObject(test, "#suppressionMembre_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/suppressionMembreAssocController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                location.reload(true);
+            }
+        });
+    });
+
     $("#envoiMessageUserToAssoc_form").submit(function (event) {
         //Empêche l'html de se refresh
 

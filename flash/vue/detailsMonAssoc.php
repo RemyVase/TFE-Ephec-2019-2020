@@ -109,8 +109,8 @@ include '../controller/detailsMonAssocController.php';
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
-                                <input list="pseudoListAssoc" type="text" id="pseudoAjout">
+                                <label for="pseudoSupp">Indiquez le pseudo de la personne :</label>
+                                <input list="pseudoListAssoc" type="text" id="pseudoSupp">
                                 <datalist id="pseudoListAssoc">
                                     <?php foreach($recupAllMembreAssoc as $membreAssoc) : ?>
                                         <option value="<?= $membreAssoc['pseudo_user']; ?>">

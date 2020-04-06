@@ -3,7 +3,6 @@ session_start();
 include 'head.php';
 $id = $_SESSION['id'];
 $_SESSION['idReceveur'] = $_POST['idReceveur'];
-var_dump($_SESSION['idReceveur']);
 ?>
 
 <!doctype html>
@@ -31,21 +30,32 @@ var_dump($_SESSION['idReceveur']);
     <!--================End Home Banner Area =================-->
 
     <!--================Contact Area =================-->
-    <div class="container pad_top pad_bt">
-        <form id="envoiMessageUserToAssoc_form" method="post">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Message :</label>
-                        <textarea class="form-control" id="message" rows="3" placeholder="Entrez votre message ici"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-dark">Envoyer le message</button>
+
+    <?php if ($_SESSION['idReceveur'] !== $_SESSION['idAssoc']) : ?>
+        <div class="container pad_top pad_bt">
+            <form id="envoiMessageUserToAssoc_form" method="post">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Message :</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Entrez votre message ici"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-dark">Envoyer le message</button>
+                        </div>
                     </div>
                 </div>
+            </form>
+        </div>
+    <?php else : ?>
+        <div class="container pad_top pad_bt">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2 style="color:red">Ceci est une demande de don de votre association ! Vous ne pouvez par conséquent pas envoyer de message !</h2>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+    <?php endif ?>
     <!--================Contact Area =================-->
 
     <?php include 'footer.php' ?>

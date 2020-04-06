@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 01, 2020 at 08:17 AM
+-- Generation Time: Apr 06, 2020 at 07:20 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -473,6 +473,11 @@ JOIN associations ON associations.id_assoc = demandesDons.id_assoc
 WHERE demandesDons.id_demande = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `supprimerMembreAssoc` (IN `pseudo` VARCHAR(255), IN `id` INT)  BEGIN
+UPDATE users SET id_assoc = NULL
+WHERE users.pseudo_user = pseudo;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -552,8 +557,10 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(36, 1),
-(37, 1);
+(54, 1),
+(56, 1),
+(57, 2),
+(55, 7);
 
 -- --------------------------------------------------------
 
@@ -603,8 +610,22 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
-(29, 21, 'TESTTTTT', '2020-03-31 17:58:21', 36),
-(30, 20, '123Test', '2020-03-31 18:03:28', 37);
+(93, 22, 'test', '2020-04-06 18:43:25', 54),
+(94, 22, 'test', '2020-04-06 18:43:33', 55),
+(95, 22, 'test', '2020-04-06 18:44:31', 54),
+(96, 22, 'test', '2020-04-06 18:44:33', 55),
+(97, 1, 'test', '2020-04-06 18:45:56', 54),
+(98, 1, 'tesy', '2020-04-06 18:46:06', 54),
+(99, 5, 'test', '2020-04-06 18:46:26', 54),
+(100, 5, 'test', '2020-04-06 18:46:32', 54),
+(101, 5, 'test', '2020-04-06 19:00:21', 56),
+(102, 1, 'Heyyyyy', '2020-04-06 19:00:43', 56),
+(103, 1, 'test', '2020-04-06 19:01:25', 56),
+(104, 5, 'yaaa', '2020-04-06 19:01:57', 56),
+(105, 5, 'retest', '2020-04-06 19:02:06', 56),
+(106, 2, 'totooooo', '2020-04-06 19:03:14', 57),
+(107, 2, 'totooooo', '2020-04-06 19:03:24', 57),
+(108, 2, 'test', '2020-04-06 19:05:08', 57);
 
 -- --------------------------------------------------------
 
@@ -634,7 +655,9 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 (3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
 (7, 20, 'ergerg', 'ergerg', 'ergerg', 'Usé', '2020-03-29 17:53:10', '../img/img_offre/chatCoussin.jpeg', 'Bien-être', 'Chien'),
 (8, 20, 'testRand', 'testRand', 'testRand', 'Neuf', '2020-03-29 19:00:23', '../img/img_offre/chatArbre66024726.jpg', 'Jouet', 'Chat'),
-(9, 5, 'TestMessage', 'test', 'test', 'Neuf', '2020-03-30 17:19:10', '../img/img_offre/chatCoussin79658376.jpeg', 'Jouet', 'Chat');
+(9, 5, 'TestMessage', 'test', 'test', 'Neuf', '2020-03-30 17:19:10', '../img/img_offre/chatCoussin79658376.jpeg', 'Jouet', 'Chat'),
+(10, 21, 'TestMessage', 'TestMessage', 'TestMessage', 'Neuf', '2020-04-06 19:19:02', '../img/img_offre/Ephec50346929.png', 'Jouet', 'Chat'),
+(11, 22, 'testMessage2', 'testMessage2', 'testMessage2', 'Neuf', '2020-04-06 19:20:19', '../img/img_offre/Ephec18323447.png', 'Jouet', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -652,8 +675,10 @@ CREATE TABLE `userConvers` (
 --
 
 INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
-(21, 36),
-(20, 37);
+(22, 54),
+(22, 55),
+(1, 56),
+(1, 57);
 
 -- --------------------------------------------------------
 
@@ -675,14 +700,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
-(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-03-27 10:36:48', 1),
+(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-03-27 10:36:48', NULL),
 (2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-27 10:37:01', 2),
-(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-27 10:37:10', 1),
+(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-27 10:37:10', NULL),
 (4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
 (5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
 (6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
 (20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7),
-(21, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-03-31 17:57:28', NULL);
+(21, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-03-31 17:57:28', NULL),
+(22, 'dudu', 'dudu@hotmail.com', '4fc75659c5daf27dbe58301c1eaaf4bfc97a026ed5319e87a36a9e65f44b8cc6', '2020-04-06 17:19:48', NULL);
 
 --
 -- Indexes for dumped tables
@@ -764,7 +790,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -776,19 +802,19 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
