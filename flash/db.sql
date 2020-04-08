@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 06, 2020 at 07:20 PM
+-- Generation Time: Apr 08, 2020 at 06:06 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -241,7 +241,14 @@ FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
-WHERE (userConvers.id_user = id and conversation.id_assoc = idAssoc) and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+WHERE userConvers.id_user = idUser and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers)
+UNION
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN userConvers ON userConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = userConvers.id_user
+WHERE conversation.id_assoc = idAssoc and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsAssoc` (IN `id` INT)  NO SQL
@@ -255,11 +262,12 @@ WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_m
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsUser` (IN `id` INT)  BEGIN
-SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message, associations.nom_assoc 
 FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
+JOIN associations ON associations.id_assoc = conversation.id_assoc
 WHERE userConvers.id_user = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
@@ -499,17 +507,6 @@ CREATE TABLE `adoption` (
   `type_animal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `adoption`
---
-
-INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
-(1, 2, 'Charles', '8', 'PAC', 'tataAssoc', 'dispo', '2020-03-27 11:49:04', '../img/img_adoption/chatTriste.jpeg', 'Chat'),
-(2, 1, 'Felix', '3', 'LUTTRE', 'totoAssoc', 'dispo', '2020-03-27 11:51:06', '../img/img_adoption/chatCoussin.jpeg', 'Chat'),
-(6, 7, 'LECHIEN', 'LECHIEN', 'LECHIEN', 'LECHIEN', 'dispo', '2020-03-29 17:31:09', '../img/img_adoption/chiensGestion.jpeg', 'Chien'),
-(7, 7, 'testRand', 'testRand', 'testRand', 'testRand', 'dispo', '2020-03-29 18:42:21', '../img/img_adoption/chatAdopte2.jpeg4357998', 'Chat'),
-(8, 7, 'testRand2', 'testRand2', 'testRand2', 'testRand2', 'dispo', '2020-03-29 18:54:45', '../img/img_adoption/chatAdopte44312335.jpeg', 'Chat');
-
 -- --------------------------------------------------------
 
 --
@@ -537,9 +534,8 @@ CREATE TABLE `associations` (
 --
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
-(1, 'totoAssoc', 'totoAssoc', 'totoAssoc@hotmail.com', '0477080641', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 10, '../img/img_assoc/chatAdopte3.jpeg', 'Chat'),
-(2, 'tataAssoc', 'tataAssoc', 'tataAssoc@hotmail.com', '0477080641', 'tataAssoc', 'tataAssoc', 'tataAssoc', 'tataAssoc', 10, 7, '../img/img_assoc/chienSauve.jpeg', 'Chien'),
-(7, 'testFiltre', 'testFiltre', 'testFiltre@test.com', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 'testFiltre', 3, 5, '../img/img_assoc/Ephec.png', 'Chat');
+(1000000, 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 7, '../img/img_assoc/chatAdopte7100462.jpeg', 'Chat'),
+(1000001, 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 4, 4, '../img/img_assoc/chienOubli1624332.jpeg', 'Chien');
 
 -- --------------------------------------------------------
 
@@ -557,10 +553,9 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(54, 1),
-(56, 1),
-(57, 2),
-(55, 7);
+(9, 1000000),
+(11, 1000000),
+(10, 1000001);
 
 -- --------------------------------------------------------
 
@@ -585,11 +580,9 @@ CREATE TABLE `demandesDons` (
 --
 
 INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
-(1, 1, 'Croquettes', 'Demande de croquettes urgentes pour pouvori accueillir 7 petits chiots retrouvés dans une caisse dans notre localité ', '2020-03-27 11:50:22', '../img/img_demande/chiotsEnsemble.jpeg', 'PAC', 'Chien', 'Nourriture'),
-(2, 1, 'Arbre à chat', 'Nous recherchons toutes sortes d\'arbre à chats afin de créer une seconde pièce en vue d\'agrandir notre capacité à accueillir de nouveaux arrivants ', '2020-03-28 15:51:40', '../img/img_demande/chatArbre.jpg', 'PAC', 'Chat', 'Jouet'),
-(3, 1, 'test', 'test', '2020-03-28 15:52:21', '../img/img_demande/chienDors.jpeg', 'test', 'Chat', 'Jouet'),
-(13, 1, 'test', 'test', '2020-03-28 16:11:55', '../img/img_demande/chienOubli.jpeg', 'test', 'Chat', 'Jouet'),
-(14, 7, 'testMessage', 'testMessage', '2020-03-31 19:44:01', '../img/img_demande/chatCoussin97676106.jpeg', 'testMessage', 'Chat', 'Jouet');
+(1, 1000000, 'totoTest3', 'totoTest3', '2020-04-08 18:46:19', '../img/img_demande/chienOubli52145066.jpeg', 'totoTest3', 'Chien', 'Bien-être'),
+(2, 1000000, 'totoTest4', 'totoTest4', '2020-04-08 18:46:38', '../img/img_demande/chienDors74930104.jpeg', 'totoTest4', 'Chien', 'Bien-être'),
+(3, 1000001, 'testTest', 'testTest', '2020-04-08 18:49:26', '../img/img_demande/chienDors52921221.jpeg', 'testTest', 'Chien', 'Bien-être');
 
 -- --------------------------------------------------------
 
@@ -610,22 +603,16 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
-(93, 22, 'test', '2020-04-06 18:43:25', 54),
-(94, 22, 'test', '2020-04-06 18:43:33', 55),
-(95, 22, 'test', '2020-04-06 18:44:31', 54),
-(96, 22, 'test', '2020-04-06 18:44:33', 55),
-(97, 1, 'test', '2020-04-06 18:45:56', 54),
-(98, 1, 'tesy', '2020-04-06 18:46:06', 54),
-(99, 5, 'test', '2020-04-06 18:46:26', 54),
-(100, 5, 'test', '2020-04-06 18:46:32', 54),
-(101, 5, 'test', '2020-04-06 19:00:21', 56),
-(102, 1, 'Heyyyyy', '2020-04-06 19:00:43', 56),
-(103, 1, 'test', '2020-04-06 19:01:25', 56),
-(104, 5, 'yaaa', '2020-04-06 19:01:57', 56),
-(105, 5, 'retest', '2020-04-06 19:02:06', 56),
-(106, 2, 'totooooo', '2020-04-06 19:03:14', 57),
-(107, 2, 'totooooo', '2020-04-06 19:03:24', 57),
-(108, 2, 'test', '2020-04-06 19:05:08', 57);
+(12, 5, 'yo toto', '2020-04-08 17:20:44', 9),
+(13, 1, 'test', '2020-04-08 17:21:04', 9),
+(14, 1, 'Yo test', '2020-04-08 17:21:37', 10),
+(15, 5, 'Hello toto', '2020-04-08 17:22:27', 10),
+(16, 1, 'LOLILOL', '2020-04-08 17:23:19', 10),
+(17, 8, 'Bonjouur Assoc C\'est trop bien', '2020-04-08 17:27:01', 11),
+(18, 8, 'Bonjouur Assoc C\'est trop bien', '2020-04-08 17:27:07', 11),
+(19, 1, 'test', '2020-04-08 17:34:26', 11),
+(20, 2, 'tata', '2020-04-08 17:35:00', 11),
+(21, 2, 'yo', '2020-04-08 17:35:10', 9);
 
 -- --------------------------------------------------------
 
@@ -651,13 +638,10 @@ CREATE TABLE `offresDons` (
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
-(2, 1, 'ballon', 'test123', 'erhsrh', 'Neuf', '2020-03-27 11:39:50', '../img/img_offre/Ephec.png', 'Jouet', 'Chat'),
-(3, 1, 'test', '', 'test', 'Neuf', '2020-03-29 12:57:16', '../img/img_offre/chatTriste.jpeg', 'Jouet', 'Chat'),
-(7, 20, 'ergerg', 'ergerg', 'ergerg', 'Usé', '2020-03-29 17:53:10', '../img/img_offre/chatCoussin.jpeg', 'Bien-être', 'Chien'),
-(8, 20, 'testRand', 'testRand', 'testRand', 'Neuf', '2020-03-29 19:00:23', '../img/img_offre/chatArbre66024726.jpg', 'Jouet', 'Chat'),
-(9, 5, 'TestMessage', 'test', 'test', 'Neuf', '2020-03-30 17:19:10', '../img/img_offre/chatCoussin79658376.jpeg', 'Jouet', 'Chat'),
-(10, 21, 'TestMessage', 'TestMessage', 'TestMessage', 'Neuf', '2020-04-06 19:19:02', '../img/img_offre/Ephec50346929.png', 'Jouet', 'Chat'),
-(11, 22, 'testMessage2', 'testMessage2', 'testMessage2', 'Neuf', '2020-04-06 19:20:19', '../img/img_offre/Ephec18323447.png', 'Jouet', 'Chat');
+(1, 1, 'totoTest', 'totoTest', 'totoTest', 'Neuf', '2020-04-08 18:45:31', '../img/img_offre/chatArbre41277041.jpg', 'Jouet', 'Chat'),
+(2, 1, 'totoTest2', 'totoTest2', 'totoTest2', 'Neuf', '2020-04-08 18:45:52', '../img/img_offre/chienListe29964887.jpeg', 'Bien-être', 'Chien'),
+(3, 8, 'duduTest', 'duduTest', 'duduTest', 'Très usé', '2020-04-08 18:47:05', '../img/img_offre/chienSolo75121455.jpeg', 'Bien-être', 'Chien'),
+(4, 7, 'dedeTest', 'dedeTest', 'dedeTest', 'Neuf', '2020-04-08 18:47:35', '../img/img_offre/chiotsEnsemble43238047.jpeg', 'Jouet', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -666,6 +650,7 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 --
 
 CREATE TABLE `userConvers` (
+  `id_userconvers` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_convers` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -674,11 +659,10 @@ CREATE TABLE `userConvers` (
 -- Dumping data for table `userConvers`
 --
 
-INSERT INTO `userConvers` (`id_user`, `id_convers`) VALUES
-(22, 54),
-(22, 55),
-(1, 56),
-(1, 57);
+INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
+(1, 5, 9),
+(2, 1, 10),
+(3, 8, 11);
 
 -- --------------------------------------------------------
 
@@ -700,15 +684,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
-(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-03-27 10:36:48', NULL),
-(2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-03-27 10:37:01', 2),
-(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-03-27 10:37:10', NULL),
-(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-03-27 10:37:20', 1),
-(5, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-03-28 15:14:11', 1),
-(6, 'dada', 'dada@hotmail.com', '47c7ef39cfa6b7bd1286d9c83424f322741549e849ad1af19a8416e861434da5', '2020-03-28 15:37:40', 1),
-(20, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-03-29 14:06:44', 7),
-(21, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-03-31 17:57:28', NULL),
-(22, 'dudu', 'dudu@hotmail.com', '4fc75659c5daf27dbe58301c1eaaf4bfc97a026ed5319e87a36a9e65f44b8cc6', '2020-04-06 17:19:48', NULL);
+(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-04-08 16:42:51', 1000000),
+(2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-04-08 16:43:01', 1000000),
+(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-04-08 16:43:10', NULL),
+(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-04-08 16:43:22', NULL),
+(5, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-04-08 16:43:33', 1000001),
+(6, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-04-08 16:43:54', NULL),
+(7, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-04-08 16:44:04', NULL),
+(8, 'dudu', 'dudu@hotmail.com', '4fc75659c5daf27dbe58301c1eaaf4bfc97a026ed5319e87a36a9e65f44b8cc6', '2020-04-08 16:44:15', NULL);
 
 --
 -- Indexes for dumped tables
@@ -760,8 +743,9 @@ ALTER TABLE `offresDons`
 -- Indexes for table `userConvers`
 --
 ALTER TABLE `userConvers`
-  ADD PRIMARY KEY (`id_user`,`id_convers`),
-  ADD KEY `id_convers` (`id_convers`);
+  ADD PRIMARY KEY (`id_userconvers`),
+  ADD KEY `id_convers` (`id_convers`),
+  ADD KEY `foreign_user` (`id_user`) USING BTREE;
 
 --
 -- Indexes for table `users`
@@ -778,43 +762,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000002;
 
 --
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
-  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
-  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `userConvers`
+--
+ALTER TABLE `userConvers`
+  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

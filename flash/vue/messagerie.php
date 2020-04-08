@@ -276,12 +276,16 @@ include '../controller/listeConversationsController.php';
                             $date = $jour . '/' . $mois . '/' . $annee;
                             ?>
 
-                            <div name="conversation" id="<?= $conv{'id_convers'} ?>" onclick="changementMessage(<?= $conv{'id_convers'} ?>);" style="cursor: pointer;" class="chat_list active_chat">
+                            <div name="conversation" id="<?= $conv{'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{'id_convers'} : $conv{'id_convers'}.",'".$conv{'nom_assoc'}."'"); ?>)" style="cursor: pointer;" class="chat_list active_chat">
 
                                 <div class="chat_people">
                                     <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                     <div class="chat_ib">
+                                    <?php if(!empty($_SESSION['idAssoc'])) : ?>
                                         <h5><?= $conv{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                    <?php else : ?>
+                                        <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                    <?php endif ?>
                                         <p><?= $conv{'contenu_message'} ?></p>
                                     </div>
                                 </div>
@@ -318,7 +322,7 @@ include '../controller/listeConversationsController.php';
     <?php include 'jquery.php' ?>
     <script>
         var idConvers;
-        function changementMessage(id) {
+        function changementMessage(id, nomAssoc = "") {
             idConvers = id;
             $.ajax({
                 url: "../controller/listeMessagesController.php",
@@ -353,7 +357,7 @@ include '../controller/listeConversationsController.php';
                             ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
                             ret += '<div class="received_msg">';
                             ret += '<div class="received_withd_msg">';
-                            ret += '<span class="time_date">' + tab[i]['pseudo_user'] +'</span>';
+                            ret += '<span class="time_date">' + ((nomAssoc) ? nomAssoc + ' - ' : '') + tab[i]['pseudo_user'] +'</span>';
                             ret += '<p>' + tab[i]['contenu_message'] + '</p>';
                             ret += '<span class="time_date">' + date +" " + heure +'</span>';
                             ret += '</div>';
