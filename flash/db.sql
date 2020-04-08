@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 08, 2020 at 06:06 PM
+-- Generation Time: Apr 08, 2020 at 06:45 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -465,7 +465,7 @@ WHERE adoption.id_animal = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupOneAnnonce` (IN `id` INT)  BEGIN
-SELECT offresDons.titre_offre, offresDons.desc_offre, offresDons.ville_offre, offresDons.etat_offre, offresDons.img, users.pseudo_user, offresDons.typeObjet_offre, offresDons.typeAnimal_offre FROM offresDons
+SELECT offresDons.titre_offre, offresDons.desc_offre, offresDons.ville_offre, offresDons.etat_offre, offresDons.img, users.pseudo_user,users.id_user, offresDons.typeObjet_offre, offresDons.typeAnimal_offre FROM offresDons
 JOIN users ON users.id_user = offresDons.id_user
 WHERE id_offre = id;
 END$$
@@ -476,7 +476,7 @@ WHERE id_assoc = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupOneDemande` (IN `id` INT)  BEGIN
-SELECT associations.nom_assoc, demandesDons.titre_demande, demandesDons.desc_demande, demandesDons.ville_demande, demandesDons.img, demandesDons.typeAnimal_demande, demandesDons.typeObjet_demande FROM demandesDons
+SELECT associations.nom_assoc, demandesDons.titre_demande, demandesDons.desc_demande, demandesDons.ville_demande, demandesDons.img, demandesDons.typeAnimal_demande, demandesDons.typeObjet_demande, associations.id_assoc FROM demandesDons
 JOIN associations ON associations.id_assoc = demandesDons.id_assoc
 WHERE demandesDons.id_demande = id;
 END$$
@@ -555,7 +555,8 @@ CREATE TABLE `conversation` (
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
 (9, 1000000),
 (11, 1000000),
-(10, 1000001);
+(10, 1000001),
+(12, 1000001);
 
 -- --------------------------------------------------------
 
@@ -612,7 +613,19 @@ INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_me
 (18, 8, 'Bonjouur Assoc C\'est trop bien', '2020-04-08 17:27:07', 11),
 (19, 1, 'test', '2020-04-08 17:34:26', 11),
 (20, 2, 'tata', '2020-04-08 17:35:00', 11),
-(21, 2, 'yo', '2020-04-08 17:35:10', 9);
+(21, 2, 'yo', '2020-04-08 17:35:10', 9),
+(22, 8, 'test', '2020-04-08 18:18:05', 11),
+(23, 1, 'test', '2020-04-08 18:23:59', 11),
+(24, 8, 'test', '2020-04-08 18:28:32', 12),
+(25, 8, 'test', '2020-04-08 18:29:11', 12),
+(26, 8, 'test', '2020-04-08 18:33:38', 11),
+(27, 8, 'retest', '2020-04-08 18:34:38', 11),
+(28, 8, 'restest', '2020-04-08 18:34:53', 11),
+(29, 8, 'test', '2020-04-08 18:35:56', 11),
+(30, 1, 'test', '2020-04-08 18:36:33', 10),
+(31, 8, 'test reedirect', '2020-04-08 18:41:29', 11),
+(32, 8, 'test reedirect', '2020-04-08 18:43:56', 11),
+(33, 8, 'test', '2020-04-08 18:44:01', 11);
 
 -- --------------------------------------------------------
 
@@ -662,7 +675,9 @@ CREATE TABLE `userConvers` (
 INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
 (1, 5, 9),
 (2, 1, 10),
-(3, 8, 11);
+(3, 8, 11),
+(4, 8, 11),
+(5, 8, 12);
 
 -- --------------------------------------------------------
 
@@ -774,7 +789,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -786,7 +801,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -798,7 +813,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `userConvers`
 --
 ALTER TABLE `userConvers`
-  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

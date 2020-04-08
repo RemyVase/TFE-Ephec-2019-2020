@@ -738,6 +738,7 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 console.log(response);
+                window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/messagerie.php');
             }
         });
     });
@@ -765,6 +766,7 @@ $(document).ready(function () {
             contentType: false,
             success: function (response) {
                 console.log(response);
+                window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/messagerie.php');
             }
         });
     });

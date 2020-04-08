@@ -47,7 +47,7 @@ include '../controller/detailsAnimalController.php';
                             <li><span>Association</span>:  <?= $detailsAnimal[0]{'nom_assoc'}; ?></li>
                             <li><span>Type d'animal</span>:  <?= $detailsAnimal[0]{'type_animal'}; ?></li></br></br></br>
                             <li><span>Etat (réservé ou pas)</span>:  <?= $detailsAnimal[0]{'statut_animal'}; ?></li></br></br></br>
-                            <li><span>Contact</span>:  <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+                            <li><span>Contact</span>:  <a href="contact.php"><form method="post" action="contact.php"><button value="<?= $detailsAnimal[0]{'id_assoc'}; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form></a></li>
                         </ul>
                     </div>
                 </div>
