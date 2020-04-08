@@ -45,7 +45,9 @@ include '../controller/uneDemandeController.php';
 									<li><span>Ville</span>: <?= $recupOneDemande[0]{'ville_demande'}; ?></li>
 									<li><span>Pour quel type d'animal</span>: <?= $recupOneDemande[0]{'typeAnimal_demande'}; ?></li>
 									<li><span>Type d'objet</span>: <?= $recupOneDemande[0]{'typeObjet_demande'}; ?></li></br></br></br>
-									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+									<li><span>Contact</span>: <a href="contact.php">
+										<form method="post" action="contact.php"><button value="<?= $recupOneDemande[0]{'id_assoc'}; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form>
+									</a></li>
 								</ul>
 							</div>
 						</div>

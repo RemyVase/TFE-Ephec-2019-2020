@@ -31,12 +31,19 @@
                             <li class="nav-item <?php if ($currentPage === "donOffre" || $currentPage === "donFaireOffre" || $currentPage === "donDemande" || $currentPage === "donFaireDemande" || $currentPage === "vosAnnonces" || $currentPage === "vosDemandes") echo $active ?>submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dons</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item <?php if ($currentPage === "donOffre") echo $active ?>"><a class="nav-link" href="donOffre.php?p=1">Offres de dons</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "donDemande") echo $active ?>"><a class="nav-link" href="donDemande.php?p=1">Demandes de dons</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "donFaireOffre") echo $active ?>"><a class="nav-link" href="donFaireOffre.php">Faites un don</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "donFaireDemande") echo $active ?>"><a class="nav-link" href="donFaireDemande.php">Demandez un don</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "vosAnnonces") echo $active ?>"><a class="nav-link" href="vosAnnonces.php?p=1">Vos annonces</a></li>
-                                    <li class="nav-item <?php if ($currentPage === "vosDemandes") echo $active ?>"><a class="nav-link" href="vosDemandes.php?p=1">Vos demandes</a></li>
+                                    <?php if(!empty($_SESSION['idAssoc'])) : ?>
+                                        <li class="nav-item <?php if ($currentPage === "donOffre") echo $active ?>"><a class="nav-link" href="donOffre.php?p=1">Offres de dons</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "donDemande") echo $active ?>"><a class="nav-link" href="donDemande.php?p=1">Demandes de dons</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "donFaireOffre") echo $active ?>"><a class="nav-link" href="donFaireOffre.php">Faites un don</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "donFaireDemande") echo $active ?>"><a class="nav-link" href="donFaireDemande.php">Demandez un don</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "vosAnnonces") echo $active ?>"><a class="nav-link" href="vosAnnonces.php?p=1">Vos annonces</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "vosDemandes") echo $active ?>"><a class="nav-link" href="vosDemandes.php?p=1">Vos demandes</a></li>
+                                    <?php else : ?>
+                                        <li class="nav-item <?php if ($currentPage === "donOffre") echo $active ?>"><a class="nav-link" href="donOffre.php?p=1">Offres de dons</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "donDemande") echo $active ?>"><a class="nav-link" href="donDemande.php?p=1">Demandes de dons</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "donFaireOffre") echo $active ?>"><a class="nav-link" href="donFaireOffre.php">Faites un don</a></li>
+                                        <li class="nav-item <?php if ($currentPage === "vosAnnonces") echo $active ?>"><a class="nav-link" href="vosAnnonces.php?p=1">Vos annonces</a></li>
+                                    <?php endif ?>
                                 </ul>
                             </li>
                             <li class="nav-item <?php if ($currentPage === "lesAssociations" || $currentPage === "ajoutAssociation") echo $active ?> submenu dropdown">

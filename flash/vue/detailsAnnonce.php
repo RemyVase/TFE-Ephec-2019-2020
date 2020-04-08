@@ -46,7 +46,9 @@ include '../controller/uneAnnonceController.php';
 									<li><span>Etat (neuf, presque neuf, usé, très usé,..)</span>: <?= $recupOneAnnonce[0]{'etat_offre'}; ?></li>
 									<li><span>Pour quel type d'animal</span>: <?= $recupOneAnnonce[0]{'typeAnimal_offre'}; ?></li>
 									<li><span>Type d'objet</span>: <?= $recupOneAnnonce[0]{'typeObjet_offre'}; ?></li></br></br></br>
-									<li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
+									<li><span>Contact</span>: 						<a href="contact.php">
+										<form method="post" action="contactAssocToUser.php"><button value="<?= $recupOneAnnonce[0]{'id_user'}; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form>
+									</a></li>
 								</ul>
 							</div>
 						</div>
