@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 08, 2020 at 06:45 PM
+-- Generation Time: Apr 09, 2020 at 07:41 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -209,7 +209,16 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckAssocConv` (IN `id` INT)  BEGIN
 SELECT id_assoc FROM conversation
-WHERE id_assoc = id;
+WHERE conversation.id_assoc = id
+UNION
+SELECT id_assoc FROM assocConvers
+WHERE assocConvers.id_assoc =id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckAssocToAssocConv` (IN `idEnv` INT, IN `IdRec` INT)  BEGIN
+SELECT conversation.id_convers FROM conversation
+JOIN assocConvers on assocConvers.id_convers = conversation.id_convers
+WHERE (assocConvers.id_assoc = idEnv and conversation.id_assoc = idRec) or (assocConvers.id_assoc = idRec and conversation.id_assoc = idEnv);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idAssoc` INT)  BEGIN
@@ -235,6 +244,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversation` (IN `idEnv
 INSERT INTO userConvers (id_user, id_convers) values(idEnvoyeur,idConvers);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversationToAssoc` (IN `idEnv` INT, IN `idConv` INT)  NO SQL
+BEGIN
+INSERT INTO assocConvers(id_assoc, id_convers) values(idEnv,idConv);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversAssocUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
 SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
 FROM conversation
@@ -248,7 +262,14 @@ FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
-WHERE conversation.id_assoc = idAssoc and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+WHERE conversation.id_assoc = idAssoc and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers)
+UNION
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN assocConvers ON assocConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = messages.id_envoyeur
+WHERE assocConvers.id_assoc = idAssoc and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsAssoc` (IN `id` INT)  NO SQL
@@ -256,9 +277,15 @@ BEGIN
 SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
 FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
-JOIN userConvers ON userConvers.id_convers = conversation.id_convers
-JOIN users ON users.id_user = userConvers.id_user
-WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
+JOIN users ON users.id_user = messages.id_envoyeur
+WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers)
+UNION
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message 
+FROM conversation
+JOIN messages ON messages.id_convers = conversation.id_convers
+JOIN assocConvers ON assocConvers.id_convers = conversation.id_convers
+JOIN users ON users.id_user = messages.id_envoyeur
+WHERE assocConvers.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversationsUser` (IN `id` INT)  BEGIN
@@ -510,6 +537,25 @@ CREATE TABLE `adoption` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assocConvers`
+--
+
+CREATE TABLE `assocConvers` (
+  `id_assocConvers` int(11) NOT NULL,
+  `id_convers` int(11) NOT NULL,
+  `id_assoc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `assocConvers`
+--
+
+INSERT INTO `assocConvers` (`id_assocConvers`, `id_convers`, `id_assoc`) VALUES
+(1, 13, 1000003);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `associations`
 --
 
@@ -535,7 +581,9 @@ CREATE TABLE `associations` (
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`) VALUES
 (1000000, 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 7, '../img/img_assoc/chatAdopte7100462.jpeg', 'Chat'),
-(1000001, 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 4, 4, '../img/img_assoc/chienOubli1624332.jpeg', 'Chien');
+(1000001, 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 4, 4, '../img/img_assoc/chienOubli1624332.jpeg', 'Chien'),
+(1000002, 'TitiAssoc', 'TitiAssoc', 'TitiAssoc@TitiAssoc.com', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 5, 8, '../img/img_assoc/chatOrigami84972743.png', 'Chien'),
+(1000003, 'TutuAssoc', 'TutuAssoc', 'TutuAssoc@TutuAssoc.com', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 2, 1, '../img/img_assoc/chatCouverture54966342.jpeg', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -556,7 +604,8 @@ INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
 (9, 1000000),
 (11, 1000000),
 (10, 1000001),
-(12, 1000001);
+(12, 1000001),
+(13, 1000002);
 
 -- --------------------------------------------------------
 
@@ -625,7 +674,15 @@ INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_me
 (30, 1, 'test', '2020-04-08 18:36:33', 10),
 (31, 8, 'test reedirect', '2020-04-08 18:41:29', 11),
 (32, 8, 'test reedirect', '2020-04-08 18:43:56', 11),
-(33, 8, 'test', '2020-04-08 18:44:01', 11);
+(33, 8, 'test', '2020-04-08 18:44:01', 11),
+(34, 1, 'test', '2020-04-09 17:30:30', 11),
+(35, 4, 'test', '2020-04-09 18:33:27', 13),
+(38, 1, 'ah', '2020-04-09 18:49:35', 10),
+(39, 1, 'ah', '2020-04-09 18:49:39', 11),
+(40, 1, 'ah', '2020-04-09 18:49:43', 9),
+(41, 4, 'test', '2020-04-09 18:53:31', 13),
+(42, 3, 'Yo', '2020-04-09 18:55:59', 13),
+(45, 3, 'test', '2020-04-09 18:57:27', 13);
 
 -- --------------------------------------------------------
 
@@ -701,8 +758,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`) VALUES
 (1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-04-08 16:42:51', 1000000),
 (2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-04-08 16:43:01', 1000000),
-(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-04-08 16:43:10', NULL),
-(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-04-08 16:43:22', NULL),
+(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-04-08 16:43:10', 1000002),
+(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-04-08 16:43:22', 1000003),
 (5, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-04-08 16:43:33', 1000001),
 (6, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-04-08 16:43:54', NULL),
 (7, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-04-08 16:44:04', NULL),
@@ -718,6 +775,14 @@ INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_us
 ALTER TABLE `adoption`
   ADD PRIMARY KEY (`id_animal`),
   ADD KEY `adoption_ibfk_1` (`id_assoc`);
+
+--
+-- Indexes for table `assocConvers`
+--
+ALTER TABLE `assocConvers`
+  ADD PRIMARY KEY (`id_assocConvers`),
+  ADD KEY `idConvInd` (`id_convers`),
+  ADD KEY `idAssocInd` (`id_assoc`);
 
 --
 -- Indexes for table `associations`
@@ -780,16 +845,22 @@ ALTER TABLE `adoption`
   MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `assocConvers`
+--
+ALTER TABLE `assocConvers`
+  MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
-  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000002;
+  MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000004;
 
 --
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -801,7 +872,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -830,6 +901,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `assocConvers`
+--
+ALTER TABLE `assocConvers`
+  ADD CONSTRAINT `assocconvers_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `assocconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `conversation`
