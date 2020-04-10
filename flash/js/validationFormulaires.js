@@ -789,6 +789,7 @@ $(document).ready(function () {
         $("#supprimerAnnonceDef").show();
     });
 
+
 });
 
 

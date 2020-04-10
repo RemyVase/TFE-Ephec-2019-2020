@@ -34,9 +34,7 @@ include '../controller/listeConversationsController.php';
     <!--================End Home Banner Area =================-->
 
     <!--================Contact Area =================-->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!------ Include the above in your HEAD tag ---------->
 
     <style>
@@ -270,23 +268,33 @@ include '../controller/listeConversationsController.php';
                     <div class="inbox_chat">
                         <?php foreach ($recupAllConversation as $conv) : ?>
                             <?php
-                            $annee = date('Y', strtotime($conv{'date_message'}));
-                            $mois = date('m', strtotime($conv{'date_message'}));
-                            $jour = date('d', strtotime($conv{'date_message'}));
+                            $annee = date('Y', strtotime($conv{
+                                'date_message'}));
+                            $mois = date('m', strtotime($conv{
+                                'date_message'}));
+                            $jour = date('d', strtotime($conv{
+                                'date_message'}));
                             $date = $jour . '/' . $mois . '/' . $annee;
                             ?>
 
-                            <div name="conversation" id="<?= $conv{'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{'id_convers'} : $conv{'id_convers'}.",'".$conv{'nom_assoc'}."'"); ?>)" style="cursor: pointer;" class="chat_list active_chat">
+                            <div name="conversation" id="<?= $conv{
+                                                                'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
+                                                                                                                    'id_convers'} : $conv{
+                                                                                                                    'id_convers'} . ",'" . $conv{
+                                                                                                                    'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list active_chat">
 
                                 <div class="chat_people">
                                     <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                     <div class="chat_ib">
-                                    <?php if(!empty($_SESSION['idAssoc'])) : ?>
-                                        <h5><?= $conv{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                    <?php else : ?>
-                                        <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                    <?php endif ?>
-                                        <p><?= $conv{'contenu_message'} ?></p>
+                                        <?php if (!empty($_SESSION['idAssoc'])) : ?>
+                                            <h5><?= $conv{
+                                                    'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                        <?php else : ?>
+                                            <h5><?= $conv{
+                                                    'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                        <?php endif ?>
+                                        <p><?= $conv{
+                                                'contenu_message'} ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -299,14 +307,14 @@ include '../controller/listeConversationsController.php';
 
                     </div>
                     <div class="type_msg">
-                        
+
                         <div class="input_msg_write">
                             <form id="formMessage">
                                 <input id="messageMessagerie" type="text" class="write_msg" placeholder="Type a message" />
                                 <button class="msg_send_btn" type="button" onclick="envoiMessage(<?= $_SESSION['id'] ?>,$('#messageMessagerie').val())"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                            <form>
+                                <form>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -322,6 +330,7 @@ include '../controller/listeConversationsController.php';
     <?php include 'jquery.php' ?>
     <script>
         var idConvers;
+
         function changementMessage(id, nomAssoc = "") {
             idConvers = id;
             $.ajax({
@@ -331,7 +340,11 @@ include '../controller/listeConversationsController.php';
                     "data": id
                 },
                 success: function(response) {
-                    var month = new Array();
+                    console.log(response);
+                    if (response === '"fraude"') {
+                        ret = '<h1 style="color:red">Ces messages ne sont pas les vôtres !</h1>';
+                    } else {
+                        var month = new Array();
                         month[0] = "janvier";
                         month[1] = "février";
                         month[2] = "mars";
@@ -344,33 +357,34 @@ include '../controller/listeConversationsController.php';
                         month[9] = "octobre";
                         month[10] = "novembre";
                         month[11] = "décembre";
-                    var tab = JSON.parse(response);
-                    var ret = "";
-                    $('.msg_history').empty();
-                    for (i = 0; i < tab.length; i++) {
-                        var date = "";
-                        var datefull = new Date(tab[i]['date_message']);
-                        var date = (datefull).getDate() + " " + (month[(datefull).getMonth()]) + " " + (datefull).getFullYear();
-                        var heure = (datefull).getHours() + 'h' + (datefull).getMinutes();
-                        if (tab[i]['id_envoyeur'] != <?= $_SESSION['id'] ?>) {
-                            ret += '<div class="incoming_msg">';
-                            ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
-                            ret += '<div class="received_msg">';
-                            ret += '<div class="received_withd_msg">';
-                            ret += '<span class="time_date">' + ((nomAssoc) ? nomAssoc + ' - ' : '') + tab[i]['pseudo_user'] +'</span>';
-                            ret += '<p>' + tab[i]['contenu_message'] + '</p>';
-                            ret += '<span class="time_date">' + date +" " + heure +'</span>';
-                            ret += '</div>';
-                            ret += '</div>';
-                            ret += '</div>';
-                        } else {
-                            ret += '<div class="outgoing_msg">';
-                            ret += '<div class="sent_msg">';
-                            ret += '<span class="time_date">' + tab[i]['pseudo_user'] +'</span>';
-                            ret += '<p>' + tab[i]['contenu_message'] + '</p>';
-                            ret += '<span class="time_date">' + date +" " + heure +'</span>';
-                            ret += '</div>';
-                            ret += '</div>';
+                        var tab = JSON.parse(response);
+                        var ret = "";
+                        $('.msg_history').empty();
+                        for (i = 0; i < tab.length; i++) {
+                            var date = "";
+                            var datefull = new Date(tab[i]['date_message']);
+                            var date = (datefull).getDate() + " " + (month[(datefull).getMonth()]) + " " + (datefull).getFullYear();
+                            var heure = (datefull).getHours() + 'h' + (datefull).getMinutes();
+                            if (tab[i]['id_envoyeur'] != <?= $_SESSION['id'] ?>) {
+                                ret += '<div class="incoming_msg">';
+                                ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
+                                ret += '<div class="received_msg">';
+                                ret += '<div class="received_withd_msg">';
+                                ret += '<span class="time_date">' + ((nomAssoc) ? nomAssoc + ' - ' : '') + tab[i]['pseudo_user'] + '</span>';
+                                ret += '<p>' + tab[i]['contenu_message'] + '</p>';
+                                ret += '<span class="time_date">' + date + " " + heure + '</span>';
+                                ret += '</div>';
+                                ret += '</div>';
+                                ret += '</div>';
+                            } else {
+                                ret += '<div class="outgoing_msg">';
+                                ret += '<div class="sent_msg">';
+                                ret += '<span class="time_date">' + tab[i]['pseudo_user'] + '</span>';
+                                ret += '<p>' + tab[i]['contenu_message'] + '</p>';
+                                ret += '<span class="time_date">' + date + " " + heure + '</span>';
+                                ret += '</div>';
+                                ret += '</div>';
+                            }
                         }
                     }
                     $('.msg_history').append(ret);
@@ -378,16 +392,16 @@ include '../controller/listeConversationsController.php';
             });
         }
 
-        function envoiMessage(idUser, message){
+        function envoiMessage(idUser, message) {
             $.ajax({
                 url: "../controller/envoieMessageMessagerieController.php",
                 type: "POST",
                 data: {
                     "idConv": idConvers,
                     "idUser": idUser,
-                    "message":message
+                    "message": message
                 },
-                success:function(response){
+                success: function(response) {
                     changementMessage(idConvers);
                     $("#formMessage").trigger("reset");
                     $(".msg_history").scroll();

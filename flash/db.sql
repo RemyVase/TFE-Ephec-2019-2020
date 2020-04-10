@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 09, 2020 at 07:41 PM
+-- Generation Time: Apr 10, 2020 at 10:13 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -219,6 +219,23 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckAssocToAssocConv` (IN `
 SELECT conversation.id_convers FROM conversation
 JOIN assocConvers on assocConvers.id_convers = conversation.id_convers
 WHERE (assocConvers.id_assoc = idEnv and conversation.id_assoc = idRec) or (assocConvers.id_assoc = idRec and conversation.id_assoc = idEnv);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckSiFraude` (IN `idConv` INT, IN `idUser` INT)  BEGIN
+SELECT userConvers.id_convers FROM userConvers
+WHERE userConvers.id_user = idUser and userConvers.id_convers = idConv;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckSiFraudeAssoc` (IN `idConv` INT, IN `idAssoc` INT)  BEGIN
+SELECT assocConvers.id_convers FROM assocConvers
+WHERE assocConvers.id_convers = idConv
+AND assocConvers.id_assoc = idAssoc;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckSiFraudeAssocConvers` (IN `idConv` INT, IN `idAssoc` INT)  BEGIN
+SELECT conversation.id_convers FROM conversation
+WHERE conversation.id_convers = idConv
+AND conversation.id_assoc = idAssoc;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idAssoc` INT)  BEGIN
@@ -605,7 +622,8 @@ INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
 (11, 1000000),
 (10, 1000001),
 (12, 1000001),
-(13, 1000002);
+(13, 1000002),
+(14, 1000002);
 
 -- --------------------------------------------------------
 
@@ -682,7 +700,8 @@ INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_me
 (40, 1, 'ah', '2020-04-09 18:49:43', 9),
 (41, 4, 'test', '2020-04-09 18:53:31', 13),
 (42, 3, 'Yo', '2020-04-09 18:55:59', 13),
-(45, 3, 'test', '2020-04-09 18:57:27', 13);
+(45, 3, 'test', '2020-04-09 18:57:27', 13),
+(46, 8, 'test', '2020-04-09 19:52:18', 14);
 
 -- --------------------------------------------------------
 
@@ -734,7 +753,8 @@ INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
 (2, 1, 10),
 (3, 8, 11),
 (4, 8, 11),
-(5, 8, 12);
+(5, 8, 12),
+(6, 8, 14);
 
 -- --------------------------------------------------------
 
@@ -860,7 +880,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -872,7 +892,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -884,7 +904,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `userConvers`
 --
 ALTER TABLE `userConvers`
-  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

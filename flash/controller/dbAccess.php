@@ -108,6 +108,9 @@ class dbAccess
             case 'supprimerMembreAssoc':
             case 'messageCheckAssocToAssocConv':
             case 'messageLierConversationToAssoc':
+            case 'messageCheckSiFraude':
+            case 'messageCheckSiFraudeAssoc':
+            case 'messageCheckSiFraudeAssocConvers':
                 array_push($params, '?', '?');
 
                 try {
