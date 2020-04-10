@@ -342,6 +342,7 @@ include '../controller/listeConversationsController.php';
                 success: function(response) {
                     console.log(response);
                     if (response === '"fraude"') {
+                        $('.msg_history').empty();
                         ret = '<h1 style="color:red">Ces messages ne sont pas les vôtres !</h1>';
                     } else {
                         var month = new Array();
