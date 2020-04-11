@@ -340,7 +340,6 @@ include '../controller/listeConversationsController.php';
                     "data": id
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response === '"fraude"') {
                         $('.msg_history').empty();
                         ret = '<h1 style="color:red">Ces messages ne sont pas les vôtres !</h1>';
@@ -364,8 +363,13 @@ include '../controller/listeConversationsController.php';
                         for (i = 0; i < tab.length; i++) {
                             var date = "";
                             var datefull = new Date(tab[i]['date_message']);
+                            if ((datefull).getMinutes() < 10) {
+                                minutes = '0' + (datefull).getMinutes();
+                            } else {
+                                minutes = (datefull).getMinutes();
+                            }
                             var date = (datefull).getDate() + " " + (month[(datefull).getMonth()]) + " " + (datefull).getFullYear();
-                            var heure = (datefull).getHours() + 'h' + (datefull).getMinutes();
+                            var heure = (datefull).getHours() + 'h' + minutes;
                             if (tab[i]['id_envoyeur'] != <?= $_SESSION['id'] ?>) {
                                 ret += '<div class="incoming_msg">';
                                 ret += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
