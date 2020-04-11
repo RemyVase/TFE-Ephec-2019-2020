@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 10, 2020 at 10:13 AM
+-- Generation Time: Apr 11, 2020 at 03:35 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -221,6 +221,18 @@ JOIN assocConvers on assocConvers.id_convers = conversation.id_convers
 WHERE (assocConvers.id_assoc = idEnv and conversation.id_assoc = idRec) or (assocConvers.id_assoc = idRec and conversation.id_assoc = idEnv);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckEnvoyeurLastMessage` (IN `idConv` INT)  BEGIN
+SELECT messages.id_envoyeur FROM messages
+WHERE messages.id_convers = idConv
+ORDER BY messages.id_message DESC
+LIMIT 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckSiEnvoyeurDansAssoc` (IN `idUser` INT)  BEGIN
+SELECT users.id_assoc FROM users
+WHERE users.id_user = idUser;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckSiFraude` (IN `idConv` INT, IN `idUser` INT)  BEGIN
 SELECT userConvers.id_convers FROM userConvers
 WHERE userConvers.id_user = idUser and userConvers.id_convers = idConv;
@@ -264,6 +276,12 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLierConversationToAssoc` (IN `idEnv` INT, IN `idConv` INT)  NO SQL
 BEGIN
 INSERT INTO assocConvers(id_assoc, id_convers) values(idEnv,idConv);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageLu` (IN `idConv` INT)  BEGIN
+UPDATE messages 
+SET messages.lu_destinataire = 1
+WHERE messages.id_convers = idConv;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversAssocUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
@@ -563,13 +581,6 @@ CREATE TABLE `assocConvers` (
   `id_assoc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `assocConvers`
---
-
-INSERT INTO `assocConvers` (`id_assocConvers`, `id_convers`, `id_assoc`) VALUES
-(1, 13, 1000003);
-
 -- --------------------------------------------------------
 
 --
@@ -618,12 +629,8 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(9, 1000000),
-(11, 1000000),
-(10, 1000001),
-(12, 1000001),
-(13, 1000002),
-(14, 1000002);
+(18, 1000000),
+(17, 1000001);
 
 -- --------------------------------------------------------
 
@@ -663,45 +670,17 @@ CREATE TABLE `messages` (
   `id_envoyeur` int(11) NOT NULL,
   `contenu_message` text NOT NULL,
   `date_message` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_convers` int(11) NOT NULL
+  `id_convers` int(11) NOT NULL,
+  `lu_destinataire` tinyint(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`) VALUES
-(12, 5, 'yo toto', '2020-04-08 17:20:44', 9),
-(13, 1, 'test', '2020-04-08 17:21:04', 9),
-(14, 1, 'Yo test', '2020-04-08 17:21:37', 10),
-(15, 5, 'Hello toto', '2020-04-08 17:22:27', 10),
-(16, 1, 'LOLILOL', '2020-04-08 17:23:19', 10),
-(17, 8, 'Bonjouur Assoc C\'est trop bien', '2020-04-08 17:27:01', 11),
-(18, 8, 'Bonjouur Assoc C\'est trop bien', '2020-04-08 17:27:07', 11),
-(19, 1, 'test', '2020-04-08 17:34:26', 11),
-(20, 2, 'tata', '2020-04-08 17:35:00', 11),
-(21, 2, 'yo', '2020-04-08 17:35:10', 9),
-(22, 8, 'test', '2020-04-08 18:18:05', 11),
-(23, 1, 'test', '2020-04-08 18:23:59', 11),
-(24, 8, 'test', '2020-04-08 18:28:32', 12),
-(25, 8, 'test', '2020-04-08 18:29:11', 12),
-(26, 8, 'test', '2020-04-08 18:33:38', 11),
-(27, 8, 'retest', '2020-04-08 18:34:38', 11),
-(28, 8, 'restest', '2020-04-08 18:34:53', 11),
-(29, 8, 'test', '2020-04-08 18:35:56', 11),
-(30, 1, 'test', '2020-04-08 18:36:33', 10),
-(31, 8, 'test reedirect', '2020-04-08 18:41:29', 11),
-(32, 8, 'test reedirect', '2020-04-08 18:43:56', 11),
-(33, 8, 'test', '2020-04-08 18:44:01', 11),
-(34, 1, 'test', '2020-04-09 17:30:30', 11),
-(35, 4, 'test', '2020-04-09 18:33:27', 13),
-(38, 1, 'ah', '2020-04-09 18:49:35', 10),
-(39, 1, 'ah', '2020-04-09 18:49:39', 11),
-(40, 1, 'ah', '2020-04-09 18:49:43', 9),
-(41, 4, 'test', '2020-04-09 18:53:31', 13),
-(42, 3, 'Yo', '2020-04-09 18:55:59', 13),
-(45, 3, 'test', '2020-04-09 18:57:27', 13),
-(46, 8, 'test', '2020-04-09 19:52:18', 14);
+INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`, `lu_destinataire`) VALUES
+(52, 5, 'test', '2020-04-11 15:25:24', 17, 0),
+(53, 1, 'dudu', '2020-04-11 15:26:13', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -749,12 +728,8 @@ CREATE TABLE `userConvers` (
 --
 
 INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
-(1, 5, 9),
-(2, 1, 10),
-(3, 8, 11),
-(4, 8, 11),
-(5, 8, 12),
-(6, 8, 14);
+(8, 1, 17),
+(9, 8, 18);
 
 -- --------------------------------------------------------
 
@@ -868,7 +843,7 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT for table `assocConvers`
 --
 ALTER TABLE `assocConvers`
-  MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `associations`
@@ -880,7 +855,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -892,7 +867,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -904,7 +879,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `userConvers`
 --
 ALTER TABLE `userConvers`
-  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

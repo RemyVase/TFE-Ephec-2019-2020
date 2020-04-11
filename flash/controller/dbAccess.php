@@ -71,6 +71,9 @@ class dbAccess
             case 'messageCheckAssocConv':
             case 'messageCheckUserConv2':
             case 'messageRecupAllConversationsAssoc':
+            case 'messageLu':
+            case 'messageCheckEnvoyeurLastMessage':
+            case 'messageCheckSiEnvoyeurDansAssoc':
                 array_push($params, '?');
 
                 try {
