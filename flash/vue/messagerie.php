@@ -267,6 +267,7 @@ include '../controller/listeConversationsController.php';
 
                     <div class="inbox_chat">
                         <?php foreach ($recupAllConversation as $conv) : ?>
+
                             <?php
                             $annee = date('Y', strtotime($conv{
                                 'date_message'}));
@@ -276,29 +277,52 @@ include '../controller/listeConversationsController.php';
                                 'date_message'}));
                             $date = $jour . '/' . $mois . '/' . $annee;
                             ?>
-
-                            <div name="conversation" id="<?= $conv{
-                                                                'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
+                            <?php if ($conv{
+                            'lu_destinataire'} === "0") : ?>
+                                <div name="conversation" id="<?= $conv{
+                                                                    'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
                                                                                                                     'id_convers'} : $conv{
                                                                                                                     'id_convers'} . ",'" . $conv{
                                                                                                                     'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list active_chat">
 
-                                <div class="chat_people">
-                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                    <div class="chat_ib">
-                                        <?php if (!empty($_SESSION['idAssoc'])) : ?>
-                                            <h5><?= $conv{
-                                                    'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                        <?php else : ?>
-                                            <h5><?= $conv{
-                                                    'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                        <?php endif ?>
-                                        <p><?= $conv{
-                                                'contenu_message'} ?></p>
+                                    <div class="chat_people">
+                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                        <div class="chat_ib">
+                                            <?php if (!empty($_SESSION['idAssoc'])) : ?>
+                                                <h5><?= $conv{
+                                                        'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                            <?php else : ?>
+                                                <h5><?= $conv{
+                                                        'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                            <?php endif ?>
+                                            <p><?= $conv{
+                                                    'contenu_message'} ?></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php else : ?>
+                                <div name="conversation" id="<?= $conv{
+                                                                    'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
+                                                                                                                    'id_convers'} : $conv{
+                                                                                                                    'id_convers'} . ",'" . $conv{
+                                                                                                                    'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list">
 
+                                    <div class="chat_people">
+                                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                        <div class="chat_ib">
+                                            <?php if (!empty($_SESSION['idAssoc'])) : ?>
+                                                <h5><?= $conv{
+                                                        'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                            <?php else : ?>
+                                                <h5><?= $conv{
+                                                        'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                            <?php endif ?>
+                                            <p><?= $conv{
+                                                    'contenu_message'} ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                         <?php endforeach ?>
                     </div>
                 </div>
