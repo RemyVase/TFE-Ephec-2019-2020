@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 12, 2020 at 05:03 PM
+-- Generation Time: Apr 12, 2020 at 07:37 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -250,6 +250,11 @@ WHERE conversation.id_convers = idConv
 AND conversation.id_assoc = idAssoc;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUser` (IN `idConv` INT)  BEGIN 
+SELECT id_user FROM userConvers
+WHERE userConvers.id_convers = idConv;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageCheckUserConv` (IN `idEnvoyeur` INT, IN `idAssoc` INT)  BEGIN
 SELECT userConvers.id_convers FROM userConvers
 JOIN conversation ON conversation.id_convers = userConvers.id_convers
@@ -284,9 +289,19 @@ SET messages.lu_destinataire = 1
 WHERE messages.id_convers = idConv;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messagePseudoConvAssoc` (IN `idConvers` INT, IN `idAssocCo` INT)  BEGIN
+SELECT associations.nom_assoc FROM associations
+JOIN conversation ON conversation.id_assoc = associations.id_assoc
+WHERE conversation.id_convers = idConvers and conversation.id_assoc != idAssocCo
+UNION 
+SELECT associations.nom_assoc FROM associations
+JOIN assocConvers ON assocConvers.id_assoc = associations.id_assoc
+WHERE assocConvers.id_convers = idConvers and assocConvers.id_assoc != idAssocCo;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllConversAssocUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
 SELECT * FROM(
-SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message,messages.lu_destinataire 
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message,messages.lu_destinataire
 FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN userConvers ON userConvers.id_convers = conversation.id_convers
@@ -318,7 +333,7 @@ JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN users ON users.id_user = messages.id_envoyeur
 WHERE conversation.id_assoc = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers)
 UNION
-SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message,messages.lu_destinataire 
+SELECT users.pseudo_user, conversation.id_convers, messages.date_message, messages.contenu_message,messages.lu_destinataire
 FROM conversation
 JOIN messages ON messages.id_convers = conversation.id_convers
 JOIN assocConvers ON assocConvers.id_convers = conversation.id_convers
@@ -335,7 +350,7 @@ JOIN userConvers ON userConvers.id_convers = conversation.id_convers
 JOIN users ON users.id_user = userConvers.id_user
 JOIN associations ON associations.id_assoc = conversation.id_assoc
 WHERE userConvers.id_user = id and messages.date_message in (SELECT max(date_message) FROM messages GROUP BY id_convers)
-ORDER BY messages.lu_destinataire ASC, TMP.date_message DESC;
+ORDER BY messages.lu_destinataire ASC, messages.date_message DESC;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupAllMessage` (IN `id` INT)  BEGIN
@@ -343,6 +358,12 @@ SELECT messages.contenu_message, messages.id_envoyeur, messages.date_message, us
 JOIN users on users.id_user = messages.id_envoyeur
 WHERE messages.id_convers = id
 ORDER BY messages.id_message ASC;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `messageRecupPseudoUser` (IN `idConv` INT)  BEGIN
+SELECT users.pseudo_user FROM users 
+JOIN userConvers ON userConvers.id_user = users.id_user
+WHERE userConvers.id_convers = idConv;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `messageTakeLastConvCree` ()  BEGIN
@@ -591,9 +612,9 @@ CREATE TABLE `assocConvers` (
 --
 
 INSERT INTO `assocConvers` (`id_assocConvers`, `id_convers`, `id_assoc`) VALUES
-(4, 21, 1000001),
-(5, 21, 1000000),
-(6, 21, 1000000);
+(10, 27, 1000001),
+(11, 28, 1000001),
+(12, 29, 1000001);
 
 -- --------------------------------------------------------
 
@@ -643,8 +664,9 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
-(21, 1000000),
-(22, 1000000);
+(27, 1000000),
+(28, 1000002),
+(29, 1000003);
 
 -- --------------------------------------------------------
 
@@ -693,15 +715,13 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`, `lu_destinataire`) VALUES
-(57, 5, 'Salut Toto\n', '2020-04-11 16:01:06', 21, 1),
-(58, 1, 'Salut mec comment va ?', '2020-04-11 16:01:24', 21, 1),
-(59, 5, 'Ca m\'intéresse ! ', '2020-04-11 16:01:42', 21, 1),
-(60, 1, 'Ah parfait ca ! ', '2020-04-11 16:01:59', 21, 1),
-(61, 1, 'Bonjour Dudu cet article m\'intéresse', '2020-04-11 16:02:29', 21, 1),
-(62, 1, 'test', '2020-04-11 16:06:43', 21, 1),
-(63, 1, 'test', '2020-04-11 16:08:51', 22, 1),
-(64, 8, 'duuuuuuuuuu', '2020-04-11 16:09:15', 22, 1),
-(65, 5, 'test', '2020-04-12 16:58:36', 21, 1);
+(80, 5, 'test', '2020-04-12 19:22:26', 27, 0),
+(81, 5, 'test', '2020-04-12 19:22:33', 28, 1),
+(82, 5, 'test', '2020-04-12 19:22:44', 28, 1),
+(83, 5, 'test', '2020-04-12 19:22:58', 29, 1),
+(84, 3, 'ahhhh', '2020-04-12 19:23:12', 28, 1),
+(85, 4, 'testttt', '2020-04-12 19:23:27', 29, 1),
+(86, 5, 'test', '2020-04-12 19:27:32', 28, 0);
 
 -- --------------------------------------------------------
 
@@ -743,13 +763,6 @@ CREATE TABLE `userConvers` (
   `id_user` int(11) NOT NULL,
   `id_convers` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `userConvers`
---
-
-INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
-(11, 8, 22);
 
 -- --------------------------------------------------------
 
@@ -863,7 +876,7 @@ ALTER TABLE `adoption`
 -- AUTO_INCREMENT for table `assocConvers`
 --
 ALTER TABLE `assocConvers`
-  MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `associations`
@@ -875,7 +888,7 @@ ALTER TABLE `associations`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `demandesDons`
@@ -887,7 +900,7 @@ ALTER TABLE `demandesDons`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `offresDons`
@@ -899,7 +912,7 @@ ALTER TABLE `offresDons`
 -- AUTO_INCREMENT for table `userConvers`
 --
 ALTER TABLE `userConvers`
-  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

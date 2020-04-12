@@ -74,6 +74,8 @@ class dbAccess
             case 'messageLu':
             case 'messageCheckEnvoyeurLastMessage':
             case 'messageCheckSiEnvoyeurDansAssoc':
+            case 'messageRecupPseudoUser':
+            case 'messageCheckUser':
                 array_push($params, '?');
 
                 try {
@@ -114,6 +116,7 @@ class dbAccess
             case 'messageCheckSiFraude':
             case 'messageCheckSiFraudeAssoc':
             case 'messageCheckSiFraudeAssocConvers':
+            case 'messagePseudoConvAssoc':
                 array_push($params, '?', '?');
 
                 try {
