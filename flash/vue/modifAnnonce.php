@@ -106,7 +106,8 @@ include '../controller/uneAnnonceController.php';
 						<br>
 						<br>
 
-						<h2 align="center">Modification des champs sélectionnables de l'offre (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
+						<h2 align="center">Modification des champs sélectionnables de l'offre</h2>
+						<small class="form-text text-muted">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
 						<br>
 						<form id="modifOffreSelect_form" method="post" action="#" novalidate>
 							<div class="row justify-content-center">
@@ -139,7 +140,7 @@ include '../controller/uneAnnonceController.php';
 										<span class="form_error" style="color:red"></span>
 									</div><br><br>
 									<div class="text-center">
-										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'offre sur le site</button>
+										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables</button>
 									</div>
 									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
 								</div>
@@ -157,7 +158,7 @@ include '../controller/uneAnnonceController.php';
 										<span class="form_error" style="color:red"></span>
 									</div>
 									<div class="text-center">
-										<button type="submit" class="btn btn-dark">Modifier l'image de l'offre sur le site</button>
+										<button type="submit" class="btn btn-dark">Modifier l'image de l'offre</button>
 									</div>
 									<p id="extPasOk" style="display : none; color : red">L'image doit-être un png ou un jpg.</p>
 									<p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>

@@ -99,7 +99,7 @@ include '../controller/detailsMonAssocController.php';
                                         <option value="<?= $membre['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                     </datalist>
-                                <button type="submit" class="btn btn-dark">Ajouter cette personne en tant que membre de l'association</button><br>
+                                <button type="submit" class="btn btn-dark">Ajouter un membre à l'association</button><br>
                                 <span id="userDejaDansAssoc" style="display : none; color : red">Cet utilisateur est déjà dans une association.</span>
                             </div>    
                         </div>
@@ -191,7 +191,8 @@ include '../controller/detailsMonAssocController.php';
                     <br>
                     <br>
 
-                    <h2 align="center">Modification des champs sélectionnables de l'animal (Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</h2>
+                    <h2 align="center">Modification des champs sélectionnables de l'animal </h2>
+                    <small class="form-text text-muted">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
                     <br>
                     <form id="modifAssocSelect_form" method="post" action="#" novalidate>
                         <div class="row justify-content-center">
@@ -205,7 +206,7 @@ include '../controller/detailsMonAssocController.php';
                                     <span class="form_error" style="color:red"></span>
                                 </div><br><br>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables de l'animal sur le site</button>
+                                    <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables</button>
                                 </div>
                                 <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
                             </div>
@@ -223,7 +224,7 @@ include '../controller/detailsMonAssocController.php';
                                     <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-dark">Modifier l'image de mon association sur le site</button>
+                                    <button type="submit" class="btn btn-dark">Modifier l'image de mon association</button>
                                 </div>
                                 <p id="extPasOk" style="display : none; color : red">L'image doit-être un png ou un jpg.</p>
                                 <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
