@@ -144,7 +144,7 @@ button:focus {
     .header_area .navbar .nav .nav-item {
       margin-right: 45px; }
       .header_area .navbar .nav .nav-item .nav-link {
-        font: 500 12px/120px "Roboto", sans-serif;
+        font: 500 10.5px/120px "Roboto", sans-serif;
         text-transform: uppercase;
         color: #fff;
         padding: 0px;
@@ -163,7 +163,7 @@ button:focus {
           margin: 0px;
           background: #fff;
           box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1); }
-          @media (min-width: 992px) {
+          @media (min-width: 1031px) {
             .header_area .navbar .nav .nav-item.submenu ul {
               position: absolute;
               top: 120%;
@@ -209,7 +209,7 @@ button:focus {
             .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
               background: #fa333f;
               color: #fff; }
-        @media (min-width: 992px) {
+        @media (min-width: 1031px) {
           .header_area .navbar .nav .nav-item.submenu:hover ul {
             visibility: visible;
             opacity: 1;
@@ -876,7 +876,7 @@ button:focus {
       opacity: 1; }
     .single-post-area .navigation-area .nav-right:hover .thumb img {
       opacity: .5; }
-@media (max-width: 991px) {
+@media (max-width: 1030px) {
   .single-post-area .sidebar-widgets {
     padding-bottom: 0px; } }
 
@@ -954,7 +954,7 @@ button:focus {
         margin-bottom: 1rem; } }
   .comment-form .email {
     padding-right: 0px; }
-    @media (max-width: 991px) {
+    @media (max-width: 1030px) {
       .comment-form .email {
         padding-left: 0px; } }
   .comment-form .form-control {
@@ -1354,14 +1354,14 @@ button:focus {
   line-height: 1.2em;
   margin-bottom: 20px; }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1030.98px) {
   .generic-banner .generic-banner-content h2 br {
     display: none; } }
 .generic-banner .generic-banner-content p {
   text-align: center;
   font-size: 16px; }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1030.98px) {
   .generic-banner .generic-banner-content p br {
     display: none; } }
 .generic-content h1 {
@@ -1643,7 +1643,7 @@ h6 {
   background: #fff;
   border-left: 2px solid #f8b600; }
 
-@media (max-width: 991px) {
+@media (max-width: 1030px) {
   .progress-table-wrap {
     overflow-x: scroll; } }
 .progress-table {
@@ -2310,7 +2310,7 @@ h6 {
 .default-select .nice-select::after {
   right: 20px; }
 
-@media (max-width: 991px) {
+@media (max-width: 1030px) {
   .left-align-p p {
     margin-top: 20px; } }
 .form-select {
@@ -3076,13 +3076,17 @@ max-width : 150px;
         .banner_area_demandeOffre .banner_inner .banner_content .page_link a:hover {
           color: #fa333f; }
 
-.ecartGauche {
-  padding-left: 10%;
-}
 
-.ecartDroite {
-  padding-right: 10%;
-}
+
+  .ecartGauche {
+    padding-left: 1%;
+  }
+
+  .ecartDroite {
+    padding-right: 1%;
+  }
+
+
 
 .imgCoupe{
   background-size: cover;
