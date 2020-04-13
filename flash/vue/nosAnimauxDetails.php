@@ -118,7 +118,7 @@ include '../controller/detailsAnimalController.php';
                         <br>
                         <br>
                 <h2 align="center">Modification des champs sélectionnables de l'animal</h2>
-                <small class="form-text text-muted">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
+                <small class="form-text text-muted" align="center">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
 						<br>
 						<form id="modifAnimalSelect_form" method="post" action="#" novalidate>
 							<div class="row justify-content-center">

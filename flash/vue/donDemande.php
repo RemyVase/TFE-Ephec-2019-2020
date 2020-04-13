@@ -33,17 +33,28 @@ include '../controller/listeDemandesController.php';
 
 	<!--================Portfolio Details Area =================-->
 	<section>
-		<div class="container pad_bt md-center">
+		<div class="container pad_bt md-center" style="padding-top:3%">
 			<div class="col-lg-12 md-center" align="center">
-				<div class="align-center">
-					<div class="text-center">
-						<label>Type d'animal :</label>
-						<a href="donDemande.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chats</button></a>
-						<a href="donDemande.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chiens</button></a>
-						<label>Type d'objet :</label>
-						<a href="donDemande.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Jouet</button></a>
-						<a href="donDemande.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Bien-être</button></a>
-						<a href="donDemande.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Nourriture</button></a>
+				<div class="row">
+					<div class="col align-self-center" style="font-size:11px">
+					<h5>TRI : </h5>
+						Type d'animal :
+						
+							<select onchange="location = this.value;">
+								<option value="donDemande.php">Tous</option>
+								<option value="donDemande.php?p=1&typeAnimal=Chat">Chat</option>
+								<option value="donDemande.php?p=1&typeAnimal=Chien">Chien</option>
+							</select>
+						
+						Type d'objet :
+						
+							<select onchange="location = this.value;">
+								<option value="donDemande.php">Tous</option>
+								<option value="donDemande.php?p=1&typeObjet=Jouet">Jouet</option>
+								<option value="donDemande.php?p=1&typeObjet=Bien-être">Bien-être</option>
+								<option value="donDemande.php?p=1&typeObjet=Nourriture">Nourriture</option>
+							</select>
+						
 					</div>
 				</div>
 			</div>

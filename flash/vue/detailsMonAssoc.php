@@ -89,7 +89,7 @@ include '../controller/detailsMonAssocController.php';
                 <?php endforeach ?>
                 <br>
                 <form id="ajoutMembre_form" method="post" action="#" novalidate>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" align="center">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
@@ -106,7 +106,7 @@ include '../controller/detailsMonAssocController.php';
                     </div>
                 </form><br><br>
                 <form id="suppressionMembre_form" method="post" action="#" novalidate>
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" align="center">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="pseudoSupp">Indiquez le pseudo de la personne :</label>
@@ -192,7 +192,7 @@ include '../controller/detailsMonAssocController.php';
                     <br>
 
                     <h2 align="center">Modification des champs sélectionnables de l'animal </h2>
-                    <small class="form-text text-muted">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
+                    <small class="form-text text-muted" align="center">(Veillez à bien remettre tous les champs ci-dessous comme vous le souhaitez)</small>
                     <br>
                     <form id="modifAssocSelect_form" method="post" action="#" novalidate>
                         <div class="row justify-content-center">

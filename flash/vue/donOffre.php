@@ -33,21 +33,37 @@ include '../controller/listeOffresController.php';
 	<!--================Home Blog Area =================-->
 	<section>
 		<div class="container pad_bt md-center">
-			<div class="col-lg-12 md-center" align="center">
-				<div class="align-center">
-					<div class="text-center">
-						<label>Type d'animal :</label>
-						<a href="donOffre.php?p=1&typeAnimal=Chat"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chats</button></a>
-						<a href="donOffre.php?p=1&typeAnimal=Chien"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Chiens</button></a>
-						<label>Type d'objet :</label>
-						<a href="donOffre.php?p=1&typeObjet=Jouet"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Jouet</button></a>
-						<a href="donOffre.php?p=1&typeObjet=Bien-être"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Bien-être</button></a>
-						<a href="donOffre.php?p=1&typeObjet=Nourriture"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Nourriture</button></a>
-						<label>Etat de l'objet :</label>
-						<a href="donOffre.php?p=1&etat=Neuf"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Neuf</button></a>
-						<a href="donOffre.php?p=1&etat=Presque neuf"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Presque neuf</button></a>
-						<a href="donOffre.php?p=1&etat=Usé"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Usé</button></a>
-						<a href="donOffre.php?p=1&etat=Très usé"><button class="btn btn-dark" style="margin-right:1em; font-size:0.8em;">Très usé</button></a>
+			<div class="col-lg-12 md-center" align="center" style="padding-top:3%">
+				<div class="row">
+					<div class="col align-self-center" style="font-size:11px">
+					<h5>TRI : </h5>
+						Type d'animal :
+						
+							<select class="" onchange="location = this.value;">
+								<option value="donOffre.php">Tous</option>
+								<option value="donOffre.php?p=1&typeAnimal=Chat">Chat</option>
+								<option value="donOffre.php?p=1&typeAnimal=Chien">Chien</option>
+							</select>
+						
+						Type d'objet :
+						
+							<select onchange="location = this.value;">
+								<option value="donOffre.php">Tous</option>
+								<option value="donOffre.php?p=1&typeObjet=Jouet">Jouet</option>
+								<option value="donOffre.php?p=1&typeObjet=Bien-être">Bien-être</option>
+								<option value="donOffre.php?p=1&typeObjet=Nourriture">Nourriture</option>
+							</select>
+						
+						Etat de l'objet :
+						
+							<select onchange="location = this.value;">
+								<option value="donOffre.php">Tous</option>
+								<option value="donOffre.php?p=1&etat=Neuf">Neuf</option>
+								<option value="donOffre.php?p=1&etat=Presque neuf">Presque neuf</option>
+								<option value="donOffre.php?p=1&etat=Usé">Usé</option>
+								<option value="donOffre.php?p=1&etat=Très usé">Très usé</option>
+							</select>
+						
 					</div>
 				</div>
 			</div>
@@ -115,6 +131,7 @@ include '../controller/listeOffresController.php';
 
 	<?php include 'footer.php' ?>
 	<?php include 'jquery.php' ?>
+	
 </body>
 
 </html>
