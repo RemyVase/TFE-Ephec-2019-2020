@@ -12,7 +12,7 @@ $currentPage = "ajoutAssociation";
     <?php include 'header.php' ?>
 
     <!--================Home Banner Area =================-->
-    <section class="banner_area">
+    <section class="banner_area_assoc">
         <div class="box_1620">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">

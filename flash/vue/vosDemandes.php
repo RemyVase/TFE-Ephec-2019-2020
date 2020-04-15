@@ -13,16 +13,14 @@ include '../controller/listeNosDemandesController.php'
     <?php include 'header.php' ?>
 
     <!--================Home Banner Area =================-->
-    <section class="banner_area">
+    <section class="banner_area_vosOffres">
         <div class="box_1620">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
                     <div class="banner_content text-center">
-                        <h2>Project Details</h2>
+                    <h2 style="color:white">Vos demandes</h2>
                         <div class="page_link">
-                            <a href="index.html">Home</a>
-                            <a href="projects.html">Projects</a>
-                            <a href="project-details.html">Project Details</a>
+                            <p style="color:white">Retrouvez vos demandes de dons</p>
                         </div>
                     </div>
                 </div>
@@ -59,23 +57,9 @@ include '../controller/listeNosDemandesController.php'
     <div>
         <nav class="blog-pagination justify-content-center d-flex">
             <ul class="pagination">
-                <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Previous">
-                        <span aria-hidden="true">
-                            <span class="lnr lnr-chevron-left"></span>
-                        </span>
-                    </a>
-                </li>
                 <?php for ($i = 1; $i <= $nbPages; $i++) { ?>
                     <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
                 <?php } ?>
-                <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Next">
-                        <span aria-hidden="true">
-                            <span class="lnr lnr-chevron-right"></span>
-                        </span>
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>

@@ -250,13 +250,13 @@ include '../controller/listeConversationsController.php';
         }
     </style>
     <div class="container">
-        <h3 class=" text-center">Messaging</h3>
+        <h3 class=" text-center">Messages</h3>
         <div class="messaging">
             <div class="inbox_msg">
                 <div class="inbox_people">
                     <div class="headind_srch">
                         <div class="recent_heading">
-                            <h4>Recent</h4>
+                            <h4>Conversations</h4>
                         </div>
 
                     </div>

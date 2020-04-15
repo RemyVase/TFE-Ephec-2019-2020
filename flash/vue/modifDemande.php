@@ -18,8 +18,8 @@ include '../controller/uneDemandeController.php';
 			<div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Créez une offre de dons</h2>
-						<p style="color: white">Offrez votre aide aux associations</p>
+						<h2>Votre demande</h2>
+						<p style="color: white">Modifiez votre demande</p>
 					</div>
 				</div>
 			</div>

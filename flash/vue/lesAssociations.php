@@ -13,7 +13,7 @@ include "../controller/listeAssociationsController.php"
     <?php include 'header.php' ?>
 
     <!--================Home Banner Area =================-->
-    <section class="banner_area">
+    <section class="banner_area_assoc">
         <div class="box_1620">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
@@ -87,23 +87,9 @@ include "../controller/listeAssociationsController.php"
     <div>
         <nav class="blog-pagination justify-content-center d-flex">
             <ul class="pagination">
-                <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Previous">
-                        <span aria-hidden="true">
-                            <span class="lnr lnr-chevron-left"></span>
-                        </span>
-                    </a>
-                </li>
                 <?php for($i=1; $i<= $nbPages; $i++){ ?>
                     <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/lesAssociations.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
                 <?php } ?>
-                <li class="page-item">
-                    <a href="#" class="page-link" aria-label="Next">
-                        <span aria-hidden="true">
-                            <span class="lnr lnr-chevron-right"></span>
-                        </span>
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>

@@ -2993,7 +2993,7 @@ max-width : 150px;
     background: #000;
     margin-bottom: 120px; }
     .banner_area_faireOffre .box_1620 {
-      background: url(../img/chatCoussin.jpeg) no-repeat scroll center center;
+      background: url(../img/chienFond.jpeg) no-repeat scroll center center;
       background-size: cover;
       min-height: 360px;
       border-radius: 12px;
@@ -3075,6 +3075,233 @@ max-width : 150px;
             display: none; }
         .banner_area_demandeOffre .banner_inner .banner_content .page_link a:hover {
           color: #fa333f; }
+
+.banner_area_tuto {
+    position: relative;
+    z-index: 1;
+    min-height: 350px;
+    background: #000;
+    margin-bottom: 120px; }
+    .banner_area_tuto .box_1620 {
+      background: url(../img/chienFond2.jpeg) no-repeat scroll center center;
+      background-size: cover;
+      min-height: 360px;
+      border-radius: 12px;
+      position: relative;
+      bottom: -120px; }
+    .banner_area_tuto .banner_inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      z-index: 1; }
+      .banner_area_tuto .banner_inner .banner_content h2 {
+        color: #fff;
+        font-size: 48px;
+        font-family: "PT Serif", serif;
+        margin-bottom: 0px;
+        font-weight: bold; }
+      .banner_area_tuto .banner_inner .banner_content .page_link a {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        margin-right: 32px;
+        position: relative; }
+        .banner_area_tuto .banner_inner .banner_content .page_link a:before {
+          content: "\e87a";
+          font-family: 'Linearicons-Free';
+          position: absolute;
+          right: -25px;
+          top: 50%;
+          transform: translateY(-50%); }
+        .banner_area_tuto .banner_inner .banner_content .page_link a:last-child {
+          margin-right: 0px; }
+          .banner_area_tuto .banner_inner .banner_content .page_link a:last-child:before {
+            display: none; }
+        .banner_area_tuto .banner_inner .banner_content .page_link a:hover {
+          color: #fa333f; }
+
+.banner_area_animauxAdoption {
+    position: relative;
+    z-index: 1;
+    min-height: 350px;
+    background: #000;
+    margin-bottom: 120px; }
+    .banner_area_animauxAdoption .box_1620 {
+      background: url(../img/chienfond4.jpeg) no-repeat scroll center center;
+      background-size: cover;
+      min-height: 360px;
+      border-radius: 12px;
+      position: relative;
+      bottom: -120px; }
+    .banner_area_animauxAdoption .banner_inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      z-index: 1; }
+      .banner_area_animauxAdoption .banner_inner .banner_content h2 {
+        color: #fff;
+        font-size: 48px;
+        font-family: "PT Serif", serif;
+        margin-bottom: 0px;
+        font-weight: bold; }
+      .banner_area_animauxAdoption .banner_inner .banner_content .page_link a {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        margin-right: 32px;
+        position: relative; }
+        .banner_area_animauxAdoption .banner_inner .banner_content .page_link a:before {
+          content: "\e87a";
+          font-family: 'Linearicons-Free';
+          position: absolute;
+          right: -25px;
+          top: 50%;
+          transform: translateY(-50%); }
+        .banner_area_animauxAdoption .banner_inner .banner_content .page_link a:last-child {
+          margin-right: 0px; }
+          .banner_area_animauxAdoption .banner_inner .banner_content .page_link a:last-child:before {
+            display: none; }
+        .banner_area_animauxAdoption .banner_inner .banner_content .page_link a:hover {
+          color: #fa333f; }
+
+.banner_area_animauxListe {
+    position: relative;
+    z-index: 1;
+    min-height: 350px;
+    background: #000;
+    margin-bottom: 120px; }
+    .banner_area_animauxListe .box_1620 {
+      background: url(../img/chienfond3.jpeg) no-repeat scroll center center;
+      background-size: cover;
+      min-height: 360px;
+      border-radius: 12px;
+      position: relative;
+      bottom: -120px; }
+    .banner_area_animauxListe .banner_inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      z-index: 1; }
+      .banner_area_animauxListe .banner_inner .banner_content h2 {
+        color: #fff;
+        font-size: 48px;
+        font-family: "PT Serif", serif;
+        margin-bottom: 0px;
+        font-weight: bold; }
+      .banner_area_animauxListe .banner_inner .banner_content .page_link a {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        margin-right: 32px;
+        position: relative; }
+        .banner_area_animauxListe .banner_inner .banner_content .page_link a:before {
+          content: "\e87a";
+          font-family: 'Linearicons-Free';
+          position: absolute;
+          right: -25px;
+          top: 50%;
+          transform: translateY(-50%); }
+        .banner_area_animauxListe .banner_inner .banner_content .page_link a:last-child {
+          margin-right: 0px; }
+          .banner_area_animauxListe .banner_inner .banner_content .page_link a:last-child:before {
+            display: none; }
+        .banner_area_animauxListe .banner_inner .banner_content .page_link a:hover {
+          color: #fa333f; }
+
+.banner_area_vosOffres {
+    position: relative;
+    z-index: 1;
+    min-height: 350px;
+    background: #000;
+    margin-bottom: 120px; }
+    .banner_area_vosOffres .box_1620 {
+      background: url(../img/chatFond.jpeg) no-repeat scroll center center;
+      background-size: cover;
+      min-height: 360px;
+      border-radius: 12px;
+      position: relative;
+      bottom: -120px; }
+    .banner_area_vosOffres .banner_inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      z-index: 1; }
+      .banner_area_vosOffres .banner_inner .banner_content h2 {
+        color: #fff;
+        font-size: 48px;
+        font-family: "PT Serif", serif;
+        margin-bottom: 0px;
+        font-weight: bold; }
+      .banner_area_vosOffres .banner_inner .banner_content .page_link a {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        margin-right: 32px;
+        position: relative; }
+        .banner_area_vosOffres .banner_inner .banner_content .page_link a:before {
+          content: "\e87a";
+          font-family: 'Linearicons-Free';
+          position: absolute;
+          right: -25px;
+          top: 50%;
+          transform: translateY(-50%); }
+        .banner_area_vosOffres .banner_inner .banner_content .page_link a:last-child {
+          margin-right: 0px; }
+          .banner_area_vosOffres .banner_inner .banner_content .page_link a:last-child:before {
+            display: none; }
+        .banner_area_vosOffres .banner_inner .banner_content .page_link a:hover {
+          color: #fa333f; }
+
+
+.banner_area_assoc {
+    position: relative;
+    z-index: 1;
+    min-height: 350px;
+    background: #000;
+    margin-bottom: 120px; }
+    .banner_area_assoc .box_1620 {
+      background: url(../img/chatFond2.jpeg) no-repeat scroll center center;
+      background-size: cover;
+      min-height: 360px;
+      border-radius: 12px;
+      position: relative;
+      bottom: -120px; }
+    .banner_area_assoc .banner_inner {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 360px;
+      z-index: 1; }
+      .banner_area_assoc .banner_inner .banner_content h2 {
+        color: #fff;
+        font-size: 48px;
+        font-family: "PT Serif", serif;
+        margin-bottom: 0px;
+        font-weight: bold; }
+      .banner_area_assoc .banner_inner .banner_content .page_link a {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        margin-right: 32px;
+        position: relative; }
+        .banner_area_assoc .banner_inner .banner_content .page_link a:before {
+          content: "\e87a";
+          font-family: 'Linearicons-Free';
+          position: absolute;
+          right: -25px;
+          top: 50%;
+          transform: translateY(-50%); }
+        .banner_area_assoc .banner_inner .banner_content .page_link a:last-child {
+          margin-right: 0px; }
+          .banner_area_assoc .banner_inner .banner_content .page_link a:last-child:before {
+            display: none; }
+        .banner_area_assoc .banner_inner .banner_content .page_link a:hover {
+          color: #fa333f; }
+
 
 
 

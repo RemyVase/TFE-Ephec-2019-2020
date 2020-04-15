@@ -17,8 +17,10 @@ $currentPage = "donFaireOffre";
 			<div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Créez une offre de dons</h2>
-						<p style="color: white">Offrez votre aide aux associations</p>
+					<h2 style="color:white">Faire un don</h2>
+						<div class="page_link">
+							<p style="color:white">Vous souhaitez soutenir ou venir en aide aux différents organismes en faisant un don ? Créez votre annonce ou rendez-vous directement sur le site de l’organisme auquel vous souhaitez soumettre votre don. </p>
+						</div>
 					</div>
 				</div>
 			</div>
