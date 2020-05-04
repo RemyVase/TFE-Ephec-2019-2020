@@ -4,8 +4,8 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$idConv = $_POST['idConv'];
-$idEnvoyeur = $_POST['idUser'];
-$message = $_POST['message'];
+$idConv = htmlspecialchars($_POST['idConv']);
+$idEnvoyeur = htmlspecialchars($_POST['idUser']);
+$message = htmlspecialchars($_POST['message']);
 
 $envoiMessage = $db->callProcedure('messageEnvoiMessage', [$idEnvoyeur, $idConv, $message]);

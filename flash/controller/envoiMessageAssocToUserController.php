@@ -4,9 +4,9 @@ include 'dbAccess.php';
 
 $db = new dbAccess();
 
-$idEnvoyeur = $_SESSION['id'];
-$idReceveur = $_SESSION['idReceveur'];
-$message = $_POST['message'];
+$idEnvoyeur = htmlspecialchars($_SESSION['id']);
+$idReceveur = htmlspecialchars($_SESSION['idReceveur']);
+$message = htmlspecialchars($_POST['message']);
 
 $checkUserConv = $db->callProcedure('messageCheckUserConv', [$_SESSION['idAssoc'],$idReceveur]);
 
