@@ -273,62 +273,80 @@ include '../controller/listeConversationsController.php';
                                 'date_message'}));
                             $date = $jour . '/' . $mois . '/' . $annee;
                             ?>
-                            <?php if ($conv{'lu_destinataire'} === "0") : ?>
-                                <?php $checkUserIntoAssoc = $db->callProcedure('checkUserIntoAssoc',[$conv{'id_user'}])?>
-                                    <?php if($conv{'id_envoyeur'} === $_SESSION['id']) : ?>
-                                        <div name="conversation" id="<?= $conv{
-                                                                            'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
-                                                                                                                                'id_convers'} : $conv{
-                                                                                                                                'id_convers'} . ",'" . $conv{
-                                                                                                                                'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list">
+                            <?php if ($conv{
+                                'lu_destinataire'} === "0") : ?>
+                                <?php $checkUserIntoAssoc = $db->callProcedure('checkUserIntoAssoc', [$conv{
+                                    'id_user'}]) ?>
+                                <?php if ($conv{
+                                    'id_envoyeur'} === $_SESSION['id']) : ?>
+                                    <div name="conversation" id="<?= $conv{
+                                                                        'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
+                                                                                                                            'id_convers'} : $conv{
+                                                                                                                            'id_convers'} . ",'" . $conv{
+                                                                                                                            'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list">
 
-                                            <div class="chat_people">
-                                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                <div class="chat_ib">
-                                                    <?php if (!empty($_SESSION['idAssoc'])) : ?>
-                                                        <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{'id_convers'}, $_SESSION['idAssoc']]); ?>
-                                                        <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{'id_convers'}]); ?>
-                                                        <?php $checkUser = $db->callProcedure('messageCheckUser',[$conv{'id_convers'}]); ?>
-                                                        <?php if(!empty($checkUser)) : ?>
-                                                            <h5><?= $recupPseudoUser[0]{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                                        <?php else : ?>
-                                                            <h5><?= $recupPseudoConv[0]{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                                        <?php endif ?>
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <?php if (!empty($_SESSION['idAssoc'])) : ?>
+                                                    <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{
+                                                        'id_convers'}, $_SESSION['idAssoc']]); ?>
+                                                    <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php $checkUser = $db->callProcedure('messageCheckUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php if (!empty($checkUser)) : ?>
+                                                        <h5><?= $recupPseudoUser[0]{
+                                                                'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php else : ?>
-                                                        <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                        <h5><?= $recupPseudoConv[0]{
+                                                                'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php endif ?>
-                                                    <p><?= $conv{'contenu_message'} ?></p>
-                                                </div>
+                                                <?php else : ?>
+                                                    <h5><?= $conv{
+                                                            'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                <?php endif ?>
+                                                <p><?= $conv{
+                                                        'contenu_message'} ?></p>
                                             </div>
                                         </div>
-                                    <?php elseif($checkUserIntoAssoc[0]{'id_assoc'} === $_SESSION['idAssoc'] && $_SESSION['idAssoc'] !== NULL) : ?>
-                                        <div name="conversation" id="<?= $conv{
-                                                                            'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
-                                                                                                                                'id_convers'} : $conv{
-                                                                                                                                'id_convers'} . ",'" . $conv{
-                                                                                                                                'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list">
+                                    </div>
+                                <?php elseif ($checkUserIntoAssoc[0]{
+                                    'id_assoc'} === $_SESSION['idAssoc'] && $_SESSION['idAssoc'] !== NULL) : ?>
+                                    <div name="conversation" id="<?= $conv{
+                                                                        'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
+                                                                                                                            'id_convers'} : $conv{
+                                                                                                                            'id_convers'} . ",'" . $conv{
+                                                                                                                            'nom_assoc'} . "'"); ?>)" style="cursor: pointer;" class="chat_list">
 
-                                            <div class="chat_people">
-                                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                                <div class="chat_ib">
-                                                    <?php if (!empty($_SESSION['idAssoc'])) : ?>
-                                                        <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{'id_convers'}, $_SESSION['idAssoc']]); ?>
-                                                        <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{'id_convers'}]); ?>
-                                                        <?php $checkUser = $db->callProcedure('messageCheckUser',[$conv{'id_convers'}]); ?>
-                                                        <?php if(!empty($checkUser)) : ?>
-                                                            <h5><?= $recupPseudoUser[0]{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                                        <?php else : ?>
-                                                            <h5><?= $recupPseudoConv[0]{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
-                                                        <?php endif ?>
+                                        <div class="chat_people">
+                                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                            <div class="chat_ib">
+                                                <?php if (!empty($_SESSION['idAssoc'])) : ?>
+                                                    <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{
+                                                        'id_convers'}, $_SESSION['idAssoc']]); ?>
+                                                    <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php $checkUser = $db->callProcedure('messageCheckUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php if (!empty($checkUser)) : ?>
+                                                        <h5><?= $recupPseudoUser[0]{
+                                                                'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php else : ?>
-                                                        <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                        <h5><?= $recupPseudoConv[0]{
+                                                                'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php endif ?>
-                                                    <p><?= $conv{'contenu_message'} ?></p>
-                                                </div>
+                                                <?php else : ?>
+                                                    <h5><?= $conv{
+                                                            'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                <?php endif ?>
+                                                <p><?= $conv{
+                                                        'contenu_message'} ?></p>
                                             </div>
                                         </div>
-                                    <?php else : ?>
-                                        <div name="conversation" id="<?= $conv{
+                                    </div>
+                                <?php else : ?>
+                                    <div name="conversation" id="<?= $conv{
                                                                         'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
                                                                                                                             'id_convers'} : $conv{
                                                                                                                             'id_convers'} . ",'" . $conv{
@@ -338,22 +356,29 @@ include '../controller/listeConversationsController.php';
                                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                             <div class="chat_ib">
                                                 <?php if (!empty($_SESSION['idAssoc'])) : ?>
-                                                    <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{'id_convers'}, $_SESSION['idAssoc']]); ?>
-                                                    <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{'id_convers'}]); ?>
-                                                    <?php $checkUser = $db->callProcedure('messageCheckUser',[$conv{'id_convers'}]); ?>
-                                                    <?php if(!empty($checkUser)) : ?>
-                                                        <h5><?= $recupPseudoUser[0]{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                    <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{
+                                                        'id_convers'}, $_SESSION['idAssoc']]); ?>
+                                                    <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php $checkUser = $db->callProcedure('messageCheckUser', [$conv{
+                                                        'id_convers'}]); ?>
+                                                    <?php if (!empty($checkUser)) : ?>
+                                                        <h5><?= $recupPseudoUser[0]{
+                                                                'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php else : ?>
-                                                        <h5><?= $recupPseudoConv[0]{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                        <h5><?= $recupPseudoConv[0]{
+                                                                'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                     <?php endif ?>
                                                 <?php else : ?>
-                                                    <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                    <h5><?= $conv{
+                                                            'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php endif ?>
-                                                <p><?= $conv{'contenu_message'} ?></p>
+                                                <p><?= $conv{
+                                                        'contenu_message'} ?></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php endif; ?>
+                                <?php endif; ?>
                             <?php else : ?>
                                 <div name="conversation" id="<?= $conv{
                                                                     'id_convers'} ?>" onclick="changementMessage(<?= (!empty($_SESSION['idAssoc']) ? $conv{
@@ -365,18 +390,25 @@ include '../controller/listeConversationsController.php';
                                         <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                         <div class="chat_ib">
                                             <?php if (!empty($_SESSION['idAssoc'])) : ?>
-                                                <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{'id_convers'}, $_SESSION['idAssoc']]); ?>
-                                                <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{'id_convers'}]); ?>
-                                                <?php $checkUser = $db->callProcedure('messageCheckUser',[$conv{'id_convers'}]); ?>
-                                                <?php if(!empty($checkUser)) : ?>
-                                                    <h5><?= $recupPseudoUser[0]{'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                <?php $recupPseudoConv = $db->callProcedure('messagePseudoConvAssoc', [$conv{
+                                                    'id_convers'}, $_SESSION['idAssoc']]); ?>
+                                                <?php $recupPseudoUser = $db->callProcedure('messageRecupPseudoUser', [$conv{
+                                                    'id_convers'}]); ?>
+                                                <?php $checkUser = $db->callProcedure('messageCheckUser', [$conv{
+                                                    'id_convers'}]); ?>
+                                                <?php if (!empty($checkUser)) : ?>
+                                                    <h5><?= $recupPseudoUser[0]{
+                                                            'pseudo_user'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php else : ?>
-                                                    <h5><?= $recupPseudoConv[0]{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                    <h5><?= $recupPseudoConv[0]{
+                                                            'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php endif ?>
                                             <?php else : ?>
-                                                <h5><?= $conv{'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
+                                                <h5><?= $conv{
+                                                        'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                             <?php endif ?>
-                                            <p><?= $conv{'contenu_message'} ?></p>
+                                            <p><?= $conv{
+                                                    'contenu_message'} ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +417,7 @@ include '../controller/listeConversationsController.php';
                     </div>
                 </div>
                 <div class="mesgs">
-                    <div class="msg_history">
+                    <div class="msg_history" id="endroitMessages">
 
                     </div>
                     <div class="type_msg">
@@ -476,9 +508,11 @@ include '../controller/listeConversationsController.php';
                     }
                     $('#' + id).removeClass("active_chat");
                     $('.msg_history').append(ret);
-
+                    let element = document.getElementById('endroitMessages');
+                    element.scrollTop = element.scrollHeight;
                 }
             });
+
         }
 
         function envoiMessage(idUser, message) {
@@ -493,13 +527,16 @@ include '../controller/listeConversationsController.php';
                 success: function(response) {
                     changementMessage(idConvers);
                     $("#formMessage").trigger("reset");
-                    $(".msg_history").scroll();
-                    $(".msg_history").animate({
-                        scrollTop: 10000
-                    }, 2000);
+
                 }
             });
         }
+
+        window.setInterval(function() {
+            changementMessage(idConvers);
+            let element = document.getElementById('endroitMessages');
+            element.scrollTop = element.scrollHeight;
+        }, 5000);
     </script>
 </body>
 

@@ -61,7 +61,7 @@ include '../controller/listeMesOffresController.php'
         <nav class="blog-pagination justify-content-center d-flex">
             <ul class="pagination">
                 <?php for ($i = 1; $i <= $nbPages; $i++) { ?>
-                    <li class="page-item"><a href="http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
+                    <li class="page-item"><a href="vosAnnonces.php?p=<?= $i; ?>" class="page-link"><?= $i ?></a></li>
                 <?php } ?>
             </ul>
         </nav>

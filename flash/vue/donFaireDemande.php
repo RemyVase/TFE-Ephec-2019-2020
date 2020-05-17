@@ -17,10 +17,9 @@ $currentPage = "donFaireDemande";
 			<div class="banner_inner d-flex align-items-center">
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Projects</h2>
+						<h2>Dons</h2>
 						<div class="page_link">
-							<a href="index.html">Home</a>
-							<a href="projects.html">Projects</a>
+							<p style="color:white">Il manque quelque chose dans votre association ? Créez donc une demande afin de voir si quelqu'un peut vous aider !</p>
 						</div>
 					</div>
 				</div>

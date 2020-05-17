@@ -50,7 +50,7 @@ $(document).ready(function () {
                         $("#mailPasOk").hide();
                     }
                     else if (response === '"ok"') {
-                        window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/connexion.php');
+                        window.location.replace('../vue/connexion.php');
                     }
                 }
             })
@@ -89,7 +89,7 @@ $(document).ready(function () {
                     $("#motDePasseIncorrect").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/accueil.php');
+                    window.location.replace('../vue/accueil.php');
                 }
             }
         });
@@ -171,7 +171,7 @@ $(document).ready(function () {
                     $("#extPasOk").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/nosAnimaux.php');
+                    window.location.replace('../vue/nosAnimaux.php');
                 }
             }
         });
@@ -210,7 +210,7 @@ $(document).ready(function () {
                     $("#extPasOk").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/detailsMonAssoc.php');
+                    window.location.replace('../vue/detailsMonAssoc.php');
                 }
             }
         });
@@ -371,7 +371,7 @@ $(document).ready(function () {
                     $("#extPasOk").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosAnnonces.php');
+                    window.location.replace('../vue/vosAnnonces.php');
                 }
             }
         });
@@ -412,7 +412,7 @@ $(document).ready(function () {
                     $("#extPasOk").show();
                 }
                 else {
-                    window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/vosDemandes.php');
+                    window.location.replace('../vue/vosDemandes.php');
                 }
             }
         });
@@ -737,8 +737,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
-                window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/messagerie.php');
+                window.location.replace('../vue/messagerie.php');
             }
         });
     });
@@ -765,11 +764,39 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
-                window.location.replace('http://localhost:8878/TFE-RemyVase/TFE-Ephec-2019-2020/flash/vue/messagerie.php');
+                window.location.replace('../vue/messagerie.php');
             }
         });
     });
+
+    $("#transmettreDroit_form").submit(function (event) {
+        //Empêche l'html de se refresh
+        console.log("Ca arrive ici ou même pas ?");
+        event.preventDefault();
+
+        var test = getAllElementsForm("#transmettreDroit_form");
+        var dataForm = getAllElementsFormImg("#transmettreDroit_form");
+        var objectForm = transformThisInObject(test, "#transmettreDroit_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/transmettreDroitController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+                location.reload(true);
+            }
+        });
+    });
+    
 
     ////////// NON VALIDATION DE FORMULAIRE /////////////////
 

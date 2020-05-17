@@ -23,19 +23,24 @@ $file_tmp_name = $_FILES['fileAssoc']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 //Va juste retenir l'extension (par exemple .png)
-$extension = "." . strtolower(substr(strrchr($file_name,'.'),1));
+$extension = "." . strtolower(substr(strrchr($file_name, '.'), 1));
 //Va juste retenir le nom de l'image par exemple (test.png) va devenir (test)
-$nomImage = strstr($file_name,'.',true);
+$nomImage = strstr($file_name, '.', true);
 
-$cheminImgBdd = "../img/img_assoc/" . $nomImage . rand(1,99999999) . $extension;
+$cheminImgBdd = "../img/img_assoc/" . $nomImage . rand(1, 99999999) . $extension;
 
 $checkAssoc = $db->callProcedure('checkAssoc', [$nom]);
 
 if (empty($checkAssoc)) {
     if (in_array($file_extension, $extension_autorisees)) {
         if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-            echo json_encode("imgOk");
             $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal]);
+            $chefAssoc = $db->callProcedure('ajoutChefAssoc', [$_SESSION['id']]);
+            $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{'id_assoc'}, $_SESSION['id']]);
+            $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
+            $_SESSION['idAssoc'] = $recupIdAssoc[0]{'id_assoc'};
+            $_SESSION['chefAssoc'] = 1;
+            echo json_encode("imgOk");
         } else {
             echo json_encode('imgPasOk');
         }
@@ -45,9 +50,3 @@ if (empty($checkAssoc)) {
 } else {
     echo json_encode('assocDejaPresente');
 }
-
-$recupIdAssoc = $db->callProcedure('recupIdAssoc',[$nom]);
-
-$addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser',[$recupIdAssoc[0]{'id_assoc'},$_SESSION['id']]);
-
-$_SESSION['idAssoc'] = $recupIdAssoc[0]{'id_assoc'};

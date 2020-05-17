@@ -30,7 +30,15 @@ $_SESSION['idReceveur'] = $_POST['idReceveur'];
     <!--================End Home Banner Area =================-->
 
     <!--================Contact Area =================-->
-    <?php if ($_SESSION['idReceveur'] !== $_SESSION['id']) : ?>
+    <?php if(empty($_SESSION['id'])) : ?>
+        <div class="container pad_top pad_bt">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2 style="color:red">Vous devez être connecté pour envoyer un message !</h2>
+                </div>
+            </div>
+        </div>
+    <?php elseif ($_SESSION['idReceveur'] !== $_SESSION['id']) : ?>
         <?php if (!empty($_SESSION['idAssoc'])) : ?>
         <div class="container pad_top pad_bt">
             <form id="envoiMessageAssocToUser_form" method="post">

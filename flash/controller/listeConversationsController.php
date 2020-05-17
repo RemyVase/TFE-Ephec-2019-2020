@@ -16,3 +16,4 @@ if (empty($_SESSION['idAssoc'])) {
         $recupAllConversation = $db->callProcedure('messageRecupAllConversAssocUser', [$_SESSION['idAssoc'], $_SESSION['id']]);
     }
 }
+

@@ -1,6 +1,12 @@
 <?php
 session_start();
 $currentPage = "gestionCompte";
+
+$date = strstr($_SESSION['date'], ' ', true);
+$date2 = strstr($date, '-');
+$dateCorrect = $date[8] . $date[9] . '/' . $date[5] .$date[6] . '/' . $date[0] . $date[1] . $date[2] . $date[3];
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,7 +43,7 @@ $currentPage = "gestionCompte";
                     <div class="col-lg-6">
                         <p class="text-center"><b>Pseudonyme :</b> <?= $_SESSION['pseudo']; ?></p>
                         <p class="text-center"><b>Email :</b> <?= $_SESSION['mail']; ?></p>
-                        <p class="text-center"><b>Inscris le :</b> <?= $_SESSION['date']; ?></p></br></br>
+                        <p class="text-center"><b>Inscris le :</b> <?= $dateCorrect ?></p></br></br>
                         <form id="gestionCompte" name="gestionCompte" method="post" action="#" novalidate>
                             <h4>Besoin de changer de mot de passe ?</h4></br>
                             <div class="form-group">

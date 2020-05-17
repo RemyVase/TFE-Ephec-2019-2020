@@ -71,7 +71,9 @@ include '../controller/detailsMonAssocController.php';
                 <div class="align-center">
                     <div class="text-center">
                         <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
-                        <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
+                        <?php if($_SESSION['chefAssoc'] === "1") : ?>
+                            <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
+                        <?php endif ?>
                         <a href="../controller/deleteAssocController.php" style="display:none" id="supprimerAnnonceDef"><button id="supprimerAnnonceDef" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
                     </div>
                 </div>
@@ -82,6 +84,7 @@ include '../controller/detailsMonAssocController.php';
     <section id="modifAnnonce" style='display:none'>
         <div class="container pad_bt md-center">
             <div class="col-lg-12 md-center">
+            <?php if($_SESSION['chefAssoc'] === "1") : ?>
                 <h2 align="center">Gestion des membres de l'association</h2><br>
                 <h3 align="center">Liste des membres :</h3>
                 <?php foreach($recupAllMembreAssoc as $membreAssoc) : ?>
@@ -95,7 +98,7 @@ include '../controller/detailsMonAssocController.php';
                                 <label for="pseudoAjout">Indiquez le pseudo de la personne :</label>
                                 <input list="pseudoList" type="text" id="pseudoAjout">
                                 <datalist id="pseudoList">
-                                    <?php foreach($recupAllMembre as $membre) : ?>
+                                    <?php foreach($recupAllMembrePourAjout as $membre) : ?>
                                         <option value="<?= $membre['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                     </datalist>
@@ -112,7 +115,7 @@ include '../controller/detailsMonAssocController.php';
                                 <label for="pseudoSupp">Indiquez le pseudo de la personne :</label>
                                 <input list="pseudoListAssoc" type="text" id="pseudoSupp">
                                 <datalist id="pseudoListAssoc">
-                                    <?php foreach($recupAllMembreAssoc as $membreAssoc) : ?>
+                                    <?php foreach($recupAllMembreAssocSansChef as $membreAssoc) : ?>
                                         <option value="<?= $membreAssoc['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                 </datalist>
@@ -122,6 +125,25 @@ include '../controller/detailsMonAssocController.php';
                     </div>
                 </form><br><br>
                 <br>
+                <h2 align="center">Transmettre ses droits de responsable de l'association : </h2><br>
+                <form id="transmettreDroit_form" method="post" action="#" novalidate>
+                    <div class="row justify-content-center" align="center">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="pseudoTransmet">Indiquez le pseudo de la personne :</label>
+                                <input list="pseudoList" type="text" id="pseudoTransmet">
+                                <datalist id="pseudoTransmettre">
+                                    <?php foreach($recupAllMembreAssocSansChef as $membre) : ?>
+                                        <option value="<?= $membre['pseudo_user']; ?>">
+                                    <?php endforeach ?>
+                                    </datalist>
+                                <button type="submit" class="btn btn-dark">Transmettre les droits</button><br>
+                                <span id="userPasDansAssoc" style="display : none; color : red">L'utilisateur doit-être dans l'association.</span>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+                <?php endif ?>
                 <h2 align="center">Modification des informations de l'association</h2>
                 <br>
                 <div class="align-center">

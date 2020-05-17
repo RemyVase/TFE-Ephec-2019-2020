@@ -8,7 +8,8 @@ class dbAccess
     public function connexionDB()
     {
         try {
-            $this->pdo = new PDO("mysql:host=localhost;dbname=tfe;charset=utf8", "root", "root");
+            //$this->pdo = new PDO("mysql:host=localhost;dbname=tfe;charset=utf8", "root", "root");
+            
         } catch (Exception $e) {
             die("Erreur :" . $e->getMessage());
         }
@@ -24,6 +25,10 @@ class dbAccess
             case 'checkNbDemande':
             case 'recupAllMembre':
             case 'messageTakeLastConvCree':
+                /* Ajout pour app */
+            case 'appRecupAllAssoc':
+            case 'appRecupAllAssocChats':
+            case 'appRecupAllAssocChiens':
                 array_push($params);
 
                 try {
@@ -76,6 +81,10 @@ class dbAccess
             case 'messageCheckSiEnvoyeurDansAssoc':
             case 'messageRecupPseudoUser':
             case 'messageCheckUser':
+            case 'appRecupNomAssoc':
+            case 'ajoutChefAssoc':
+            case 'recupAllMembreAssocSansChef':
+            case 'recupAllMembrePasDansAssoc':
                 array_push($params, '?');
 
                 try {
@@ -117,6 +126,7 @@ class dbAccess
             case 'messageCheckSiFraudeAssoc':
             case 'messageCheckSiFraudeAssocConvers':
             case 'messagePseudoConvAssoc':
+            case 'transmettreDroitAssoc':
                 array_push($params, '?', '?');
 
                 try {

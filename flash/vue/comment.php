@@ -69,7 +69,7 @@ $currentPage = "comment";
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<div class="about_img"><img class="img-fluid" src="../img/multipleChats.jpeg" alt=""></div>
+				<div class="about_img"><img class="img-fluid" src="../img/chatAdopte2.jpeg" alt=""></div>
 			</div>
 		</div>
 	</div>
