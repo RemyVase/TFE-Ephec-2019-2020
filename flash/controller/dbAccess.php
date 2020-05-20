@@ -85,6 +85,10 @@ class dbAccess
             case 'ajoutChefAssoc':
             case 'recupAllMembreAssocSansChef':
             case 'recupAllMembrePasDansAssoc':
+            case 'recupCheminImgAnimal':
+            case 'recupCheminImgAnnonce':
+            case 'recupCheminImgAssoc':
+            case 'recupCheminImgDemande':
                 array_push($params, '?');
 
                 try {

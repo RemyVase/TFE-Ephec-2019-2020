@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  sam. 16 mai 2020 à 15:27
+-- Généré le :  mer. 20 mai 2020 à 14:01
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.8
 
@@ -570,6 +570,30 @@ WHERE typeObjet_offre = type
 LIMIT nbPage,nbOffre;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupCheminImgAnimal` (IN `id` INT)  BEGIN
+SELECT adoption.img_animal 
+FROM adoption
+WHERE adoption.id_animal = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupCheminImgAnnonce` (IN `id` INT)  BEGIN
+SELECT offresDons.img
+FROM offresDons
+WHERE offresDons.id_offre = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupCheminImgAssoc` (IN `id` INT)  BEGIN
+SELECT associations.img 
+FROM associations
+WHERE associations.id_assoc = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupCheminImgDemande` (IN `id` INT)  BEGIN
+SELECT demandesDons.img 
+FROM demandesDons
+WHERE demandesDons.id_demande = id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `recupIdAssoc` (IN `nom` VARCHAR(255))  BEGIN 
 SELECT id_assoc from associations
 WHERE nom_assoc = nom;
@@ -855,7 +879,6 @@ CREATE TABLE `offresDons` (
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
-(1, 1, 'totoTest', 'totoTest', 'totoTest', 'Neuf', '2020-04-08 18:45:31', '../img/img_offre/chatArbre41277041.jpg', 'Jouet', 'Chat'),
 (2, 1, 'totoTest2', 'totoTest2', 'totoTest2', 'Neuf', '2020-04-08 18:45:52', '../img/img_offre/chienListe29964887.jpeg', 'Bien-être', 'Chien'),
 (3, 8, 'duduTest', 'duduTest', 'duduTest', 'Très usé', '2020-04-08 18:47:05', '../img/img_offre/chienSolo75121455.jpeg', 'Bien-être', 'Chien'),
 (4, 7, 'dedeTest', 'dedeTest', 'dedeTest', 'Neuf', '2020-04-08 18:47:35', '../img/img_offre/chiotsEnsemble43238047.jpeg', 'Jouet', 'Chat');
