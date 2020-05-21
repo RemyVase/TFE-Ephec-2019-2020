@@ -57,8 +57,8 @@ include '../controller/detailsAssocController.php';
 
                         </ul>
                         <ul class="list social_details">
-                            <li><a href="<?= $detailsAssoc{0}["face_assoc"]; ?>"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="<?= $detailsAssoc{0}["insta_assoc"]; ?>"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="<?= $detailsAssoc{0}["face_assoc"]; ?>"><i class="fa fa-facebook fa-3x"></i></a></li>
+                            <li><a href="<?= $detailsAssoc{0}["insta_assoc"]; ?>"><i class="fa fa-instagram fa-3x"></i></a></li>
                         </ul>
                     </div>
                 </div>
