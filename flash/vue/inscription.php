@@ -50,6 +50,12 @@ $currentPage = "inscription";
                 <span class="form_error" style="color:red"></span><span id="mailPasOk" style="display : none; color : red">Ce mail est déjà utilisé.</span>
               </div>
               <div class="form-group">
+                <label for="exampleInputEmail1">Votre ville :</label>
+                <input type="pseudo" class="form-control align-center" id="villeUser" placeholder="Entrez la ville dans laquelle vous habitez." required>
+                <!-- <small class="form-text text-muted">Nous ne partagerons jamais votre email.</small> -->
+                <span class="form_error" style="color:red"></span>
+              </div>
+              <div class="form-group">
                 <label for="exampleInputPassword1">Mot de passe :</label>
                 <input type="password" class="form-control align-center" id="passwordUser" placeholder="Entrez votre mot de passe." required>
                 <span class="form_error" style="color:red"></span>

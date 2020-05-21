@@ -44,8 +44,8 @@ $currentPage = "ajoutAssociation";
                                 <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Adresse de l'association :</label>
-                                <input type="pseudo" class="form-control align-center" id="adresseAssoc" placeholder="Entrez l'adresse de votre association." required>
+                                <label for="exampleFormControlTextarea1">Ville de l'association :</label>
+                                <input type="pseudo" class="form-control align-center" id="adresseAssoc" placeholder="Entrez la ville ou se trouve votre association." required>
                                 <span class="form_error" style="color:red"></span>
                             </div>
                             <div class="form-group">

@@ -165,7 +165,7 @@ include '../controller/detailsMonAssocController.php';
                                     <span class="form_error" style="color:red"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Adresse de l'association :</label>
+                                    <label for="exampleFormControlTextarea1">Ville de l'association :</label>
                                     <input type="pseudo" class="form-control align-center" id="adresseAssocModif" value="<?= $detailsAssoc{0}["adresse_assoc"]; ?>">
                                     <span class="form_error" style="color:red"></span>
                                 </div>

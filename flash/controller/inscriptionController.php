@@ -6,6 +6,7 @@ $db = new dbAccess();
 $pseudo = htmlspecialchars($_POST["pseudoUser"]);
 $email = htmlspecialchars($_POST["mailUser"]);
 $password = hash("sha256",htmlspecialchars($_POST["passwordUser"]));
+$ville = htmlspecialchars($_POST["villeUser"]);
 
 $checkEmail = $db->callProcedure("checkMail", [$email]);
 $checkPseudo = $db->callProcedure("checkPseudo", [$pseudo]);
@@ -19,6 +20,6 @@ if (!empty($checkEmail)) {
 } else if (!empty($checkPseudo)) {
     echo json_encode("pseudoPasOk");
 } else {
-    $inscription = $db->callProcedure('ajoutUser', [$pseudo, $email, $password]);
+    $inscription = $db->callProcedure('ajoutUser', [$pseudo, $email, $password, $ville]);
     echo json_encode("ok");
 }

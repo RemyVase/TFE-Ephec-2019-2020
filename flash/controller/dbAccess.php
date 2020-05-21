@@ -8,7 +8,7 @@ class dbAccess
     public function connexionDB()
     {
         try {
-
+            $this->pdo = new PDO("mysql:host=sapandr2020.mysql.db;dbname=sapandr2020;charset=utf8", "sapandr2020", "mYSvuVhX3E7PR5t");
             //$this->pdo = new PDO("mysql:host=localhost;dbname=tfe;charset=utf8", "root", "root");
         } catch (Exception $e) {
             die("Erreur :" . $e->getMessage());
@@ -146,7 +146,7 @@ class dbAccess
                 break;
         }
         switch ($nomProcedure) {
-            case 'ajoutUser':
+
             case 'checkAnimal':
             case 'recupAllNosAnimaux':
             case 'checkOffre':
@@ -179,6 +179,7 @@ class dbAccess
             case 'modifDemande':
             case 'modifOffre':
             case 'modifSelectOffre':
+            case 'ajoutUser':
                 array_push($params, '?', '?', '?', '?');
 
                 try {
