@@ -42,6 +42,7 @@ include '../controller/listeDemandesController.php';
 								<option value="donDemande.php">Tous</option>
 								<option value="donDemande.php?p=1&typeAnimal=Chat">Chat</option>
 								<option value="donDemande.php?p=1&typeAnimal=Chien">Chien</option>
+								<option value="donDemande.php?p=1&typeAnimal=Autre">Autre</option>
 							</select>
 						
 						Type d'objet :

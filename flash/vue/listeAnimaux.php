@@ -41,7 +41,8 @@ include "../controller/listeAnimauxController.php"
 							<select onchange="location = this.value;">
 								<option value="listeAnimaux.php">Tous</option>
 								<option value="listeAnimaux.php?p=1&typeAnimal=Chat">Chat</option>
-								<option value="listeAnimaux.php?p=1&typeAnimal=Chien">Chien</option>
+                                <option value="listeAnimaux.php?p=1&typeAnimal=Chien">Chien</option>
+                                <option value="listeAnimaux.php?p=1&typeAnimal=Autre">Autre</option>
 							</select>
 						
 					</div>

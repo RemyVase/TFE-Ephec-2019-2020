@@ -42,6 +42,7 @@ include '../controller/listeOffresController.php';
 								<option value="donOffre.php">Tous</option>
 								<option value="donOffre.php?p=1&typeAnimal=Chat">Chat</option>
 								<option value="donOffre.php?p=1&typeAnimal=Chien">Chien</option>
+								<option value="donOffre.php?p=1&typeAnimal=Autre">Autre</option>
 							</select>
 						
 						Type d'objet :

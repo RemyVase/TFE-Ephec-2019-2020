@@ -60,6 +60,7 @@ $currentPage = "donFaireDemande";
 								<select class="form-control align-center" id="typeAnimalAnnonceDemande">
 									<option value="Chat">Chat</option>
 									<option value="Chien">Chien</option>
+									<option value="Autre">Autre</option>
 								</select>
 								<span class="form_error" style="color:red"></span>
 							</div></br></br>

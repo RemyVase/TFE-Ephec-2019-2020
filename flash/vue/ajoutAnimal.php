@@ -61,7 +61,8 @@ $currentPage = "ajoutAnimal";
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
 								<select class="form-control align-center" id="typeAnimal">
 									<option value="Chat">Chat</option>
-									<option value="Chien">Chien</option>
+                                    <option value="Chien">Chien</option>
+                                    <option value="Autre">Autre</option>
 								</select>
                                 <span class="form_error" style="color:red"></span>
 							</div></br></br>

@@ -237,6 +237,7 @@ include '../controller/detailsMonAssocController.php';
                                     <select class="form-control align-center" id="typeAnimalAssocModif">
                                         <option value="Chat">Chat</option>
                                         <option value="Chien">Chien</option>
+                                        <option value="Autre">Autre</option>
                                     </select>
                                     <span class="form_error" style="color:red"></span>
                                 </div><br><br>
