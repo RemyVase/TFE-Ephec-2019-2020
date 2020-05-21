@@ -80,7 +80,7 @@ include '../controller/detailsMonAssocController.php';
                     <div class="text-center">
                         <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
                         <?php if($_SESSION['chefAssoc'] === "1") : ?>
-                            <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
+                            <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button>
                             <button id="supprimerAnnonceDef" onclick="popup()" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em; display:none" data-toggle="modal" data-target="#modalConfirmDelete">Valider la suppression</button>
                         <?php endif ?>
                         

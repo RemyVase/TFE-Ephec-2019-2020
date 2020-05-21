@@ -65,8 +65,9 @@ include '../controller/detailsAnimalController.php';
 				<div class="col-lg-12 md-center" align="center">
 					<div class="align-center">
 						<div class="text-center">
-							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'animal</button>
-							<a href="../controller/deleteAnimalController.php"><button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button></a>
+                            <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'animal</button>
+                            <button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button>
+							<a id="supprimerAnnonceDef" href="../controller/deleteAnimalController.php" style="display:none"><button  class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
 						</div>
 					</div>
 				</div>
