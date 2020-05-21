@@ -47,7 +47,11 @@ include '../controller/detailsAssocController.php';
                             <li><span>Site</span>:  <a href="<?= $detailsAssoc{0}["site_assoc"]; ?>"><?= $detailsAssoc{0}["site_assoc"]; ?></a></li>
                             <li><span>Type d'animaux reccueillis</span>:  <?= $detailsAssoc[0]{'typeAnimal_assoc'}; ?>
                             <li><span>Places animaux en règles</span>: <strong><?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?></strong> </li>
-                            <li><span>Places animaux en quarantaine</span>:  <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li></br><br><br>
+                            <li><span>Places animaux en quarantaine</span>:  <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li>
+                            <?php if($detailsAssoc[0]{'IBAN'} != null) : ?>
+                                <li><span>Compte banquaire pour dons</span>:  <strong><?= $detailsAssoc{0}["IBAN"]; ?></strong></li>
+                            <?php endif ?>
+                            </br><br><br>
                             <li><span>Contact</span>:  <a href="contact.php"><form method="post" action="contact.php"><button value="<?= $detailsAssoc[0]{'id_assoc'}; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form></a></li>
 
 

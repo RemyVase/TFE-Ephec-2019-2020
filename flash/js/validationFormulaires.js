@@ -929,3 +929,35 @@ function getAllElementsFormImg(form) {
     })
     return data;
 }
+
+
+
+// Validation suppression Assoc
+
+var retPopup = "";
+
+function popup() {
+    console.log("hello");
+    retPopup = "";
+    retPopup += '<!--Modal: modalConfirmDelete-->'
+    retPopup += '<div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'
+    retPopup += '<div class="modal-dialog modal-sm modal-notify modal-danger" role="document">'
+    retPopup += '<!--Content-->'
+    retPopup += '<div class="modal-content text-center">'
+    retPopup += '<!--Header-->'
+    retPopup += '<div class="modal-header d-flex justify-content-center">'
+    retPopup += '<p class="heading">Etes vous sur de vouloir supprimer cette association ? Ceci entraînera la suppression de toutes les demandes de dons et les animaux de l\'association.</p>'
+    retPopup += '</div>'
+
+    retPopup += '<!--Footer-->'
+    retPopup += '<div class="modal-footer flex-center">'
+    retPopup += '<button onclick="location.href = \'../controller/deleteAssocController.php\' " class="btn" data-dismiss="modal" style="color:black">Oui</button>'
+    retPopup += '<button class="btn" data-dismiss="modal" style="color:black">Non</button>'
+    retPopup += '</div>'
+    retPopup += '</div>'
+    retPopup += '<!--/.Content-->'
+    retPopup += '</div>'
+    retPopup += '</div>'
+
+    $('#popup').append(retPopup);
+}

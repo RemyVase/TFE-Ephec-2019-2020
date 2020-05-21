@@ -47,7 +47,11 @@ include '../controller/detailsMonAssocController.php';
                                 <li><span>Site</span>: <a href="<?= $detailsAssoc{0}["site_assoc"]; ?>"><?= $detailsAssoc{0}["site_assoc"]; ?></a></li>
                                 <li><span>Type d'animaux reccueillis</span>: <?= $detailsAssoc[0]{'typeAnimal_assoc'}; ?>
                                 <li><span>Places animaux en règles</span>: <strong><?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?></strong> </li>
-                                <li><span>Places animaux en quarantaine</span>: <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li></br><br><br>
+                                <li><span>Places animaux en quarantaine</span>: <strong><?= $detailsAssoc{0}["nbPlaceQuarant_assoc"]; ?></strong></li>
+                                <?php if($detailsAssoc[0]{'IBAN'} != null) : ?>
+                                    <li><span>Compte banquaire pour dons</span>:  <strong><?= $detailsAssoc{0}["IBAN"]; ?></strong></li>
+                                <?php endif ?>
+                                </br><br><br>
                                 <li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 
 
@@ -65,7 +69,11 @@ include '../controller/detailsMonAssocController.php';
         </div>
     </section>
 
+
+
+
     <section>
+        <div id="popup"></div>
         <div class="container pad_bt md-center">
             <div class="col-lg-12 md-center" align="center">
                 <div class="align-center">
@@ -73,8 +81,9 @@ include '../controller/detailsMonAssocController.php';
                         <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
                         <?php if($_SESSION['chefAssoc'] === "1") : ?>
                             <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button></a>
+                            <button id="supprimerAnnonceDef" onclick="popup()" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em; display:none" data-toggle="modal" data-target="#modalConfirmDelete">Valider la suppression</button>
                         <?php endif ?>
-                        <a href="../controller/deleteAssocController.php" style="display:none" id="supprimerAnnonceDef"><button id="supprimerAnnonceDef" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
+                        
                     </div>
                 </div>
             </div>
@@ -201,6 +210,10 @@ include '../controller/detailsMonAssocController.php';
                                         en règles:</label>
                                     <input type="pseudo" class="form-control align-center" id="placesReglesAssocModif" value="<?= $detailsAssoc{0}["nbPlaceRegle_assoc"]; ?>">
                                     <span class="form_error" style="color:red"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Numéro de compte en banque (Optionnel pour dons financiers) :</label>
+                                    <input type="pseudo" class="form-control align-center" id="ibanModif" value="<?= $detailsAssoc{0}["IBAN"]; ?>">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier mon association sur le site</button>

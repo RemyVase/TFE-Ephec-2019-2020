@@ -61,7 +61,7 @@ include "../controller/listeAssociationsController.php"
                     </div>
                     <div class="col-sm-2 text-center">
                         <h4>Nom de l'association</h4></br>
-                        <p><?= $assoc['nom_assoc']; ?></p>
+                        <p><a href="<?= $assoc['site_assoc']; ?>"><?= $assoc['nom_assoc']; ?></a></p>
                     </div>
                     <div class="col-sm-2 text-center">
                         <h4>Nombre de places disponibles</h4>

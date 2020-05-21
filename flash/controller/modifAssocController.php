@@ -15,5 +15,6 @@ $face = htmlspecialchars($_POST["facebookAssocModif"]);
 $insta = htmlspecialchars($_POST["instagramAssocModif"]);
 $placeQuar = htmlspecialchars($_POST["placesQuarantaineAssocModif"]);
 $placeReg = htmlspecialchars($_POST["placesReglesAssocModif"]);
+$banque = htmlspecialchars($_POST["ibanModif"]);
 
-$modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg]);
+$modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $banque]);
