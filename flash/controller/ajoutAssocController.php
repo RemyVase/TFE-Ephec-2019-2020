@@ -32,44 +32,22 @@ $cheminImgBdd = "../img/img_assoc/" . $nomImage . rand(1, 99999999) . $extension
 
 $checkAssoc = $db->callProcedure('checkAssoc', [$nom]);
 
-//RECAPTCHA
-
-// Ma clé privée
-$secret = "6LeqO_0UAAAAAHhufx9H_vIY6CRIcAjpolWMv4Kl";
-// Paramètre renvoyé par le recaptcha
-$response = $_POST['g-recaptcha-response'];
-// On récupère l'IP de l'utilisateur
-$remoteip = $_SERVER['REMOTE_ADDR'];
-
-$api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
-    . $secret
-    . "&response=" . $response
-    . "&remoteip=" . $remoteip;
-
-$decode = json_decode(file_get_contents($api_url), true);
-if ($decode['success'] == true) {
-    if (empty($checkAssoc)) {
-        if (in_array($file_extension, $extension_autorisees)) {
-            if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-                $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque]);
-                $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
-                $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{
-                'id_assoc'}, $_SESSION['id']]);
-                $chefAssoc = $db->callProcedure('ajoutChefAssoc', [$_SESSION['id']]);
-                $_SESSION['chefAssoc'] = "1";
-                $_SESSION['idAssoc'] = $recupIdAssoc[0]{
-                'id_assoc'};
-                echo json_encode("imgOk");
-            } else {
-                echo json_encode('imgPasOk');
-            }
+if (empty($checkAssoc)) {
+    if (in_array($file_extension, $extension_autorisees)) {
+        if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+            $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque]);
+            $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
+            $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{'id_assoc'}, $_SESSION['id']]);
+            $chefAssoc = $db->callProcedure('ajoutChefAssoc', [$_SESSION['id']]);
+            $_SESSION['chefAssoc'] = "1";
+            $_SESSION['idAssoc'] = $recupIdAssoc[0]{'id_assoc'};
+            echo json_encode("imgOk");
         } else {
-            echo json_encode('extPasOk');
+            echo json_encode('imgPasOk');
         }
     } else {
-        echo json_encode('assocDejaPresente');
+        echo json_encode('extPasOk');
     }
 } else {
-    echo json_encode('robot');
+    echo json_encode('assocDejaPresente');
 }
-//FIN RECAPTCHA
