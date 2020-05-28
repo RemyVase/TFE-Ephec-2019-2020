@@ -65,6 +65,7 @@ $currentPage = "inscription";
                 <input type="password" class="form-control align-center" id="confirmPasswordUser" placeholder="Entrez à nouveau votre mot de passe." required>
                 <span class="form_error" style="color:red"></span>
               </div>
+              <div class="g-recaptcha" data-sitekey="6LeqO_0UAAAAANTmzQNAEOF0a7SSXk_ZNkFtSQjL"></div>
               <div class="text-center">
                 <button type="submit" class="btn btn-dark">S'inscrire</button>
               </div>

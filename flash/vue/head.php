@@ -16,4 +16,6 @@
     <!-- main css -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>

@@ -27,20 +27,40 @@ $cheminImgBdd = "../img/img_offre/" . $nomImage . rand(1,99999999) . $extension;
 
 $checkOffre = $db->callProcedure('checkOffre', [$idUser, $titre, $desc]);
 
+//RECAPTCHA
 
-if (empty($checkOffre)) {
-    if (in_array($file_extension, $extension_autorisees)) {
-        if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-            echo json_encode("imgOk");
-            $ajoutOffre = $db->callProcedure('ajoutOffre', [$idUser, $titre, $desc, $ville, $etat, $cheminImgBdd,$typeAnimal,$typeObjet]);
-        } else {
-            echo json_encode('imgPasOk');
+	// Ma clé privée
+	$secret = "6LeqO_0UAAAAAHhufx9H_vIY6CRIcAjpolWMv4Kl";
+	// Paramètre renvoyé par le recaptcha
+	$response = $_POST['g-recaptcha-response'];
+	// On récupère l'IP de l'utilisateur
+    $remoteip = $_SERVER['REMOTE_ADDR'];
+    
+    $api_url = "https://www.google.com/recaptcha/api/siteverify?secret=" 
+	    . $secret
+	    . "&response=" . $response
+	    . "&remoteip=" . $remoteip ;
+	
+    $decode = json_decode(file_get_contents($api_url), true);
+	if ($decode['success'] == true) {
+		if (empty($checkOffre)) {
+            if (in_array($file_extension, $extension_autorisees)) {
+                if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+                    echo json_encode("imgOk");
+                    $ajoutOffre = $db->callProcedure('ajoutOffre', [$idUser, $titre, $desc, $ville, $etat, $cheminImgBdd,$typeAnimal,$typeObjet]);
+                } else {
+                    echo json_encode('imgPasOk');
+                }
+            } else {
+            echo json_encode('extPasOk');
+            }
         }
-    } else {
-    echo json_encode('extPasOk');
-    }
-}
-else{
-    echo json_encode("annonceDejaLa");
-}
-
+        else{
+            echo json_encode("annonceDejaLa");
+        }
+	}
+	
+	else {
+		echo json_encode('robot');
+	}
+//FIN RECAPTCHA
