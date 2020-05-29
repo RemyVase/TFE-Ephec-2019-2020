@@ -3,6 +3,7 @@
     if (isset($_SESSION['id'])) {
         // Supression des variables de session et de la session
         $_SESSION = array();
+        unset($_SESSION['token']);
         session_destroy();
 
         header('Location: ../vue/accueil.php');

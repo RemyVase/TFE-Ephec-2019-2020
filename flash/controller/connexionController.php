@@ -21,4 +21,5 @@ if (empty($checkPseudoPassword)) {
     $_SESSION['date'] = $checkPseudoPassword[0]{'date_user'};
     $_SESSION['idAssoc'] = $checkPseudoPassword[0]{'id_assoc'};
     $_SESSION['chefAssoc'] = $checkPseudoPassword[0]{'chef_user'};
+    $_SESSION['token'] = bin2hex(random_bytes(32));
 }
