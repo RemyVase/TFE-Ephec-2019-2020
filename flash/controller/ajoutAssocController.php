@@ -16,6 +16,7 @@ $placeQuar = htmlspecialchars($_POST["placesQuarantaineAssoc"]);
 $placeReg = htmlspecialchars($_POST["placesReglesAssoc"]);
 $typeAnimal = htmlspecialchars($_POST["typeAnimalAssoc"]);
 $banque = htmlspecialchars($_POST["iban"]);
+$token = htmlspecialchars($_POST["token"]);
 
 $file_name = $_FILES['fileAssoc']['name'];
 $file_extension = strrchr($file_name, ".");
@@ -47,29 +48,33 @@ $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
     . "&remoteip=" . $remoteip;
 
 $decode = json_decode(file_get_contents($api_url), true);
-if ($decode['success'] == true) {
-    if (empty($checkAssoc)) {
-        if (in_array($file_extension, $extension_autorisees)) {
-            if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-                $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque]);
-                $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
-                $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{
-                'id_assoc'}, $_SESSION['id']]);
-                $chefAssoc = $db->callProcedure('ajoutChefAssoc', [$_SESSION['id']]);
-                $_SESSION['chefAssoc'] = "1";
-                $_SESSION['idAssoc'] = $recupIdAssoc[0]{
-                'id_assoc'};
-                echo json_encode("imgOk");
+if ($_SESSION['token'] == $token) {
+    if ($decode['success'] == true) {
+        if (empty($checkAssoc)) {
+            if (in_array($file_extension, $extension_autorisees)) {
+                if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+                    $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque]);
+                    $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
+                    $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{
+                        'id_assoc'}, $_SESSION['id']]);
+                    $chefAssoc = $db->callProcedure('ajoutChefAssoc', [$_SESSION['id']]);
+                    $_SESSION['chefAssoc'] = "1";
+                    $_SESSION['idAssoc'] = $recupIdAssoc[0]{
+                        'id_assoc'};
+                    echo json_encode("imgOk");
+                } else {
+                    echo json_encode('imgPasOk');
+                }
             } else {
-                echo json_encode('imgPasOk');
+                echo json_encode('extPasOk');
             }
         } else {
-            echo json_encode('extPasOk');
+            echo json_encode('assocDejaPresente');
         }
     } else {
-        echo json_encode('assocDejaPresente');
+        echo json_encode('robot');
     }
 } else {
-    echo json_encode('robot');
+    echo json_encode('error CSRF');
 }
 //FIN RECAPTCHA

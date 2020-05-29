@@ -2,6 +2,7 @@
 session_start();
 $currentPage = "detailsMonAssociations";
 include '../controller/detailsMonAssocController.php';
+print_r($_SESSION['token']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -81,7 +82,7 @@ include '../controller/detailsMonAssocController.php';
                         <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier L'association</button>
                         <?php if($_SESSION['chefAssoc'] === "1") : ?>
                             <button id="supprimerAnnonce" name="supprAssoc" class="btn btn-dark" style="margin-left:2em">Supprimer l'association</button>
-                            <button id="supprimerAnnonceDef" onclick="popup()" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em; display:none" data-toggle="modal" data-target="#modalConfirmDelete">Valider la suppression</button>
+                            <button id="supprimerAnnonceDef" onclick="popup('<?= $_SESSION['token']; ?>')" name="supprAssocDef" class="btn btn-dark" style="margin-left:2em; display:none" data-toggle="modal" data-target="#modalConfirmDelete">Valider la suppression</button>
                         <?php endif ?>
                         
                     </div>
@@ -111,6 +112,7 @@ include '../controller/detailsMonAssocController.php';
                                         <option value="<?= $membre['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                     </datalist>
+                                    <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit" class="btn btn-dark">Ajouter un membre à l'association</button><br>
                                 <span id="userDejaDansAssoc" style="display : none; color : red">Cet utilisateur est déjà dans une association.</span>
                             </div>    
@@ -128,6 +130,7 @@ include '../controller/detailsMonAssocController.php';
                                         <option value="<?= $membreAssoc['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                 </datalist>
+                                <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit" class="btn btn-dark">Retirer cette personne de l'association</button>
                             </div>
                         </div>
@@ -146,6 +149,7 @@ include '../controller/detailsMonAssocController.php';
                                         <option value="<?= $membre['pseudo_user']; ?>">
                                     <?php endforeach ?>
                                     </datalist>
+                                    <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <button type="submit" class="btn btn-dark">Transmettre les droits</button><br>
                                 <span id="userPasDansAssoc" style="display : none; color : red">L'utilisateur doit-être dans l'association.</span>
                             </div>    
@@ -215,6 +219,7 @@ include '../controller/detailsMonAssocController.php';
                                     <label for="exampleFormControlTextarea1">Numéro de compte en banque (Optionnel pour dons financiers) :</label>
                                     <input type="pseudo" class="form-control align-center" id="ibanModif" value="<?= $detailsAssoc{0}["IBAN"]; ?>">
                                 </div>
+                                <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier mon association sur le site</button>
                                 </div>
@@ -241,6 +246,7 @@ include '../controller/detailsMonAssocController.php';
                                     </select>
                                     <span class="form_error" style="color:red"></span>
                                 </div><br><br>
+                                <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier les champs sélectionnables</button>
                                 </div>
@@ -259,6 +265,7 @@ include '../controller/detailsMonAssocController.php';
                                     <input type="file" class="form-control-file" id="imageAssocModif" value="<?= $detailsAssoc{0}["img"]; ?>">
                                     <span class="form_error" style="color:red"></span>
                                 </div>
+                                <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-dark">Modifier l'image de mon association</button>
                                 </div>

@@ -65,7 +65,7 @@ include '../controller/uneAnnonceController.php';
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'annonce</button>
 							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'annonce</button>
-							<a id="supprimerAnnonceDef" href="../controller/deleteAnnonceController.php" style="display:none"><button  class="btn btn-dark" style="margin-left:2em;">Valider la suppression</button></a>
+							<a id="supprimerAnnonceDef" href="../controller/deleteAnnonceController.php?token=<?= $_SESSION['token'] ?>" style="display:none"><button  class="btn btn-dark" style="margin-left:2em;">Valider la suppression</button></a>
 						</div>
 					</div>
 				</div>
@@ -96,6 +96,7 @@ include '../controller/uneAnnonceController.php';
 										<input type="pseudo" class="form-control align-center" id="villeAnnonceOffreModif" value="<?= $recupOneAnnonce[0]{'ville_offre'}; ?>">
 										<span class="form_error" style="color:red"></span>
 									</div>
+									<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'annonce</button>
 									</div>
@@ -141,6 +142,7 @@ include '../controller/uneAnnonceController.php';
 										</select>
 										<span class="form_error" style="color:red"></span>
 									</div><br><br>
+									<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables</button>
 									</div>
@@ -159,6 +161,7 @@ include '../controller/uneAnnonceController.php';
 										<input type="file" class="form-control-file" id="imageAnnonceOffreModif">
 										<span class="form_error" style="color:red"></span>
 									</div>
+									<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de l'offre</button>
 									</div>

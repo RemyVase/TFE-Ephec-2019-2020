@@ -5,6 +5,7 @@ include 'dbAccess.php';
 $db = new dbAccess();
 
 $idDemande = $_SESSION['idDemande'];
+$token = htmlspecialchars($_POST["token"]);
 
 $file_name = htmlspecialchars($_FILES['fileDemandeModif']['name']);
 $file_extension = strrchr($file_name, ".");
@@ -13,19 +14,23 @@ $file_tmp_name = $_FILES['fileDemandeModif']['tmp_name'];
 $extension_autorisees = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG");
 
 //Va juste retenir l'extension (par exemple .png)
-$extension = "." . strtolower(substr(strrchr($file_name,'.'),1));
+$extension = "." . strtolower(substr(strrchr($file_name, '.'), 1));
 //Va juste retenir le nom de l'image par exemple (test.png) va devenir (test)
-$nomImage = strstr($file_name,'.',true);
+$nomImage = strstr($file_name, '.', true);
 
-$cheminImgBdd = "../img/img_demande/" . $nomImage . rand(1,99999999) . $extension;
+$cheminImgBdd = "../img/img_demande/" . $nomImage . rand(1, 99999999) . $extension;
 
-if (in_array($file_extension, $extension_autorisees)) {
-    if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-        echo json_encode("imgOk");
-        $modifImgDemande = $db->callProcedure('modifImgDemande', [$idDemande, $cheminImgBdd]);
+if ($_SESSION['token'] == $token) {
+    if (in_array($file_extension, $extension_autorisees)) {
+        if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+            echo json_encode("imgOk");
+            $modifImgDemande = $db->callProcedure('modifImgDemande', [$idDemande, $cheminImgBdd]);
+        } else {
+            echo json_encode('imgPasOk');
+        }
     } else {
-        echo json_encode('imgPasOk');
+        echo json_encode('extPasOk');
     }
 } else {
-    echo json_encode('extPasOk');
+    echo json_encode('error CSRF');
 }

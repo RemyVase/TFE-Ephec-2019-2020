@@ -71,6 +71,7 @@ $currentPage = "ajoutAnimal";
                                 <input type="file" class="form-control-file" id="imageAnimal">
                                 <span class="form_error" style="color:red"></span>
                             </div>
+                            <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                             <div class="g-recaptcha" data-sitekey="6LeqO_0UAAAAANTmzQNAEOF0a7SSXk_ZNkFtSQjL"></div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Ajouter l'animal sur le site</button>

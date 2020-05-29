@@ -10,6 +10,7 @@ $desc = htmlspecialchars($_POST["descAnnonceDemande"]);
 $ville = htmlspecialchars($_POST["villeAnnonceDemande"]);
 $typeAnimal = htmlspecialchars($_POST["typeAnimalAnnonceDemande"]);
 $typeObjet = htmlspecialchars($_POST["typeObjetAnnonceDemande"]);
+$token = htmlspecialchars($_POST["token"]);
 
 $file_name = $_FILES['fileDemande']['name'];
 $file_extension = strrchr($file_name, ".");
@@ -41,22 +42,26 @@ $api_url = "https://www.google.com/recaptcha/api/siteverify?secret="
     . "&remoteip=" . $remoteip;
 
 $decode = json_decode(file_get_contents($api_url), true);
-if ($decode['success'] == true) {
-    if (empty($checkDemande)) {
-        if (in_array($file_extension, $extension_autorisees)) {
-            if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-                echo json_encode("imgOk");
-                $ajoutDemande = $db->callProcedure('ajoutDemande', [$idAssoc, $titre, $desc, $cheminImgBdd, $ville, $typeAnimal, $typeObjet]);
+if ($_SESSION['token'] == $token) {
+    if ($decode['success'] == true) {
+        if (empty($checkDemande)) {
+            if (in_array($file_extension, $extension_autorisees)) {
+                if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
+                    echo json_encode("imgOk");
+                    $ajoutDemande = $db->callProcedure('ajoutDemande', [$idAssoc, $titre, $desc, $cheminImgBdd, $ville, $typeAnimal, $typeObjet]);
+                } else {
+                    echo json_encode('imgPasOk');
+                }
             } else {
-                echo json_encode('imgPasOk');
+                echo json_encode('extPasOk');
             }
         } else {
-            echo json_encode('extPasOk');
+            echo json_encode("demandeDejaLa");
         }
     } else {
-        echo json_encode("demandeDejaLa");
+        echo json_encode('robot');
     }
 } else {
-    echo json_encode('robot');
+    echo json_encode('error CSRF');
 }
 //FIN RECAPTCHA

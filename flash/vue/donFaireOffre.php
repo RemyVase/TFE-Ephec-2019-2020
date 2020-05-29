@@ -89,6 +89,7 @@ $currentPage = "donFaireOffre";
 								<span class="form_error" style="color:red"></span>
 							</div>
 							<div class="g-recaptcha" data-sitekey="6LeqO_0UAAAAANTmzQNAEOF0a7SSXk_ZNkFtSQjL"></div>
+							<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 							<div class="text-center">
 								<button type="submit" class="btn btn-dark">Ajouter l'annonce</button>
 							</div>

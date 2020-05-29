@@ -2,6 +2,7 @@
 session_start();
 $currentPage = "messagerie";
 include '../controller/listeConversationsController.php';
+print_r($_SESSION['token']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -425,7 +426,8 @@ include '../controller/listeConversationsController.php';
                         <div class="input_msg_write">
                             <form id="formMessage">
                                 <input id="messageMessagerie" type="text" class="write_msg" placeholder="Type a message" />
-                                <button class="msg_send_btn" type="button" onclick="envoiMessage(<?= $_SESSION['id'] ?>,$('#messageMessagerie').val())"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
+                                <button class="msg_send_btn" type="button" onclick="envoiMessage(<?= $_SESSION['id'] ?>,$('#messageMessagerie').val(), '<?= $_SESSION['token']; ?>') "><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                 <form>
                         </div>
 
@@ -515,14 +517,15 @@ include '../controller/listeConversationsController.php';
 
         }
 
-        function envoiMessage(idUser, message) {
+        function envoiMessage(idUser, message,token) {
             $.ajax({
                 url: "../controller/envoieMessageMessagerieController.php",
                 type: "POST",
                 data: {
                     "idConv": idConvers,
                     "idUser": idUser,
-                    "message": message
+                    "message": message,
+                    "token": token
                 },
                 success: function(response) {
                     changementMessage(idConvers);

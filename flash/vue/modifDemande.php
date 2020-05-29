@@ -64,7 +64,7 @@ include '../controller/uneDemandeController.php';
 						<div class="text-center">
 							<button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier la demande</button>
 							<button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer la demande</button>
-							<a id="supprimerAnnonceDef" href="../controller/deleteDemandeController.php" style="display:none"><button  class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
+							<a id="supprimerAnnonceDef" href="../controller/deleteDemandeController.php?token=<?= $_SESSION['token'] ?>" style="display:none"><button  class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
 						</div>
 					</div>
 				</div>
@@ -97,6 +97,7 @@ include '../controller/uneDemandeController.php';
 									<textarea class="form-control" id="descAnnonceDemandeModif" rows="3"><?= $recupOneDemande[0]{'desc_demande'}; ?></textarea>
 									<span class="form_error" style="color:red"></span>
 								</div>
+								<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 								<div class="text-center">
 									<button type="submit" class="btn btn-dark">Modifier la demande</button>
 								</div>
@@ -132,6 +133,7 @@ include '../controller/uneDemandeController.php';
 										</select>
 										<span class="form_error" style="color:red"></span>
 									</div><br><br>
+									<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables </button>
 									</div>
@@ -150,6 +152,7 @@ include '../controller/uneDemandeController.php';
 										<input type="file" class="form-control-file" id="imageAnnonceDemandeModif">
 										<span class="form_error" style="color:red"></span>
 									</div>
+									<input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier l'image de la demande</button>
 									</div>

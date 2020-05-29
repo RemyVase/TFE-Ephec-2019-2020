@@ -936,7 +936,7 @@ function getAllElementsFormImg(form) {
 
 var retPopup = "";
 
-function popup() {
+function popup(token) {
     console.log("hello");
     retPopup = "";
     retPopup += '<!--Modal: modalConfirmDelete-->'
@@ -951,7 +951,7 @@ function popup() {
 
     retPopup += '<!--Footer-->'
     retPopup += '<div class="modal-footer flex-center">'
-    retPopup += '<button onclick="location.href = \'../controller/deleteAssocController.php\' " class="btn" data-dismiss="modal" style="color:black">Oui</button>'
+    retPopup += '<button onclick="location.href = \'../controller/deleteAssocController.php?token=' + token + '\' " class="btn" data-dismiss="modal" style="color:black">Oui</button>'
     retPopup += '<button class="btn" data-dismiss="modal" style="color:black">Non</button>'
     retPopup += '</div>'
     retPopup += '</div>'

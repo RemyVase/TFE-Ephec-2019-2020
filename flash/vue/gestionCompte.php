@@ -6,8 +6,6 @@ $date = strstr($_SESSION['date'], ' ', true);
 $date2 = strstr($date, '-');
 $dateCorrect = $date[8] . $date[9] . '/' . $date[5] .$date[6] . '/' . $date[0] . $date[1] . $date[2] . $date[3];
 
-print_r($_SESSION['token']);
-
 ?>
 <!doctype html>
 <html lang="en">

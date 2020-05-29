@@ -16,5 +16,10 @@ $insta = htmlspecialchars($_POST["instagramAssocModif"]);
 $placeQuar = htmlspecialchars($_POST["placesQuarantaineAssocModif"]);
 $placeReg = htmlspecialchars($_POST["placesReglesAssocModif"]);
 $banque = htmlspecialchars($_POST["ibanModif"]);
+$token = htmlspecialchars($_POST["token"]);
 
-$modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $banque]);
+if ($_SESSION['token'] == $token) {
+    $modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $banque]);
+} else {
+    echo json_encode('error CSRF');
+}

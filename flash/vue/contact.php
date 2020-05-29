@@ -47,6 +47,7 @@ $_SESSION['idReceveur'] = $_POST['idReceveur'];
                             <label for="exampleFormControlTextarea1">Message :</label>
                             <textarea class="form-control" id="message" rows="3" placeholder="Entrez votre message ici"></textarea>
                         </div>
+                        <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                         <div class="text-center">
                             <button type="submit" class="btn btn-dark">Envoyer le message</button>
                         </div>

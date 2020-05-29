@@ -67,7 +67,7 @@ include '../controller/detailsAnimalController.php';
 						<div class="text-center">
                             <button id="afficherModifAnnonce" class="btn btn-dark" style="margin-right:2em">Modifier l'animal</button>
                             <button id="supprimerAnnonce" class="btn btn-dark" style="margin-left:2em">Supprimer l'animal</button>
-							<a id="supprimerAnnonceDef" href="../controller/deleteAnimalController.php" style="display:none"><button  class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
+							<a id="supprimerAnnonceDef" href="../controller/deleteAnimalController.php?token=<?= $_SESSION['token'] ?>" style="display:none"><button  class="btn btn-dark" style="margin-left:2em">Valider la suppression</button></a>
 						</div>
 					</div>
 				</div>
@@ -108,6 +108,7 @@ include '../controller/detailsAnimalController.php';
                                         <input type="pseudo" class="form-control align-center" id="statutAnimalModif" value="<?= $detailsAnimal[0]{'statut_animal'}; ?>">
                                         <span class="form_error" style="color:red"></span>
                                     </div>
+                                    <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier la présentation de l'animal</button>
                                     </div>
@@ -132,6 +133,7 @@ include '../controller/detailsAnimalController.php';
                                             <option value="Autre">Autre</option>
 										</select>
                                         <span class="form_error" style="color:red"></span>
+                                        <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
 									</div><br><br>
 									<div class="text-center">
 										<button type="submit" class="btn btn-dark">Modifier les champs sélectionnables</button>
@@ -152,6 +154,7 @@ include '../controller/detailsAnimalController.php';
                                         <span class="form_error" style="color:red"></span><span id="pseudoPasOk" style="display : none; color : red">Veuillez complèter ce champ.</span>
                                     </div>
                                     <span class="form_error" style="color:red"></span>
+                                    <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-dark">Modifier l'image de l'animal</button>
                                     </div>
