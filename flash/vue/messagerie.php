@@ -307,8 +307,8 @@ print_r($_SESSION['token']);
                                                     <h5><?= $conv{
                                                             'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php endif ?>
-                                                <p><?= $conv{
-                                                        'contenu_message'} ?></p>
+                                                <p><?= substr($conv{
+                                                        'contenu_message'},0,15) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -341,8 +341,8 @@ print_r($_SESSION['token']);
                                                     <h5><?= $conv{
                                                             'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php endif ?>
-                                                <p><?= $conv{
-                                                        'contenu_message'} ?></p>
+                                                <p><?= substr($conv{
+                                                        'contenu_message'},0,15) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -374,8 +374,8 @@ print_r($_SESSION['token']);
                                                     <h5><?= $conv{
                                                             'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                                 <?php endif ?>
-                                                <p><?= $conv{
-                                                        'contenu_message'} ?></p>
+                                                <p><?= substr($conv{
+                                                        'contenu_message'},0,15) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -408,8 +408,8 @@ print_r($_SESSION['token']);
                                                 <h5><?= $conv{
                                                         'nom_assoc'} ?><span class="chat_date"><?= $date ?></span></h5>
                                             <?php endif ?>
-                                            <p><?= $conv{
-                                                    'contenu_message'} ?></p>
+                                            <p><?= substr($conv{
+                                                        'contenu_message'},0,15) ?></p>
                                         </div>
                                     </div>
                                 </div>

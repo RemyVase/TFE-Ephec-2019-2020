@@ -796,7 +796,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
 
     ////////// NON VALIDATION DE FORMULAIRE /////////////////
 
@@ -832,7 +832,7 @@ function check_form(id_input) {
         return false;
     }
 
-    if ($("#" + id_input).attr("type") === "checkbox" && $("#" + id_input).attr("required") === "required") {
+    if ($("#" + id_input).attr("type") === "checkbox") {
         if ($("#" + id_input).is(":checked") === false) {
             $("#caseNonCheck").show();
             return false;
@@ -859,8 +859,11 @@ function check_form(id_input) {
             return false;
         }
     }
-    return true;
+    return true; 
 }
+
+
+
 
 
 //On check si le mail est bien composer comme tout mail le devrait 
@@ -911,8 +914,10 @@ function transformThisInObject(test, form) {
 //Boucle pour valider tous les input
 function checkAllForm(form) {
     for (let i = 0; i < Object.keys(form).length - 1; i++) {
-        if (check_form(Object.keys(form)[i]) === false) {
-            return false;
+        if ($("#" + Object.keys(form)[i]).attr("required") === "required") {
+            if (check_form(Object.keys(form)[i]) === false) {
+                return false;
+            }
         }
     }
 }

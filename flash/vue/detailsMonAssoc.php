@@ -2,7 +2,6 @@
 session_start();
 $currentPage = "detailsMonAssociations";
 include '../controller/detailsMonAssocController.php';
-print_r($_SESSION['token']);
 ?>
 <!doctype html>
 <html lang="en">
