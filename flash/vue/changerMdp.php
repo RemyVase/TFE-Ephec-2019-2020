@@ -48,7 +48,7 @@ $currentPage = "changeMdp";
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nouveau mot de passe :</label>
-                                <input type="pseudo" class="form-control align-center" id="mdpUserOubliChange" placeholder="Entrez votre nouveau mot de passe.">
+                                <input type="password" class="form-control align-center" id="mdpUserOubliChange" placeholder="Entrez votre nouveau mot de passe.">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark">Changer de mot de passe</button>

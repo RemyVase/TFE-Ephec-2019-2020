@@ -32,6 +32,8 @@ $currentPage = "accueil";
 		<div class="container">
 			<div class="home_blog_inner" id="quiSommesNous">
 				<div class="row h_blog_item">
+					<div class="col-lg-12" align="center" style="font-size: 20px">Pour télécharger notre application <a href="https://expo.io/artifacts/750a3f07-1c1d-4704-8fa5-76c05d0b5eeb">Cliquez ici</a></div>
+					<br><br><br><br>
 					<div class="col-lg-6">
 						<div class="h_blog_img">
 							<img class="img-fluid" src="../img/chatTriste.jpeg" alt="">
