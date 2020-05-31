@@ -2,7 +2,6 @@
 session_start();
 $currentPage = "messagerie";
 include '../controller/listeConversationsController.php';
-print_r($_SESSION['token']);
 ?>
 <!doctype html>
 <html lang="en">

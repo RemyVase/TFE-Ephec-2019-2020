@@ -849,6 +849,11 @@ $(document).ready(function () {
         $("#supprimerAnnonceDef").show();
     });
 
+    $("#supprimerCompte").click(function () {
+        $("#supprimerCompte").hide();
+        $("#supprimerCompteDef").show();
+    });
+
 
 });
 
@@ -998,4 +1003,34 @@ function popup(token) {
     retPopup += '</div>'
 
     $('#popup').append(retPopup);
+}
+
+// Validation suppression Compte
+
+var retPopup2 = "";
+
+function popup2(token) {
+    console.log("hello");
+    retPopup2 = "";
+    retPopup2 += '<!--Modal: modalConfirmDelete-->'
+    retPopup2 += '<div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'
+    retPopup2 += '<div class="modal-dialog modal-sm modal-notify modal-danger" role="document">'
+    retPopup2 += '<!--Content-->'
+    retPopup2 += '<div class="modal-content text-center">'
+    retPopup2 += '<!--Header-->'
+    retPopup2 += '<div class="modal-header d-flex justify-content-center">'
+    retPopup2 += '<p class="heading">Etes vous sur de vouloir supprimer votre compte ? Ceci entraînera la suppression de toutes vos offres et messages.</p>'
+    retPopup2 += '</div>'
+
+    retPopup2 += '<!--Footer-->'
+    retPopup2 += '<div class="modal-footer flex-center">'
+    retPopup2 += '<button onclick="location.href = \'../controller/deleteCompteController.php?token=' + token + '\' " class="btn" data-dismiss="modal" style="color:black">Oui</button>'
+    retPopup2 += '<button class="btn" data-dismiss="modal" style="color:black">Non</button>'
+    retPopup2 += '</div>'
+    retPopup2 += '</div>'
+    retPopup2 += '<!--/.Content-->'
+    retPopup2 += '</div>'
+    retPopup2 += '</div>'
+
+    $('#popup').append(retPopup2);
 }

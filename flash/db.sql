@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 31, 2020 at 03:05 PM
+-- Generation Time: May 31, 2020 at 04:05 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -231,6 +231,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAssoc` (IN `id` INT)  BEGIN
 DELETE FROM associations
 WHERE id_assoc = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteCompte` (IN `id` INT)  BEGIN
+DELETE FROM users
+WHERE users.id_user = id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteDemande` (IN `id` INT)  BEGIN

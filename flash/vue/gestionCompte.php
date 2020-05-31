@@ -4,7 +4,7 @@ $currentPage = "gestionCompte";
 
 $date = strstr($_SESSION['date'], ' ', true);
 $date2 = strstr($date, '-');
-$dateCorrect = $date[8] . $date[9] . '/' . $date[5] .$date[6] . '/' . $date[0] . $date[1] . $date[2] . $date[3];
+$dateCorrect = $date[8] . $date[9] . '/' . $date[5] . $date[6] . '/' . $date[0] . $date[1] . $date[2] . $date[3];
 
 ?>
 <!doctype html>
@@ -75,6 +75,12 @@ $dateCorrect = $date[8] . $date[9] . '/' . $date[5] .$date[6] . '/' . $date[0] .
                                 <p id="success" style="display : none; color : green">Le mot de passe à bien été changé.</p>
                             </div>
                         </form>
+                        <br>
+                        <div id="popup"></div>
+                        <div class="text-center">
+                            <button id="supprimerCompte" name="supprimerCompte" class="btn btn-dark " align="center">Supprimer mon compte</button>
+                            <button id="supprimerCompteDef" onclick="popup2('<?= $_SESSION['token']; ?>')" name="supprimerCompteDef" class="btn btn-dark" style="display:none" data-toggle="modal" data-target="#modalConfirmDelete" align="center">Valider la suppression</button>
+                        </div>
                     </div>
                 </div>
             </div>
