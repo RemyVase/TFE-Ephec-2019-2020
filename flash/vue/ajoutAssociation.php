@@ -95,6 +95,10 @@ $currentPage = "ajoutAssociation";
                                 <input type="pseudo" class="form-control align-center" id="iban" placeholder="Entrez le numéro de compte en banque de l'association.">
                             </div>
                             <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Numéro d'agrément (Si vous en avez un):</label>
+                                <input type="pseudo" class="form-control align-center" id="numAgr" placeholder="Entrez le numéro d'agrément de l'association.">
+                            </div>
+                            <div class="form-group">
 								<label for="exampleFormControlTextarea1">Pour quel type d'animal : </label></br>
 								<select class="form-control align-center" id="typeAnimalAssoc">
 									<option value="Chat">Chat</option>

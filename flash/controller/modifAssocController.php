@@ -17,9 +17,10 @@ $placeQuar = htmlspecialchars($_POST["placesQuarantaineAssocModif"]);
 $placeReg = htmlspecialchars($_POST["placesReglesAssocModif"]);
 $banque = htmlspecialchars($_POST["ibanModif"]);
 $token = htmlspecialchars($_POST["token"]);
+$numAgr = htmlspecialchars($_POST["numAgrModif"]);
 
 if ($_SESSION['token'] == $token) {
-    $modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $banque]);
+    $modifAssoc = $db->callProcedure('modifAssoc', [$idAssoc, $nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $banque, $numAgr]);
 } else {
     echo json_encode('error CSRF');
 }

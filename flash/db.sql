@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 31, 2020 at 04:05 PM
+-- Generation Time: May 31, 2020 at 06:35 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -34,8 +34,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom`
 INSERT INTO adoption(id_assoc, nom_animal, age_animal, ville_animal, desc_animal,img_animal,type_animal) VALUES(id,nom,age,ville,descr,img,typeAnimal);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `banque` VARCHAR(20))  BEGIN
-INSERT INTO associations(nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img, typeAnimal_assoc, IBAN) values (nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img, typeAnimal, banque);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAssoc` (IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255), IN `banque` VARCHAR(20), IN `numAgre` VARCHAR(255))  BEGIN
+INSERT INTO associations(nom_assoc, adresse_assoc,  email_assoc, tel_assoc, site_assoc, desc_assoc, face_assoc, insta_assoc, nbPlaceQuarant_assoc, nbPlaceRegle_assoc, img, typeAnimal_assoc, IBAN, numAgr) values (nom, adresse, email, tel, site, descr, face, insta, placesQ, placesR, img, typeAnimal, banque, numAgre);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutChefAssoc` (IN `idUser` INT)  BEGIN
@@ -423,9 +423,9 @@ SET nom_animal = nom, age_animal = age, ville_animal = ville, desc_animal = desc
 WHERE id_animal = id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modifAssoc` (IN `id` VARCHAR(255), IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `banque` VARCHAR(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modifAssoc` (IN `id` VARCHAR(255), IN `nom` VARCHAR(255), IN `adresse` VARCHAR(255), IN `email` VARCHAR(255), IN `tel` VARCHAR(255), IN `site` VARCHAR(255), IN `descr` TEXT, IN `face` VARCHAR(255), IN `insta` VARCHAR(255), IN `placesQ` INT, IN `placesR` INT, IN `banque` VARCHAR(20), IN `numAgr` VARCHAR(255))  BEGIN
 UPDATE associations
-SET nom_assoc = nom, adresse_assoc = adresse, email_assoc = email, tel_assoc = tel, site_assoc = site, desc_assoc = descr, face_assoc = face, insta_assoc = insta, nbPlaceQuarant_assoc = placesQ, nbPlaceRegle_assoc = placesR, IBAN = banque
+SET nom_assoc = nom, adresse_assoc = adresse, email_assoc = email, tel_assoc = tel, site_assoc = site, desc_assoc = descr, face_assoc = face, insta_assoc = insta, nbPlaceQuarant_assoc = placesQ, nbPlaceRegle_assoc = placesR, IBAN = banque, associations.numAgr = numAgr
 WHERE id_assoc = id;
 END$$
 
@@ -738,22 +738,23 @@ CREATE TABLE `associations` (
   `nbPlaceRegle_assoc` int(11) NOT NULL,
   `img` varchar(255) NOT NULL,
   `typeAnimal_assoc` varchar(255) NOT NULL,
-  `IBAN` varchar(20) DEFAULT NULL
+  `IBAN` varchar(20) DEFAULT NULL,
+  `numAgr` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `associations`
 --
 
-INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`, `IBAN`) VALUES
-(1000000, 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 7, '../img/img_assoc/chatAdopte7100462.jpeg', 'Chat', NULL),
-(1000001, 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 4, 4, '../img/img_assoc/chienOubli1624332.jpeg', 'Chien', NULL),
-(1000002, 'TitiAssoc', 'TitiAssoc', 'TitiAssoc@TitiAssoc.com', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 5, 8, '../img/img_assoc/chatOrigami84972743.png', 'Chien', NULL),
-(1000003, 'TutuAssoc', 'TutuAssoc', 'TutuAssoc@TutuAssoc.com', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 2, 1, '../img/img_assoc/chatCouverture54966342.jpeg', 'Chat', NULL),
-(1000004, 'didiAssoc', 'didiAssoc', 'didiAssoc@hotmail.com', 'didiAssoc', 'didiAssoc', 'didiAssoc', 'didiAssoc', 'didiAssoc', 4, 3, '../img/img_assoc/chatFond84914761.jpeg', 'Chat', NULL),
-(1000005, 'adriAssoc', 'adriAssoc', 'adriAssoc@hotmail.com', 'adriAssoc', 'adriAssoc', 'adriAssoc', 'adriAssoc', 'adriAssoc', 4, 7, '../img/img_assoc/chatCoussin25597493.jpeg', 'Chat', NULL),
-(1000006, 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc@hotmail.com', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 7, 9, '../img/img_assoc/chatAdopte389978569.jpeg', 'Chat', NULL),
-(1000011, 'trucAssoc', 'trucAssoc', 'trucAssoc@hotmail.com', 'trucAssoc', 'trucAssoc', 'trucAssoc', 'trucAssoc', 'trucAssoc', 4, 5, '../img/img_assoc/chatAdopte380358113.jpeg', 'Autre', 'IBAN040506070809');
+INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`, `IBAN`, `numAgr`) VALUES
+(1000000, 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 'totoAssoc', 5, 7, '../img/img_assoc/chatAdopte7100462.jpeg', 'Chat', NULL, NULL),
+(1000001, 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 'testAssoc', 4, 4, '../img/img_assoc/chienOubli1624332.jpeg', 'Chien', NULL, NULL),
+(1000002, 'TitiAssoc', 'TitiAssoc', 'TitiAssoc@TitiAssoc.com', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 'TitiAssoc', 5, 8, '../img/img_assoc/chatOrigami84972743.png', 'Chien', NULL, NULL),
+(1000003, 'TutuAssoc', 'TutuAssoc', 'TutuAssoc@TutuAssoc.com', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 'TutuAssoc', 2, 1, '../img/img_assoc/chatCouverture54966342.jpeg', 'Chat', NULL, NULL),
+(1000004, 'didiAssoc', 'didiAssoc', 'didiAssoc@hotmail.com', 'didiAssoc', 'didiAssoc', 'didiAssoc', 'didiAssoc', 'didiAssoc', 4, 3, '../img/img_assoc/chatFond84914761.jpeg', 'Chat', NULL, NULL),
+(1000005, 'adriAssoc', 'adriAssoc', 'adriAssoc@hotmail.com', 'adriAssoc', 'adriAssoc', 'adriAssoc', 'adriAssoc', 'adriAssoc', 4, 7, '../img/img_assoc/chatCoussin25597493.jpeg', 'Chat', NULL, NULL),
+(1000006, 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc@hotmail.com', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 'JeremyAssoc', 7, 9, '../img/img_assoc/chatAdopte389978569.jpeg', 'Chat', NULL, NULL),
+(1000011, 'trucAssoc', 'trucAssoc', 'trucAssoc@hotmail.com', 'trucAssoc', 'trucAssoc', 'trucAssoc', 'trucAssoc', 'trucAssoc', 4, 5, '../img/img_assoc/chatAdopte380358113.jpeg', 'Autre', 'IBAN040506070809', NULL);
 
 -- --------------------------------------------------------
 

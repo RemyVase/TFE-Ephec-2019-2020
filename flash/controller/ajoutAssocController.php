@@ -17,6 +17,7 @@ $placeReg = htmlspecialchars($_POST["placesReglesAssoc"]);
 $typeAnimal = htmlspecialchars($_POST["typeAnimalAssoc"]);
 $banque = htmlspecialchars($_POST["iban"]);
 $token = htmlspecialchars($_POST["token"]);
+$numAgr = htmlspecialchars($_POST["numAgr"]);
 
 $file_name = $_FILES['fileAssoc']['name'];
 $file_extension = strrchr($file_name, ".");
@@ -53,7 +54,7 @@ if ($_SESSION['token'] == $token) {
         if (empty($checkAssoc)) {
             if (in_array($file_extension, $extension_autorisees)) {
                 if (move_uploaded_file($file_tmp_name, $cheminImgBdd)) {
-                    $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque]);
+                    $ajoutAssoc = $db->callProcedure('ajoutAssoc', [$nom, $adresse, $email, $tel, $site, $desc, $face, $insta, $placeQuar, $placeReg, $cheminImgBdd, $typeAnimal, $banque, $numAgr]);
                     $recupIdAssoc = $db->callProcedure('recupIdAssoc', [$nom]);
                     $addIdAssocIntoUser = $db->callProcedure('addIdAssocIntoUser', [$recupIdAssoc[0]{
                         'id_assoc'}, $_SESSION['id']]);

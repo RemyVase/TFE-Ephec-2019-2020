@@ -51,6 +51,9 @@ include '../controller/detailsMonAssocController.php';
                                 <?php if($detailsAssoc[0]{'IBAN'} != null) : ?>
                                     <li><span>Compte banquaire pour dons</span>:  <strong><?= $detailsAssoc{0}["IBAN"]; ?></strong></li>
                                 <?php endif ?>
+                                <?php if($detailsAssoc[0]{'numAgr'} != null) : ?>
+                                    <li><span>Numéro d'agrément </span>:  <strong><?= $detailsAssoc{0}["numAgr"]; ?></strong></li>
+                                <?php endif ?>
                                 </br><br><br>
                                 <li><span>Contact</span>: <a href="contact.php"><button type="button" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></a></li>
 
@@ -217,6 +220,10 @@ include '../controller/detailsMonAssocController.php';
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Numéro de compte en banque (Optionnel pour dons financiers) :</label>
                                     <input type="pseudo" class="form-control align-center" id="ibanModif" value="<?= $detailsAssoc{0}["IBAN"]; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Numéro d'agrément (Si vous en avez un):</label>
+                                    <input type="pseudo" class="form-control align-center" id="numAgrModif" value="<?= $detailsAssoc{0}["numAgr"]; ?>">
                                 </div>
                                 <input type="hidden" name="token" id="token" value="<?= $_SESSION['token']; ?>" />
                                 <div class="text-center">

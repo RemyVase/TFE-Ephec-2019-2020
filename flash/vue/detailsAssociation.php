@@ -51,6 +51,9 @@ include '../controller/detailsAssocController.php';
                             <?php if($detailsAssoc[0]{'IBAN'} != null) : ?>
                                 <li><span>Compte banquaire pour dons</span>:  <strong><?= $detailsAssoc{0}["IBAN"]; ?></strong></li>
                             <?php endif ?>
+                            <?php if($detailsAssoc[0]{'numAgr'} != null) : ?>
+                                    <li><span>Numéro d'agrément </span>:  <strong><?= $detailsAssoc{0}["numAgr"]; ?></strong></li>
+                            <?php endif ?>
                             </br><br><br>
                             <li><span>Contact</span>:  <a href="contact.php"><form method="post" action="contact.php"><button value="<?= $detailsAssoc[0]{'id_assoc'}; ?>" type="submit" name="idReceveur" class="btn btn-dark align-items-center "><i class="fa fa-envelope" style="color:white"></i></button></form></a></li>
 
