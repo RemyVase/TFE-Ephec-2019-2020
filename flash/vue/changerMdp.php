@@ -1,6 +1,6 @@
 <?php
 session_start();
-$currentPage = "oubliPassword";
+$currentPage = "changeMdp";
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,20 +35,27 @@ $currentPage = "oubliPassword";
             <div class="align-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <form id="oubli_form" name="oubli_form" method="post" action="#" novalidate>
+                        <form id="changeMdp_form" name="changeMdp_form" method="post" action="#" novalidate>
+                            <p>Allez vérifier dans votre emails afin de trouver votre jeton pour réinitialiser votre mot de passe ! (Vérifiez les spams) </p>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Votre email :</label>
-                                <input type="email" class="form-control align-center" id="emailUserOubli" placeholder="Entrez votre email.">
+                                <input type="email" class="form-control align-center" id="emailUserOubliChange" placeholder="Entrez votre email.">
                                 <span class="form_error" style="display : none; color : red">Ce n'est pas un mail !</span>
-                                <small class="form-text text-muted">Un email vous sera envoyé avec un jeton vous permettant de changer de mot de passe sur la prochaine page.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Votre jeton :</label>
+                                <input type="pseudo" class="form-control align-center" id="jetonUserOubliChange" placeholder="Entrez le jeton que vous avez reçu par email.">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Nouveau mot de passe :</label>
+                                <input type="pseudo" class="form-control align-center" id="mdpUserOubliChange" placeholder="Entrez votre nouveau mot de passe.">
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-dark">Recevoir un jeton</button>
+                                <button type="submit" class="btn btn-dark">Changer de mot de passe</button>
                             </div>
                             <div>
-                                <p id="success" style="display : none; color : green">Un jeton vous a été envoyé.</p>
+                                <p id="success" style="display : none; color : green">Le mot de passe à bien été changé.</p>
                                 <p id="nonComplete" style="display : none; color : red">Veillez a bien remplir l'ensemble des champs du formulaire.</p>
-                                <p id="mailPasOk" style="display : none; color : red">Ce mail n'existe pas, veuillez vérifier si celui-ci est correct.</p>
                             </div>
                         </form>
                     </div>

@@ -2,26 +2,32 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le :  jeu. 21 mai 2020 à 17:33
--- Version du serveur :  5.7.26
--- Version de PHP :  7.3.8
+-- Host: localhost:8889
+-- Generation Time: May 31, 2020 at 03:05 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de données :  `tfe`
+-- Database: `tfe`
 --
 
 DELIMITER $$
 --
--- Procédures
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addIdAssocIntoUser` (IN `idAssoc` INT, IN `idUser` INT)  BEGIN
 UPDATE users
 SET id_assoc = idAssoc
 WHERE id_user = idUser;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTokenReset` (IN `mail` VARCHAR(255), IN `token` VARCHAR(255))  BEGIN
+UPDATE users 
+SET users.tokenReset = token
+WHERE users.mail_user = mail;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutAnimal` (IN `id` INT, IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255), IN `descr` TEXT, IN `img` VARCHAR(255), IN `typeAnimal` VARCHAR(255))  BEGIN
@@ -78,6 +84,12 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `appRecupNomAssoc` (IN `idAssoc` INT)  BEGIN
 SELECT associations.nom_assoc from associations
 WHERE associations.id_assoc = idAssoc;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `changePasswordOubli` (IN `mail` VARCHAR(255), IN `mdp` VARCHAR(255))  BEGIN
+UPDATE users
+SET users.mdp_user = mdp, users.tokenReset = null
+WHERE users.mail_user = mail;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `checkAnimal` (IN `nom` VARCHAR(255), IN `age` VARCHAR(255), IN `ville` VARCHAR(255))  BEGIN
@@ -634,6 +646,11 @@ JOIN associations ON associations.id_assoc = demandesDons.id_assoc
 WHERE demandesDons.id_demande = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recupTokenOubli` (IN `mail` VARCHAR(255))  BEGIN
+SELECT users.tokenReset FROM users
+WHERE users.mail_user = mail;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `supprimerMembreAssoc` (IN `pseudo` VARCHAR(255), IN `id` INT)  BEGIN
 UPDATE users SET id_assoc = NULL
 WHERE users.pseudo_user = pseudo;
@@ -654,7 +671,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `adoption`
+-- Table structure for table `adoption`
 --
 
 CREATE TABLE `adoption` (
@@ -671,7 +688,7 @@ CREATE TABLE `adoption` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `adoption`
+-- Dumping data for table `adoption`
 --
 
 INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `ville_animal`, `desc_animal`, `statut_animal`, `date_animal`, `img_animal`, `type_animal`) VALUES
@@ -680,7 +697,7 @@ INSERT INTO `adoption` (`id_animal`, `id_assoc`, `nom_animal`, `age_animal`, `vi
 -- --------------------------------------------------------
 
 --
--- Structure de la table `assocConvers`
+-- Table structure for table `assocConvers`
 --
 
 CREATE TABLE `assocConvers` (
@@ -690,7 +707,7 @@ CREATE TABLE `assocConvers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `assocConvers`
+-- Dumping data for table `assocConvers`
 --
 
 INSERT INTO `assocConvers` (`id_assocConvers`, `id_convers`, `id_assoc`) VALUES
@@ -699,7 +716,7 @@ INSERT INTO `assocConvers` (`id_assocConvers`, `id_convers`, `id_assoc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `associations`
+-- Table structure for table `associations`
 --
 
 CREATE TABLE `associations` (
@@ -720,7 +737,7 @@ CREATE TABLE `associations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `associations`
+-- Dumping data for table `associations`
 --
 
 INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_assoc`, `tel_assoc`, `site_assoc`, `desc_assoc`, `face_assoc`, `insta_assoc`, `nbPlaceQuarant_assoc`, `nbPlaceRegle_assoc`, `img`, `typeAnimal_assoc`, `IBAN`) VALUES
@@ -736,7 +753,7 @@ INSERT INTO `associations` (`id_assoc`, `nom_assoc`, `adresse_assoc`, `email_ass
 -- --------------------------------------------------------
 
 --
--- Structure de la table `conversation`
+-- Table structure for table `conversation`
 --
 
 CREATE TABLE `conversation` (
@@ -745,7 +762,7 @@ CREATE TABLE `conversation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `conversation`
+-- Dumping data for table `conversation`
 --
 
 INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
@@ -756,7 +773,7 @@ INSERT INTO `conversation` (`id_convers`, `id_assoc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `demandesDons`
+-- Table structure for table `demandesDons`
 --
 
 CREATE TABLE `demandesDons` (
@@ -772,7 +789,7 @@ CREATE TABLE `demandesDons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `demandesDons`
+-- Dumping data for table `demandesDons`
 --
 
 INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_demande`, `dateCrea_demande`, `img`, `ville_demande`, `typeAnimal_demande`, `typeObjet_demande`) VALUES
@@ -782,7 +799,7 @@ INSERT INTO `demandesDons` (`id_demande`, `id_assoc`, `titre_demande`, `desc_dem
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
@@ -795,7 +812,7 @@ CREATE TABLE `messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `messages`
+-- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_message`, `id_convers`, `lu_destinataire`) VALUES
@@ -864,7 +881,7 @@ INSERT INTO `messages` (`id_message`, `id_envoyeur`, `contenu_message`, `date_me
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offresDons`
+-- Table structure for table `offresDons`
 --
 
 CREATE TABLE `offresDons` (
@@ -881,7 +898,7 @@ CREATE TABLE `offresDons` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `offresDons`
+-- Dumping data for table `offresDons`
 --
 
 INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `ville_offre`, `etat_offre`, `dateCrea_offre`, `img`, `typeObjet_offre`, `typeAnimal_offre`) VALUES
@@ -893,7 +910,7 @@ INSERT INTO `offresDons` (`id_offre`, `id_user`, `titre_offre`, `desc_offre`, `v
 -- --------------------------------------------------------
 
 --
--- Structure de la table `userConvers`
+-- Table structure for table `userConvers`
 --
 
 CREATE TABLE `userConvers` (
@@ -903,7 +920,7 @@ CREATE TABLE `userConvers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `userConvers`
+-- Dumping data for table `userConvers`
 --
 
 INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
@@ -913,7 +930,7 @@ INSERT INTO `userConvers` (`id_userconvers`, `id_user`, `id_convers`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -924,45 +941,46 @@ CREATE TABLE `users` (
   `date_user` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_assoc` int(11) DEFAULT NULL,
   `chef_user` tinyint(4) DEFAULT NULL,
-  `ville_user` varchar(255) NOT NULL
+  `ville_user` varchar(255) NOT NULL,
+  `tokenReset` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`, `chef_user`, `ville_user`) VALUES
-(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-04-08 16:42:51', 1000000, 1, ''),
-(2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-04-08 16:43:01', 1000000, 1, ''),
-(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-04-08 16:43:10', 1000002, 1, ''),
-(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-04-08 16:43:22', 1000003, 1, ''),
-(5, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-04-08 16:43:33', 1000001, 1, ''),
-(6, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-04-08 16:43:54', 1000011, 1, ''),
-(7, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-04-08 16:44:04', NULL, NULL, ''),
-(8, 'dudu', 'dudu@hotmail.com', '4fc75659c5daf27dbe58301c1eaaf4bfc97a026ed5319e87a36a9e65f44b8cc6', '2020-04-08 16:44:15', 1000001, NULL, ''),
-(10, 'Adri', 'Adri@hotmail.com', '909f5570cac97eb1da3752101ba7eec5dd5cc3c0834170d80ebff460cf52424d', '2020-05-03 15:12:21', 1000005, NULL, ''),
-(11, 'remy', 'Remy@hotmail.com', '65f57506904e040c1d2d39990b7f499b4d97fd7a7d6dacf7a257e9ec943fab62', '2020-05-03 15:54:13', NULL, NULL, ''),
-(12, 'Jeremy', 'Jeremy@hotmail.com', '8d289ec537b6e2edd43e9f464fcbf2b42c1f34fcaf0aea680d411cb4656a3d97', '2020-05-03 15:55:05', 1000006, 1, ''),
-(13, 'Antoine', 'Antoine@hotmail.com', '260f7f68928c0d526c1bdf2b4f5cd8372ec81f349f64e14d0b414d09f8643643', '2020-05-03 15:57:48', NULL, NULL, ''),
-(14, 'Arg', 'Arg@hotmail.com', '3df61483d1c4183b44464ccc3520cb14aa5ae2a812ed91f4d62a733a863e9982', '2020-05-03 15:59:59', NULL, NULL, ''),
-(15, 'Adri12', 'Adri12@hotmail.com', '909f5570cac97eb1da3752101ba7eec5dd5cc3c0834170d80ebff460cf52424d', '2020-05-03 16:03:24', NULL, NULL, ''),
-(16, 'Greg', 'Greg@hotmail.com', '9db0da90670c42a3e9c6ac101a7d4d21404100b958ee6293c06a7821c1635309', '2020-05-03 16:05:13', NULL, NULL, ''),
-(17, 'didi', 'didi@hotmail.com', 'a867edafa1277f46f879ab92c373a15c2d75c5d86fec741705cee1eb01ef8c9e', '2020-05-13 14:35:02', 1000004, 1, ''),
-(18, 'gilles', 'gilles@hotmail.com', 'b193ce3c0dc5e1a8724e2c784e34968e79f44cd4eb009878e4e57860c2f052a7', '2020-05-21 17:18:51', NULL, NULL, 'Bruxelles');
+INSERT INTO `users` (`id_user`, `pseudo_user`, `mail_user`, `mdp_user`, `date_user`, `id_assoc`, `chef_user`, `ville_user`, `tokenReset`) VALUES
+(1, 'toto', 'toto@hotmail.com', '31f7a65e315586ac198bd798b6629ce4903d0899476d5741a9f32e2e521b6a66', '2020-04-08 16:42:51', 1000000, 1, '', NULL),
+(2, 'tata', 'tata@hotmail.com', 'd1c7c99c6e2e7b311f51dd9d19161a5832625fb21f35131fba6da62513f0c099', '2020-04-08 16:43:01', 1000000, 1, '', NULL),
+(3, 'titi', 'titi@hotmail.com', 'cce66316b4c1c59df94a35afb80cecd82d1a8d91b554022557e115f5c275f515', '2020-04-08 16:43:10', 1000002, 1, '', NULL),
+(4, 'tutu', 'tutu@hotmail.com', 'eb0295d98f37ae9e95102afae792d540137be2dedf6c4b00570ab1d1f355d033', '2020-04-08 16:43:22', 1000003, 1, '', NULL),
+(5, 'test', 'test@hotmail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '2020-04-08 16:43:33', 1000001, 1, '', NULL),
+(6, 'truc', 'truc@hotmail.com', 'fe6b57e537d2ff888ead8bc8484965b34838088143d9d7f12c82c964104be641', '2020-04-08 16:43:54', 1000011, 1, '', NULL),
+(7, 'dede', 'dede@hotmail.com', 'bfccfeb7726160d74f8a18407853846aab2ebd57db1dc32409acd6aefc7c4b33', '2020-04-08 16:44:04', NULL, NULL, '', NULL),
+(8, 'dudu', 'dudu@hotmail.com', '4fc75659c5daf27dbe58301c1eaaf4bfc97a026ed5319e87a36a9e65f44b8cc6', '2020-04-08 16:44:15', 1000001, NULL, '', NULL),
+(10, 'Adri', 'Adri@hotmail.com', '909f5570cac97eb1da3752101ba7eec5dd5cc3c0834170d80ebff460cf52424d', '2020-05-03 15:12:21', 1000005, NULL, '', NULL),
+(11, 'remy', 'Remy@hotmail.com', '65f57506904e040c1d2d39990b7f499b4d97fd7a7d6dacf7a257e9ec943fab62', '2020-05-03 15:54:13', NULL, NULL, '', NULL),
+(12, 'Jeremy', 'Jeremy@hotmail.com', '8d289ec537b6e2edd43e9f464fcbf2b42c1f34fcaf0aea680d411cb4656a3d97', '2020-05-03 15:55:05', 1000006, 1, '', NULL),
+(13, 'Antoine', 'Antoine@hotmail.com', '260f7f68928c0d526c1bdf2b4f5cd8372ec81f349f64e14d0b414d09f8643643', '2020-05-03 15:57:48', NULL, NULL, '', NULL),
+(14, 'Arg', 'Arg@hotmail.com', '3df61483d1c4183b44464ccc3520cb14aa5ae2a812ed91f4d62a733a863e9982', '2020-05-03 15:59:59', NULL, NULL, '', NULL),
+(15, 'Adri12', 'Adri12@hotmail.com', '909f5570cac97eb1da3752101ba7eec5dd5cc3c0834170d80ebff460cf52424d', '2020-05-03 16:03:24', NULL, NULL, '', NULL),
+(16, 'Greg', 'Greg@hotmail.com', '9db0da90670c42a3e9c6ac101a7d4d21404100b958ee6293c06a7821c1635309', '2020-05-03 16:05:13', NULL, NULL, '', NULL),
+(17, 'didi', 'didi@hotmail.com', 'a867edafa1277f46f879ab92c373a15c2d75c5d86fec741705cee1eb01ef8c9e', '2020-05-13 14:35:02', 1000004, 1, '', NULL),
+(18, 'gilles', 'gilles@hotmail.com', 'b193ce3c0dc5e1a8724e2c784e34968e79f44cd4eb009878e4e57860c2f052a7', '2020-05-21 17:18:51', NULL, NULL, 'Bruxelles', NULL);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `adoption`
+-- Indexes for table `adoption`
 --
 ALTER TABLE `adoption`
   ADD PRIMARY KEY (`id_animal`),
   ADD KEY `adoption_ibfk_1` (`id_assoc`);
 
 --
--- Index pour la table `assocConvers`
+-- Indexes for table `assocConvers`
 --
 ALTER TABLE `assocConvers`
   ADD PRIMARY KEY (`id_assocConvers`),
@@ -970,27 +988,27 @@ ALTER TABLE `assocConvers`
   ADD KEY `idAssocInd` (`id_assoc`);
 
 --
--- Index pour la table `associations`
+-- Indexes for table `associations`
 --
 ALTER TABLE `associations`
   ADD PRIMARY KEY (`id_assoc`);
 
 --
--- Index pour la table `conversation`
+-- Indexes for table `conversation`
 --
 ALTER TABLE `conversation`
   ADD PRIMARY KEY (`id_convers`),
   ADD KEY `id_assoc` (`id_assoc`);
 
 --
--- Index pour la table `demandesDons`
+-- Indexes for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD PRIMARY KEY (`id_demande`),
   ADD KEY `id_assoc` (`id_assoc`);
 
 --
--- Index pour la table `messages`
+-- Indexes for table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
@@ -998,14 +1016,14 @@ ALTER TABLE `messages`
   ADD KEY `id_convers` (`id_convers`);
 
 --
--- Index pour la table `offresDons`
+-- Indexes for table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD PRIMARY KEY (`id_offre`),
   ADD KEY `offresdons_ibfk_1` (`id_user`);
 
 --
--- Index pour la table `userConvers`
+-- Indexes for table `userConvers`
 --
 ALTER TABLE `userConvers`
   ADD PRIMARY KEY (`id_userconvers`),
@@ -1013,121 +1031,121 @@ ALTER TABLE `userConvers`
   ADD KEY `foreign_user` (`id_user`) USING BTREE;
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `FK_idAssoc` (`id_assoc`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `adoption`
+-- AUTO_INCREMENT for table `adoption`
 --
 ALTER TABLE `adoption`
   MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `assocConvers`
+-- AUTO_INCREMENT for table `assocConvers`
 --
 ALTER TABLE `assocConvers`
   MODIFY `id_assocConvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT pour la table `associations`
+-- AUTO_INCREMENT for table `associations`
 --
 ALTER TABLE `associations`
   MODIFY `id_assoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000012;
 
 --
--- AUTO_INCREMENT pour la table `conversation`
+-- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
   MODIFY `id_convers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
--- AUTO_INCREMENT pour la table `demandesDons`
+-- AUTO_INCREMENT for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   MODIFY `id_demande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `messages`
+-- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
--- AUTO_INCREMENT pour la table `offresDons`
+-- AUTO_INCREMENT for table `offresDons`
 --
 ALTER TABLE `offresDons`
   MODIFY `id_offre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT pour la table `userConvers`
+-- AUTO_INCREMENT for table `userConvers`
 --
 ALTER TABLE `userConvers`
   MODIFY `id_userconvers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `adoption`
+-- Constraints for table `adoption`
 --
 ALTER TABLE `adoption`
   ADD CONSTRAINT `adoption_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `assocConvers`
+-- Constraints for table `assocConvers`
 --
 ALTER TABLE `assocConvers`
   ADD CONSTRAINT `assocconvers_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `assocconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `conversation`
+-- Constraints for table `conversation`
 --
 ALTER TABLE `conversation`
   ADD CONSTRAINT `conversation_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `demandesDons`
+-- Constraints for table `demandesDons`
 --
 ALTER TABLE `demandesDons`
   ADD CONSTRAINT `demandesdons_ibfk_1` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `messages`
+-- Constraints for table `messages`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_envoyeur`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `offresDons`
+-- Constraints for table `offresDons`
 --
 ALTER TABLE `offresDons`
   ADD CONSTRAINT `offresdons_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `userConvers`
+-- Constraints for table `userConvers`
 --
 ALTER TABLE `userConvers`
   ADD CONSTRAINT `userconvers_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `userconvers_ibfk_2` FOREIGN KEY (`id_convers`) REFERENCES `conversation` (`id_convers`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `FK_idAssoc` FOREIGN KEY (`id_assoc`) REFERENCES `associations` (`id_assoc`) ON DELETE SET NULL ON UPDATE SET NULL;

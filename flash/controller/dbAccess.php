@@ -90,6 +90,7 @@ class dbAccess
             case 'recupCheminImgAnnonce':
             case 'recupCheminImgAssoc':
             case 'recupCheminImgDemande':
+            case 'recupTokenOubli':
                 array_push($params, '?');
 
                 try {
@@ -132,6 +133,8 @@ class dbAccess
             case 'messageCheckSiFraudeAssocConvers':
             case 'messagePseudoConvAssoc':
             case 'transmettreDroitAssoc':
+            case 'addTokenReset':
+            case 'changePasswordOubli':
                 array_push($params, '?', '?');
 
                 try {

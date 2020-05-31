@@ -797,6 +797,39 @@ $(document).ready(function () {
         });
     });
 
+    $("#changeMdp_form").submit(function (event) {
+        //Empêche l'html de se refresh
+
+        event.preventDefault();
+
+        var test = getAllElementsForm("#changeMdp_form");
+        var dataForm = getAllElementsFormImg("#changeMdp_form");
+        var objectForm = transformThisInObject(test, "#changeMdp_form");
+
+        if (checkAllForm(objectForm) === false) {
+            return false;
+        }
+
+        //appel AJAX 
+        //Faire la méthode post en ajax pour pouvoir afficher le chargement, si ca à marcher ou si ca a échoué. 
+        $.ajax({
+            url: "../controller/changeMdpOublieController.php",
+            type: "POST",
+            data: dataForm,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response === '"succes"'){
+                    $("#success").show();
+                    $("#echec").hide();
+                }else{
+                    $("#echec").show();
+                    $("#success").hide();
+                }
+            }
+        });
+    });
+
 
     ////////// NON VALIDATION DE FORMULAIRE /////////////////
 

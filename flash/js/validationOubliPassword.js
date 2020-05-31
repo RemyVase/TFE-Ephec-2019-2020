@@ -20,13 +20,11 @@ $(document).ready(function () {
             data: objectForm,
             datatype: "json",
             success: function (response) {
-                console.log(response);
                 if (response === '"mailPasOk"') {
                     $("#mailPasOk").show();
                 }
                 else {
-                    $("#mailPasOk").hide();
-                    $("#success").show();
+                    window.location.replace('../vue/changerMdp.php');
                 }
             }
         })
